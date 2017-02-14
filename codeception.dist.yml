@@ -59,7 +59,7 @@ modules:
       browser: firefox
       capabilities:
           platform: 'Windows 10'
-          version: beta
+          version: '50.0'
           screenResolution: '1024x768'
           tunnel-identifier: '%TRAVIS_JOB_NUMBER%'
           name: 'WPBS %TRAVIS_JOB_NUMBER% on WP-%WP_VERSION% with PHP-%TRAVIS_PHP_VERSION%'

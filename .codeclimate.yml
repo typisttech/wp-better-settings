@@ -1,0 +1,37 @@
+---
+engines:
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript
+      - php
+  fixme:
+    enabled: true
+  markdownlint:
+    enabled: true
+  phpcodesniffer:
+    enabled: true
+    config:
+      standard: "ruleset.xml"
+  phpmd:
+    enabled: true
+    checks:
+      Controversial/CamelCaseMethodName:
+        enabled: false
+      Controversial/CamelCaseParameterName:
+        enabled: false
+      Controversial/CamelCasePropertyName:
+        enabled: false
+      Controversial/CamelCaseVariableName:
+        enabled: false
+ratings:
+  paths:
+    - "**.css"
+    - "**.js"
+    - "**.md"
+    - "**.phtml"
+    - "**.php"
+exclude_paths:
+  - "tests/"
+  - "vendor/"

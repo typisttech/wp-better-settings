@@ -1,0 +1,25 @@
+<?php
+/**
+ * A simplified OOP implementation of the WP Settings API
+ *
+ * @package   WPBS\WP_Better_Settings
+ * @author    Tang Rufus <rufus@typist.tech>
+ * @license   GPL-2.0+
+ * @link      https://www.typist.tech/
+ * @copyright 2017 Tang Rufus
+ */
+
+namespace WPBS\WPBetterSettings\partials;
+
+/* @var \ArrayObject $context Context passed through from Settings class. */
+
+$name = sprintf(
+	'%s[%s]',
+	esc_html( $context->option_name ),
+	esc_html( $context->id )
+);
+
+?>
+
+<input type='email' name='<?php echo esc_attr( $name ); ?>'
+	   value='<?php echo esc_attr( $context->value ); ?>'>

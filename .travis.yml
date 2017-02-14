@@ -1,0 +1,106 @@
+language: php
+
+branches:
+  only:
+    - master
+    - /^(?:(\d+)\.)?(?:(\d+)\.)?(\*|\d+)$/
+
+services:
+  - mysql
+
+cache:
+  apt: true
+  directories:
+    - $HOME/.composer/cache/files
+    - node_modules
+
+addons:
+  apt:
+    packages:
+      - nginx
+  sauce_connect: true
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+
+php:
+  - 7.0
+  - 7.1
+  - nightly
+
+env:
+  - WP_VERSION=nightly
+  - WP_VERSION=latest
+  - WP_VERSION=4.7.2
+  - WP_VERSION=4.7.1
+  - WP_VERSION=4.7
+
+matrix:
+  allow_failures:
+    - php: nightly
+    - env: WP_VERSION=nightly
+  fast_finish: true
+
+before_install:
+  # Set environment variables
+  - if [[ $(phpenv version-name) == "7.1" && "$WP_VERSION" == "latest" ]]; then
+      export WITH_COVERAGE=true;
+    fi
+
+  - if [[ $(phpenv version-name) == "7.0" && "$WP_VERSION" == "latest" ]]; then
+      export WITH_PHPCS=true;
+    fi
+
+  # Install TypistTech/travis-nginx-wordpress
+  - git clone --depth=1 https://github.com/TypistTech/travis-nginx-wordpress $HOME/setup
+  - source $HOME/setup/travis/setup.sh $HOME/setup
+  - install-nginx
+  - install-wordpress
+  - prepare-codeception
+
+  # WordPress coding standard
+  - if [[ "$WITH_PHPCS" == "true" ]]; then
+      install-phpcs;
+    fi
+
+  # Install npm packages
+  - npm install
+  # Build the production plugin
+  - grunt build
+  # Activate the plugin
+  - wp plugin install ./release/wp-better-settings.zip --force --activate --path=/tmp/wordpress
+  # Export a dump of plugin-activated database to the _data folder
+  - wp db export $TRAVIS_BUILD_DIR/tests/_data/dump.sql --path=/tmp/wordpress
+
+  # Get back to Travis build dir
+  - cd $TRAVIS_BUILD_DIR
+
+install:
+  # Build tests
+  - composer install --prefer-dist --no-interaction --no-suggest
+  - vendor/bin/codecept build
+
+script:
+  - if [[ "$WITH_COVERAGE" == "true" ]]; then
+      vendor/bin/codecept run --debug -vvv --coverage --coverage-xml;
+    else
+      vendor/bin/codecept run --debug -vvv;
+    fi
+
+  - if [[ "$WITH_PHPCS" == "true" ]]; then
+      phpcs --standard=ruleset.xml;
+    fi
+
+deploy:
+  provider: releases
+  api_key:
+    secure: k7m0Dld63XcOzfcwZ9jL1Y5O9vEsKoxt9RPa49GSe6YzcLk5Utak8ImNA9x+JKGIEiO3npp3YJ/HB457Hxjjfwl3pqAod2CJR7nFpoPac3qsy13LJj8dGPH87+crfwnfBJ9S9w6+/dWVwYjk++NjPP2ZPOBCg5An2Mhm+V/TbkQZWCjerc8nEo6SIviJNi+TocV2vDuihF3mot8iJYUKcbBn902Wns8QpvtZXISxHD30p5ImgS08dYSal8x5uFw5l70uhAm9cxEqD/QQiPb8JLbugeWnZfQtFs0q/CYZyoN3KU5rlPt8R6rnUBkCJRUqqveMVnzjHOvMLf/a4AobM4XpJadwRS2pGwuXCeYHYe79l0ILvAIW6UWPiw0lFit/7+d0VWlz0hhysYbSM+npd6vXpgT0dzd4tGsxMGqKIgI68gdpelraUlAQrllhbC7Bydh6K4ZMlTmns5K6Ofs9f2esTUhTbXoaNOCXuQaJYAL8gzDwvbUNXNf5+pDEYEaqGPGDXQCMU8qrhja3xR2/N+ki6jpsfIOtr4mCcPJGiPZcWH1comLQpfRysb4RSwnkW7auZcqCTnPkpRcbhBFFrC6Zrw1uSHbv209A+88Tt6z25Jmay5TLsXR0JBc4HCWEdKWbLsnvVcj5G75Xxh6saDOkPY5zpQeIGblwdFvZGDw=
+  file: release/wp-better-settings.zip
+  skip_cleanup: true
+  on:
+    condition: "$WP_VERSION = latest"
+    php: 7.0
+    tags: true
+    repo: TypistTech/wp-better-settings

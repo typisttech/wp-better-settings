@@ -1,0 +1,71 @@
+actor: Tester
+paths:
+  tests: tests
+  log: tests/_output
+  data: tests/_data
+  helpers: tests/_support
+settings:
+  bootstrap: _bootstrap.php
+  colors: true
+  memory_limit: 1024M
+coverage:
+  enabled: true
+  include:
+    - src/wp-better-settings/*
+  exclude:
+    - src/wp-better-settings/partials/*
+params: [env] # get parameters from environment vars
+modules:
+  config:
+    WPDb:
+      dsn: 'mysql:host=localhost;dbname=wordpress'
+      user: root
+      password: ''
+      dump: tests/_data/dump.sql
+      populate: true
+      cleanup: true
+      url: 'http://wp.dev:8080'
+      tablePrefix: wp_
+    WPBrowser:
+      url: 'http://wp.dev:8080'
+      adminUsername: admin
+      adminPassword: password
+      adminPath: /wp-admin
+    WordPress:
+      depends: WPDb
+      wpRootFolder: /tmp/wordpress
+      adminUsername: admin
+      adminPassword: password
+    WPLoader:
+      wpRootFolder: /tmp/wordpress
+      dbName: wordpress_int
+      dbHost: localhost
+      dbUser: root
+      dbPassword: ''
+      tablePrefix: int_wp_
+      domain: wordpress.dev
+      adminEmail: admin@wordpress.dev
+      plugins: [wp-better-settings/wp-better-settings.php]
+      activatePlugins: [wp-better-settings/wp-better-settings.php]
+    WPWebDriver:
+      url: 'http://wp.dev:8080'
+      port: 4444
+      window_size: '1024x768'
+      adminUsername: admin
+      adminPassword: password
+      adminPath: /wp-admin
+      # Sauce Labs
+      host: '%SAUCE_USERNAME%:%SAUCE_ACCESS_KEY%@ondemand.saucelabs.com'
+      browser: firefox
+      capabilities:
+          platform: 'Windows 10'
+          version: beta
+          screenResolution: '1024x768'
+          tunnel-identifier: '%TRAVIS_JOB_NUMBER%'
+          name: 'WPBS %TRAVIS_JOB_NUMBER% on WP-%WP_VERSION% with PHP-%TRAVIS_PHP_VERSION%'
+          build: '%TRAVIS_BUILD_NUMBER%'
+          tag: ['PHP-%TRAVIS_PHP_VERSION%', 'WP-%WP_VERSION%', 'WPBS', 'Travis CI', 'CI']
+          custom-data:
+            commit: %TRAVIS_COMMIT%
+            pull-request: %TRAVIS_PULL_REQUEST%
+            pull-request-branch: %TRAVIS_PULL_REQUEST_BRANCH%

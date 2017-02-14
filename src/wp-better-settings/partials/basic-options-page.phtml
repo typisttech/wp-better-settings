@@ -1,0 +1,26 @@
+<?php
+/**
+ * A simplified OOP implementation of the WP Settings API
+ *
+ * @package   WPBS\WP_Better_Settings
+ * @author    Tang Rufus <rufus@typist.tech>
+ * @license   GPL-2.0+
+ * @link      https://www.typist.tech/
+ * @copyright 2017 Tang Rufus
+ */
+
+namespace WPBS\WPBetterSettings;
+
+/* @var \ArrayObject $context Context passed through from MenuPages class. */
+
+?>
+<form action='options.php' method='post'>
+	<h1>
+		<?php echo esc_html( $context->page_title ); ?>
+	</h1>
+
+	<?php settings_fields( $context->option_group ); ?>
+	<?php do_settings_sections( $context->menu_slug ); ?>
+	<?php submit_button(); ?>
+
+</form>

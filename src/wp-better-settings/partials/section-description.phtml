@@ -1,0 +1,18 @@
+<?php
+/**
+ * A simplified OOP implementation of the WP Settings API
+ *
+ * @package   WPBS\WP_Better_Settings
+ * @author    Tang Rufus <rufus@typist.tech>
+ * @license   GPL-2.0+
+ * @link      https://www.typist.tech/
+ * @copyright 2017 Tang Rufus
+ */
+
+namespace WPBS\WPBetterSettings;
+
+/* @var \ArrayObject $context Context passed through from Settings class. */
+
+if ( ! empty( $context->desc ) ) {
+	echo esc_html( $context->desc );
+}

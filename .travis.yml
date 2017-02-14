@@ -48,12 +48,17 @@ matrix:
 
 before_install:
   # Set environment variables
+  - if [[ $(phpenv version-name) == "7.0" && "$WP_VERSION" == "latest" ]]; then
+      export WITH_PHPCS=true;
+    fi
+
   - if [[ $(phpenv version-name) == "7.1" && "$WP_VERSION" == "latest" ]]; then
       export WITH_COVERAGE=true;
     fi
 
-  - if [[ $(phpenv version-name) == "7.0" && "$WP_VERSION" == "latest" ]]; then
-      export WITH_PHPCS=true;
+  # Disable xdebug to speed up the build unless test coverage is needed
+  - if [[ "$WITH_COVERAGE" != "true" && $(phpenv version-name) == "nightly" ]]; then
+      phpenv config-rm xdebug.ini;
     fi
 
   # Install TypistTech/travis-nginx-wordpress

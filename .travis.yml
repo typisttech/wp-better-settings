@@ -17,6 +17,7 @@ cache:
 addons:
   apt:
     packages:
+      - jq
       - nginx
   code_climate:
     repo_token:
@@ -106,6 +107,16 @@ after_success:
       composer require codeclimate/php-test-reporter --dev;
       vendor/bin/test-reporter --no-interaction --coverage-report=tests/_output/coverage.xml;
     fi
+  - export SAUCE_JOB_RESULT=true
+
+after_failure:
+  - export SAUCE_JOB_RESULT=false
+
+after_script:
+  # Report test result to SauceLabs
+  - export SAUCE_JOB_NAME="WPBS $TRAVIS_JOB_NUMBER on WP-$WP_VERSION with PHP-$TRAVIS_PHP_VERSION";
+  - export SAUCE_JOB_ID=$( curl -u $SAUCE_USERNAME:$SAUCE_ACCESS_KEY https://saucelabs.com/rest/v1/$SAUCE_USERNAME/jobs\?full=true\&format=json | jq ".[] | select(.name == \"$SAUCE_JOB_NAME\") | .id " | sed -e 's/^"//' -e 's/"$//' )
+  - "eval \"curl -X PUT -u $SAUCE_USERNAME:$SAUCE_ACCESS_KEY -H \'Content-Type: application/json\' -d \'{ \\\"passed\\\": \"$SAUCE_JOB_RESULT\" }\' https://saucelabs.com/rest/v1/$SAUCE_USERNAME/jobs/$SAUCE_JOB_ID\""
 
 deploy:
   provider: releases

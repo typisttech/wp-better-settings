@@ -56,7 +56,7 @@ modules:
       adminPath: /wp-admin
       # Sauce Labs
       host: '%SAUCE_USERNAME%:%SAUCE_ACCESS_KEY%@ondemand.saucelabs.com'
-      browser: firefox
+      browser: chrome
       capabilities:
           platform: 'Windows 10'
           version: beta

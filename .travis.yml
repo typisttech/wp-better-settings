@@ -18,6 +18,7 @@ addons:
   apt:
     packages:
       - nginx
+      - jq
   code_climate:
     repo_token:
       secure: "Q8UTbZeQUGcS9+UwZt1TwtAh7gAOygoGu7TT0d7Q8c9JRK4piRQLA8juFyFICI/V5GS9mO5u0dw00ZStZj2uWuzUKdFH+eewG4wRFPiBHcQy9uS7JM7UBT2EGdQ3kKKUvznZhjxlu3SV36Fq2IqKM/kbWRuPuAjyyoyLFDVz4yNirKmggOm50G5CaHYvj4N4tEW3NvcxBrFaAo+G1mz7l5M75Y6oQYcs547+EmNtZUq/FCqEOXcDZN8QOe+sQ9vQIHF0v7wSqGqIvcj+krQuOTn3+oFPj+6vc5FnaeB52XGWo4D/MN4WZggi2GZh8qSxGqAhbPh+1AW7XDxfvSZ7x91vpjGoVUW2J6vgM+GKlsU1QG7HNj5Cm7oYIdMu+mDB5MkU/Ywuhy4r9AJL5LqyKBsSZS/HKWKrxI6Xeu5MNuR3nBBRo+nwamB+u+IBd/ohmc/bdqdoLVqcvS4dnlc9EdYKS7tCJ8biB9QxdT54zwVa6iskdKAF898d+g5TD/WeWlhjlq+fSwUwAw4mRrHGL3XXtKH2Ob5FsDGMyahyg4oIPXmwOGGhQ10qfOQIVtqp4xmZ4SWItPI4kJoYGily4XVwbIOAGZ69T4MISJUMWFupu9RETWC0NSB5iCpHVHzg8fGVOi/L+GkLHSKXMojaOHH4cJ8o3b3yUCN9NQap4cs="
@@ -106,6 +107,16 @@ after_success:
       composer require codeclimate/php-test-reporter --dev;
       vendor/bin/test-reporter --no-interaction --coverage-report=tests/_output/coverage.xml;
     fi
+  - export SAUCE_JOB_RESULT=true
+
+after_failure:
+  - export SAUCE_JOB_RESULT=false
+
+after_script:
+  # Report test result to SauceLabs
+  - export SAUCE_JOB_NAME="WPBS $TRAVIS_JOB_NUMBER on WP-$WP_VERSION with PHP-$TRAVIS_PHP_VERSION";
+  - export SAUCE_JOB_ID=$( curl -u $SAUCE_USERNAME:$SAUCE_ACCESS_KEY https://saucelabs.com/rest/v1/$SAUCE_USERNAME/jobs\?full=true\&format=json | jq ".[] | select(.name == \"$SAUCE_JOB_NAME\") | .id " | sed -e 's/^"//' -e 's/"$//' )
+  - "eval \"curl -X PUT -u $SAUCE_USERNAME:$SAUCE_ACCESS_KEY -H \'Content-Type: application/json\' -d \'{ \\\"passed\\\": \"$SAUCE_JOB_RESULT\" }\' https://saucelabs.com/rest/v1/$SAUCE_USERNAME/jobs/$SAUCE_JOB_ID\""
 
 deploy:
   provider: releases

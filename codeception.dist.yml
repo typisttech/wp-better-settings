@@ -63,7 +63,7 @@ modules:
           screenResolution: '1024x768'
           tunnel-identifier: '%TRAVIS_JOB_NUMBER%'
           name: 'WPBS %TRAVIS_JOB_NUMBER% on WP-%WP_VERSION% with PHP-%TRAVIS_PHP_VERSION%'
-          build: '%TRAVIS_BUILD_NUMBER%'
+          build: '%TRAVIS_JOB_NUMBER%'
           tag: ['PHP-%TRAVIS_PHP_VERSION%', 'WP-%WP_VERSION%', 'WPBS', 'Travis CI', 'CI']
           custom-data:
             commit: %TRAVIS_COMMIT%

@@ -1,5 +1,7 @@
 language: php
 
+sudo: false
+
 branches:
   only:
     - master
@@ -62,16 +64,16 @@ before_install:
       phpenv config-rm xdebug.ini;
     fi
 
-  # Install TypistTech/travis-nginx-wordpress
-  - git clone --depth=1 https://github.com/TypistTech/travis-nginx-wordpress $HOME/setup
-  - source $HOME/setup/travis/setup.sh $HOME/setup
-  - install-nginx
-  - install-wordpress
-  - prepare-codeception
+  # Install helper scripts
+  - composer global require "typisttech/travis-nginx-wordpress:^0.1"
+  - export PATH=$HOME/.composer/vendor/bin:$PATH
+  - tnw-install-nginx
+  - tnw-install-wordpress
+  - tnw-prepare-codeception
 
   # WordPress coding standard
   - if [[ "$WITH_PHPCS" == "true" ]]; then
-      install-phpcs;
+      tnw-install-wpcs;
     fi
 
   # Install npm packages

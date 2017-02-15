@@ -65,7 +65,7 @@ before_install:
     fi
 
   # Install helper scripts
-  - composer global require "typisttech/travis-nginx-wordpress:^0.1"
+  - composer global require -n --prefer-dist "typisttech/travis-nginx-wordpress:~0.1.1"
   - export PATH=$HOME/.composer/vendor/bin:$PATH
   - tnw-install-nginx
   - tnw-install-wordpress
@@ -109,15 +109,9 @@ after_success:
       composer require codeclimate/php-test-reporter --dev;
       vendor/bin/test-reporter --no-interaction --coverage-report=tests/_output/coverage.xml;
     fi
-  - export SAUCE_JOB_RESULT=true
-
-after_failure:
-  - export SAUCE_JOB_RESULT=false
 
 after_script:
-  # Report test result to SauceLabs
-  - export SAUCE_JOB_ID=$( curl -u $SAUCE_USERNAME:$SAUCE_ACCESS_KEY https://saucelabs.com/rest/v1/$SAUCE_USERNAME/jobs\?full=true\&format=json | jq ".[] | select(.build == \"$TRAVIS_JOB_NUMBER\") | .id " | sed -e 's/^"//' -e 's/"$//' )
-  - "eval \"curl -X PUT -u $SAUCE_USERNAME:$SAUCE_ACCESS_KEY -H \'Content-Type: application/json\' -d \'{ \\\"passed\\\": \"$SAUCE_JOB_RESULT\" }\' https://saucelabs.com/rest/v1/$SAUCE_USERNAME/jobs/$SAUCE_JOB_ID\""
+  - tnw-send-result-to-saucelabs
 
 deploy:
   provider: releases

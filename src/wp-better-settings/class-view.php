@@ -45,9 +45,9 @@ class View {
 	 *                              let through escaping functions. Set
 	 *                              to sane defaults if none provided.
 	 */
-	public function __construct( string $filename, array $allowed_tags = null ) {
+	public function __construct( string $filename, array $allowed_tags = [] ) {
 		$this->filename     = $filename;
-		$this->allowed_tags = null === $allowed_tags
+		$this->allowed_tags = empty( $allowed_tags )
 			? $this->default_allowed_tags()
 			: $allowed_tags;
 	}
@@ -93,7 +93,7 @@ class View {
 	 * @param mixed       $context    Context ArrayObject for which to render
 	 *                                the view.
 	 */
-	static public function kses_render( $view, $context ) {
+	public static function kses_render( $view, $context ) {
 		$view_object = is_string( $view ) ? new View( $view ) : $view;
 
 		echo wp_kses(
@@ -112,7 +112,7 @@ class View {
 	 * @param mixed $context Context variables.
 	 * @param bool  $return  [Optional] To return or to echo.
 	 *
-	 * @return string           Void if $return = true, or file is not readable.
+	 * @return string|boolean   Boolean if $return = true, or file is not readable.
 	 *                          Otherwise, returns HTML string.
 	 */
 	public function render( $context, bool $return = true ) {

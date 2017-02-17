@@ -28,7 +28,7 @@ class Plugin {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @var OptionsStoreInterface
+	 * @var WP_Better_Settings\OptionsStoreInterface
 	 */
 	protected $options_store;
 
@@ -62,7 +62,7 @@ class Plugin {
 	 *
 	 * #since 0.1.0
 	 *
-	 * @return MenuPageConfig
+	 * @return WP_Better_Settings\MenuPageConfig
 	 */
 	private function page_config() : MenuPageConfig {
 		return new MenuPageConfig( [
@@ -79,7 +79,7 @@ class Plugin {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @return SettingConfig
+	 * @return WP_Better_Settings\SettingConfig
 	 * @throws \InvalidArgumentException If invalid arguments are passed on.
 	 */
 	private function settings_config() : SettingConfig {

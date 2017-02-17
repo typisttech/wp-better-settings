@@ -28,7 +28,6 @@ use ArrayObject;
  */
 class Settings {
 
-
 	use FunctionInvokerTrait;
 
 	/**
@@ -83,12 +82,12 @@ class Settings {
 	 */
 	protected function register_setting( SettingConfig $settings_config ) {
 
-		$settings_config->args['default'] = $settings_config->args['default'] ??
-		                                    $settings_config->default_option();
+		$settings_config->args['default'] = $settings_config->args['default'] ?? $settings_config->default_option();
 
 		$this->invoke_function( 'register_setting', $settings_config );
 
 		// Prepare array to pass to array_walk as third parameter.
+		$args                = [];
 		$args['option_name'] = $settings_config->option_name;
 
 		array_walk( $settings_config->sections, [ $this, 'add_section' ], $args );

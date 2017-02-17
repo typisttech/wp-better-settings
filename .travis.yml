@@ -21,9 +21,6 @@ addons:
     packages:
       - jq
       - nginx
-  code_climate:
-    repo_token:
-      secure: "Q8UTbZeQUGcS9+UwZt1TwtAh7gAOygoGu7TT0d7Q8c9JRK4piRQLA8juFyFICI/V5GS9mO5u0dw00ZStZj2uWuzUKdFH+eewG4wRFPiBHcQy9uS7JM7UBT2EGdQ3kKKUvznZhjxlu3SV36Fq2IqKM/kbWRuPuAjyyoyLFDVz4yNirKmggOm50G5CaHYvj4N4tEW3NvcxBrFaAo+G1mz7l5M75Y6oQYcs547+EmNtZUq/FCqEOXcDZN8QOe+sQ9vQIHF0v7wSqGqIvcj+krQuOTn3+oFPj+6vc5FnaeB52XGWo4D/MN4WZggi2GZh8qSxGqAhbPh+1AW7XDxfvSZ7x91vpjGoVUW2J6vgM+GKlsU1QG7HNj5Cm7oYIdMu+mDB5MkU/Ywuhy4r9AJL5LqyKBsSZS/HKWKrxI6Xeu5MNuR3nBBRo+nwamB+u+IBd/ohmc/bdqdoLVqcvS4dnlc9EdYKS7tCJ8biB9QxdT54zwVa6iskdKAF898d+g5TD/WeWlhjlq+fSwUwAw4mRrHGL3XXtKH2Ob5FsDGMyahyg4oIPXmwOGGhQ10qfOQIVtqp4xmZ4SWItPI4kJoYGily4XVwbIOAGZ69T4MISJUMWFupu9RETWC0NSB5iCpHVHzg8fGVOi/L+GkLHSKXMojaOHH4cJ8o3b3yUCN9NQap4cs="
   sauce_connect: true
 
 notifications:
@@ -38,7 +35,7 @@ php:
 
 env:
   - WP_VERSION=nightly
-  - WP_VERSION=latest
+  - WP_VERSION=latest WITH_COVERAGE=true WITH_PHPCS=true
   - WP_VERSION=4.7.2
   - WP_VERSION=4.7.1
   - WP_VERSION=4.7
@@ -51,12 +48,8 @@ matrix:
 
 before_install:
   # Set environment variables
-  - if [[ $(phpenv version-name) == "7.0" && "$WP_VERSION" == "latest" ]]; then
-      export WITH_PHPCS=true;
-    fi
-
-  - if [[ $(phpenv version-name) == "7.1" && "$WP_VERSION" == "latest" ]]; then
-      export WITH_COVERAGE=true;
+  - if [[ $(phpenv version-name) == "nightly" ]]; then
+      export WITH_COVERAGE=false;
     fi
 
   # Disable xdebug to speed up the build unless test coverage is needed
@@ -65,7 +58,7 @@ before_install:
     fi
 
   # Install helper scripts
-  - composer global require -n --prefer-dist "typisttech/travis-nginx-wordpress:~0.1.1"
+  - composer global require -n --prefer-dist "typisttech/travis-nginx-wordpress:^1.0"
   - export PATH=$HOME/.composer/vendor/bin:$PATH
   - tnw-install-nginx
   - tnw-install-wordpress
@@ -91,26 +84,23 @@ before_install:
 install:
   # Build tests
   - composer install --prefer-dist --no-interaction --no-suggest
-  - vendor/bin/codecept build
+  - vendor/bin/codecept build -n
 
 script:
   - if [[ "$WITH_COVERAGE" == "true" ]]; then
-      vendor/bin/codecept run --debug -vvv --coverage --coverage-xml;
+      vendor/bin/codecept run -n -vvv --coverage --coverage-xml;
     else
-      vendor/bin/codecept run --debug -vvv;
+      vendor/bin/codecept run -n -vvv;
     fi
 
   - if [[ "$WITH_PHPCS" == "true" ]]; then
       phpcs --standard=ruleset.xml;
     fi
 
-after_success:
-  - if [[ "$WITH_COVERAGE" == "true" ]]; then
-      composer require codeclimate/php-test-reporter --dev;
-      vendor/bin/test-reporter --no-interaction --coverage-report=tests/_output/coverage.xml;
-    fi
-
 after_script:
+  - if [[ "$WITH_COVERAGE" == "true" ]]; then
+      tnw-upload-coverage-to-scrutinizer;
+    fi
   - tnw-send-result-to-saucelabs
 
 deploy:

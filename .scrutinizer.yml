@@ -1,0 +1,47 @@
+filter:
+  excluded_paths:
+    - 'assets/*'
+    - 'tests/*'
+    - 'vendor/*'
+    - 'codeception-runner.php'
+
+checks:
+  php:
+    code_rating: true
+    duplication: true
+    variable_existence: true
+    useless_calls: true
+    use_statement_alias_conflict: true
+    unused_properties: true
+    unreachable_code: true
+    sql_injection_vulnerabilities: true
+    security_vulnerabilities: true
+    precedence_mistakes: true
+    precedence_in_conditions: true
+    parameter_non_unique: true
+    no_property_on_interface: true
+    no_non_implemented_abstract_methods: true
+    deprecated_code_usage: true
+    closure_use_not_conflicting: true
+    closure_use_modifiable: true
+    avoid_useless_overridden_methods: true
+    avoid_conflicting_incrementers: true
+    assignment_of_null_return: true
+    unused_methods: true
+    too_many_arguments: true
+    no_debug_code: true
+    missing_arguments: true
+
+tools:
+  external_code_coverage:
+    enabled: true
+    timeout: 900
+  php_analyzer: true
+  php_code_coverage: true
+  php_code_sniffer: true
+  php_cpd: true
+  php_cs_fixer: true
+  php_loc: true
+  php_mess_detector: true
+  php_pdepend: true
+  sensiolabs_security_checker: true

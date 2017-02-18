@@ -54,18 +54,13 @@ modules:
       adminUsername: admin
       adminPassword: password
       adminPath: /wp-admin
-      # Sauce Labs
-      host: '%SAUCE_USERNAME%:%SAUCE_ACCESS_KEY%@ondemand.saucelabs.com'
-      browser: firefox
-      capabilities:
-          platform: 'Windows 10'
-          version: '50.0'
-          screenResolution: '1024x768'
-          tunnel-identifier: '%TRAVIS_JOB_NUMBER%'
-          name: 'WPBS %TRAVIS_JOB_NUMBER% on WP-%WP_VERSION% with PHP-%TRAVIS_PHP_VERSION%'
-          build: '%TRAVIS_JOB_NUMBER%'
-          tag: ['PHP-%TRAVIS_PHP_VERSION%', 'WP-%WP_VERSION%', 'WPBS', 'Travis CI', 'CI']
-          custom-data:
-            commit: %TRAVIS_COMMIT%
-            pull-request: %TRAVIS_PULL_REQUEST%
-            pull-request-branch: %TRAVIS_PULL_REQUEST_BRANCH%
+      host: 'wp.dev'
+      browser: phantomjs
+extensions:
+  enabled:
+    - Codeception\Extension\Phantoman
+  config:
+    Codeception\Extension\Phantoman:
+      path: '/usr/bin/phantomjs'
+      port: 4444
+      suites: ['acceptance']

@@ -21,7 +21,6 @@ addons:
     packages:
       - jq
       - nginx
-  sauce_connect: true
 
 notifications:
   email:
@@ -58,7 +57,7 @@ before_install:
     fi
 
   # Install helper scripts
-  - composer global require -n --prefer-dist "typisttech/travis-nginx-wordpress:^1.0"
+  - composer global require -n --prefer-dist "typisttech/travis-nginx-wordpress:^1.1"
   - export PATH=$HOME/.composer/vendor/bin:$PATH
   - tnw-install-nginx
   - tnw-install-wordpress
@@ -101,7 +100,6 @@ after_script:
   - if [[ "$WITH_COVERAGE" == "true" ]]; then
       tnw-upload-coverage-to-scrutinizer;
     fi
-  - tnw-send-result-to-saucelabs
 
 deploy:
   provider: releases

@@ -15,6 +15,12 @@ module.exports = function(grunt) {
                 },
                 src: ['composer.json']
             },
+            changelog: {
+                options: {
+                    prefix: 'future-release='
+                },
+                src: ['.github_changelog_generator']
+            },
             php: {
                 options: {
                     prefix: '\\* Version:\\s+'
@@ -37,6 +43,9 @@ module.exports = function(grunt) {
         exec: {
             build: {
                 command: 'composer install --prefer-dist --no-dev --no-interaction --no-suggest --optimize-autoloader'
+            },
+            pretag: {
+                command: 'github_changelog_generator'
             }
         },
 
@@ -102,7 +111,7 @@ module.exports = function(grunt) {
     });
 
     require('load-grunt-tasks')(grunt);
-    grunt.registerTask('pre-tag', ['version']);
+    grunt.registerTask('pretag', ['version', 'exec:pretag']);
     grunt.registerTask('build', ['clean:build', 'exec:build', 'copy:build', 'compress:build']);
 
     grunt.util.linefeed = '\n';

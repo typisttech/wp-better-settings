@@ -1,16 +1,16 @@
 {
   "name": "wp-better-settings",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A simplified OOP implementation of the WP Settings API",
   "keywords": [
     "wordpress",
     "wp",
     "settings api"
   ],
-  "homepage": "https://github.com/tangrufus/wp-better-settings",
+  "homepage": "https://github.com/TypistTech/wp-better-settings",
   "bugs": {
     "email": "wp-better-settings@typist.tech",
-    "url": "https://github.com/TangRufus/wp-better-settings/issues"
+    "url": "https://github.com/TypistTech/wp-better-settings/issues"
   },
   "license": "GPL-2.0+",
   "author": "Typist Tech <wp-better-settings@typist.tech> (http://typist.tech/)",
@@ -19,7 +19,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/TangRufus/wp-better-settings.git"
+    "url": "https://github.com/TypistTech/wp-better-settings.git"
   },
   "main": "Gruntfile.js",
   "devDependencies": {
@@ -30,5 +30,6 @@
     "grunt-exec": "^1.0.1",
     "grunt-version": "^1.1.1",
     "load-grunt-tasks": "^3.5.2"
-  }
+  },
+  "private": true
 }

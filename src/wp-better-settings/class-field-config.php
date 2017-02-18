@@ -20,14 +20,14 @@ namespace WPBS\WP_Better_Settings;
  *
  * Valid keys:
  *
- * 'id' (string)            => ID of this field. Should be unique for each page
+ * 'id' (string)                    => ID of this field. Should be unique for each page
  *
- * 'title' (string)            => Title to display as the heading for
- *                             the section.
+ * 'title' (string)                 => Title to display as the heading for
+ *                                     the section.
  *
- * 'view' (string|View)        => View to use for rendering the
- *                             section. Can be a path to a view file
- *                             or an instance of a View object.
+ * 'view' (string|ViewInterface)    => View to use for rendering the
+ *                                     section. Can be a path to a view file
+ *                                     or an instance of a View object.
  */
 class FieldConfig extends Config {
 	/**
@@ -41,7 +41,10 @@ class FieldConfig extends Config {
 	protected function default_config() : array {
 		return [
 			'callback' => function () {
-				View::kses_render( $this->view, $this );
+				if ( is_string( $this->view ) ) {
+					$this->view = new View( $this->view );
+				}
+				$this->view->echo_kses( $this );
 			},
 		];
 	}

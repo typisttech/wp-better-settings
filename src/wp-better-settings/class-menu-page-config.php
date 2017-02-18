@@ -83,7 +83,10 @@ class MenuPageConfig extends Config {
 			'capability' => 'manage_options',
 			'view'       => ViewFactory::build( 'basic-options-page' ),
 			'function'   => function () {
-				View::kses_render( $this->view, $this );
+				if ( is_string( $this->view ) ) {
+					$this->view = new View( $this->view );
+				}
+				$this->view->echo_kses( $this );
 			},
 		];
 	}

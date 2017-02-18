@@ -13,3 +13,4 @@ $I->waitForText('as-settings-better-v1', 10, 'h1');
 
 $I->seeInTitle('as-settings-better-v1');
 $I->seeInCurrentUrl('/wp-admin/options-general.php?page=assb1_settings_2');
+$I->see('completely useless');

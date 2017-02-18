@@ -62,7 +62,10 @@ class SectionConfig extends Config {
 		return [
 			'view'     => ViewFactory::build( 'section-description' ),
 			'callback' => function () {
-				View::kses_render( $this->view, $this );
+				if ( is_string( $this->view ) ) {
+					$this->view = new View( $this->view );
+				}
+				$this->view->echo_kses( $this );
 			},
 		];
 	}

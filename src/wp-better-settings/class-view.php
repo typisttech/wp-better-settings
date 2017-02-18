@@ -15,8 +15,10 @@ namespace WPBS\WP_Better_Settings;
  * Class View
  *
  * Accepts a filename of a PHP file and renders its content on request.
+ *
+ * @since 0.1.0
  */
-class View {
+class View implements ViewInterface {
 
 	/**
 	 * Filename of the PHP view to render.
@@ -84,21 +86,16 @@ class View {
 	}
 
 	/**
-	 * Render a given view.
+	 * Echo a given view safely.
 	 *
-	 * @since 0.1.0
+	 * @since 0.2.0
 	 *
-	 * @param string|View $view       View to render. Can be a path to a view file
-	 *                                or an instance of a View object.
-	 * @param mixed       $context    Context ArrayObject for which to render
-	 *                                the view.
+	 * @param mixed $context Context ArrayObject for which to render the view.
 	 */
-	public static function kses_render( $view, $context ) {
-		$view_object = is_string( $view ) ? new View( $view ) : $view;
-
+	public function echo_kses( $context ) {
 		echo wp_kses(
-			$view_object->render( $context ),
-			$view_object->allowed_tags
+			$this->render( $context ),
+			$this->allowed_tags
 		);
 	}
 

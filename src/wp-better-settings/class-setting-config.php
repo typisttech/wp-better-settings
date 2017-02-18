@@ -98,7 +98,10 @@ class SettingConfig extends Config {
 		return [
 			'view'     => ViewFactory::build( 'section-description' ),
 			'function' => function () {
-				View::kses_render( $this->view, $this );
+				if ( is_string( $this->view ) ) {
+					$this->view = new View( $this->view );
+				}
+				$this->view->echo_kses( $this );
 			},
 			'args'     => [
 				'sanitize_callback' => function ( array $input ) {

@@ -1,12 +1,14 @@
 <?php
 /**
+ * WP Better Settings
+ *
  * A simplified OOP implementation of the WP Settings API
  *
  * @package   WPBS\WP_Better_Settings
- * @author    Tang Rufus <rufus@typist.tech>
+ * @author    Typist Tech <wp-better-settings@typist.tech>
  * @license   GPL-2.0+
  * @link      https://www.typist.tech/
- * @copyright 2017 Tang Rufus
+ * @copyright 2017 Typist Tech
  *
  * Plugin Name: WP Better Settings
  * Plugin URI:  https://github.com/TypistTech/wp-better-settings
@@ -15,7 +17,7 @@
  * Author:      Tang Rufus
  * Author URI:  https://www.typist.tech/
  * Text Domain: wp-better-settings
- * Domain Path: /languages
+ * Domain Path: src/languages
  * License:     GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  */

@@ -49,6 +49,9 @@ module.exports = function(grunt) {
             },
             changelog: {
                 command: 'github_changelog_generator'
+            },
+            readme_toc: {
+                command: 'doctoc README.md'
             }
         },
 
@@ -114,7 +117,8 @@ module.exports = function(grunt) {
     });
 
     require('load-grunt-tasks')(grunt);
-    grunt.registerTask('pretag', ['version', 'exec:composer_update', 'exec:changelog']);
+    grunt.registerTask('markdown', ['exec:changelog', 'exec:readme_toc']);
+    grunt.registerTask('pretag', ['version', 'exec:composer_update', 'markdown']);
     grunt.registerTask('build', ['clean:build', 'exec:composer_install', 'copy:build', 'compress:build']);
 
     grunt.util.linefeed = '\n';

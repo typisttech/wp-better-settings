@@ -1,10 +1,18 @@
 # Change Log
 
+## [0.2.0](https://github.com/TypistTech/wp-better-settings/tree/0.2.0) (2017-02-19)
+[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.1.1...0.2.0)
+
+**Merged pull requests:**
+
+- Extract view interface [\#14](https://github.com/TypistTech/wp-better-settings/pull/14) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.1.1](https://github.com/TypistTech/wp-better-settings/tree/0.1.1) (2017-02-18)
 [Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.1.0...0.1.1)
 
 **Merged pull requests:**
 
+- Version bump 0.1.1 [\#13](https://github.com/TypistTech/wp-better-settings/pull/13) ([TangRufus](https://github.com/TangRufus))
 - Update grunt task configuration [\#12](https://github.com/TypistTech/wp-better-settings/pull/12) ([TangRufus](https://github.com/TangRufus))
 - Fix scrutinizer warnings [\#11](https://github.com/TypistTech/wp-better-settings/pull/11) ([TangRufus](https://github.com/TangRufus))
 - Add scrutinizer config [\#10](https://github.com/TypistTech/wp-better-settings/pull/10) ([TangRufus](https://github.com/TangRufus))

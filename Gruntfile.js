@@ -41,10 +41,13 @@ module.exports = function(grunt) {
 
         // Install composer dependencies and generate autoloader
         exec: {
-            build: {
+            composer_install: {
                 command: 'composer install --prefer-dist --no-dev --no-interaction --no-suggest --optimize-autoloader'
             },
-            pretag: {
+            composer_update: {
+                command: 'composer update --prefer-dist --no-interaction --no-suggest --optimize-autoloader'
+            },
+            changelog: {
                 command: 'github_changelog_generator'
             }
         },
@@ -111,8 +114,8 @@ module.exports = function(grunt) {
     });
 
     require('load-grunt-tasks')(grunt);
-    grunt.registerTask('pretag', ['version', 'exec:pretag']);
-    grunt.registerTask('build', ['clean:build', 'exec:build', 'copy:build', 'compress:build']);
+    grunt.registerTask('pretag', ['version', 'exec:composer_update', 'exec:changelog']);
+    grunt.registerTask('build', ['clean:build', 'exec:composer_install', 'copy:build', 'compress:build']);
 
     grunt.util.linefeed = '\n';
 

@@ -5,6 +5,7 @@
 
 **Merged pull requests:**
 
+- Version bump 0.2.0 [\#15](https://github.com/TypistTech/wp-better-settings/pull/15) ([TangRufus](https://github.com/TangRufus))
 - Extract view interface [\#14](https://github.com/TypistTech/wp-better-settings/pull/14) ([TangRufus](https://github.com/TangRufus))
 
 ## [0.1.1](https://github.com/TypistTech/wp-better-settings/tree/0.1.1) (2017-02-18)

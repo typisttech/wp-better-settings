@@ -11,10 +11,9 @@ settings:
 coverage:
   enabled: true
   include:
-    - src/wp-better-settings/*
+    - src/*
   exclude:
-    - src/wp-better-settings/partials/*
-params: [env] # get parameters from environment vars
+    - src/**/partials/*
 modules:
   config:
     WPDb:

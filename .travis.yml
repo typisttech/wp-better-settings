@@ -69,7 +69,7 @@ before_install:
     fi
 
   # Install npm packages
-  - npm install
+  - npm update
   # Build the production plugin
   - grunt build
   # Activate the plugin
@@ -77,15 +77,18 @@ before_install:
   # Export a dump of plugin-activated database to the _data folder
   - wp db export $TRAVIS_BUILD_DIR/tests/_data/dump.sql --path=/tmp/wordpress
 
+install:
   # Get back to Travis build dir
   - cd $TRAVIS_BUILD_DIR
 
-install:
   # Build tests
   - composer install --prefer-dist --no-interaction --no-suggest
   - vendor/bin/codecept build -n
 
 script:
+  # Get back to Travis build dir
+  - cd $TRAVIS_BUILD_DIR
+
   - if [[ "$WITH_COVERAGE" == "true" ]]; then
       vendor/bin/codecept run -n -vvv --coverage --coverage-xml;
     else

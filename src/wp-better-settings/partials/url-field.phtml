@@ -13,15 +13,6 @@
 
 namespace WPBS\WPBetterSettings\partials;
 
-/* @var \ArrayObject $context Context passed through from Settings class. */
+$type = 'url';
 
-$name = sprintf(
-	'%s[%s]',
-	esc_html( $context->option_name ),
-	esc_html( $context->id )
-);
-
-?>
-
-<input type='url' name='<?php echo esc_attr( $name ); ?>'
-	   value='<?php echo esc_attr( $context->value ); ?>'>
+include __DIR__ . '/input-field.phtml';

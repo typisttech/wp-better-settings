@@ -1,0 +1,34 @@
+<?php
+/**
+ * WP Better Settings
+ *
+ * A simplified OOP implementation of the WP Settings API.
+ *
+ * @package   WPBS\WP_Better_Settings
+ * @author    Typist Tech <wp-better-settings@typist.tech>
+ * @license   GPL-2.0+
+ * @link      https://www.typist.tech/
+ * @copyright 2017 Typist Tech
+ */
+
+namespace WPBS\WPBetterSettings\partials;
+
+/* @var \ArrayObject $context Context passed through from Settings class. */
+
+$type = $type ?? 'text';
+
+$name = sprintf(
+	'%s[%s]',
+	esc_html( $context->option_name ),
+	esc_html( $context->id )
+);
+
+?>
+
+<input
+		id="<?php echo esc_attr( $context->id ) ?>"
+		type="<?php echo esc_attr( $type ) ?>"
+		name="<?php echo esc_attr( $name ); ?>"
+		value="<?php echo esc_attr( $context->value ); ?>"
+		<?php disabled( $context->disabled ); ?>
+>

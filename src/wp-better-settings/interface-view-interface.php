@@ -44,6 +44,8 @@ interface ViewInterface {
 	 * @since 0.2.0
 	 *
 	 * @param mixed $context Context ArrayObject for which to render the view.
+	 *
+	 * @return void
 	 */
 	public function echo_kses( $context );
 }

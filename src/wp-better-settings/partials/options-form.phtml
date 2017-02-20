@@ -15,6 +15,11 @@ namespace WPBS\WPBetterSettings;
 
 /* @var \ArrayObject $context Context passed through from MenuPages class. */
 
-echo '<h1>' . esc_html( $context->page_title ) . '</h1>';
+settings_errors();
+?>
 
-include __DIR__ . '/options-form.phtml';
+<form action='options.php' method='post'>
+	<?php settings_fields( $context->option_group ); ?>
+	<?php do_settings_sections( $context->menu_slug ); ?>
+	<?php submit_button(); ?>
+</form>

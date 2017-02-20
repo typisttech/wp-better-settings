@@ -4,13 +4,13 @@ $I->wantToTest('menu page link');
 
 $I->loginAsAdmin();
 $I->waitForText('Dashboard', 10, 'h1');
+$I->waitForElementVisible("a[href$='admin.php?page=wpbs_1']", 10); // secs
 
-$I->click('Settings');
-$I->waitForElementVisible("a[href$='options-general.php?page=assb1_settings_2']", 10); // secs
+$I->moveMouseOver("a[href$='admin.php?page=wpbs_1']");
+$I->waitForElementVisible("a[href$='admin.php?page=wpbs_2']", 10);
 
-$I->click('as-settings-better-v1');
-$I->waitForText('as-settings-better-v1', 10, 'h1');
+$I->click('WPBS Two');
+$I->waitForText('WP Better Settings Two', 10, 'h1');
 
-$I->seeInTitle('as-settings-better-v1');
-$I->seeInCurrentUrl('/wp-admin/options-general.php?page=assb1_settings_2');
+$I->seeInCurrentUrl('/wp-admin/admin.php?page=wpbs_2');
 $I->see('completely useless');

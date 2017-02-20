@@ -67,11 +67,12 @@ class MenuPages {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param ArrayObject $config Arguments for the menu page creation function.
+	 * @param ArrayObject $menu_page_config Arguments for the menu page creation function.
 	 *
 	 * @throws \InvalidArgumentException If the function cannot be invoked.
 	 */
-	protected function add_menu_page( ArrayObject $config ) {
-		$this->invoke_function( $config->function_name, $config );
+	protected function add_menu_page( ArrayObject $menu_page_config ) {
+		$menu_page_config->tabs = $this->configs;
+		$this->invoke_function( $menu_page_config->function_name, $menu_page_config );
 	}
 }

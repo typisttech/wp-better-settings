@@ -120,7 +120,6 @@ class Plugin {
 							'title'             => __( 'My Name', 'as-settings-better-v1' ),
 							'default'           => 'Tang Rufus',
 							'view'              => ViewFactory::build( 'text-field' ),
-							'sanitize_callback' => 'sanitize_text_field',
 						] ),
 						new FieldConfig( [
 							'id'                => 'my_email',

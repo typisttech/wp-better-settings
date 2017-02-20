@@ -1,5 +1,18 @@
 # Change Log
 
+## [0.3.0](https://github.com/TypistTech/wp-better-settings/tree/0.3.0) (2017-02-20)
+[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.2.0...0.3.0)
+
+**Merged pull requests:**
+
+- Add tabbed option page partial [\#23](https://github.com/TypistTech/wp-better-settings/pull/23) ([TangRufus](https://github.com/TangRufus))
+- Display description paragraph along with input field if applicable [\#22](https://github.com/TypistTech/wp-better-settings/pull/22) ([TangRufus](https://github.com/TangRufus))
+- Add return doc tag to ViewInterface::echo\_kses [\#21](https://github.com/TypistTech/wp-better-settings/pull/21) ([TangRufus](https://github.com/TangRufus))
+- FieldConfig: Default sanitize\_text\_field as sanitize\_callback [\#20](https://github.com/TypistTech/wp-better-settings/pull/20) ([TangRufus](https://github.com/TangRufus))
+- Extract input field partial and add disabled attribute [\#19](https://github.com/TypistTech/wp-better-settings/pull/19) ([TangRufus](https://github.com/TangRufus))
+- Update file doc comment copyright [\#18](https://github.com/TypistTech/wp-better-settings/pull/18) ([TangRufus](https://github.com/TangRufus))
+- Minor grunt and travis config [\#16](https://github.com/TypistTech/wp-better-settings/pull/16) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.2.0](https://github.com/TypistTech/wp-better-settings/tree/0.2.0) (2017-02-19)
 [Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.1.1...0.2.0)
 

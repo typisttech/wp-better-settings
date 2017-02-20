@@ -135,6 +135,13 @@ class Plugin {
 							'view'              => ViewFactory::build( 'url-field' ),
 							'sanitize_callback' => 'esc_url_raw',
 						] ),
+						new FieldConfig( [
+							'id'                => 'my_disabled_input',
+							'title'             => __( 'My Disabled Input', 'as-settings-better-v1' ),
+							'default'           => 'Disabled on purpose',
+							'view'              => ViewFactory::build( 'text-field' ),
+							'disabled'          => true,
+						] ),
 					],
 				] ),
 			],

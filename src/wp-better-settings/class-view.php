@@ -76,11 +76,12 @@ class View implements ViewInterface {
 				'method' => true,
 			],
 			'input' => [
-				'id'    => true,
-				'class' => true,
-				'type'  => true,
-				'name'  => true,
-				'value' => true,
+				'id'       => true,
+				'class'    => true,
+				'type'     => true,
+				'name'     => true,
+				'value'    => true,
+				'disabled' => true,
 			],
 		];
 

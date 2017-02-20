@@ -48,6 +48,7 @@ class FieldConfig extends Config {
 				}
 				$this->view->echo_kses( $this );
 			},
+			'sanitize_callback' => 'sanitize_text_field',
 		];
 	}
 }

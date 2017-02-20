@@ -1,6 +1,6 @@
 {
   "name": "wp-better-settings",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A simplified OOP implementation of the WP Settings API",
   "keywords": [
     "wordpress",

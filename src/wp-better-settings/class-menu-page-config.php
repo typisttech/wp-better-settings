@@ -73,6 +73,18 @@ class MenuPageConfig extends Config {
 	}
 
 	/**
+	 * Url of this menu page
+	 *
+	 * @since 0.3.0
+	 *
+	 * @return string
+	 */
+	public function url() : string {
+		// TODO: It doesn't work for standard WordPress admin pages.
+		return admin_url( 'admin.php?page=' . $this->menu_slug );
+	}
+
+	/**
 	 * Default config of MenuPageConfig
 	 *
 	 * @since 0.1.0

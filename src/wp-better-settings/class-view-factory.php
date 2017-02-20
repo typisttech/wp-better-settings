@@ -35,6 +35,7 @@ class ViewFactory {
 		'basic-options-page'  => 'partials/basic-options-page.phtml',
 		'section-description' => 'partials/section-description.phtml',
 		'email-field'         => 'partials/email-field.phtml',
+		'tabbed-options-page' => 'partials/tabbed-options-page.phtml',
 		'text-field'          => 'partials/text-field.phtml',
 		'url-field'           => 'partials/url-field.phtml',
 	];

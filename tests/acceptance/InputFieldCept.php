@@ -4,12 +4,11 @@ $I->wantToTest('input fields');
 
 $I->loginAsAdmin();
 $I->waitForText('Dashboard', 10, 'h1');
+$I->waitForElementVisible("a[href$='admin.php?page=wpbs_1']", 10); // secs
 
-$I->click('Settings');
-$I->waitForElementVisible("a[href$='options-general.php?page=assb1_settings_2']", 10); // secs
-
-$I->click('as-settings-better-v1');
-$I->waitForText('as-settings-better-v1', 10, 'h1');
+$I->click('WP Better Settings');
+$I->click('WP Better Settings');
+$I->waitForText('WP Better Settings', 10, 'h1');
 
 $I->wantToTest('input field types');
 $I->seeElement('input', [ 'type' => 'text' ]);

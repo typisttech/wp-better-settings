@@ -12,10 +12,13 @@ $I->click('as-settings-better-v1');
 $I->waitForText('as-settings-better-v1', 10, 'h1');
 
 $I->wantToTest('input field types');
-$I->seeElement('input', ['type' => 'text']);
-$I->seeElement('input', ['type' => 'email']);
-$I->seeElement('input', ['type' => 'url']);
+$I->seeElement('input', [ 'type' => 'text' ]);
+$I->seeElement('input', [ 'type' => 'email' ]);
+$I->seeElement('input', [ 'type' => 'url' ]);
 
 $I->wantToTest('input field attributes');
 $inputAttributes = $I->grabMultiple('input', 'disabled');
 $I->assertContains(true, $inputAttributes);
+
+$I->wantToTest('input field description paragraph');
+$I->see('I am a description paragraph', [ 'css' => 'p.description' ]);

@@ -23,12 +23,24 @@ $name = sprintf(
 	esc_html( $context->id )
 );
 
+$desc_id = $context->id . '-description';
+
 ?>
 
 <input
-		id="<?php echo esc_attr( $context->id ) ?>"
-		type="<?php echo esc_attr( $type ) ?>"
 		name="<?php echo esc_attr( $name ); ?>"
+		type="<?php echo esc_attr( $type ) ?>"
+		id="<?php echo esc_attr( $context->id ) ?>"
 		value="<?php echo esc_attr( $context->value ); ?>"
-		<?php disabled( $context->disabled ); ?>
+		class="regular-text"
+	<?php disabled( $context->disabled ); ?>
+	<?php if ( ! empty( $context->desc ) ) { ?>
+		aria-describedby="<?php echo esc_attr( $desc_id ) ?>"
+	<?php } ?>
 >
+
+<?php if ( ! empty( $context->desc ) ) { ?>
+	<p class="description" id="<?php echo esc_attr( $desc_id ) ?>">
+		<?php echo esc_html( $context->desc ); ?>
+	</p>
+<?php } ?>

@@ -120,6 +120,7 @@ class Plugin {
 							'title'             => __( 'My Name', 'as-settings-better-v1' ),
 							'default'           => 'Tang Rufus',
 							'view'              => ViewFactory::build( 'text-field' ),
+							'desc'              => 'I am a description paragraph',
 						] ),
 						new FieldConfig( [
 							'id'                => 'my_email',

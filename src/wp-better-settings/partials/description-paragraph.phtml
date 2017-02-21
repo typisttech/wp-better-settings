@@ -15,7 +15,9 @@ namespace WPBS\WPBetterSettings\partials;
 
 /* @var \ArrayObject $context Context passed through from Settings class. */
 
-echo '<p class="description" ';
-echo 'id="' . esc_attr( $context->id . '-description' ) . '">';
-echo wp_kses_post( $context->desc );
-echo '</p>';
+if ( ! empty( $context->desc ) ) {
+	echo '<p class="description" ';
+	echo 'id="' . esc_attr( $context->id . '-description' ) . '">';
+	echo wp_kses_post( $context->desc );
+	echo '</p>';
+}

@@ -15,30 +15,10 @@ namespace WPBS\WPBetterSettings\partials;
 
 /* @var \ArrayObject $context Context passed through from Settings class. */
 
-$type = $type ?? 'text';
-
-$name = sprintf(
-	'%s[%s]',
-	esc_html( $context->option_name ),
-	esc_html( $context->id )
-);
-
-$desc_id = $context->id . '-description';
-
 echo '<input class="regular-text" ';
-echo 'name="' . esc_attr( $name ) . '" ';
-echo 'type="' . esc_attr( $type ) . '" ';
-echo 'id="' . esc_attr( $context->id ) . '" ';
+echo 'type="' . esc_attr( $type ?? 'text' ) . '" ';
 echo 'value="' . esc_attr( $context->value ) . '" ';
-if ( ! empty( $context->desc ) ) {
-	echo 'aria-describedby="' . esc_attr( $desc_id ) . '" ';
-}
-disabled( $context->disabled );
+include __DIR__ . '/common-attributes.phtml';
 echo ' >';
 
-if ( ! empty( $context->desc ) ) {
-	echo '<p class="description" ';
-	echo 'id="' . esc_attr( $desc_id ) . '">';
-	echo wp_kses_post( $context->desc );
-	echo '</p>';
-}
+include __DIR__ . '/description-paragraph.phtml';

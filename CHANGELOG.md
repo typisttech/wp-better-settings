@@ -1,10 +1,18 @@
 # Change Log
 
+## [0.3.1](https://github.com/TypistTech/wp-better-settings/tree/0.3.1) (2017-02-21)
+[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.3.0...0.3.1)
+
+**Merged pull requests:**
+
+- Display HTML in descriptions [\#25](https://github.com/TypistTech/wp-better-settings/pull/25) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.3.0](https://github.com/TypistTech/wp-better-settings/tree/0.3.0) (2017-02-20)
 [Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.2.0...0.3.0)
 
 **Merged pull requests:**
 
+- Version bump 0.3.0 [\#24](https://github.com/TypistTech/wp-better-settings/pull/24) ([TangRufus](https://github.com/TangRufus))
 - Add tabbed option page partial [\#23](https://github.com/TypistTech/wp-better-settings/pull/23) ([TangRufus](https://github.com/TangRufus))
 - Display description paragraph along with input field if applicable [\#22](https://github.com/TypistTech/wp-better-settings/pull/22) ([TangRufus](https://github.com/TangRufus))
 - Add return doc tag to ViewInterface::echo\_kses [\#21](https://github.com/TypistTech/wp-better-settings/pull/21) ([TangRufus](https://github.com/TangRufus))

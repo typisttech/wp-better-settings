@@ -53,6 +53,27 @@ class Sanitizer {
 		return $input;
 	}
 
+
+	/**
+	 * Sanitize checkbox
+	 *
+	 * Sanitize any input other than '1', 1 or boolean true to empty string.
+	 *
+	 * @since 0.4.0
+	 *
+	 * @param string $input User submitted value.
+	 *
+	 * @return string Empty string OR '1'
+	 */
+	public static function sanitize_checkbox( string $input ) : string {
+		$sanitized_input = sanitize_text_field( $input );
+		if ( '1' !== $sanitized_input ) {
+			$sanitized_input = '';
+		}
+
+		return $sanitized_input;
+	}
+
 	/**
 	 * Sanitize email
 	 *

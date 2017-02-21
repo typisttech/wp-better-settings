@@ -41,6 +41,6 @@ $desc_id = $context->id . '-description';
 
 <?php if ( ! empty( $context->desc ) ) { ?>
 	<p class="description" id="<?php echo esc_attr( $desc_id ) ?>">
-		<?php echo esc_html( $context->desc ); ?>
+		<?php echo wp_kses_post( $context->desc ); ?>
 	</p>
 <?php } ?>

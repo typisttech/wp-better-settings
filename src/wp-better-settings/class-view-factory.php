@@ -37,6 +37,7 @@ class ViewFactory {
 		'email-field'         => 'partials/email-field.phtml',
 		'tabbed-options-page' => 'partials/tabbed-options-page.phtml',
 		'text-field'          => 'partials/text-field.phtml',
+		'textarea-field'      => 'partials/textarea-field.phtml',
 		'url-field'           => 'partials/url-field.phtml',
 	];
 

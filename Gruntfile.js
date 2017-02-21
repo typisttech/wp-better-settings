@@ -45,7 +45,7 @@ module.exports = function(grunt) {
                 command: 'composer install --prefer-dist --no-dev --no-interaction --no-suggest --optimize-autoloader'
             },
             composer_update: {
-                command: 'composer update --prefer-dist --no-interaction --no-suggest --optimize-autoloader'
+                command: 'composer update --no-interaction --no-suggest --optimize-autoloader'
             },
             changelog: {
                 command: 'github_changelog_generator'

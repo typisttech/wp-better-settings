@@ -39,10 +39,5 @@
     "classmap": [
       "src/wp-better-settings"
     ]
-  },
-  "prefer-stable": true,
-  "config": {
-    "preferred-install": "dist",
-    "optimize-autoloader": true
   }
 }

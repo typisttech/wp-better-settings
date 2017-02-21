@@ -69,13 +69,13 @@ class View implements ViewInterface {
 	 */
 	protected function default_allowed_tags() : array {
 		$form_tags = [
-			'form'  => [
+			'form'     => [
 				'id'     => true,
 				'class'  => true,
 				'action' => true,
 				'method' => true,
 			],
-			'input' => [
+			'input'    => [
 				'id'               => true,
 				'class'            => true,
 				'type'             => true,
@@ -83,6 +83,12 @@ class View implements ViewInterface {
 				'value'            => true,
 				'disabled'         => true,
 				'aria-describedby' => true,
+			],
+			'textarea' => [
+				'aria-describedby' => true,
+				'col'              => true,
+				'disabled'         => true,
+				'row'              => true,
 			],
 		];
 

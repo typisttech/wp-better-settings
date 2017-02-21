@@ -81,6 +81,7 @@ class View implements ViewInterface {
 				'type'             => true,
 				'name'             => true,
 				'value'            => true,
+				'checked'          => true,
 				'disabled'         => true,
 				'aria-describedby' => true,
 			],

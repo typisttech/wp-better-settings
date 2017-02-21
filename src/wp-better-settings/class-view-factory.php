@@ -34,6 +34,7 @@ class ViewFactory {
 	const PARTIALS = [
 		'basic-options-page'  => 'partials/basic-options-page.phtml',
 		'section-description' => 'partials/section-description.phtml',
+		'checkbox-field'      => 'partials/checkbox-field.phtml',
 		'email-field'         => 'partials/email-field.phtml',
 		'tabbed-options-page' => 'partials/tabbed-options-page.phtml',
 		'text-field'          => 'partials/text-field.phtml',

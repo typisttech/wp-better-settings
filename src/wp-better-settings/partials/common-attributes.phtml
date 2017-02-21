@@ -15,10 +15,16 @@ namespace WPBS\WPBetterSettings\partials;
 
 /* @var \ArrayObject $context Context passed through from Settings class. */
 
-echo '<input class="regular-text" ';
-echo 'type="' . esc_attr( $type ?? 'text' ) . '" ';
-echo 'value="' . esc_attr( $context->value ) . '" ';
-include __DIR__ . '/common-attributes.phtml';
-echo ' >';
+$name = sprintf(
+	'%s[%s]',
+	esc_html( $context->option_name ),
+	esc_html( $context->id )
+);
 
-include __DIR__ . '/description-paragraph.phtml';
+echo ' name="' . esc_attr( $name ) . '" ';
+echo 'id="' . esc_attr( $context->id ) . '" ';
+if ( ! empty( $context->desc ) ) {
+	echo 'aria-describedby="' . esc_attr( esc_attr( $context->id . '-description' ) ) . '" ';
+}
+disabled( $context->disabled );
+echo ' ';

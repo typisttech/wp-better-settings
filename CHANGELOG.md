@@ -1,10 +1,20 @@
 # Change Log
 
+## [0.4.0](https://github.com/TypistTech/wp-better-settings/tree/0.4.0) (2017-02-21)
+[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.3.1...0.4.0)
+
+**Merged pull requests:**
+
+- Add checkbox field partial [\#29](https://github.com/TypistTech/wp-better-settings/pull/29) ([TangRufus](https://github.com/TangRufus))
+- Optimize input field [\#28](https://github.com/TypistTech/wp-better-settings/pull/28) ([TangRufus](https://github.com/TangRufus))
+- Add textarea field partial [\#27](https://github.com/TypistTech/wp-better-settings/pull/27) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.3.1](https://github.com/TypistTech/wp-better-settings/tree/0.3.1) (2017-02-21)
 [Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.3.0...0.3.1)
 
 **Merged pull requests:**
 
+- Version bump 0.3.1 [\#26](https://github.com/TypistTech/wp-better-settings/pull/26) ([TangRufus](https://github.com/TangRufus))
 - Display HTML in descriptions [\#25](https://github.com/TypistTech/wp-better-settings/pull/25) ([TangRufus](https://github.com/TangRufus))
 
 ## [0.3.0](https://github.com/TypistTech/wp-better-settings/tree/0.3.0) (2017-02-20)

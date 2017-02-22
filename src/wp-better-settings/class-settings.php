@@ -42,26 +42,26 @@ class Settings {
 	protected $setting_configs;
 
 	/**
-	 * Options store instance.
+	 * Option helper instance.
 	 *
 	 * @since 0.1.0
 	 *
-	 * @var OptionsStoreInterface;
+	 * @var Option_Helper_Interface;
 	 */
-	protected $options_store;
+	protected $option_helper;
 
 	/**
 	 * Instantiate Settings object.
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param ArrayObject[]         $setting_configs Config object that contains
-	 *                                               Settings configuration.
-	 * @param OptionsStoreInterface $option_store    Option store.
+	 * @param ArrayObject[]           $setting_configs Config object that contains
+	 *                                                 Settings configuration.
+	 * @param Option_Helper_Interface $option_helper   Option helper.
 	 */
-	public function __construct( array $setting_configs, OptionsStoreInterface $option_store ) {
+	public function __construct( array $setting_configs, Option_Helper_Interface $option_helper ) {
 		$this->setting_configs = $setting_configs;
-		$this->options_store   = $option_store;
+		$this->option_helper   = $option_helper;
 	}
 
 	/**
@@ -131,7 +131,7 @@ class Settings {
 		$data->page        = $args['page'];
 		$data->section     = $args['section'];
 		$data->option_name = $args['option_name'];
-		$data->value       = $this->options_store->get(
+		$data->value       = $this->option_helper->get(
 			$data->option_name,
 			$data->id
 		);

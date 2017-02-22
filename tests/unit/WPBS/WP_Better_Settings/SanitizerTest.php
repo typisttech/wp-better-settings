@@ -102,7 +102,7 @@ class SanitizerTest extends \Codeception\TestCase\WPTestCase
         $func->verifyInvokedOnce([
             'my_email_id',
             'invalid_my_email_id',
-            'The email address entered did not appear to be a valid email address. Please enter a valid email address.'
+            'The email address entered did not appear to be a valid email address. Please enter a valid email address.',
         ]);
     }
 }

@@ -53,7 +53,7 @@ class ConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testGetKeys()
     {
-        $config = new Config([ 'a' => 'abc', 'z' => 'xyz' ]);
+        $config   = new Config([ 'a' => 'abc', 'z' => 'xyz' ]);
         $expected = [ 'a', 'z' ];
         $this->assertSame($expected, $config->get_keys());
     }
@@ -63,8 +63,8 @@ class ConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testGetKeysSingleElement()
     {
-        $config = new Config([ 'a' => 'abc' ]);
-        $expected = ['a'];
+        $config   = new Config([ 'a' => 'abc' ]);
+        $expected = [ 'a' ];
         $this->assertSame($expected, $config->get_keys());
     }
 
@@ -73,7 +73,7 @@ class ConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testGetKeysEmpty()
     {
-        $config = new Config();
+        $config   = new Config();
         $expected = [];
         $this->assertSame($expected, $config->get_keys());
     }

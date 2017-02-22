@@ -9,6 +9,6 @@
     <exclude-pattern>*/_outputs/*</exclude-pattern>
     <exclude-pattern>*/_support/_generated/*</exclude-pattern>
 
-    <rule ref="PSR2" />
+    <rule ref="PSR2"/>
 
 </ruleset>

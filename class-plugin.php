@@ -14,7 +14,7 @@
 namespace WPBS;
 
 use WPBS\WP_Better_Settings\{
-	Field_Config, Menu_Page_Config, Menu_Pages, Option_Helper, Sanitizer, SectionConfig, SettingConfig, Settings, ViewFactory
+	Field_Config, Menu_Page_Config, Menu_Pages, Option_Helper, Sanitizer, Section_Config, SettingConfig, Settings, ViewFactory
 };
 
 /**
@@ -98,7 +98,7 @@ class Plugin {
 				'option_group' => 'wpbs_1',
 				'option_name'  => 'wpbs_option_1',
 				'sections'     => [
-					new SectionConfig( [
+					new Section_Config( [
 						'id'     => 'wpbs_section_1',
 						'page'   => 'wpbs_1',
 						'title'  => __( 'My Useless Name Settings', 'as-settings-better-v1' ),
@@ -169,7 +169,7 @@ class Plugin {
 				'option_group' => 'wpbs_2',
 				'option_name'  => 'wpbs_option_2',
 				'sections'     => [
-					new SectionConfig( [
+					new Section_Config( [
 						'id'     => 'wpbs_section_2',
 						'title'  => __( 'Useless Name Settings', 'as-settings-better-v1' ),
 						'page'   => 'wpbs_2',

@@ -28,7 +28,7 @@ namespace WPBS\WP_Better_Settings;
  *
  * 'option_name' (string)       =>    The name of an option to sanitize and save.
  *
- * 'sections' (SectionConfig[])    =>  Array of SectionConfig to add to the settings page.
+ * 'sections' (Section_Config[])    =>  Array of Section_Config to add to the settings page.
  */
 class SettingConfig extends Config {
 

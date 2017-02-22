@@ -35,25 +35,10 @@ namespace WPBS\WP_Better_Settings;
  * 'fields' (Field_Config[])    =>    Array of Field_Config to attach to this
  *                              section.
  */
-class SectionConfig extends Config {
+class Section_Config extends Config {
 
 	/**
-	 * Add a field
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param Field_Config $field Field config to be added.
-	 *
-	 * @return SectionConfig $this
-	 */
-	public function add_field( Field_Config $field ) {
-		$this[ $field->id ] = $field;
-
-		return $this;
-	}
-
-	/**
-	 * Default config of SectionConfig
+	 * Default config of Section_Config
 	 *
 	 * @since 0.1.0
 	 *

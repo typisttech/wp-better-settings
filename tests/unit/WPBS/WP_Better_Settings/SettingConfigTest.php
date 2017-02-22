@@ -27,12 +27,12 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
     private $field_2_2;
 
     /**
-     * @var SectionConfig
+     * @var Section_Config
      */
     private $section_1;
 
     /**
-     * @var SectionConfig
+     * @var Section_Config
      */
     private $section_2;
 
@@ -56,14 +56,14 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
             'id'      => 'my_field_2_2',
             'default' => 'my_default_2_2',
         ]);
-        $this->section_2      = new SectionConfig([
+        $this->section_2      = new Section_Config([
             'id'     => 'my_section_2',
             'fields' => [
                 $this->field_2_1,
                 $this->field_2_2,
             ],
         ]);
-        $this->section_1      = new SectionConfig([
+        $this->section_1      = new Section_Config([
             'id'     => 'my_section_1',
             'fields' => [
                 $this->field_1_1,
@@ -162,7 +162,7 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
     {
         $setting_config = new SettingConfig([
             'sections' => [
-                new SectionConfig([
+                new Section_Config([
                     'id'     => 'my_section_2',
                     'fields' => [
                         $this->field_1_2,

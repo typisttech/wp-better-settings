@@ -95,7 +95,7 @@ class Menu_Page_Config extends Config {
 	protected function default_config() : array {
 		return [
 			'capability' => 'manage_options',
-			'view'       => ViewFactory::build( 'basic-options-page' ),
+			'view'       => View_Factory::build( 'basic-options-page' ),
 			'function'   => function () {
 				if ( is_string( $this->view ) ) {
 					$this->view = new View( $this->view );

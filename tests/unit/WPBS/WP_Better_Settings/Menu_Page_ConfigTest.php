@@ -40,7 +40,7 @@ class Menu_Page_ConfigTest extends \Codeception\TestCase\WPTestCase
     {
         $config = new Menu_Page_Config;
 
-        $expected_view = ViewFactory::build('basic-options-page');
+        $expected_view = View_Factory::build('basic-options-page');
 
         $this->assertAttributeEquals('manage_options', 'capability', $config);
         $this->assertAttributeEquals($expected_view, 'view', $config);

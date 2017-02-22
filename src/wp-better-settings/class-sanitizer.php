@@ -33,6 +33,7 @@ class Sanitizer {
 		// Unset empty elements.
 		$input = array_filter( $input );
 
+		// TODO: This loop needs refactor.
 		foreach ( $input as $id => $value ) {
 			$field = $setting_config->get_field( $id );
 

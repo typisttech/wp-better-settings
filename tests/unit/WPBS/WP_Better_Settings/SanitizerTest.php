@@ -1,13 +1,15 @@
 <?php
 namespace WPBS\WP_Better_Settings;
 
-use AspectMock\Test;
+use phpmock\phpunit\PHPMock;
 
 /**
  * @coversDefaultClass \WPBS\WP_Better_Settings\Sanitizer
  */
 class SanitizerTest extends \Codeception\TestCase\WPTestCase
 {
+    use PHPMock;
+
     /**
      * @covers ::sanitize_settings
      */
@@ -94,15 +96,16 @@ class SanitizerTest extends \Codeception\TestCase\WPTestCase
      */
     public function testSanitizeInvalidEmail()
     {
-        $func = Test::func('WPBS\WP_Better_Settings', 'add_settings_error', null);
+        $add_settings_error = $this->getFunctionMock(__NAMESPACE__, 'add_settings_error');
+        $add_settings_error->expects($this->once())
+                           ->with(
+                               $this->equalTo('my_email_id'),
+                               $this->equalTo('invalid_my_email_id'),
+                               $this->equalTo('The email address entered did not appear to be a valid email address. Please enter a valid email address.')
+                           );
 
         $actual = Sanitizer::sanitize_email('invalid_email@gmail', 'my_email_id');
 
         $this->assertSame('', $actual);
-        $func->verifyInvokedOnce([
-            'my_email_id',
-            'invalid_my_email_id',
-            'The email address entered did not appear to be a valid email address. Please enter a valid email address.',
-        ]);
     }
 }

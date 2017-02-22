@@ -14,7 +14,7 @@
 namespace WPBS;
 
 use WPBS\WP_Better_Settings\{
-	Field_Config, Menu_Page_Config, MenuPages, Option_Helper, Sanitizer, SectionConfig, SettingConfig, Settings, ViewFactory
+	Field_Config, Menu_Page_Config, Menu_Pages, Option_Helper, Sanitizer, SectionConfig, SettingConfig, Settings, ViewFactory
 };
 
 /**
@@ -50,7 +50,7 @@ class Plugin {
 	 * @since 0.1.0
 	 */
 	public function init_settings_page() {
-		$menu_pages = new MenuPages( $this->page_configs() );
+		$menu_pages = new Menu_Pages( $this->page_configs() );
 		$settings   = new Settings( $this->settings_configs(), $this->options_store );
 
 		// Register the settings page with WordPress.

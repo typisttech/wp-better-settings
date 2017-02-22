@@ -16,9 +16,9 @@ namespace WPBS\WP_Better_Settings;
 use ArrayObject;
 
 /**
- * Class MenuPages
+ * Class Menu_Pages
  *
- * This class registers MenuPages via the WordPress API.
+ * This class registers Menu_Pages via the WordPress API.
  *
  * @since 0.1.0
  *
@@ -27,7 +27,7 @@ use ArrayObject;
  * don't have to deal with all the confusing callback code that the
  * WordPress Settings API forces you to use.
  */
-class MenuPages {
+class Menu_Pages {
 
 	use FunctionInvokerTrait;
 
@@ -41,7 +41,7 @@ class MenuPages {
 	protected $configs;
 
 	/**
-	 * MenuPages constructor.
+	 * Menu_Pages constructor.
 	 *
 	 * @since 0.1.0
 	 *

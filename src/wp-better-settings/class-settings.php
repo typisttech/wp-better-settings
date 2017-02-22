@@ -30,7 +30,7 @@ use ArrayObject;
  */
 class Settings {
 
-	use FunctionInvokerTrait;
+	use Function_Invoker_Trait;
 
 	/**
 	 * Config instance.

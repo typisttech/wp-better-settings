@@ -29,7 +29,7 @@ use ArrayObject;
  */
 class Menu_Pages {
 
-	use FunctionInvokerTrait;
+	use Function_Invoker_Trait;
 
 	/**
 	 * Array of Config instance.

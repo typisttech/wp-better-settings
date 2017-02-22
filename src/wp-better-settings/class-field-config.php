@@ -42,7 +42,7 @@ class FieldConfig extends Config {
 	 */
 	protected function default_config() : array {
 		return [
-			'callback' => function () {
+			'callback'          => function () {
 				if ( is_string( $this->view ) ) {
 					$this->view = new View( $this->view );
 				}

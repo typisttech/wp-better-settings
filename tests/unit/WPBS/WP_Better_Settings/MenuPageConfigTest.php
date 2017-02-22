@@ -38,7 +38,7 @@ class MenuPageConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testDefaultConfig()
     {
-        $config   = new MenuPageConfig;
+        $config = new MenuPageConfig;
 
         $expected_view = ViewFactory::build('basic-options-page');
 

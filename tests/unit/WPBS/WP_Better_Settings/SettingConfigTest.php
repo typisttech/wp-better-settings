@@ -47,13 +47,13 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
         parent::setUp();
 
         $this->field_1_1      = new FieldConfig([
-            'id' => 'my_field_1_1',
+            'id'      => 'my_field_1_1',
             'default' => 'my_default_1_1',
         ]);
         $this->field_1_2      = new FieldConfig([ 'id' => 'my_field_1_2' ]);
         $this->field_2_1      = new FieldConfig([ 'id' => 'my_field_2_1' ]);
         $this->field_2_2      = new FieldConfig([
-            'id' => 'my_field_2_2',
+            'id'      => 'my_field_2_2',
             'default' => 'my_default_2_2',
         ]);
         $this->section_2      = new SectionConfig([
@@ -112,7 +112,7 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testGetFields()
     {
-        $actual = $this->setting_config->get_fields();
+        $actual   = $this->setting_config->get_fields();
         $expected = [
             $this->field_1_1,
             $this->field_1_2,
@@ -128,7 +128,7 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
     public function testGetFieldsWithoutSections()
     {
         $setting_config = new SettingConfig;
-        $actual = $setting_config->get_fields();
+        $actual         = $setting_config->get_fields();
         $this->assertSame([], $actual);
     }
 
@@ -137,8 +137,8 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testGetFieldsWithoutFields()
     {
-        $setting_config = new SettingConfig(['sections' => []]);
-        $actual = $setting_config->get_fields();
+        $setting_config = new SettingConfig([ 'sections' => [] ]);
+        $actual         = $setting_config->get_fields();
         $this->assertSame([], $actual);
     }
 
@@ -147,7 +147,7 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testDefaultOption()
     {
-        $actual = $this->setting_config->default_option();
+        $actual   = $this->setting_config->default_option();
         $expected = [
             'my_field_1_1' => 'my_default_1_1',
             'my_field_2_2' => 'my_default_2_2',
@@ -161,7 +161,7 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
     public function testDefaultOptionNoDefaults()
     {
         $setting_config = new SettingConfig([
-            'sections'     => [
+            'sections' => [
                 new SectionConfig([
                     'id'     => 'my_section_2',
                     'fields' => [
@@ -171,7 +171,7 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
                 ]),
             ],
         ]);
-        $actual = $setting_config->default_option();
+        $actual         = $setting_config->default_option();
         $this->assertSame([], $actual);
     }
 
@@ -181,7 +181,7 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
     public function testDefaultOptionEmptyFields()
     {
         $setting_config = new SettingConfig;
-        $actual = $setting_config->default_option();
+        $actual         = $setting_config->default_option();
         $this->assertSame([], $actual);
     }
 }

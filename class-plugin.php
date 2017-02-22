@@ -14,7 +14,7 @@
 namespace WPBS;
 
 use WPBS\WP_Better_Settings\{
-	FieldConfig, MenuPageConfig, MenuPages, OptionsStore, Sanitizer, SectionConfig, SettingConfig, Settings, ViewFactory
+	FieldConfig, MenuPageConfig, MenuPages, Option_Helper, Sanitizer, SectionConfig, SettingConfig, Settings, ViewFactory
 };
 
 /**
@@ -30,7 +30,7 @@ class Plugin {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @var WP_Better_Settings\OptionsStoreInterface
+	 * @var WP_Better_Settings\Option_Helper_Interface
 	 */
 	protected $options_store;
 
@@ -40,7 +40,7 @@ class Plugin {
 	 * @since 0.1.0
 	 */
 	public function init() {
-		$this->options_store = new OptionsStore;
+		$this->options_store = new Option_Helper;
 		$this->init_settings_page();
 	}
 
@@ -187,7 +187,7 @@ class Plugin {
 								'view'  => plugin_dir_path( __FILE__ ) . 'partials/last-name-field.phtml',
 							] ),
 						],
-					] )
+					] ),
 				],
 			] ),
 		];

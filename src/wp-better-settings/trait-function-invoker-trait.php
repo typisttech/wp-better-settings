@@ -75,7 +75,7 @@ trait FunctionInvokerTrait {
 	 * @throws RuntimeException                If a $param does not have a name() method.
 	 */
 	private function parse_parameters( array $params, array $args ) : array {
-		$ordered_args = array();
+		$ordered_args = [];
 		foreach ( $params as $param ) {
 			if ( ! $param instanceof ReflectionParameter ) {
 				throw new RuntimeException(

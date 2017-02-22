@@ -13,6 +13,8 @@
 
 namespace WPBS\WP_Better_Settings;
 
+use UnexpectedValueException;
+
 /**
  * Config details for a settings field.
  *
@@ -33,68 +35,11 @@ namespace WPBS\WP_Better_Settings;
 class Setting_Config extends Config {
 
 	/**
-	 * Get field config by id.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param string $field_id ID of the field.
-	 *
-	 * @return mixed
-	 */
-	public function get_field( string $field_id ) {
-		$fields      = $this->get_fields();
-		$field_index = array_search( $field_id, array_column( $fields, 'id' ), true );
-
-		if ( false === $field_index ) {
-			return null;
-		}
-
-		return $fields[ $field_index ];
-	}
-
-	/**
-	 * Get all fields.
+	 * Default config of Setting_Config.
 	 *
 	 * @since 0.1.0
 	 *
 	 * @return array
-	 */
-	public function get_fields() : array {
-		if ( ! is_array( $this->get_key( 'sections' ) ) ) {
-			return [];
-		}
-
-		$pluck = array_column( $this->sections, 'fields' );
-
-		// Flatten $pluck array.
-		$fields = [];
-		array_walk_recursive( $pluck, function ( $a ) use ( &$fields ) {
-			$fields[] = $a;
-		} );
-
-		return $fields;
-	}
-
-	/**
-	 * Array of default options.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @return array
-	 */
-	public function default_option() : array {
-		$fields = $this->get_fields();
-
-		return array_column( $fields, 'default', 'id' );
-	}
-
-	/**
-	 * Default config of Setting_Config
-	 *
-	 * @since 0.1.0
-	 *
-	 * @return array
-	 * @throws \InvalidArgumentException If the partial is not supported.
 	 */
 	protected function default_config() : array {
 		return [
@@ -107,9 +52,89 @@ class Setting_Config extends Config {
 			},
 			'args'     => [
 				'sanitize_callback' => function ( array $input ) {
-					return Sanitizer::sanitize_settings( $this, $input );
+					$input_keys = array_keys( $input );
+					$fields     = $this->get_fields_by( $input_keys );
+
+					return Sanitizer::sanitize_settings( $input, $fields );
 				},
 			],
 		];
+	}
+
+	/**
+	 * Get fields by ids.
+	 *
+	 * @since  0.5.0
+	 * @access private
+	 *
+	 * @param array $field_ids IDs of the fields to return.
+	 *
+	 * @return Field_Config[]
+	 * @throws \UnexpectedValueException If section.fields is not Field_Config[].
+	 */
+	private function get_fields_by( array $field_ids ) : array {
+		$field_ids  = array_filter( $field_ids );
+		$all_fields = $this->get_fields();
+
+		return array_filter( $all_fields, function ( Field_Config $field ) use ( $field_ids ) {
+			$id = $field->get_key( 'id' );
+
+			return in_array( $id, $field_ids, true );
+		} );
+	}
+
+	/**
+	 * Get all fields.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return Field_Config[]
+	 * @throws \UnexpectedValueException If sections.fields is not Field_Config[].
+	 */
+	public function get_fields() : array {
+		$sections = $this->get_sections();
+
+		$pluck = array_map(
+			function ( Section_Config $section ) {
+				return $section->get_fields();
+			},
+			$sections
+		);
+
+		return call_user_func_array( 'array_merge', $pluck );
+	}
+
+	/**
+	 * Sections getter.
+	 *
+	 * @since 0.5.0
+	 * @return Section_Config[]
+	 * @throws \UnexpectedValueException If sections is not Section_Config[].
+	 */
+	public function get_sections() : array {
+		$this->check_sections();
+
+		return $this->get_key( 'sections' );
+	}
+
+	/**
+	 * Check the sections.
+	 *
+	 * @since  0.5.0
+	 * @access private
+	 * @return void
+	 * @throws UnexpectedValueException If fields is not Field_Config[].
+	 */
+	private function check_sections() {
+		$sections = $this->get_key( 'sections' );
+		if ( ! is_array( $sections ) ) {
+			throw new UnexpectedValueException( 'Sections in class ' . __CLASS__ . ' must be an array.' );
+		}
+
+		array_walk( $sections, function ( $section ) {
+			if ( ! $section instanceof Section_Config ) {
+				throw new UnexpectedValueException( 'Section items in class ' . __CLASS__ . ' must be instances of Section_Config.' );
+			}
+		} );
 	}
 }

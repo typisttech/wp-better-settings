@@ -83,9 +83,6 @@ class Settings {
 	 * @throws \InvalidArgumentException If register_setting cannot be invoked.
 	 */
 	protected function register_setting( Setting_Config $settings_config ) {
-
-		$settings_config->args['default'] = $settings_config->args['default'] ?? $settings_config->default_option();
-
 		$this->invoke_function( 'register_setting', $settings_config );
 
 		// Prepare array to pass to array_walk as third parameter.

@@ -13,6 +13,8 @@
 
 namespace WPBS\WP_Better_Settings;
 
+use UnexpectedValueException;
+
 /**
  * Config details for a settings field.
  *
@@ -38,12 +40,45 @@ namespace WPBS\WP_Better_Settings;
 class Section_Config extends Config {
 
 	/**
+	 * Fields getter
+	 *
+	 * @since 0.5.0
+	 * @return Field_Config[]
+	 * @throws UnexpectedValueException If fields is not Field_Config[].
+	 */
+	public function get_fields() : array {
+		$this->check_fields();
+
+		return $this->get_key( 'fields' );
+	}
+
+	/**
+	 * Check the fields
+	 *
+	 * @since  0.5.0
+	 * @access private
+	 * @return void
+	 * @throws UnexpectedValueException If fields is not Field_Config[].
+	 */
+	private function check_fields() {
+		$fields = $this->get_key( 'fields' );
+		if ( ! is_array( $fields ) ) {
+			throw new UnexpectedValueException( 'Fields in class ' . __CLASS__ . ' must be an array.' );
+		}
+
+		array_walk( $fields, function ( $field ) {
+			if ( ! $field instanceof Field_Config ) {
+				throw new UnexpectedValueException( 'Field items in class ' . __CLASS__ . ' must be instances of Field_Config.' );
+			}
+		} );
+	}
+
+	/**
 	 * Default config of Section_Config
 	 *
 	 * @since 0.1.0
 	 *
 	 * @return array
-	 * @throws \InvalidArgumentException If the partial is not supported.
 	 */
 	protected function default_config() : array {
 		return [

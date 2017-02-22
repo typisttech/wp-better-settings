@@ -1,10 +1,12 @@
 <?php
 namespace WPBS\WP_Better_Settings;
 
+use UnexpectedValueException;
+
 /**
  * @coversDefaultClass \WPBS\WP_Better_Settings\Setting_Config
  */
-class SettingConfigTest extends \Codeception\TestCase\WPTestCase
+class Setting_ConfigTest extends \Codeception\TestCase\WPTestCase
 {
     /**
      * @var Field_Config
@@ -46,16 +48,10 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
         // before
         parent::setUp();
 
-        $this->field_1_1      = new Field_Config([
-            'id'      => 'my_field_1_1',
-            'default' => 'my_default_1_1',
-        ]);
+        $this->field_1_1      = new Field_Config([ 'id' => 'my_field_1_1' ]);
         $this->field_1_2      = new Field_Config([ 'id' => 'my_field_1_2' ]);
         $this->field_2_1      = new Field_Config([ 'id' => 'my_field_2_1' ]);
-        $this->field_2_2      = new Field_Config([
-            'id'      => 'my_field_2_2',
-            'default' => 'my_default_2_2',
-        ]);
+        $this->field_2_2      = new Field_Config([ 'id' => 'my_field_2_2' ]);
         $this->section_2      = new Section_Config([
             'id'     => 'my_section_2',
             'fields' => [
@@ -90,24 +86,6 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
     }
 
     /**
-     * @covers ::get_field
-     */
-    public function testGetField()
-    {
-        $actual = $this->setting_config->get_field('my_field_2_1');
-        $this->assertSame($this->field_2_1, $actual);
-    }
-
-    /**
-     * @covers ::get_field
-     */
-    public function testGetNotExistField()
-    {
-        $actual = $this->setting_config->get_field('not_exist_field');
-        $this->assertNull($actual);
-    }
-
-    /**
      * @covers ::get_fields
      */
     public function testGetFields()
@@ -125,63 +103,69 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
     /**
      * @covers ::get_fields
      */
-    public function testGetFieldsWithoutSections()
+    public function testGetFieldsFlattenToFieldLevel()
     {
-        $setting_config = new Setting_Config;
-        $actual         = $setting_config->get_fields();
-        $this->assertSame([], $actual);
-    }
+        $multi_dimensional_field = new Field_Config([
+            'id'   => 'my_field_2_3',
+            'some' => [ 'multi' => [ 'dimensional' => [ 'array' ] ] ],
+        ]);
+        $section_2               = new Section_Config([
+            'id'     => 'my_section_2',
+            'fields' => [
+                $this->field_2_1,
+                $this->field_2_2,
+                $multi_dimensional_field,
+            ],
+        ]);
+        $setting_config          = new Setting_Config([
+            'sections' => [
+                $this->section_1,
+                $section_2,
+            ],
+        ]);
 
-    /**
-     * @covers ::get_fields
-     */
-    public function testGetFieldsWithoutFields()
-    {
-        $setting_config = new Setting_Config([ 'sections' => [] ]);
-        $actual         = $setting_config->get_fields();
-        $this->assertSame([], $actual);
-    }
-
-    /**
-     * @covers ::default_option
-     */
-    public function testDefaultOption()
-    {
-        $actual   = $this->setting_config->default_option();
+        $actual   = $setting_config->get_fields();
         $expected = [
-            'my_field_1_1' => 'my_default_1_1',
-            'my_field_2_2' => 'my_default_2_2',
+            $this->field_1_1,
+            $this->field_1_2,
+            $this->field_2_1,
+            $this->field_2_2,
+            $multi_dimensional_field,
         ];
         $this->assertSame($expected, $actual);
     }
 
     /**
-     * @covers ::default_option
+     * @covers ::get_sections
      */
-    public function testDefaultOptionNoDefaults()
+    public function testGetSections()
     {
-        $setting_config = new Setting_Config([
-            'sections' => [
-                new Section_Config([
-                    'id'     => 'my_section_2',
-                    'fields' => [
-                        $this->field_1_2,
-                        $this->field_2_1,
-                    ],
-                ]),
-            ],
-        ]);
-        $actual         = $setting_config->default_option();
-        $this->assertSame([], $actual);
+        $actual   = $this->setting_config->get_sections();
+        $expected = [ $this->section_1, $this->section_2 ];
+        $this->assertSame($expected, $actual);
     }
 
     /**
-     * @covers ::default_option
+     * @covers ::get_sections
      */
-    public function testDefaultOptionEmptyFields()
+    public function testThrowNotArrayException()
     {
-        $setting_config = new Setting_Config;
-        $actual         = $setting_config->default_option();
-        $this->assertSame([], $actual);
+        $setting_config = new Setting_Config([
+            'sections' => 'not an array',
+        ]);
+        $this->expectException(UnexpectedValueException::class);
+        $setting_config->get_sections();
+    }
+
+    /**
+     * @covers ::get_sections
+     */
+    public function testThrowNotSectionConfigException()
+    {
+        $setting_config = new Setting_Config([
+            'sections' => [ $this->section_1, 'not Section_Config' ],
+        ]);
+        $this->expectException(UnexpectedValueException::class);
+        $setting_config->get_sections();
     }
 }

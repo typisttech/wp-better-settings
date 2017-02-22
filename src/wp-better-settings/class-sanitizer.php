@@ -24,27 +24,24 @@ class Sanitizer {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param Setting_Config $setting_config Config object of plugin settings.
-	 * @param array          $input          The value entered in the field.
+	 * @param array    $input   The value entered in the field.
+	 * @param Config[] $configs Config object that holds ID and sanitize callback.
 	 *
-	 * @return array The sanitized value.
+	 * @return array The sanitized values.
 	 */
-	public static function sanitize_settings( Setting_Config $setting_config, array $input ) {
-		// Unset empty elements.
-		$input = array_filter( $input );
-
-		foreach ( $input as $id => $value ) {
-			$field = $setting_config->get_field( $id );
-
-			if ( empty( $field ) ) {
+	public static function sanitize_settings( array $input, array $configs ) {
+		foreach ( $configs as $config ) {
+			$id = $config->get_key( 'id' );
+			if ( empty( $id ) ) {
 				continue;
 			}
 
-			if ( ! is_callable( $field->sanitize_callback ) ) {
+			$sanitize_callback = $config->get_key( 'sanitize_callback' );
+			if ( ! is_callable( $sanitize_callback ) ) {
 				continue;
 			}
 
-			$input[ $id ] = call_user_func( $field->sanitize_callback, $value, $id );
+			$input[ $id ] = $sanitize_callback( $input[ $id ], $id );
 		}
 
 		// Unset empty elements.

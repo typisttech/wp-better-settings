@@ -26,16 +26,6 @@ modules:
       cleanup: true
       url: 'http://wp.dev:8080'
       tablePrefix: wp_
-#    WPBrowser:
-#      url: 'http://wp.dev:8080'
-#      adminUsername: admin
-#      adminPassword: password
-#      adminPath: /wp-admin
-#    WordPress:
-#      depends: WPDb
-#      wpRootFolder: /tmp/wordpress
-#      adminUsername: admin
-#      adminPassword: password
     WPLoader:
       wpRootFolder: /tmp/wordpress
       dbName: wordpress_int

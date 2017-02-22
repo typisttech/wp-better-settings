@@ -15,13 +15,13 @@ namespace WPBS\WP_Better_Settings;
 
 
 /**
- * Interface ViewInterface
+ * Interface View_Interface
  *
  * Accepts a context and renders its content on request.
  *
  * @since 0.2.0
  */
-interface ViewInterface {
+interface View_Interface {
 
 	/**
 	 * Render the associated view.

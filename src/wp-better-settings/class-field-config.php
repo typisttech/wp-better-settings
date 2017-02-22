@@ -27,7 +27,7 @@ namespace WPBS\WP_Better_Settings;
  * 'title' (string)                 => Title to display as the heading for
  *                                     the section.
  *
- * 'view' (string|ViewInterface)    => View to use for rendering the
+ * 'view' (string|View_Interface)    => View to use for rendering the
  *                                     section. Can be a path to a view file
  *                                     or an instance of a View object.
  */

@@ -55,7 +55,7 @@ class Setting_Config extends Config {
 					$input_keys = array_keys( $input );
 					$fields     = $this->get_fields_by( $input_keys );
 
-					return Sanitizer::sanitize_settings( $fields, $input );
+					return Sanitizer::sanitize_settings( $input, $fields );
 				},
 			],
 		];

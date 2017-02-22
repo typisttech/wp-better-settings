@@ -1,6 +1,7 @@
 <?php
 namespace WPBS\WP_Better_Settings;
 
+use Mockery;
 use phpmock\phpunit\PHPMock;
 
 /**
@@ -13,10 +14,9 @@ class SanitizerTest extends \Codeception\TestCase\WPTestCase
     /**
      * @covers ::sanitize_settings
      */
-    public function testSanitizeSettingsUnsetEmptyElements()
+    public function testSanitizeSettingsUnsetEmptyInputs()
     {
-        $config = new Setting_Config();
-        $input  = [
+        $input = [
             'field-false'        => false,
             'field-empty-array'  => [],
             'field-empty-string' => '',
@@ -32,7 +32,28 @@ class SanitizerTest extends \Codeception\TestCase\WPTestCase
             'field-something' => 'something',
         ];
 
-        $actual = Sanitizer::sanitize_settings($config, $input);
+        $actual = Sanitizer::sanitize_settings($input, []);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * @covers ::sanitize_settings
+     */
+    public function testFieldSanitizeCallbackIsCalled()
+    {
+        $callback_mock = Mockery::mock('alias:\Test_Sanitize');
+        $callback_mock->shouldReceive('callback_mock_one')
+                      ->once()
+                      ->with('some input', 'my_field_id')
+                      ->andReturn('sanitized value one');
+
+        $field_config = new Field_Config([
+            'id'                => 'my_field_id',
+            'sanitize_callback' => '\Test_Sanitize::callback_mock_one',
+        ]);
+
+        $actual   = Sanitizer::sanitize_settings([ 'my_field_id' => 'some input' ], [ $field_config ]);
+        $expected = [ 'my_field_id' => 'sanitized value one' ];
         $this->assertSame($expected, $actual);
     }
 
@@ -94,7 +115,7 @@ class SanitizerTest extends \Codeception\TestCase\WPTestCase
     /**
      * @covers ::sanitize_email
      */
-    public function testSanitizeInvalidEmail()
+    public function testSanitizeInvalidEmailAddSettingsError()
     {
         $add_settings_error = $this->getFunctionMock(__NAMESPACE__, 'add_settings_error');
         $add_settings_error->expects($this->once())
@@ -104,8 +125,15 @@ class SanitizerTest extends \Codeception\TestCase\WPTestCase
                                $this->equalTo('The email address entered did not appear to be a valid email address. Please enter a valid email address.')
                            );
 
-        $actual = Sanitizer::sanitize_email('invalid_email@gmail', 'my_email_id');
+        Sanitizer::sanitize_email('invalid_email@gmail', 'my_email_id');
+    }
 
+    /**
+     * @covers ::sanitize_email
+     */
+    public function testSanitizeInvalidEmailToEmptyString()
+    {
+        $actual = Sanitizer::sanitize_email('invalid_email@gmail', 'my_email_id');
         $this->assertSame('', $actual);
     }
 }

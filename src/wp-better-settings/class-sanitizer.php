@@ -24,12 +24,12 @@ class Sanitizer {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param SettingConfig $setting_config Config object of plugin settings.
-	 * @param array         $input          The value entered in the field.
+	 * @param Setting_Config $setting_config Config object of plugin settings.
+	 * @param array          $input          The value entered in the field.
 	 *
 	 * @return array The sanitized value.
 	 */
-	public static function sanitize_settings( SettingConfig $setting_config, array $input ) {
+	public static function sanitize_settings( Setting_Config $setting_config, array $input ) {
 		// Unset empty elements.
 		$input = array_filter( $input );
 

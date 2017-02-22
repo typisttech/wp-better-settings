@@ -2,7 +2,7 @@
 namespace WPBS\WP_Better_Settings;
 
 /**
- * @coversDefaultClass \WPBS\WP_Better_Settings\SettingConfig
+ * @coversDefaultClass \WPBS\WP_Better_Settings\Setting_Config
  */
 class SettingConfigTest extends \Codeception\TestCase\WPTestCase
 {
@@ -37,7 +37,7 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
     private $section_2;
 
     /**
-     * @var SettingConfig
+     * @var Setting_Config
      */
     private $setting_config;
 
@@ -70,7 +70,7 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
                 $this->field_1_2,
             ],
         ]);
-        $this->setting_config = new SettingConfig([
+        $this->setting_config = new Setting_Config([
             'option_group' => 'my_option_group',
             'option_name'  => 'my_option_name',
             'sections'     => [
@@ -85,7 +85,7 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testIsAnInstanceOfConfig()
     {
-        $config = new SettingConfig();
+        $config = new Setting_Config();
         $this->assertInstanceOf(Config::class, $config);
     }
 
@@ -127,7 +127,7 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testGetFieldsWithoutSections()
     {
-        $setting_config = new SettingConfig;
+        $setting_config = new Setting_Config;
         $actual         = $setting_config->get_fields();
         $this->assertSame([], $actual);
     }
@@ -137,7 +137,7 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testGetFieldsWithoutFields()
     {
-        $setting_config = new SettingConfig([ 'sections' => [] ]);
+        $setting_config = new Setting_Config([ 'sections' => [] ]);
         $actual         = $setting_config->get_fields();
         $this->assertSame([], $actual);
     }
@@ -160,7 +160,7 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testDefaultOptionNoDefaults()
     {
-        $setting_config = new SettingConfig([
+        $setting_config = new Setting_Config([
             'sections' => [
                 new Section_Config([
                     'id'     => 'my_section_2',
@@ -180,7 +180,7 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testDefaultOptionEmptyFields()
     {
-        $setting_config = new SettingConfig;
+        $setting_config = new Setting_Config;
         $actual         = $setting_config->default_option();
         $this->assertSame([], $actual);
     }

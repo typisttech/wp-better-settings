@@ -30,7 +30,7 @@ namespace WPBS\WP_Better_Settings;
  *
  * 'sections' (Section_Config[])    =>  Array of Section_Config to add to the settings page.
  */
-class SettingConfig extends Config {
+class Setting_Config extends Config {
 
 	/**
 	 * Get field config by id.
@@ -89,7 +89,7 @@ class SettingConfig extends Config {
 	}
 
 	/**
-	 * Default config of SettingConfig
+	 * Default config of Setting_Config
 	 *
 	 * @since 0.1.0
 	 *

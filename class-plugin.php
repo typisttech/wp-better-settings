@@ -14,7 +14,7 @@
 namespace WPBS;
 
 use WPBS\WP_Better_Settings\{
-	Field_Config, Menu_Page_Config, Menu_Pages, Option_Helper, Sanitizer, Section_Config, SettingConfig, Settings, ViewFactory
+	Field_Config, Menu_Page_Config, Menu_Pages, Option_Helper, Sanitizer, Section_Config, Setting_Config, Settings, ViewFactory
 };
 
 /**
@@ -90,11 +90,11 @@ class Plugin {
 	 *
 	 * @since 0.3.0
 	 *
-	 * @return WP_Better_Settings\SettingConfig[]
+	 * @return WP_Better_Settings\Setting_Config[]
 	 */
 	private function settings_configs() : array {
 		return [
-			new SettingConfig( [
+			new Setting_Config( [
 				'option_group' => 'wpbs_1',
 				'option_name'  => 'wpbs_option_1',
 				'sections'     => [
@@ -165,7 +165,7 @@ class Plugin {
 				],
 			] ),
 
-			new SettingConfig( [
+			new Setting_Config( [
 				'option_group' => 'wpbs_2',
 				'option_name'  => 'wpbs_option_2',
 				'sections'     => [

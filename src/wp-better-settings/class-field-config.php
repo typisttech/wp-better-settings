@@ -14,7 +14,7 @@
 namespace WPBS\WP_Better_Settings;
 
 /**
- * Class FieldConfig
+ * Class Field_Config
  *
  * Config details for a settings field.
  *
@@ -31,9 +31,9 @@ namespace WPBS\WP_Better_Settings;
  *                                     section. Can be a path to a view file
  *                                     or an instance of a View object.
  */
-class FieldConfig extends Config {
+class Field_Config extends Config {
 	/**
-	 * Default config of FieldConfig
+	 * Default config of Field_Config
 	 *
 	 * @since 0.1.0
 	 *

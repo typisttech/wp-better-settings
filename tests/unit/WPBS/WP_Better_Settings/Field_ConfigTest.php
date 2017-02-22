@@ -2,16 +2,16 @@
 namespace WPBS\WP_Better_Settings;
 
 /**
- * @coversDefaultClass \WPBS\WP_Better_Settings\FieldConfig
+ * @coversDefaultClass \WPBS\WP_Better_Settings\Field_Config
  */
-class FieldConfigTest extends \Codeception\TestCase\WPTestCase
+class Field_ConfigTest extends \Codeception\TestCase\WPTestCase
 {
     /**
      * @coversNothing
      */
     public function testIsAnInstanceOfConfig()
     {
-        $config = new FieldConfig();
+        $config = new Field_Config();
         $this->assertInstanceOf(Config::class, $config);
     }
 }

@@ -32,7 +32,7 @@ namespace WPBS\WP_Better_Settings;
  *                              a path to a view file or an instance of a
  *                              View object.
  *
- * 'fields' (FieldConfig[])    =>    Array of FieldConfig to attach to this
+ * 'fields' (Field_Config[])    =>    Array of Field_Config to attach to this
  *                              section.
  */
 class SectionConfig extends Config {
@@ -42,11 +42,11 @@ class SectionConfig extends Config {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param FieldConfig $field Field config to be added.
+	 * @param Field_Config $field Field config to be added.
 	 *
 	 * @return SectionConfig $this
 	 */
-	public function add_field( FieldConfig $field ) {
+	public function add_field( Field_Config $field ) {
 		$this[ $field->id ] = $field;
 
 		return $this;

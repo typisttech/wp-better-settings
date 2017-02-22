@@ -14,7 +14,7 @@
 namespace WPBS;
 
 use WPBS\WP_Better_Settings\{
-	FieldConfig, MenuPageConfig, MenuPages, Option_Helper, Sanitizer, SectionConfig, SettingConfig, Settings, ViewFactory
+	Field_Config, MenuPageConfig, MenuPages, Option_Helper, Sanitizer, SectionConfig, SettingConfig, Settings, ViewFactory
 };
 
 /**
@@ -104,33 +104,33 @@ class Plugin {
 						'title'  => __( 'My Useless Name Settings', 'as-settings-better-v1' ),
 						'desc'   => 'Just my section desc',
 						'fields' => [
-							new FieldConfig( [
+							new Field_Config( [
 								'id'      => 'my_name',
 								'title'   => __( 'My Name', 'as-settings-better-v1' ),
 								'default' => 'Tang Rufus',
 								'view'    => ViewFactory::build( 'text-field' ),
 								'desc'    => 'I am a description paragraph',
 							] ),
-							new FieldConfig( [
+							new Field_Config( [
 								'id'                => 'my_email',
 								'title'             => __( 'My Email', 'as-settings-better-v1' ),
 								'view'              => ViewFactory::build( 'email-field' ),
 								'sanitize_callback' => [ Sanitizer::class, 'sanitize_email' ],
 							] ),
-							new FieldConfig( [
+							new Field_Config( [
 								'id'                => 'my_url',
 								'title'             => __( 'My Url', 'as-settings-better-v1' ),
 								'default'           => 'https://www.typist.tech',
 								'view'              => ViewFactory::build( 'url-field' ),
 								'sanitize_callback' => 'esc_url_raw',
 							] ),
-							new FieldConfig( [
+							new Field_Config( [
 								'id'    => 'my_textarea',
 								'title' => __( 'My Textarea', 'wp-better-settings' ),
 								'view'  => ViewFactory::build( 'textarea-field' ),
 								'rows'  => 11,
 							] ),
-							new FieldConfig( [
+							new Field_Config( [
 								'id'                => 'my_checkbox',
 								'title'             => __( 'My Checkbox', 'wp-better-settings' ),
 								'view'              => ViewFactory::build( 'checkbox-field' ),
@@ -138,21 +138,21 @@ class Plugin {
 								'desc'              => __( 'Checkmate', 'wp-cloudflare-guard' ),
 								'sanitize_callback' => [ Sanitizer::class, 'sanitize_checkbox' ],
 							] ),
-							new FieldConfig( [
+							new Field_Config( [
 								'id'       => 'my_disabled_input',
 								'title'    => __( 'My Disabled Input', 'as-settings-better-v1' ),
 								'desc'     => 'Disabled on purpose',
 								'view'     => ViewFactory::build( 'text-field' ),
 								'disabled' => true,
 							] ),
-							new FieldConfig( [
+							new Field_Config( [
 								'id'       => 'my_disabled_textarea',
 								'title'    => __( 'My Disabled Textarea', 'wp-better-settings' ),
 								'view'     => ViewFactory::build( 'textarea-field' ),
 								'desc'     => 'You shall not type',
 								'disabled' => true,
 							] ),
-							new FieldConfig( [
+							new Field_Config( [
 								'id'                => 'my_disabled_checkbox',
 								'title'             => __( 'My Disabled Checkbox', 'wp-better-settings' ),
 								'view'              => ViewFactory::build( 'checkbox-field' ),
@@ -175,13 +175,13 @@ class Plugin {
 						'page'   => 'wpbs_2',
 						'view'   => plugin_dir_path( __FILE__ ) . 'partials/section-description.phtml',
 						'fields' => [
-							new FieldConfig( [
+							new Field_Config( [
 								'id'      => 'wpbs_first_name',
 								'title'   => __( 'First Name', 'as-settings-better-v1' ),
 								'view'    => ViewFactory::build( 'text-field' ),
 								'default' => 'Elliot',
 							] ),
-							new FieldConfig( [
+							new Field_Config( [
 								'id'    => 'wpbs_last_name',
 								'title' => __( 'Last Name', 'as-settings-better-v1' ),
 								'view'  => plugin_dir_path( __FILE__ ) . 'partials/last-name-field.phtml',

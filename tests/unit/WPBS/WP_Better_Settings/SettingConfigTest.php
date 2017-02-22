@@ -7,22 +7,22 @@ namespace WPBS\WP_Better_Settings;
 class SettingConfigTest extends \Codeception\TestCase\WPTestCase
 {
     /**
-     * @var FieldConfig
+     * @var Field_Config
      */
     private $field_1_1;
 
     /**
-     * @var FieldConfig
+     * @var Field_Config
      */
     private $field_1_2;
 
     /**
-     * @var FieldConfig
+     * @var Field_Config
      */
     private $field_2_1;
 
     /**
-     * @var FieldConfig
+     * @var Field_Config
      */
     private $field_2_2;
 
@@ -46,13 +46,13 @@ class SettingConfigTest extends \Codeception\TestCase\WPTestCase
         // before
         parent::setUp();
 
-        $this->field_1_1      = new FieldConfig([
+        $this->field_1_1      = new Field_Config([
             'id'      => 'my_field_1_1',
             'default' => 'my_default_1_1',
         ]);
-        $this->field_1_2      = new FieldConfig([ 'id' => 'my_field_1_2' ]);
-        $this->field_2_1      = new FieldConfig([ 'id' => 'my_field_2_1' ]);
-        $this->field_2_2      = new FieldConfig([
+        $this->field_1_2      = new Field_Config([ 'id' => 'my_field_1_2' ]);
+        $this->field_2_1      = new Field_Config([ 'id' => 'my_field_2_1' ]);
+        $this->field_2_2      = new Field_Config([
             'id'      => 'my_field_2_2',
             'default' => 'my_default_2_2',
         ]);

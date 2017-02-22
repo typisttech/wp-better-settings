@@ -28,9 +28,9 @@ namespace WPBS\WP_Better_Settings;
  *
  * 'option_name' (string)       =>    The name of an option to sanitize and save.
  *
- * 'sections' (SectionConfig[])    =>  Array of SectionConfig to add to the settings page.
+ * 'sections' (Section_Config[])    =>  Array of Section_Config to add to the settings page.
  */
-class SettingConfig extends Config {
+class Setting_Config extends Config {
 
 	/**
 	 * Get field config by id.
@@ -89,7 +89,7 @@ class SettingConfig extends Config {
 	}
 
 	/**
-	 * Default config of SettingConfig
+	 * Default config of Setting_Config
 	 *
 	 * @since 0.1.0
 	 *
@@ -98,7 +98,7 @@ class SettingConfig extends Config {
 	 */
 	protected function default_config() : array {
 		return [
-			'view'     => ViewFactory::build( 'section-description' ),
+			'view'     => View_Factory::build( 'section-description' ),
 			'function' => function () {
 				if ( is_string( $this->view ) ) {
 					$this->view = new View( $this->view );

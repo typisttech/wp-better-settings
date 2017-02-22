@@ -2,16 +2,16 @@
 namespace WPBS\WP_Better_Settings;
 
 /**
- * @coversDefaultClass \WPBS\WP_Better_Settings\MenuPageConfig
+ * @coversDefaultClass \WPBS\WP_Better_Settings\Menu_Page_Config
  */
-class MenuPageConfigTest extends \Codeception\TestCase\WPTestCase
+class Menu_Page_ConfigTest extends \Codeception\TestCase\WPTestCase
 {
     /**
      * @coversNothing
      */
     public function testIsAnInstanceOfConfig()
     {
-        $config = new MenuPageConfig;
+        $config = new Menu_Page_Config;
         $this->assertInstanceOf(Config::class, $config);
     }
 
@@ -20,7 +20,7 @@ class MenuPageConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testAddMenuPage()
     {
-        $config = new MenuPageConfig;
+        $config = new Menu_Page_Config;
         $this->assertAttributeEquals('add_menu_page', 'function_name', $config);
     }
 
@@ -29,7 +29,7 @@ class MenuPageConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testAddSubmenuPage()
     {
-        $config = new MenuPageConfig([ 'parent_slug' => 'option.php' ]);
+        $config = new Menu_Page_Config([ 'parent_slug' => 'option.php' ]);
         $this->assertAttributeEquals('add_submenu_page', 'function_name', $config);
     }
 
@@ -38,9 +38,9 @@ class MenuPageConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testDefaultConfig()
     {
-        $config = new MenuPageConfig;
+        $config = new Menu_Page_Config;
 
-        $expected_view = ViewFactory::build('basic-options-page');
+        $expected_view = View_Factory::build('basic-options-page');
 
         $this->assertAttributeEquals('manage_options', 'capability', $config);
         $this->assertAttributeEquals($expected_view, 'view', $config);

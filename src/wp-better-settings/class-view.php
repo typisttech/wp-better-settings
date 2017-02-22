@@ -20,7 +20,7 @@ namespace WPBS\WP_Better_Settings;
  *
  * @since 0.1.0
  */
-class View implements ViewInterface {
+class View implements View_Interface {
 
 	/**
 	 * Filename of the PHP view to render.

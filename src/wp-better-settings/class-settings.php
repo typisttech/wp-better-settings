@@ -30,7 +30,7 @@ use ArrayObject;
  */
 class Settings {
 
-	use FunctionInvokerTrait;
+	use Function_Invoker_Trait;
 
 	/**
 	 * Config instance.
@@ -78,11 +78,11 @@ class Settings {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param SettingConfig $settings_config Arguments for the register_setting WP function.
+	 * @param Setting_Config $settings_config Arguments for the register_setting WP function.
 	 *
 	 * @throws \InvalidArgumentException If register_setting cannot be invoked.
 	 */
-	protected function register_setting( SettingConfig $settings_config ) {
+	protected function register_setting( Setting_Config $settings_config ) {
 
 		$settings_config->args['default'] = $settings_config->args['default'] ?? $settings_config->default_option();
 

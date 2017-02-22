@@ -13,7 +13,7 @@ class SanitizerTest extends \Codeception\TestCase\WPTestCase
      */
     public function testSanitizeSettingsUnsetEmptyElements()
     {
-        $config = new SettingConfig();
+        $config = new Setting_Config();
         $input  = [
             'field-false'        => false,
             'field-empty-array'  => [],

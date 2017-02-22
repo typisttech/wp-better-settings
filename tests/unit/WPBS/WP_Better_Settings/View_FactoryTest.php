@@ -4,7 +4,7 @@ namespace WPBS\WP_Better_Settings;
 use InvalidArgumentException;
 
 /**
- * @coversDefaultClass \WPBS\WP_Better_Settings\ViewFactory
+ * @coversDefaultClass \WPBS\WP_Better_Settings\View_Factory
  */
 class ViewFactoryTest extends \Codeception\TestCase\WPTestCase
 {
@@ -13,7 +13,7 @@ class ViewFactoryTest extends \Codeception\TestCase\WPTestCase
      */
     public function testBuildViewObject()
     {
-        $actual = ViewFactory::build('text-field');
+        $actual = View_Factory::build('text-field');
         $this->assertInstanceOf(View::class, $actual);
     }
 
@@ -22,7 +22,7 @@ class ViewFactoryTest extends \Codeception\TestCase\WPTestCase
      */
     public function testBuildViewObjectFilename()
     {
-        $actual = ViewFactory::build('text-field');
+        $actual = View_Factory::build('text-field');
 
         /**
          * Because Travis CI run this test in $TRAVIS_BUILD_DIR
@@ -40,6 +40,6 @@ class ViewFactoryTest extends \Codeception\TestCase\WPTestCase
     public function testThrowInvalidArgumentException()
     {
         $this->expectException(InvalidArgumentException::class);
-        ViewFactory::build('something');
+        View_Factory::build('something');
     }
 }

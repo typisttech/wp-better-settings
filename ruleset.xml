@@ -12,6 +12,6 @@
     <exclude-pattern>/vendor/*</exclude-pattern>
     <exclude-pattern>/tests/*</exclude-pattern>
 
-    <rule ref="WordPress" />
+    <rule ref="WordPress"/>
 
 </ruleset>

@@ -14,7 +14,7 @@
 namespace WPBS\WP_Better_Settings;
 
 /**
- * Class FieldConfig
+ * Class Field_Config
  *
  * Config details for a settings field.
  *
@@ -27,13 +27,13 @@ namespace WPBS\WP_Better_Settings;
  * 'title' (string)                 => Title to display as the heading for
  *                                     the section.
  *
- * 'view' (string|ViewInterface)    => View to use for rendering the
+ * 'view' (string|View_Interface)    => View to use for rendering the
  *                                     section. Can be a path to a view file
  *                                     or an instance of a View object.
  */
-class FieldConfig extends Config {
+class Field_Config extends Config {
 	/**
-	 * Default config of FieldConfig
+	 * Default config of Field_Config
 	 *
 	 * @since 0.1.0
 	 *

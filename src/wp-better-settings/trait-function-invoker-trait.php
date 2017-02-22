@@ -22,14 +22,14 @@ use ReflectionParameter;
 use RuntimeException;
 
 /**
- * Trait FunctionInvokerTrait.
+ * Trait Function_Invoker_Trait.
  *
  * Reusable trait that you can pull into any class to have a way of pass an
  * associative array as sorted arguments.
  *
  * @since 0.1.0
  */
-trait FunctionInvokerTrait {
+trait Function_Invoker_Trait {
 	/**
 	 * Check the accepted arguments for a given function and pass associative
 	 * array values in the right order.

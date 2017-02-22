@@ -14,7 +14,7 @@
 namespace WPBS;
 
 use WPBS\WP_Better_Settings\{
-	FieldConfig, MenuPageConfig, MenuPages, Option_Helper, Sanitizer, SectionConfig, SettingConfig, Settings, ViewFactory
+	Field_Config, Menu_Page_Config, Menu_Pages, Option_Helper, Sanitizer, Section_Config, Setting_Config, Settings, View_Factory
 };
 
 /**
@@ -50,7 +50,7 @@ class Plugin {
 	 * @since 0.1.0
 	 */
 	public function init_settings_page() {
-		$menu_pages = new MenuPages( $this->page_configs() );
+		$menu_pages = new Menu_Pages( $this->page_configs() );
 		$settings   = new Settings( $this->settings_configs(), $this->options_store );
 
 		// Register the settings page with WordPress.
@@ -63,24 +63,24 @@ class Plugin {
 	 *
 	 * #since 0.3.0
 	 *
-	 * @return WP_Better_Settings\MenuPageConfig[]
+	 * @return WP_Better_Settings\Menu_Page_Config[]
 	 */
 	private function page_configs() : array {
 		return [
-			new MenuPageConfig( [
+			new Menu_Page_Config( [
 				'menu_slug'    => 'wpbs_1',
 				'page_title'   => 'WP Better Settings',
 				'menu_title'   => 'WP Better Settings',
 				'option_group' => 'wpbs_1',
-				'view'         => ViewFactory::build( 'tabbed-options-page' ),
+				'view'         => View_Factory::build( 'tabbed-options-page' ),
 			] ),
-			new MenuPageConfig( [
+			new Menu_Page_Config( [
 				'menu_slug'    => 'wpbs_2',
 				'page_title'   => 'WP Better Settings Two',
 				'menu_title'   => 'WPBS Two',
 				'option_group' => 'wpbs_2',
 				'parent_slug'  => 'wpbs_1',
-				'view'         => ViewFactory::build( 'basic-options-page' ),
+				'view'         => View_Factory::build( 'basic-options-page' ),
 			] ),
 		];
 	}
@@ -90,72 +90,72 @@ class Plugin {
 	 *
 	 * @since 0.3.0
 	 *
-	 * @return WP_Better_Settings\SettingConfig[]
+	 * @return WP_Better_Settings\Setting_Config[]
 	 */
 	private function settings_configs() : array {
 		return [
-			new SettingConfig( [
+			new Setting_Config( [
 				'option_group' => 'wpbs_1',
 				'option_name'  => 'wpbs_option_1',
 				'sections'     => [
-					new SectionConfig( [
+					new Section_Config( [
 						'id'     => 'wpbs_section_1',
 						'page'   => 'wpbs_1',
 						'title'  => __( 'My Useless Name Settings', 'as-settings-better-v1' ),
 						'desc'   => 'Just my section desc',
 						'fields' => [
-							new FieldConfig( [
+							new Field_Config( [
 								'id'      => 'my_name',
 								'title'   => __( 'My Name', 'as-settings-better-v1' ),
 								'default' => 'Tang Rufus',
-								'view'    => ViewFactory::build( 'text-field' ),
+								'view'    => View_Factory::build( 'text-field' ),
 								'desc'    => 'I am a description paragraph',
 							] ),
-							new FieldConfig( [
+							new Field_Config( [
 								'id'                => 'my_email',
 								'title'             => __( 'My Email', 'as-settings-better-v1' ),
-								'view'              => ViewFactory::build( 'email-field' ),
+								'view'              => View_Factory::build( 'email-field' ),
 								'sanitize_callback' => [ Sanitizer::class, 'sanitize_email' ],
 							] ),
-							new FieldConfig( [
+							new Field_Config( [
 								'id'                => 'my_url',
 								'title'             => __( 'My Url', 'as-settings-better-v1' ),
 								'default'           => 'https://www.typist.tech',
-								'view'              => ViewFactory::build( 'url-field' ),
+								'view'              => View_Factory::build( 'url-field' ),
 								'sanitize_callback' => 'esc_url_raw',
 							] ),
-							new FieldConfig( [
+							new Field_Config( [
 								'id'    => 'my_textarea',
 								'title' => __( 'My Textarea', 'wp-better-settings' ),
-								'view'  => ViewFactory::build( 'textarea-field' ),
+								'view'  => View_Factory::build( 'textarea-field' ),
 								'rows'  => 11,
 							] ),
-							new FieldConfig( [
+							new Field_Config( [
 								'id'                => 'my_checkbox',
 								'title'             => __( 'My Checkbox', 'wp-better-settings' ),
-								'view'              => ViewFactory::build( 'checkbox-field' ),
+								'view'              => View_Factory::build( 'checkbox-field' ),
 								'label'             => __( 'Click me', 'wp-cloudflare-guard' ),
 								'desc'              => __( 'Checkmate', 'wp-cloudflare-guard' ),
 								'sanitize_callback' => [ Sanitizer::class, 'sanitize_checkbox' ],
 							] ),
-							new FieldConfig( [
+							new Field_Config( [
 								'id'       => 'my_disabled_input',
 								'title'    => __( 'My Disabled Input', 'as-settings-better-v1' ),
 								'desc'     => 'Disabled on purpose',
-								'view'     => ViewFactory::build( 'text-field' ),
+								'view'     => View_Factory::build( 'text-field' ),
 								'disabled' => true,
 							] ),
-							new FieldConfig( [
+							new Field_Config( [
 								'id'       => 'my_disabled_textarea',
 								'title'    => __( 'My Disabled Textarea', 'wp-better-settings' ),
-								'view'     => ViewFactory::build( 'textarea-field' ),
+								'view'     => View_Factory::build( 'textarea-field' ),
 								'desc'     => 'You shall not type',
 								'disabled' => true,
 							] ),
-							new FieldConfig( [
+							new Field_Config( [
 								'id'                => 'my_disabled_checkbox',
 								'title'             => __( 'My Disabled Checkbox', 'wp-better-settings' ),
-								'view'              => ViewFactory::build( 'checkbox-field' ),
+								'view'              => View_Factory::build( 'checkbox-field' ),
 								'desc'              => __( 'You shall not check', 'wp-cloudflare-guard' ),
 								'disabled'          => true,
 								'sanitize_callback' => [ Sanitizer::class, 'sanitize_checkbox' ],
@@ -165,23 +165,23 @@ class Plugin {
 				],
 			] ),
 
-			new SettingConfig( [
+			new Setting_Config( [
 				'option_group' => 'wpbs_2',
 				'option_name'  => 'wpbs_option_2',
 				'sections'     => [
-					new SectionConfig( [
+					new Section_Config( [
 						'id'     => 'wpbs_section_2',
 						'title'  => __( 'Useless Name Settings', 'as-settings-better-v1' ),
 						'page'   => 'wpbs_2',
 						'view'   => plugin_dir_path( __FILE__ ) . 'partials/section-description.phtml',
 						'fields' => [
-							new FieldConfig( [
+							new Field_Config( [
 								'id'      => 'wpbs_first_name',
 								'title'   => __( 'First Name', 'as-settings-better-v1' ),
-								'view'    => ViewFactory::build( 'text-field' ),
+								'view'    => View_Factory::build( 'text-field' ),
 								'default' => 'Elliot',
 							] ),
-							new FieldConfig( [
+							new Field_Config( [
 								'id'    => 'wpbs_last_name',
 								'title' => __( 'Last Name', 'as-settings-better-v1' ),
 								'view'  => plugin_dir_path( __FILE__ ) . 'partials/last-name-field.phtml',

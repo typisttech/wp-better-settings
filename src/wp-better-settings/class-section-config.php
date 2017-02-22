@@ -26,34 +26,19 @@ namespace WPBS\WP_Better_Settings;
  *                              section.
  *
  * 'page' (string)            =>  The menu page on which to display this section.
- *                              Should match $menu_slug in MenuPageConfig.
+ *                              Should match $menu_slug in Menu_Page_Config.
  *
  * 'view' (string|View)        =>  View to use for rendering the section. Can be
  *                              a path to a view file or an instance of a
  *                              View object.
  *
- * 'fields' (FieldConfig[])    =>    Array of FieldConfig to attach to this
+ * 'fields' (Field_Config[])    =>    Array of Field_Config to attach to this
  *                              section.
  */
-class SectionConfig extends Config {
+class Section_Config extends Config {
 
 	/**
-	 * Add a field
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param FieldConfig $field Field config to be added.
-	 *
-	 * @return SectionConfig $this
-	 */
-	public function add_field( FieldConfig $field ) {
-		$this[ $field->id ] = $field;
-
-		return $this;
-	}
-
-	/**
-	 * Default config of SectionConfig
+	 * Default config of Section_Config
 	 *
 	 * @since 0.1.0
 	 *
@@ -62,7 +47,7 @@ class SectionConfig extends Config {
 	 */
 	protected function default_config() : array {
 		return [
-			'view'     => ViewFactory::build( 'section-description' ),
+			'view'     => View_Factory::build( 'section-description' ),
 			'callback' => function () {
 				if ( is_string( $this->view ) ) {
 					$this->view = new View( $this->view );

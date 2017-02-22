@@ -6,7 +6,7 @@ use UnexpectedValueException;
 /**
  * @coversDefaultClass \WPBS\WP_Better_Settings\Setting_Config
  */
-class SettingConfigTest extends \Codeception\TestCase\WPTestCase
+class Setting_ConfigTest extends \Codeception\TestCase\WPTestCase
 {
     /**
      * @var Field_Config

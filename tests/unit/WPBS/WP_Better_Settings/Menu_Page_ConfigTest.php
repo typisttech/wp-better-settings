@@ -45,4 +45,24 @@ class Menu_Page_ConfigTest extends \Codeception\TestCase\WPTestCase
         $this->assertAttributeEquals('manage_options', 'capability', $config);
         $this->assertAttributeEquals($expected_view, 'view', $config);
     }
+
+    /**
+     * @covers ::url
+     */
+    public function testUrlWithoutParent()
+    {
+        $config   = new Menu_Page_Config([ 'menu_slug' => 'me' ]);
+        $expected = admin_url('admin.php?page=me');
+        $this->assertSame($expected, $config->url());
+    }
+
+    /**
+     * @covers ::url
+     */
+    public function testUrlWithParent()
+    {
+        $config   = new Menu_Page_Config([ 'parent_slug' => 'father', 'menu_slug' => 'son' ]);
+        $expected = admin_url('admin.php?page=son');
+        $this->assertSame($expected, $config->url());
+    }
 }

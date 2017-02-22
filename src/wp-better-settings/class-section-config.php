@@ -26,7 +26,7 @@ namespace WPBS\WP_Better_Settings;
  *                              section.
  *
  * 'page' (string)            =>  The menu page on which to display this section.
- *                              Should match $menu_slug in MenuPageConfig.
+ *                              Should match $menu_slug in Menu_Page_Config.
  *
  * 'view' (string|View)        =>  View to use for rendering the section. Can be
  *                              a path to a view file or an instance of a

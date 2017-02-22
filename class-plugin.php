@@ -14,7 +14,7 @@
 namespace WPBS;
 
 use WPBS\WP_Better_Settings\{
-	Field_Config, MenuPageConfig, MenuPages, Option_Helper, Sanitizer, SectionConfig, SettingConfig, Settings, ViewFactory
+	Field_Config, Menu_Page_Config, MenuPages, Option_Helper, Sanitizer, SectionConfig, SettingConfig, Settings, ViewFactory
 };
 
 /**
@@ -63,18 +63,18 @@ class Plugin {
 	 *
 	 * #since 0.3.0
 	 *
-	 * @return WP_Better_Settings\MenuPageConfig[]
+	 * @return WP_Better_Settings\Menu_Page_Config[]
 	 */
 	private function page_configs() : array {
 		return [
-			new MenuPageConfig( [
+			new Menu_Page_Config( [
 				'menu_slug'    => 'wpbs_1',
 				'page_title'   => 'WP Better Settings',
 				'menu_title'   => 'WP Better Settings',
 				'option_group' => 'wpbs_1',
 				'view'         => ViewFactory::build( 'tabbed-options-page' ),
 			] ),
-			new MenuPageConfig( [
+			new Menu_Page_Config( [
 				'menu_slug'    => 'wpbs_2',
 				'page_title'   => 'WP Better Settings Two',
 				'menu_title'   => 'WPBS Two',

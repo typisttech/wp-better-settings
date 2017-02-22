@@ -14,7 +14,7 @@
 namespace WPBS\WP_Better_Settings;
 
 /**
- * Class MenuPageConfig
+ * Class Menu_Page_Config
  *
  * Config details for a single page.
  *
@@ -53,10 +53,10 @@ namespace WPBS\WP_Better_Settings;
  * 'parent_slug' (string) => The slug name for the parent menu (or the file
  *                           name of a standard WordPress admin page).
  */
-class MenuPageConfig extends Config {
+class Menu_Page_Config extends Config {
 
 	/**
-	 * MenuPageConfig constructor.
+	 * Menu_Page_Config constructor.
 	 *
 	 * @since 0.1.0
 	 *
@@ -85,7 +85,7 @@ class MenuPageConfig extends Config {
 	}
 
 	/**
-	 * Default config of MenuPageConfig
+	 * Default config of Menu_Page_Config
 	 *
 	 * @since 0.1.0
 	 *

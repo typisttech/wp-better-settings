@@ -23,7 +23,7 @@ use ArrayObject;
  * @since 0.1.0
  *
  * It enables you an entire collection of menu pages as as hierarchical
- * representation in your MenuPageConfig objects. In this way, you
+ * representation in your Menu_Page_Config objects. In this way, you
  * don't have to deal with all the confusing callback code that the
  * WordPress Settings API forces you to use.
  */

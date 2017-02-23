@@ -24,11 +24,11 @@ use UnexpectedValueException;
  *
  * Valid keys:
  *
- * 'option_group' (string)      =>  A settings group name.
- *                                  Should correspond to a whitelisted option
- *                                  key name.
+ * 'option_group' (string)          =>  A settings group name.
+ *                                      Should correspond to a whitelisted option
+ *                                      key name.
  *
- * 'option_name' (string)       =>    The name of an option to sanitize and save.
+ * 'option_name' (string)           =>  The name of an option to sanitize and save.
  *
  * 'sections' (Section_Config[])    =>  Array of Section_Config to add to the settings page.
  */

@@ -16,6 +16,8 @@ namespace WPBS\WP_Better_Settings;
 use ArrayObject;
 
 /**
+ * Class Config.
+ *
  * Config details for a settings field.
  *
  * @since 0.1.0

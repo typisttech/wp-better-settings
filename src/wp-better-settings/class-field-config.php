@@ -14,7 +14,7 @@
 namespace WPBS\WP_Better_Settings;
 
 /**
- * Class Field_Config
+ * Class Field_Config.
  *
  * Config details for a settings field.
  *
@@ -22,18 +22,18 @@ namespace WPBS\WP_Better_Settings;
  *
  * Valid keys:
  *
- * 'id' (string)                    => ID of this field. Should be unique for each page
+ * 'id' (string)                    =>  ID of this field. Should be unique for each page
  *
- * 'title' (string)                 => Title to display as the heading for
- *                                     the section.
+ * 'title' (string)                 =>  Title to display as the heading for
+ *                                      the section.
  *
- * 'view' (string|View_Interface)    => View to use for rendering the
- *                                     section. Can be a path to a view file
- *                                     or an instance of a View object.
+ * 'view' (string|View_Interface)   =>  View to use for rendering the
+ *                                      section. Can be a path to a view file
+ *                                      or an instance of a View object.
  */
 class Field_Config extends Config {
 	/**
-	 * Default config of Field_Config
+	 * Default config of Field_Config.
 	 *
 	 * @since 0.1.0
 	 *

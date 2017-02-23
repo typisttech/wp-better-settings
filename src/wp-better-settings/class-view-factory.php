@@ -52,7 +52,7 @@ class View_Factory {
 	 *
 	 * @return View        View object for the partial.
 	 *
-	 * @throws InvalidArgumentException    If the partial is not supported.
+	 * @throws InvalidArgumentException If the partial is not supported.
 	 */
 	public static function build( string $type ) : View {
 		if ( ! array_key_exists( $type, self::PARTIALS ) ) {

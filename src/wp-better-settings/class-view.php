@@ -14,13 +14,22 @@
 namespace WPBS\WP_Better_Settings;
 
 /**
- * Class View
+ * Class View.
  *
  * Accepts a filename of a PHP file and renders its content on request.
  *
  * @since 0.1.0
  */
 class View implements View_Interface {
+
+	/**
+	 * Array of allowed tags to let through escaping.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @var array
+	 */
+	protected $allowed_tags = [];
 
 	/**
 	 * Filename of the PHP view to render.
@@ -30,14 +39,6 @@ class View implements View_Interface {
 	 * @var string
 	 */
 	protected $filename;
-	/**
-	 * Array of allowed tags to let through escaping.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @var array
-	 */
-	protected $allowed_tags = [];
 
 	/**
 	 * View constructor.

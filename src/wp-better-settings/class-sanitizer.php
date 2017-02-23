@@ -14,7 +14,7 @@
 namespace WPBS\WP_Better_Settings;
 
 /**
- * Class Sanitizer
+ * Class Sanitizer.
  *
  * @since 0.1.0
  */

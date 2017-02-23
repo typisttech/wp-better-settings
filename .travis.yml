@@ -51,7 +51,7 @@ before_install:
       export WITH_COVERAGE=false;
     fi
 
-  # Disable xdebug to speed up the build unless test coverage is needed
+  # Disable xDebug to speed up the build unless test coverage is needed
   - if [[ "$WITH_COVERAGE" != "true" && $(phpenv version-name) != "nightly" ]]; then
       phpenv config-rm xdebug.ini;
     fi

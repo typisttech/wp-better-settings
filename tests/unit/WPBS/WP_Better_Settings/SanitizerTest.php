@@ -1,7 +1,6 @@
 <?php
 namespace WPBS\WP_Better_Settings;
 
-use Mockery;
 use phpmock\phpunit\PHPMock;
 
 /**
@@ -10,52 +9,6 @@ use phpmock\phpunit\PHPMock;
 class SanitizerTest extends \Codeception\TestCase\WPTestCase
 {
     use PHPMock;
-
-    /**
-     * @covers ::sanitize_settings
-     */
-    public function testSanitizeSettingsUnsetEmptyInputs()
-    {
-        $input = [
-            'field-false'        => false,
-            'field-empty-array'  => [],
-            'field-empty-string' => '',
-            'field-null'         => null,
-            'field-one'          => '1',
-            'field-something'    => 'something',
-            'field-zero'         => 0,
-            'field-zero-string'  => '0',
-        ];
-
-        $expected = [
-            'field-one'       => '1',
-            'field-something' => 'something',
-        ];
-
-        $actual = Sanitizer::sanitize_settings($input, []);
-        $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * @covers ::sanitize_settings
-     */
-    public function testFieldSanitizeCallbackIsCalled()
-    {
-        $callback_mock = Mockery::mock('alias:\Test_Sanitize');
-        $callback_mock->shouldReceive('callback_mock_one')
-                      ->once()
-                      ->with('some input', 'my_field_id')
-                      ->andReturn('sanitized value one');
-
-        $field_config = new Field_Config([
-            'id'                => 'my_field_id',
-            'sanitize_callback' => '\Test_Sanitize::callback_mock_one',
-        ]);
-
-        $actual   = Sanitizer::sanitize_settings([ 'my_field_id' => 'some input' ], [ $field_config ]);
-        $expected = [ 'my_field_id' => 'sanitized value one' ];
-        $this->assertSame($expected, $actual);
-    }
 
     /**
      * @covers ::sanitize_checkbox

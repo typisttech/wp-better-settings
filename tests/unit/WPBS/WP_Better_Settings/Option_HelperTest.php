@@ -1,19 +1,11 @@
 <?php
 namespace WPBS\WP_Better_Settings;
 
-use phpmock\phpunit\PHPMock;
-
 /**
  * @coversDefaultClass \WPBS\WP_Better_Settings\Option_Helper
  */
 class Option_HelperTest extends \Codeception\Test\Unit
 {
-    use PHPMock;
-
-    /**
-     * @var \UnitTester
-     */
-    protected $tester;
 
     /**
      * @var \WPBS\WP_Better_Settings\Option_Helper
@@ -65,29 +57,25 @@ class Option_HelperTest extends \Codeception\Test\Unit
         $this->assertSame('i live in wp_option', $actual);
     }
 
+    protected function _after()
+    {
+        delete_option('my_option_array');
+        delete_option('my_option_string');
+
+        parent::_after();
+    }
+
     protected function _before()
     {
-        $option_array = [
+        parent::_before();
+
+        $option_array  = [
             'my_text'     => 'long long text.',
             'my_checkbox' => '1',
         ];
-
         $option_string = 'i live in wp_option';
-
-        $add_settings_error = $this->getFunctionMock(__NAMESPACE__, 'get_option');
-        $add_settings_error->expects($this->any())
-                           ->willReturnCallback(
-                               function ($option_key) use ($option_array, $option_string) {
-                                    switch ($option_key) {
-                                        case 'my_option_array':
-                                            return $option_array;
-                                        case 'my_option_string':
-                                            return $option_string;
-                                        default:
-                                            return false;
-                                    }
-                                 }
-                           );
+        update_option('my_option_array', $option_array);
+        update_option('my_option_string', $option_string);
 
         $this->option_helper = new Option_Helper;
     }

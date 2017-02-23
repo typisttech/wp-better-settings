@@ -1,10 +1,23 @@
 # Change Log
 
+## [0.5.0](https://github.com/TypistTech/wp-better-settings/tree/0.5.0) (2017-02-23)
+[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.4.0...0.5.0)
+
+**Merged pull requests:**
+
+- Move field sanitize\_callback trigger to Setting\_Config [\#36](https://github.com/TypistTech/wp-better-settings/pull/36) ([TangRufus](https://github.com/TangRufus))
+- Rename check\_\* -\> validate\_\* [\#35](https://github.com/TypistTech/wp-better-settings/pull/35) ([TangRufus](https://github.com/TangRufus))
+- Refactor with open-closed principle [\#34](https://github.com/TypistTech/wp-better-settings/pull/34) ([TangRufus](https://github.com/TangRufus))
+- Refactor Sanitizer [\#33](https://github.com/TypistTech/wp-better-settings/pull/33) ([TangRufus](https://github.com/TangRufus))
+- Change class names as per WordPress coding standard naming conventions [\#32](https://github.com/TypistTech/wp-better-settings/pull/32) ([TangRufus](https://github.com/TangRufus))
+- Rename: OptionsStore -\> Option\_Helper [\#31](https://github.com/TypistTech/wp-better-settings/pull/31) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.4.0](https://github.com/TypistTech/wp-better-settings/tree/0.4.0) (2017-02-21)
 [Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.3.1...0.4.0)
 
 **Merged pull requests:**
 
+- Version bump 0.4.0 [\#30](https://github.com/TypistTech/wp-better-settings/pull/30) ([TangRufus](https://github.com/TangRufus))
 - Add checkbox field partial [\#29](https://github.com/TypistTech/wp-better-settings/pull/29) ([TangRufus](https://github.com/TangRufus))
 - Optimize input field [\#28](https://github.com/TypistTech/wp-better-settings/pull/28) ([TangRufus](https://github.com/TangRufus))
 - Add textarea field partial [\#27](https://github.com/TypistTech/wp-better-settings/pull/27) ([TangRufus](https://github.com/TangRufus))

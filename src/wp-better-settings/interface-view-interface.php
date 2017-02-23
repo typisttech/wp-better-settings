@@ -28,15 +28,11 @@ interface View_Interface {
 	 *
 	 * @since  0.2.0
 	 *
-	 * @link   https://github.com/Medium/medium-wordpress-plugin/blob/c31713968990bab5d83db68cf486953ea161a009/lib/medium-view.php
-	 *
 	 * @param mixed $context Context variables.
-	 * @param bool  $return  [Optional] To return or to echo.
 	 *
-	 * @return string|boolean   Boolean if $return = true, or file is not readable.
-	 *                          Otherwise, returns HTML string.
+	 * @return string HTML string.
 	 */
-	public function render( $context, bool $return = true );
+	public function render( $context );
 
 	/**
 	 * Echo a given view safely.

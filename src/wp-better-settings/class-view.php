@@ -116,27 +116,21 @@ final class View implements View_Interface {
 	/**
 	 * Render the associated view.
 	 *
-	 * @since 0.1.0
+	 * @link   https://github.com/Medium/medium-wordpress-plugin/blob/c31713968990bab5d83db68cf486953ea161a009/lib/medium-view.php
+	 * @since  0.1.0
 	 *
-	 * @see   https://github.com/Medium/medium-wordpress-plugin/blob/c31713968990bab5d83db68cf486953ea161a009/lib/medium-view.php
+	 * @param mixed $context Context object to be passed into view partial.
 	 *
-	 * @param mixed $context Context variables.
-	 * @param bool  $return  [Optional] To return or to echo.
-	 *
-	 * @return string|boolean   Boolean if $return = true, or file is not readable.
-	 *                          Otherwise, returns HTML string.
+	 * @return string HTML string.
 	 */
-	public function render( $context, bool $return = true ) {
+	public function render( $context ) : string {
 		if ( ! is_readable( $this->filename ) ) {
 			return '';
 		}
 
 		ob_start();
 		include $this->filename;
-		if ( $return ) {
-			return ob_get_clean();
-		} else {
-			return ob_end_flush();
-		}
+
+		return ob_get_clean();
 	}
 }

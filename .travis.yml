@@ -57,19 +57,19 @@ before_install:
     fi
 
   # Install helper scripts
-  - composer global require -n --prefer-dist "typisttech/travis-nginx-wordpress:^1.1"
+  - travis_retry composer global require -n --prefer-dist "typisttech/travis-nginx-wordpress:^1.2"
   - export PATH=$HOME/.composer/vendor/bin:$PATH
-  - tnw-install-nginx
-  - tnw-install-wordpress
-  - tnw-prepare-codeception
+  - travis_retry tnw-install-nginx
+  - travis_retry tnw-install-wordpress
+  - travis_retry tnw-prepare-codeception
 
   # WordPress coding standard
   - if [[ "$WITH_PHPCS" == "true" ]]; then
-      tnw-install-wpcs;
+      travis_retry tnw-install-wpcs;
     fi
 
   # Install npm packages
-  - npm update
+  - travis_retry npm update
   # Build the production plugin
   - grunt build
   # Activate the plugin
@@ -82,7 +82,7 @@ install:
   - cd $TRAVIS_BUILD_DIR
 
   # Build tests
-  - composer install --prefer-dist --no-interaction --no-suggest
+  - travis_retry composer install --prefer-dist --no-interaction --no-suggest
   - vendor/bin/codecept build -n
 
 script:
@@ -103,7 +103,8 @@ script:
 
 after_script:
   - if [[ "$WITH_COVERAGE" == "true" ]]; then
-      tnw-upload-coverage-to-scrutinizer;
+      travis_retry tnw-upload-coverage-to-scrutinizer;
+      travis_retry tnw-upload-coverage-to-codecov;
     fi
 
 deploy:

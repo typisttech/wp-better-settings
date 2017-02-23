@@ -20,38 +20,6 @@ namespace WPBS\WP_Better_Settings;
  */
 final class Sanitizer {
 	/**
-	 * Sanitize settings fields.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param array    $input   The value entered in the field.
-	 * @param Config[] $configs Config object that holds ID and sanitize callback.
-	 *
-	 * @return array The sanitized values.
-	 */
-	public static function sanitize_settings( array $input, array $configs ) {
-		foreach ( $configs as $config ) {
-			$id = $config->get_key( 'id' );
-			if ( empty( $id ) ) {
-				continue;
-			}
-
-			$sanitize_callback = $config->get_key( 'sanitize_callback' );
-			if ( ! is_callable( $sanitize_callback ) ) {
-				continue;
-			}
-
-			$input[ $id ] = $sanitize_callback( $input[ $id ], $id );
-		}
-
-		// Unset empty elements.
-		$input = array_filter( $input );
-
-		return $input;
-	}
-
-
-	/**
 	 * Sanitize checkbox
 	 *
 	 * Sanitize any input other than '1', 1 or boolean true to empty string.

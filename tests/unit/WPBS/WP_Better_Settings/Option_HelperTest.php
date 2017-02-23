@@ -86,7 +86,7 @@ class Option_HelperTest extends \Codeception\Test\Unit
                                         default:
                                             return false;
                                     }
-                                }
+                                 }
                            );
 
         $this->option_helper = new Option_Helper;

@@ -1,6 +1,7 @@
 <?php
 namespace WPBS\WP_Better_Settings;
 
+use Mockery;
 use UnexpectedValueException;
 
 /**
@@ -167,5 +168,66 @@ class Setting_ConfigTest extends \Codeception\TestCase\WPTestCase
         ]);
         $this->expectException(UnexpectedValueException::class);
         $setting_config->get_sections();
+    }
+
+
+    /**
+     * @covers ::call_field_sanitize_fun
+     */
+    public function testCallFieldSanitizeFunUnsetEmptyInputs()
+    {
+        $input = [
+            'field-false'        => false,
+            'field-empty-array'  => [],
+            'field-empty-string' => '',
+            'field-null'         => null,
+            'field-one'          => '1',
+            'field-something'    => 'something',
+            'field-zero'         => 0,
+            'field-zero-string'  => '0',
+        ];
+
+        $expected = [
+            'field-one'       => '1',
+            'field-something' => 'something',
+        ];
+
+        $actual = $this->setting_config->call_field_sanitize_fun($input);
+        $this->assertSame($expected, $actual);
+    }
+
+    /**
+     * @covers ::call_field_sanitize_fun
+     */
+    public function testFieldSanitizeCallbackIsCalled()
+    {
+        $callback_mock = Mockery::mock('alias:\Test_Sanitizer');
+        $callback_mock->shouldReceive('to_safe')
+                      ->once()
+                      ->with('dangerous', 'sanitizable_field')
+                      ->andReturn('safe');
+
+        $sanitizable_field = new Field_Config([
+            'id'                => 'sanitizable_field',
+            'sanitize_callback' => [ '\Test_Sanitizer', 'to_safe' ],
+        ]);
+
+        $section        = new Section_Config([
+            'id'     => 'my_section',
+            'fields' => [
+                $this->field_2_1,
+                $sanitizable_field,
+            ],
+        ]);
+        $setting_config = new Setting_Config([
+            'sections' => [
+                $this->section_1,
+                $section,
+            ],
+        ]);
+
+        $actual   = $setting_config->call_field_sanitize_fun([ 'sanitizable_field' => 'dangerous' ]);
+        $expected = [ 'sanitizable_field' => 'safe' ];
+        $this->assertSame($expected, $actual);
     }
 }

@@ -35,30 +35,31 @@ use UnexpectedValueException;
 class Setting_Config extends Config {
 
 	/**
-	 * Default config of Setting_Config.
+	 * Sanitize settings fields.
 	 *
-	 * @since 0.1.0
+	 * @since 0.5.0
 	 *
-	 * @return array
+	 * @param array $input The value entered in the field.
+	 *
+	 * @return array The sanitized values.
+	 * @throws \UnexpectedValueException If fields is not Field_Config[].
 	 */
-	protected function default_config() : array {
-		return [
-			'view'     => View_Factory::build( 'section-description' ),
-			'function' => function () {
-				if ( is_string( $this->view ) ) {
-					$this->view = new View( $this->view );
-				}
-				$this->view->echo_kses( $this );
-			},
-			'args'     => [
-				'sanitize_callback' => function ( array $input ) {
-					$input_keys = array_keys( $input );
-					$fields     = $this->get_fields_by( $input_keys );
+	public function call_field_sanitize_fun( array $input ) {
+		$field_ids     = array_keys( $input );
+		$field_configs = $this->get_fields_by( $field_ids );
 
-					return Sanitizer::sanitize_settings( $input, $fields );
-				},
-			],
-		];
+		foreach ( $field_configs as $field_config ) {
+			$sanitize_callback = $field_config->get_key( 'sanitize_callback' );
+			if ( ! is_callable( $sanitize_callback ) ) {
+				continue;
+			}
+
+			$id           = $field_config->get_key( 'id' );
+			$input[ $id ] = $sanitize_callback( $input[ $id ], $id );
+		}
+
+		// Unset empty elements.
+		return array_filter( $input );
 	}
 
 	/**
@@ -67,19 +68,19 @@ class Setting_Config extends Config {
 	 * @since  0.5.0
 	 * @access private
 	 *
-	 * @param array $field_ids IDs of the fields to return.
+	 * @param array $ids IDs of the fields to return.
 	 *
 	 * @return Field_Config[]
 	 * @throws \UnexpectedValueException If section.fields is not Field_Config[].
 	 */
-	private function get_fields_by( array $field_ids ) : array {
-		$field_ids  = array_filter( $field_ids );
+	private function get_fields_by( array $ids ) : array {
+		$ids        = array_filter( $ids );
 		$all_fields = $this->get_fields();
 
-		return array_filter( $all_fields, function ( Field_Config $field ) use ( $field_ids ) {
+		return array_filter( $all_fields, function ( Field_Config $field ) use ( $ids ) {
 			$id = $field->get_key( 'id' );
 
-			return in_array( $id, $field_ids, true );
+			return in_array( $id, $ids, true );
 		} );
 	}
 
@@ -136,5 +137,28 @@ class Setting_Config extends Config {
 				throw new UnexpectedValueException( 'Section items in class ' . __CLASS__ . ' must be instances of Section_Config.' );
 			}
 		} );
+	}
+
+	/**
+	 * Default config of Setting_Config.
+	 *
+	 * @since 0.1.0
+	 *
+	 * @return array
+	 */
+	protected function default_config() : array {
+		return [
+			'view'     => View_Factory::build( 'section-description' ),
+			'function' => function () {
+				if ( is_string( $this->view ) ) {
+					$this->view = new View( $this->view );
+				}
+				$this->view->echo_kses( $this );
+			},
+			'args'     => [
+				'sanitize_callback' => [ $this, 'call_field_sanitize_fun' ],
+
+			],
+		];
 	}
 }

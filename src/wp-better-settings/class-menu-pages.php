@@ -54,12 +54,14 @@ class Menu_Pages {
 
 	/**
 	 * Add the pages from the configuration objects to the WordPress admin
-	 * backend.
+	 * backend. Parent pages are invoked first.
 	 *
 	 * @since 0.1.0
 	 * @return void
 	 */
 	public function admin_menu() {
+		// Parent pages must be added before submenu pages.
+		usort( $this->menu_page_configs, [ $this, 'compare_parent_slug' ] );
 		array_walk( $this->menu_page_configs, [ $this, 'add_menu_page' ] );
 	}
 
@@ -76,5 +78,23 @@ class Menu_Pages {
 	protected function add_menu_page( ArrayObject $menu_page_config ) {
 		$menu_page_config->tabs = $this->menu_page_configs;
 		$this->invoke_function( $menu_page_config->function_name, $menu_page_config );
+	}
+
+	/**
+	 * Compare two ArrayObject by their parent_slug.
+	 *
+	 * @since  0.5.1
+	 * @access private
+	 *
+	 * @param ArrayObject $first The first to be compared.
+	 * @param ArrayObject $other The other to be compared.
+	 *
+	 * @return int
+	 */
+	private function compare_parent_slug( ArrayObject $first, ArrayObject $other ) : int {
+		$first_parent_slug = $first['parent_slug'] ?? null;
+		$other_parent_slug = $other['parent_slug'] ?? null;
+
+		return strcmp( $first_parent_slug, $other_parent_slug );
 	}
 }

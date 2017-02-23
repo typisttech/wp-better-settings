@@ -78,18 +78,18 @@ class Settings {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param Setting_Config $settings_config Arguments for the register_setting WP function.
+	 * @param ArrayObject $setting_config Arguments for the register_setting WP function.
 	 *
 	 * @throws \InvalidArgumentException If register_setting cannot be invoked.
 	 */
-	protected function register_setting( Setting_Config $settings_config ) {
-		$this->invoke_function( 'register_setting', $settings_config );
+	protected function register_setting( ArrayObject $setting_config ) {
+		$this->invoke_function( 'register_setting', $setting_config );
 
 		// Prepare array to pass to array_walk as third parameter.
 		$args                = [];
-		$args['option_name'] = $settings_config->option_name;
+		$args['option_name'] = $setting_config->option_name;
 
-		array_walk( $settings_config->sections, [ $this, 'add_section' ], $args );
+		array_walk( $setting_config->sections, [ $this, 'add_section' ], $args );
 	}
 
 	/**

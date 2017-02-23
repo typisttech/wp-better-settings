@@ -16,13 +16,13 @@ namespace WPBS\WP_Better_Settings;
 use InvalidArgumentException;
 
 /**
- * Class View_Factory
+ * Final class View_Factory
  *
  * Factory for View objects.
  *
  * @since 0.1.0
  */
-class View_Factory {
+final class View_Factory {
 
 	/**
 	 * Relative path to built-in view partials.

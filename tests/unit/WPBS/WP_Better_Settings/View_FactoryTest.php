@@ -1,6 +1,7 @@
 <?php
 namespace WPBS\WP_Better_Settings;
 
+use ArrayObject;
 use InvalidArgumentException;
 
 /**
@@ -8,6 +9,7 @@ use InvalidArgumentException;
  */
 class View_FactoryTest extends \Codeception\TestCase\WPTestCase
 {
+
     /**
      * @covers ::build
      */
@@ -20,18 +22,17 @@ class View_FactoryTest extends \Codeception\TestCase\WPTestCase
     /**
      * @covers ::build
      */
-    public function testBuildViewObjectFilename()
+    public function testBuildViewRender()
     {
-        $actual = View_Factory::build('text-field');
+        $context       = new ArrayObject;
+        $context->desc = '<p>Some text</p>';
 
-        /**
-         * Because Travis CI run this test in $TRAVIS_BUILD_DIR
-         * But, WPLoader run the real plugin on /tmp/wordpress
-         */
-        $this->assertStringEndsWith(
-            '/wp-better-settings/src/wp-better-settings/partials/text-field.phtml',
-            $actual->get_filename()
-        );
+        $actual_view = View_Factory::build('section-description');
+        $actual      = $actual_view->render($context);
+
+        $expected = '<p>Some text</p>';
+
+        $this->assertSame($expected, $actual);
     }
 
     /**

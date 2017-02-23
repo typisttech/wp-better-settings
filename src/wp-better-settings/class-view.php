@@ -14,31 +14,31 @@
 namespace WPBS\WP_Better_Settings;
 
 /**
- * Class View.
+ * Final class View.
  *
  * Accepts a filename of a PHP file and renders its content on request.
  *
  * @since 0.1.0
  */
-class View implements View_Interface {
+final class View implements View_Interface {
 
 	/**
 	 * Array of allowed tags to let through escaping.
 	 *
-	 * @since 0.1.0
-	 *
+	 * @since  0.1.0
+	 * @access private
 	 * @var array
 	 */
-	protected $allowed_tags = [];
+	private $allowed_tags = [];
 
 	/**
 	 * Filename of the PHP view to render.
 	 *
-	 * @since 0.1.0
-	 *
+	 * @since  0.1.0
+	 * @access private
 	 * @var string
 	 */
-	protected $filename;
+	private $filename;
 
 	/**
 	 * View constructor.
@@ -64,11 +64,11 @@ class View implements View_Interface {
 	 * This makes sure that the basic form elements always pass through the
 	 * escaping functions.
 	 *
-	 * @since 0.1.0
-	 *
+	 * @since  0.1.0
+	 * @access private
 	 * @return array Modified tags array.
 	 */
-	protected function default_allowed_tags() : array {
+	private function default_allowed_tags() : array {
 		$form_tags = [
 			'form'     => [
 				'id'     => true,
@@ -138,16 +138,5 @@ class View implements View_Interface {
 		} else {
 			return ob_end_flush();
 		}
-	}
-
-	/**
-	 * Filename getter
-	 *
-	 * @since 0.1.0
-	 *
-	 * @return string
-	 */
-	public function get_filename() : string {
-		return $this->filename;
 	}
 }

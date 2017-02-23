@@ -55,6 +55,8 @@ namespace WPBS\WP_Better_Settings;
  */
 class Menu_Page_Config extends Config {
 
+	use View_Echo_Trait;
+
 	/**
 	 * Menu_Page_Config constructor.
 	 *
@@ -96,12 +98,7 @@ class Menu_Page_Config extends Config {
 		return [
 			'capability' => 'manage_options',
 			'view'       => View_Factory::build( 'basic-options-page' ),
-			'function'   => function () {
-				if ( is_string( $this->view ) ) {
-					$this->view = new View( $this->view );
-				}
-				$this->view->echo_kses( $this );
-			},
+			'function'   => [ $this, 'echo_view' ],
 		];
 	}
 }

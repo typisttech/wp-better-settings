@@ -32,6 +32,9 @@ namespace WPBS\WP_Better_Settings;
  *                                      or an instance of a View object.
  */
 class Field_Config extends Config {
+
+	use View_Echo_Trait;
+
 	/**
 	 * Default config of Field_Config.
 	 *
@@ -42,12 +45,7 @@ class Field_Config extends Config {
 	 */
 	protected function default_config() : array {
 		return [
-			'callback'          => function () {
-				if ( is_string( $this->view ) ) {
-					$this->view = new View( $this->view );
-				}
-				$this->view->echo_kses( $this );
-			},
+			'callback'          => [ $this, 'echo_view' ],
 			'sanitize_callback' => 'sanitize_text_field',
 		];
 	}

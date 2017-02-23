@@ -41,6 +41,8 @@ use UnexpectedValueException;
  */
 class Section_Config extends Config {
 
+	use View_Echo_Trait;
+
 	/**
 	 * Fields getter
 	 *
@@ -85,12 +87,7 @@ class Section_Config extends Config {
 	protected function default_config() : array {
 		return [
 			'view'     => View_Factory::build( 'section-description' ),
-			'callback' => function () {
-				if ( is_string( $this->view ) ) {
-					$this->view = new View( $this->view );
-				}
-				$this->view->echo_kses( $this );
-			},
+			'callback' => [ $this, 'echo_view' ],
 		];
 	}
 }

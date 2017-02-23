@@ -112,7 +112,7 @@ class Setting_Config extends Config {
 	 * @throws \UnexpectedValueException If sections is not Section_Config[].
 	 */
 	public function get_sections() : array {
-		$this->check_sections();
+		$this->validate_sections();
 
 		return $this->get_key( 'sections' );
 	}
@@ -125,7 +125,7 @@ class Setting_Config extends Config {
 	 * @return void
 	 * @throws UnexpectedValueException If fields is not Field_Config[].
 	 */
-	private function check_sections() {
+	private function validate_sections() {
 		$sections = $this->get_key( 'sections' );
 		if ( ! is_array( $sections ) ) {
 			throw new UnexpectedValueException( 'Sections in class ' . __CLASS__ . ' must be an array.' );

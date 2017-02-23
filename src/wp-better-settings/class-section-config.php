@@ -49,7 +49,7 @@ class Section_Config extends Config {
 	 * @throws UnexpectedValueException If fields is not Field_Config[].
 	 */
 	public function get_fields() : array {
-		$this->check_fields();
+		$this->validate_fields();
 
 		return $this->get_key( 'fields' );
 	}
@@ -62,7 +62,7 @@ class Section_Config extends Config {
 	 * @return void
 	 * @throws UnexpectedValueException If fields is not Field_Config[].
 	 */
-	private function check_fields() {
+	private function validate_fields() {
 		$fields = $this->get_key( 'fields' );
 		if ( ! is_array( $fields ) ) {
 			throw new UnexpectedValueException( 'Fields in class ' . __CLASS__ . ' must be an array.' );

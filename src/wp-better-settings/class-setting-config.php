@@ -34,6 +34,8 @@ use UnexpectedValueException;
  */
 class Setting_Config extends Config {
 
+	use View_Echo_Trait;
+
 	/**
 	 * Sanitize settings fields.
 	 *
@@ -149,15 +151,9 @@ class Setting_Config extends Config {
 	protected function default_config() : array {
 		return [
 			'view'     => View_Factory::build( 'section-description' ),
-			'function' => function () {
-				if ( is_string( $this->view ) ) {
-					$this->view = new View( $this->view );
-				}
-				$this->view->echo_kses( $this );
-			},
+			'function' => [ $this, 'echo_view' ],
 			'args'     => [
 				'sanitize_callback' => [ $this, 'call_field_sanitize_fun' ],
-
 			],
 		];
 	}

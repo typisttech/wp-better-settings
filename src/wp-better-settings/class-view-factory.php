@@ -16,13 +16,13 @@ namespace WPBS\WP_Better_Settings;
 use InvalidArgumentException;
 
 /**
- * Class View_Factory
+ * Final class View_Factory
  *
  * Factory for View objects.
  *
  * @since 0.1.0
  */
-class View_Factory {
+final class View_Factory {
 
 	/**
 	 * Relative path to built-in view partials.
@@ -52,7 +52,7 @@ class View_Factory {
 	 *
 	 * @return View        View object for the partial.
 	 *
-	 * @throws InvalidArgumentException    If the partial is not supported.
+	 * @throws InvalidArgumentException If the partial is not supported.
 	 */
 	public static function build( string $type ) : View {
 		if ( ! array_key_exists( $type, self::PARTIALS ) ) {

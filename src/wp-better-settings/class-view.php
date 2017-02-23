@@ -14,30 +14,31 @@
 namespace WPBS\WP_Better_Settings;
 
 /**
- * Class View
+ * Final class View.
  *
  * Accepts a filename of a PHP file and renders its content on request.
  *
  * @since 0.1.0
  */
-class View implements View_Interface {
+final class View implements View_Interface {
+
+	/**
+	 * Array of allowed tags to let through escaping.
+	 *
+	 * @since  0.1.0
+	 * @access private
+	 * @var array
+	 */
+	private $allowed_tags = [];
 
 	/**
 	 * Filename of the PHP view to render.
 	 *
-	 * @since 0.1.0
-	 *
+	 * @since  0.1.0
+	 * @access private
 	 * @var string
 	 */
-	protected $filename;
-	/**
-	 * Array of allowed tags to let through escaping.
-	 *
-	 * @since 0.1.0
-	 *
-	 * @var array
-	 */
-	protected $allowed_tags = [];
+	private $filename;
 
 	/**
 	 * View constructor.
@@ -63,11 +64,11 @@ class View implements View_Interface {
 	 * This makes sure that the basic form elements always pass through the
 	 * escaping functions.
 	 *
-	 * @since 0.1.0
-	 *
+	 * @since  0.1.0
+	 * @access private
 	 * @return array Modified tags array.
 	 */
-	protected function default_allowed_tags() : array {
+	private function default_allowed_tags() : array {
 		$form_tags = [
 			'form'     => [
 				'id'     => true,
@@ -115,38 +116,21 @@ class View implements View_Interface {
 	/**
 	 * Render the associated view.
 	 *
-	 * @since 0.1.0
+	 * @link   https://github.com/Medium/medium-wordpress-plugin/blob/c31713968990bab5d83db68cf486953ea161a009/lib/medium-view.php
+	 * @since  0.1.0
 	 *
-	 * @see   https://github.com/Medium/medium-wordpress-plugin/blob/c31713968990bab5d83db68cf486953ea161a009/lib/medium-view.php
+	 * @param mixed $context Context object to be passed into view partial.
 	 *
-	 * @param mixed $context Context variables.
-	 * @param bool  $return  [Optional] To return or to echo.
-	 *
-	 * @return string|boolean   Boolean if $return = true, or file is not readable.
-	 *                          Otherwise, returns HTML string.
+	 * @return string HTML string.
 	 */
-	public function render( $context, bool $return = true ) {
+	public function render( $context ) : string {
 		if ( ! is_readable( $this->filename ) ) {
 			return '';
 		}
 
 		ob_start();
 		include $this->filename;
-		if ( $return ) {
-			return ob_get_clean();
-		} else {
-			return ob_end_flush();
-		}
-	}
 
-	/**
-	 * Filename getter
-	 *
-	 * @since 0.1.0
-	 *
-	 * @return string
-	 */
-	public function get_filename() : string {
-		return $this->filename;
+		return ob_get_clean();
 	}
 }

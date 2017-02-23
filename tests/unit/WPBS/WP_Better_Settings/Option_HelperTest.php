@@ -1,11 +1,15 @@
 <?php
 namespace WPBS\WP_Better_Settings;
 
+use phpmock\phpunit\PHPMock;
+
 /**
  * @coversDefaultClass \WPBS\WP_Better_Settings\Option_Helper
  */
 class Option_HelperTest extends \Codeception\Test\Unit
 {
+    use PHPMock;
+
     /**
      * @var \UnitTester
      */
@@ -21,7 +25,7 @@ class Option_HelperTest extends \Codeception\Test\Unit
      */
     public function testGet()
     {
-        $actual = $this->option_helper->get('my_option', 'my_text');
+        $actual = $this->option_helper->get('my_option_array', 'my_text');
         $this->assertSame('long long text.', $actual);
     }
 
@@ -30,7 +34,7 @@ class Option_HelperTest extends \Codeception\Test\Unit
      */
     public function testGetCheckbox()
     {
-        $actual = $this->option_helper->get('my_option', 'my_checkbox');
+        $actual = $this->option_helper->get('my_option_array', 'my_checkbox');
         $this->assertSame('1', $actual);
     }
 
@@ -39,7 +43,7 @@ class Option_HelperTest extends \Codeception\Test\Unit
      */
     public function testGetNonExistKey()
     {
-        $actual = $this->option_helper->get('my_option', 'non_exist_key');
+        $actual = $this->option_helper->get('my_option_array', 'non_exist_key');
         $this->assertFalse($actual);
     }
 
@@ -52,18 +56,38 @@ class Option_HelperTest extends \Codeception\Test\Unit
         $this->assertFalse($actual);
     }
 
-    protected function _after()
+    /**
+     * @covers ::get
+     */
+    public function testGetNonArray()
     {
-        delete_option('my_option');
+        $actual = $this->option_helper->get('my_option_string', 'my_text');
+        $this->assertSame('i live in wp_option', $actual);
     }
 
     protected function _before()
     {
-        $option = [
+        $option_array = [
             'my_text'     => 'long long text.',
             'my_checkbox' => '1',
         ];
-        update_option('my_option', $option);
+
+        $option_string = 'i live in wp_option';
+
+        $add_settings_error = $this->getFunctionMock(__NAMESPACE__, 'get_option');
+        $add_settings_error->expects($this->any())
+                           ->willReturnCallback(
+                               function ($option_key) use ($option_array, $option_string) {
+                                    switch ($option_key) {
+                                        case 'my_option_array':
+                                            return $option_array;
+                                        case 'my_option_string':
+                                            return $option_string;
+                                        default:
+                                            return false;
+                                    }
+                                }
+                           );
 
         $this->option_helper = new Option_Helper;
     }

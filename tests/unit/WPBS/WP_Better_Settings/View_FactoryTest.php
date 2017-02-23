@@ -8,6 +8,7 @@ use InvalidArgumentException;
  */
 class View_FactoryTest extends \Codeception\TestCase\WPTestCase
 {
+
     /**
      * @covers ::build
      */
@@ -20,18 +21,11 @@ class View_FactoryTest extends \Codeception\TestCase\WPTestCase
     /**
      * @covers ::build
      */
-    public function testBuildViewObjectFilename()
+    public function testBuildViewFilename()
     {
-        $actual = View_Factory::build('text-field');
-
-        /**
-         * Because Travis CI run this test in $TRAVIS_BUILD_DIR
-         * But, WPLoader run the real plugin on /tmp/wordpress
-         */
-        $this->assertStringEndsWith(
-            '/wp-better-settings/src/wp-better-settings/partials/text-field.phtml',
-            $actual->get_filename()
-        );
+        $actual   = View_Factory::build('section-description');
+        $expected = new View(codecept_root_dir() . 'src/wp-better-settings/partials/section-description.phtml');
+        $this->assertEquals($expected, $actual);
     }
 
     /**

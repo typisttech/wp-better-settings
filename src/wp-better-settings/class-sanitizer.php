@@ -14,11 +14,11 @@
 namespace WPBS\WP_Better_Settings;
 
 /**
- * Class Sanitizer
+ * Final class Sanitizer.
  *
  * @since 0.1.0
  */
-class Sanitizer {
+final class Sanitizer {
 	/**
 	 * Sanitize settings fields.
 	 *

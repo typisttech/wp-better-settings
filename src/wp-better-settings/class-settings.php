@@ -18,15 +18,14 @@ use ArrayObject;
 /**
  * Class Settings.
  *
- * This class registers a settings page via the WordPress Settings API.
+ * This class registers settings via the WordPress Settings API.
+ *
+ * @since 0.1.0
  *
  * It enables you an entire collection of settings pages and options fields as
  * as hierarchical text representation in your Config file. In this way, you
  * don't have to deal with all the confusing callback code that the WordPress
  * Settings API forces you to use.
- *
- * @package WPBS\WP_Better_Settings
- * @author  Alain Schlesser <alain.schlesser@gmail.com>
  */
 class Settings {
 
@@ -68,71 +67,75 @@ class Settings {
 	 * Initialize the settings persistence.
 	 *
 	 * @since 0.1.0
+	 * @return void
 	 */
 	public function admin_init() {
 		array_walk( $this->setting_configs, [ $this, 'register_setting' ] );
 	}
 
 	/**
-	 * Register a single setting group
+	 * Register a single setting group.
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param Setting_Config $settings_config Arguments for the register_setting WP function.
+	 * @param ArrayObject $setting_config Arguments for the register_setting WP function.
 	 *
+	 * @return void
 	 * @throws \InvalidArgumentException If register_setting cannot be invoked.
 	 */
-	protected function register_setting( Setting_Config $settings_config ) {
-		$this->invoke_function( 'register_setting', $settings_config );
+	protected function register_setting( ArrayObject $setting_config ) {
+		$this->invoke_function( 'register_setting', $setting_config );
 
 		// Prepare array to pass to array_walk as third parameter.
 		$args                = [];
-		$args['option_name'] = $settings_config->option_name;
+		$args['option_name'] = $setting_config->option_name;
 
-		array_walk( $settings_config->sections, [ $this, 'add_section' ], $args );
+		array_walk( $setting_config->sections, [ $this, 'add_section' ], $args );
 	}
 
 	/**
-	 * Add a single options section.
+	 * Add a single settings section.
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param ArrayObject $data Arguments for the add_settings_section WP function.
-	 * @param string      $_key Key of the option section.
-	 * @param array       $args Additional arguments to pass on.
+	 * @param ArrayObject $section_config Arguments for the add_settings_section WP function.
+	 * @param string      $_key           [Unused] Key of the settings section.
+	 * @param array       $args           Additional arguments to pass on.
 	 *
+	 * @return void
 	 * @throws \InvalidArgumentException If add_settings_section cannot be invoked.
 	 */
-	protected function add_section( ArrayObject $data, string $_key, array $args ) {
-		$this->invoke_function( 'add_settings_section', $data );
+	protected function add_section( ArrayObject $section_config, string $_key, array $args ) {
+		$this->invoke_function( 'add_settings_section', $section_config );
 
 		// Extend array to pass to array_walk as third parameter.
-		$args['page']    = $data->page;
-		$args['section'] = $data->id;
+		$args['page']    = $section_config->page;
+		$args['section'] = $section_config->id;
 
-		array_walk( $data->fields, [ $this, 'add_field' ], $args );
+		array_walk( $section_config->fields, [ $this, 'add_field' ], $args );
 	}
 
 	/**
-	 * Add a single options field.
+	 * Add a single settings field.
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param ArrayObject $data Arguments for the add_settings_field WP function.
-	 * @param string      $_key Key of the settings field.
-	 * @param array       $args Contains both page and section name.
+	 * @param ArrayObject $field_config Arguments for the add_settings_field WP function.
+	 * @param string      $_key         [Unused] Key of the settings field.
+	 * @param array       $args         Contains both page and section name.
 	 *
+	 * @return void
 	 * @throws \InvalidArgumentException If add_settings_field cannot be invoked.
 	 */
-	protected function add_field( ArrayObject $data, string $_key, array $args ) {
-		$data->page        = $args['page'];
-		$data->section     = $args['section'];
-		$data->option_name = $args['option_name'];
-		$data->value       = $this->option_helper->get(
-			$data->option_name,
-			$data->id
+	protected function add_field( ArrayObject $field_config, string $_key, array $args ) {
+		$field_config->page        = $args['page'];
+		$field_config->section     = $args['section'];
+		$field_config->option_name = $args['option_name'];
+		$field_config->value       = $this->option_helper->get(
+			$field_config->option_name,
+			$field_config->id
 		);
 
-		$this->invoke_function( 'add_settings_field', $data );
+		$this->invoke_function( 'add_settings_field', $field_config );
 	}
 }

@@ -16,9 +16,9 @@ namespace WPBS\WP_Better_Settings;
 use ArrayObject;
 
 /**
- * Class Menu_Pages
+ * Class Menu_Pages.
  *
- * This class registers Menu_Pages via the WordPress API.
+ * This class registers menu pages via the WordPress API.
  *
  * @since 0.1.0
  *
@@ -38,18 +38,18 @@ class Menu_Pages {
 	 *
 	 * @var ArrayObject[];
 	 */
-	protected $configs;
+	protected $menu_page_configs;
 
 	/**
 	 * Menu_Pages constructor.
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param ArrayObject[] $configs Array of config objects that contains
-	 *                               menu page configurations.
+	 * @param ArrayObject[] $menu_page_configs Array of config objects that contains
+	 *                                         menu page configurations.
 	 */
-	public function __construct( array $configs ) {
-		$this->configs = $configs;
+	public function __construct( array $menu_page_configs ) {
+		$this->menu_page_configs = $menu_page_configs;
 	}
 
 	/**
@@ -57,9 +57,10 @@ class Menu_Pages {
 	 * backend.
 	 *
 	 * @since 0.1.0
+	 * @return void
 	 */
 	public function admin_menu() {
-		array_walk( $this->configs, [ $this, 'add_menu_page' ] );
+		array_walk( $this->menu_page_configs, [ $this, 'add_menu_page' ] );
 	}
 
 	/**
@@ -69,10 +70,11 @@ class Menu_Pages {
 	 *
 	 * @param ArrayObject $menu_page_config Arguments for the menu page creation function.
 	 *
+	 * @return void
 	 * @throws \InvalidArgumentException If the function cannot be invoked.
 	 */
 	protected function add_menu_page( ArrayObject $menu_page_config ) {
-		$menu_page_config->tabs = $this->configs;
+		$menu_page_config->tabs = $this->menu_page_configs;
 		$this->invoke_function( $menu_page_config->function_name, $menu_page_config );
 	}
 }

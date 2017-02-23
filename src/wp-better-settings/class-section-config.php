@@ -16,6 +16,8 @@ namespace WPBS\WP_Better_Settings;
 use UnexpectedValueException;
 
 /**
+ * Class Section_Config.
+ *
  * Config details for a settings field.
  *
  * @since 0.1.0
@@ -24,18 +26,18 @@ use UnexpectedValueException;
  *
  * Valid keys:
  *
- * 'title' (string)            =>  Title to display as the heading for the
- *                              section.
+ * 'title' (string)             =>  Title to display as the heading for the
+ *                                  section.
  *
- * 'page' (string)            =>  The menu page on which to display this section.
- *                              Should match $menu_slug in Menu_Page_Config.
+ * 'page' (string)              =>  The menu page on which to display this section.
+ *                                  Should match $menu_slug in Menu_Page_Config.
  *
- * 'view' (string|View)        =>  View to use for rendering the section. Can be
- *                              a path to a view file or an instance of a
- *                              View object.
+ * 'view' (string|View)         =>  View to use for rendering the section. Can be
+ *                                  a path to a view file or an instance of a
+ *                                  View object.
  *
- * 'fields' (Field_Config[])    =>    Array of Field_Config to attach to this
- *                              section.
+ * 'fields' (Field_Config[])    =>  Array of Field_Config to attach to this
+ *                                  section.
  */
 class Section_Config extends Config {
 

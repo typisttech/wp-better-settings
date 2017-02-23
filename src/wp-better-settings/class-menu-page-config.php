@@ -14,7 +14,7 @@
 namespace WPBS\WP_Better_Settings;
 
 /**
- * Class Menu_Page_Config
+ * Class Menu_Page_Config.
  *
  * Config details for a single page.
  *
@@ -73,11 +73,11 @@ class Menu_Page_Config extends Config {
 	}
 
 	/**
-	 * Url of this menu page
+	 * Url of this menu page.
 	 *
 	 * @since 0.3.0
 	 *
-	 * @return string
+	 * @return string Admin URL link with menu slug appended.
 	 */
 	public function url() : string {
 		// TODO: It doesn't work for standard WordPress admin pages.
@@ -85,7 +85,7 @@ class Menu_Page_Config extends Config {
 	}
 
 	/**
-	 * Default config of Menu_Page_Config
+	 * Default config of Menu_Page_Config.
 	 *
 	 * @since 0.1.0
 	 *

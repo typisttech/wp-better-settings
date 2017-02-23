@@ -1,7 +1,6 @@
 <?php
 namespace WPBS\WP_Better_Settings;
 
-use ArrayObject;
 use InvalidArgumentException;
 
 /**
@@ -22,17 +21,11 @@ class View_FactoryTest extends \Codeception\TestCase\WPTestCase
     /**
      * @covers ::build
      */
-    public function testBuildViewRender()
+    public function testBuildViewFilename()
     {
-        $context       = new ArrayObject;
-        $context->desc = '<p>Some text</p>';
-
-        $actual_view = View_Factory::build('section-description');
-        $actual      = $actual_view->render($context);
-
-        $expected = '<p>Some text</p>';
-
-        $this->assertSame($expected, $actual);
+        $actual   = View_Factory::build('section-description');
+        $expected = new View(codecept_root_dir() . 'src/wp-better-settings/partials/section-description.phtml');
+        $this->assertEquals($expected, $actual);
     }
 
     /**

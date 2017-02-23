@@ -14,7 +14,7 @@
 namespace WPBS\WP_Better_Settings;
 
 /**
- * Class Option_Helper.
+ * Final class Option_Helper.
  *
  * This is a very basic adapter for the WordPress get_option()
  * function that can be configured to supply consistent default
@@ -22,10 +22,10 @@ namespace WPBS\WP_Better_Settings;
  *
  * @since 0.5.0
  */
-class Option_Helper implements Option_Helper_Interface {
+final class Option_Helper implements Option_Helper_Interface {
 
 	/**
-	 * Get an option value, falling back to default values if configured.
+	 * Get an option value from database.
 	 *
 	 * @since 0.5.0
 	 *
@@ -38,6 +38,10 @@ class Option_Helper implements Option_Helper_Interface {
 	 */
 	public function get( string $option_name, string $key ) {
 		$option = get_option( $option_name, [] );
+
+		if ( ! is_array( $option ) ) {
+			return $option;
+		}
 
 		// TODO: Add filters and hooks.
 		return $option[ $key ] ?? false;

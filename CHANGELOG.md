@@ -1,10 +1,19 @@
 # Change Log
 
+## [0.5.1](https://github.com/TypistTech/wp-better-settings/tree/0.5.1) (2017-02-23)
+[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.5.0...0.5.1)
+
+**Merged pull requests:**
+
+- Add parent menu pages before submenu pages [\#39](https://github.com/TypistTech/wp-better-settings/pull/39) ([TangRufus](https://github.com/TangRufus))
+- Extract View\_Echo\_Trait [\#38](https://github.com/TypistTech/wp-better-settings/pull/38) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.5.0](https://github.com/TypistTech/wp-better-settings/tree/0.5.0) (2017-02-23)
 [Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.4.0...0.5.0)
 
 **Merged pull requests:**
 
+- Version bump 0.5.0 [\#37](https://github.com/TypistTech/wp-better-settings/pull/37) ([TangRufus](https://github.com/TangRufus))
 - Move field sanitize\_callback trigger to Setting\_Config [\#36](https://github.com/TypistTech/wp-better-settings/pull/36) ([TangRufus](https://github.com/TangRufus))
 - Rename check\_\* -\> validate\_\* [\#35](https://github.com/TypistTech/wp-better-settings/pull/35) ([TangRufus](https://github.com/TangRufus))
 - Refactor with open-closed principle [\#34](https://github.com/TypistTech/wp-better-settings/pull/34) ([TangRufus](https://github.com/TangRufus))

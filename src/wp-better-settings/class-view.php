@@ -14,13 +14,13 @@
 namespace WPBS\WP_Better_Settings;
 
 /**
- * Final class View.
+ * Class View.
  *
  * Accepts a filename of a PHP file and renders its content on request.
  *
  * @since 0.1.0
  */
-final class View implements View_Interface {
+class View implements View_Interface {
 
 	/**
 	 * Array of allowed tags to let through escaping.
@@ -114,9 +114,9 @@ final class View implements View_Interface {
 	}
 
 	/**
-	 * Render the associated view.
+	 * Render the associated view as string.
 	 *
-	 * @link   https://github.com/Medium/medium-wordpress-plugin/blob/c31713968990bab5d83db68cf486953ea161a009/lib/medium-view.php
+	 * @see   https://github.com/Medium/medium-wordpress-plugin/blob/c31713968990bab5d83db68cf486953ea161a009/lib/medium-view.php
 	 * @since  0.1.0
 	 *
 	 * @param mixed $context Context object to be passed into view partial.

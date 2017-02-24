@@ -42,7 +42,7 @@ trait Function_Invoker_Trait {
 	 * @return mixed                Return value of the invoked function.
 	 * @throws InvalidArgumentException If the function cannot be invoked.
 	 */
-	public function invoke_function( string $function, ArrayObject $args ) {
+	private function invoke_function( string $function, ArrayObject $args ) {
 		try {
 			$reflection        = new ReflectionFunction( $function );
 			$ordered_arguments = $this->parse_parameters(

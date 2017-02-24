@@ -24,7 +24,7 @@ namespace WPBS\WP_Better_Settings;
  */
 interface Option_Helper_Interface {
 	/**
-	 * Get an option value, falling back to default values if configured.
+	 * Get an option value.
 	 *
 	 * @since 0.5.0
 	 *

@@ -46,7 +46,6 @@ class Config extends ArrayObject {
 	 * To be overridden by subclass.
 	 *
 	 * @since 0.1.0
-	 *
 	 * @return array
 	 */
 	protected function default_config() : array {
@@ -84,7 +83,6 @@ class Config extends ArrayObject {
 	 * Get an array with all the keys.
 	 *
 	 * @since 0.1.0
-	 *
 	 * @return array Array of config keys.
 	 */
 	public function get_keys() : array {

@@ -18,8 +18,6 @@ namespace WPBS\WP_Better_Settings;
  *
  * Config details for a settings field.
  *
- * @since 0.1.0
- *
  * Valid keys:
  *
  * 'id' (string)                    =>  ID of this field. Should be unique for each page
@@ -30,6 +28,8 @@ namespace WPBS\WP_Better_Settings;
  * 'view' (string|View_Interface)   =>  View to use for rendering the
  *                                      section. Can be a path to a view file
  *                                      or an instance of a View object.
+ *
+ * @since 0.1.0
  */
 class Field_Config extends Config {
 
@@ -39,9 +39,7 @@ class Field_Config extends Config {
 	 * Default config of Field_Config.
 	 *
 	 * @since 0.1.0
-	 *
 	 * @return array
-	 * @throws \InvalidArgumentException If the partial is not supported.
 	 */
 	protected function default_config() : array {
 		return [

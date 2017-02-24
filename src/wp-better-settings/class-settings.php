@@ -20,12 +20,12 @@ use ArrayObject;
  *
  * This class registers settings via the WordPress Settings API.
  *
- * @since 0.1.0
- *
  * It enables you an entire collection of settings pages and options fields as
  * as hierarchical text representation in your Config file. In this way, you
  * don't have to deal with all the confusing callback code that the WordPress
  * Settings API forces you to use.
+ *
+ * @since 0.1.0
  */
 class Settings {
 
@@ -35,7 +35,6 @@ class Settings {
 	 * Config instance.
 	 *
 	 * @since 0.1.0
-	 *
 	 * @var ArrayObject[];
 	 */
 	protected $setting_configs;
@@ -44,7 +43,6 @@ class Settings {
 	 * Option helper instance.
 	 *
 	 * @since 0.1.0
-	 *
 	 * @var Option_Helper_Interface;
 	 */
 	protected $option_helper;

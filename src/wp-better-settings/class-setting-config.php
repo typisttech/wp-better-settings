@@ -18,8 +18,6 @@ use UnexpectedValueException;
 /**
  * Config details for a settings field.
  *
- * @since 0.1.0
- *
  * Details for a single set of settings.
  *
  * Valid keys:
@@ -31,6 +29,8 @@ use UnexpectedValueException;
  * 'option_name' (string)           =>  The name of an option to sanitize and save.
  *
  * 'sections' (Section_Config[])    =>  Array of Section_Config to add to the settings page.
+ *
+ * @since 0.1.0
  */
 class Setting_Config extends Config {
 
@@ -90,7 +90,6 @@ class Setting_Config extends Config {
 	 * Get all fields.
 	 *
 	 * @since 0.1.0
-	 *
 	 * @return Field_Config[]
 	 * @throws \UnexpectedValueException If sections.fields is not Field_Config[].
 	 */
@@ -131,12 +130,14 @@ class Setting_Config extends Config {
 	private function validate_sections() {
 		$sections = $this->get_key( 'sections' );
 		if ( ! is_array( $sections ) ) {
-			throw new UnexpectedValueException( 'Sections in class ' . __CLASS__ . ' must be an array.' );
+			$error_message = 'Sections in class ' . __CLASS__ . ' must be an array.';
+			throw new UnexpectedValueException( $error_message );
 		}
 
 		array_walk( $sections, function ( $section ) {
 			if ( ! $section instanceof Section_Config ) {
-				throw new UnexpectedValueException( 'Section items in class ' . __CLASS__ . ' must be instances of Section_Config.' );
+				$error_message = 'Section items in class ' . __CLASS__ . ' must be instances of Section_Config.';
+				throw new UnexpectedValueException( $error_message );
 			}
 		} );
 	}
@@ -145,7 +146,6 @@ class Setting_Config extends Config {
 	 * Default config of Setting_Config.
 	 *
 	 * @since 0.1.0
-	 *
 	 * @return array
 	 */
 	protected function default_config() : array {

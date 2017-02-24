@@ -18,8 +18,6 @@ namespace WPBS\WP_Better_Settings;
  *
  * Config details for a single page.
  *
- * @since 0.1.0
- *
  * Valid keys for both top-level menu pages and submenu pages:
  *
  * 'page_title' (string)  => The text to be displayed in the
@@ -52,6 +50,8 @@ namespace WPBS\WP_Better_Settings;
  *
  * 'parent_slug' (string) => The slug name for the parent menu (or the file
  *                           name of a standard WordPress admin page).
+ *
+ * @since 0.1.0
  */
 class Menu_Page_Config extends Config {
 

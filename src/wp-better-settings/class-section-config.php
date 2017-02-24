@@ -20,7 +20,6 @@ use UnexpectedValueException;
  *
  * Config details for a settings field.
  *
- * @since 0.1.0
  *
  * Details for a single section.
  *
@@ -38,13 +37,15 @@ use UnexpectedValueException;
  *
  * 'fields' (Field_Config[])    =>  Array of Field_Config to attach to this
  *                                  section.
+ *
+ * @since 0.1.0
  */
 class Section_Config extends Config {
 
 	use View_Echo_Trait;
 
 	/**
-	 * Fields getter
+	 * Fields getter.
 	 *
 	 * @since 0.5.0
 	 * @return Field_Config[]
@@ -57,7 +58,7 @@ class Section_Config extends Config {
 	}
 
 	/**
-	 * Check the fields
+	 * Check the fields.
 	 *
 	 * @since  0.5.0
 	 * @access private
@@ -67,21 +68,22 @@ class Section_Config extends Config {
 	private function validate_fields() {
 		$fields = $this->get_key( 'fields' );
 		if ( ! is_array( $fields ) ) {
-			throw new UnexpectedValueException( 'Fields in class ' . __CLASS__ . ' must be an array.' );
+			$error_message = 'Fields in class ' . __CLASS__ . ' must be an array.';
+			throw new UnexpectedValueException( $error_message );
 		}
 
 		array_walk( $fields, function ( $field ) {
 			if ( ! $field instanceof Field_Config ) {
-				throw new UnexpectedValueException( 'Field items in class ' . __CLASS__ . ' must be instances of Field_Config.' );
+				$error_message = 'Field items in class ' . __CLASS__ . ' must be instances of Field_Config.';
+				throw new UnexpectedValueException( $error_message );
 			}
 		} );
 	}
 
 	/**
-	 * Default config of Section_Config
+	 * Default config of Section_Config.
 	 *
 	 * @since 0.1.0
-	 *
 	 * @return array
 	 */
 	protected function default_config() : array {

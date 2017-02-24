@@ -28,7 +28,6 @@ final class View_Factory {
 	 * Relative path to built-in view partials.
 	 *
 	 * @since 0.1.0
-	 *
 	 * @var array
 	 */
 	const PARTIALS = [
@@ -56,14 +55,13 @@ final class View_Factory {
 	 */
 	public static function build( string $type ) : View {
 		if ( ! array_key_exists( $type, self::PARTIALS ) ) {
-			throw new InvalidArgumentException(
-				sprintf(
-					'%1$s: Partial for "%2$s" not found. Build-in partials include "%3$s".',
-					__CLASS__,
-					$type,
-					implode( ', ', array_keys( self::PARTIALS ) )
-				)
+			$error_message = sprintf(
+				'%1$s: Partial for "%2$s" not found. Build-in partials include "%3$s".',
+				__CLASS__,
+				$type,
+				implode( ', ', array_keys( self::PARTIALS ) )
 			);
+			throw new InvalidArgumentException( $error_message );
 		}
 
 		return new View(

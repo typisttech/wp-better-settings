@@ -17,22 +17,11 @@ namespace WPBS\WP_Better_Settings;
 /**
  * Interface View_Interface
  *
- * Accepts a context and renders its content on request.
+ * Accepts a context and echo its content on request.
  *
  * @since 0.2.0
  */
 interface View_Interface {
-
-	/**
-	 * Render the associated view.
-	 *
-	 * @since  0.2.0
-	 *
-	 * @param mixed $context Context variables.
-	 *
-	 * @return string HTML string.
-	 */
-	public function render( $context );
 
 	/**
 	 * Echo a given view safely.

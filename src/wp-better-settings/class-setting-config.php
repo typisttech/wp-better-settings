@@ -48,6 +48,7 @@ class Setting_Config extends Config {
 	 */
 	public function call_field_sanitize_fun( array $input ) {
 		$field_ids     = array_keys( $input );
+		$field_ids     = array_filter( $field_ids );
 		$field_configs = $this->get_fields_by( $field_ids );
 
 		foreach ( $field_configs as $field_config ) {

@@ -1,5 +1,14 @@
 # Change Log
 
+## [0.6.0](https://github.com/TypistTech/wp-better-settings/tree/0.6.0) (2017-02-24)
+[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.5.1...0.6.0)
+
+**Merged pull requests:**
+
+- Refactor with some breaking changes [\#42](https://github.com/TypistTech/wp-better-settings/pull/42) ([TangRufus](https://github.com/TangRufus))
+- Add codecov [\#41](https://github.com/TypistTech/wp-better-settings/pull/41) ([TangRufus](https://github.com/TangRufus))
+- Version bump 0.5.1 [\#40](https://github.com/TypistTech/wp-better-settings/pull/40) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.5.1](https://github.com/TypistTech/wp-better-settings/tree/0.5.1) (2017-02-23)
 [Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.5.0...0.5.1)
 

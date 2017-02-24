@@ -13,7 +13,7 @@
  * Plugin Name: WP Better Settings
  * Plugin URI:  https://github.com/TypistTech/wp-better-settings
  * Description: Example Plugin for WP Better Settings
- * Version:     0.5.1
+ * Version:     0.6.0
  * Author:      Tang Rufus
  * Author URI:  https://www.typist.tech/
  * Text Domain: wp-better-settings

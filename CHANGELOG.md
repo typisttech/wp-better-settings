@@ -1,10 +1,19 @@
 # Change Log
 
+## [0.7.0](https://github.com/TypistTech/wp-better-settings/tree/0.7.0) (2017-02-27)
+[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.6.0...0.7.0)
+
+**Merged pull requests:**
+
+- Rename: Option\_Helper -\> Option\_Store [\#45](https://github.com/TypistTech/wp-better-settings/pull/45) ([TangRufus](https://github.com/TangRufus))
+- Ignore all demo code, build scripts, test and documentation with "export-ignore" [\#44](https://github.com/TypistTech/wp-better-settings/pull/44) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.6.0](https://github.com/TypistTech/wp-better-settings/tree/0.6.0) (2017-02-24)
 [Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.5.1...0.6.0)
 
 **Merged pull requests:**
 
+- Version bump 0.6.0 [\#43](https://github.com/TypistTech/wp-better-settings/pull/43) ([TangRufus](https://github.com/TangRufus))
 - Refactor with some breaking changes [\#42](https://github.com/TypistTech/wp-better-settings/pull/42) ([TangRufus](https://github.com/TangRufus))
 - Add codecov [\#41](https://github.com/TypistTech/wp-better-settings/pull/41) ([TangRufus](https://github.com/TangRufus))
 - Version bump 0.5.1 [\#40](https://github.com/TypistTech/wp-better-settings/pull/40) ([TangRufus](https://github.com/TangRufus))

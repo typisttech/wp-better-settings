@@ -43,7 +43,7 @@ class Settings {
 	 * Option helper instance.
 	 *
 	 * @since 0.1.0
-	 * @var Option_Helper_Interface;
+	 * @var Option_Store_Interface;
 	 */
 	protected $option_helper;
 
@@ -52,11 +52,11 @@ class Settings {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @param ArrayObject[]           $setting_configs Config object that contains
+	 * @param ArrayObject[]          $setting_configs  Config object that contains
 	 *                                                 Settings configuration.
-	 * @param Option_Helper_Interface $option_helper   Option helper.
+	 * @param Option_Store_Interface $option_helper    Option helper.
 	 */
-	public function __construct( array $setting_configs, Option_Helper_Interface $option_helper ) {
+	public function __construct( array $setting_configs, Option_Store_Interface $option_helper ) {
 		$this->setting_configs = $setting_configs;
 		$this->option_helper   = $option_helper;
 	}

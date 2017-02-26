@@ -2,22 +2,22 @@
 namespace WPBS\WP_Better_Settings;
 
 /**
- * @coversDefaultClass \WPBS\WP_Better_Settings\Option_Helper
+ * @coversDefaultClass \WPBS\WP_Better_Settings\Option_Store
  */
-class Option_HelperTest extends \Codeception\Test\Unit
+class OptionStoreTest extends \Codeception\Test\Unit
 {
 
     /**
-     * @var \WPBS\WP_Better_Settings\Option_Helper
+     * @var \WPBS\WP_Better_Settings\Option_Store
      */
-    private $option_helper;
+    private $option_store;
 
     /**
      * @covers ::get
      */
     public function testGet()
     {
-        $actual = $this->option_helper->get('my_option_array', 'my_text');
+        $actual = $this->option_store->get('my_option_array', 'my_text');
         $this->assertSame('long long text.', $actual);
     }
 
@@ -26,7 +26,7 @@ class Option_HelperTest extends \Codeception\Test\Unit
      */
     public function testGetCheckbox()
     {
-        $actual = $this->option_helper->get('my_option_array', 'my_checkbox');
+        $actual = $this->option_store->get('my_option_array', 'my_checkbox');
         $this->assertSame('1', $actual);
     }
 
@@ -35,7 +35,7 @@ class Option_HelperTest extends \Codeception\Test\Unit
      */
     public function testGetNonExistKey()
     {
-        $actual = $this->option_helper->get('my_option_array', 'non_exist_key');
+        $actual = $this->option_store->get('my_option_array', 'non_exist_key');
         $this->assertFalse($actual);
     }
 
@@ -44,7 +44,7 @@ class Option_HelperTest extends \Codeception\Test\Unit
      */
     public function testGetNonExistOption()
     {
-        $actual = $this->option_helper->get('non_exist_option', 'my_text');
+        $actual = $this->option_store->get('non_exist_option', 'my_text');
         $this->assertFalse($actual);
     }
 
@@ -53,7 +53,7 @@ class Option_HelperTest extends \Codeception\Test\Unit
      */
     public function testGetNonArray()
     {
-        $actual = $this->option_helper->get('my_option_string', 'my_text');
+        $actual = $this->option_store->get('my_option_string', 'my_text');
         $this->assertSame('i live in wp_option', $actual);
     }
 
@@ -77,6 +77,6 @@ class Option_HelperTest extends \Codeception\Test\Unit
         update_option('my_option_array', $option_array);
         update_option('my_option_string', $option_string);
 
-        $this->option_helper = new Option_Helper;
+        $this->option_store = new Option_Store;
     }
 }

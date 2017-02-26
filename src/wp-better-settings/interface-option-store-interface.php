@@ -14,7 +14,7 @@
 namespace WPBS\WP_Better_Settings;
 
 /**
- * Interface Option_Helper_Interface.
+ * Interface Option_Store_Interface.
  *
  * This is a very basic adapter for the WordPress get_option()
  * function that can be configured to supply consistent default
@@ -22,7 +22,7 @@ namespace WPBS\WP_Better_Settings;
  *
  * @since 0.5.0
  */
-interface Option_Helper_Interface {
+interface Option_Store_Interface {
 	/**
 	 * Get an option value.
 	 *

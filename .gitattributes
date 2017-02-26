@@ -17,6 +17,7 @@
 /tests      export-ignore
 
 # Files
+.codecov.yml                    export-ignore
 /.editorconfig                  export-ignore
 /.gitattributes                 export-ignore
 /.github_changelog_generator    export-ignore

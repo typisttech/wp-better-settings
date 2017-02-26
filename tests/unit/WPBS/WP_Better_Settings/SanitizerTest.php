@@ -6,7 +6,7 @@ use phpmock\phpunit\PHPMock;
 /**
  * @coversDefaultClass \WPBS\WP_Better_Settings\Sanitizer
  */
-class SanitizerTest extends \Codeception\TestCase\WPTestCase
+class SanitizerTest extends \Codeception\Test\Unit
 {
     use PHPMock;
 
@@ -15,15 +15,15 @@ class SanitizerTest extends \Codeception\TestCase\WPTestCase
      */
     public function testSanitizeValidCheckbox()
     {
-        $valid_inputs = [
+        $validInputs = [
             true,
             '1',
             1,
         ];
 
-        foreach ($valid_inputs as $valid_input) {
-            $actual = Sanitizer::sanitize_checkbox($valid_input);
-            $this->assertSame('1', $actual, "$valid_input should be sanitized to '1'");
+        foreach ($validInputs as $validInput) {
+            $actual = Sanitizer::sanitize_checkbox($validInput);
+            $this->assertSame('1', $actual, "$validInput should be sanitized to '1'");
         }
     }
 
@@ -41,7 +41,7 @@ class SanitizerTest extends \Codeception\TestCase\WPTestCase
      */
     public function testSanitizeInvalidCheckbox()
     {
-        $invalid_inputs = [
+        $invalidInputs = [
             'checked',
             'false',
             false,
@@ -50,9 +50,9 @@ class SanitizerTest extends \Codeception\TestCase\WPTestCase
             0,
         ];
 
-        foreach ($invalid_inputs as $invalid_input) {
-            $actual = Sanitizer::sanitize_checkbox($invalid_input);
-            $this->assertSame('', $actual, "$invalid_input should be sanitized to empty string");
+        foreach ($invalidInputs as $invalidInput) {
+            $actual = Sanitizer::sanitize_checkbox($invalidInput);
+            $this->assertSame('', $actual, "$invalidInput should be sanitized to empty string");
         }
     }
 
@@ -70,13 +70,15 @@ class SanitizerTest extends \Codeception\TestCase\WPTestCase
      */
     public function testSanitizeInvalidEmailAddSettingsError()
     {
-        $add_settings_error = $this->getFunctionMock(__NAMESPACE__, 'add_settings_error');
-        $add_settings_error->expects($this->once())
-                           ->with(
-                               $this->equalTo('my_email_id'),
-                               $this->equalTo('invalid_my_email_id'),
-                               $this->equalTo('The email address entered did not appear to be a valid email address. Please enter a valid email address.')
-                           );
+        $errorMessage = 'The email address entered did not appear to be a valid email address. ';
+        $errorMessage .= 'Please enter a valid email address.';
+        $addSettingsError = $this->getFunctionMock(__NAMESPACE__, 'add_settings_error');
+        $addSettingsError->expects($this->once())
+                         ->with(
+                             $this->equalTo('my_email_id'),
+                             $this->equalTo('invalid_my_email_id'),
+                             $this->equalTo($errorMessage)
+                         );
 
         Sanitizer::sanitize_email('invalid_email@gmail', 'my_email_id');
     }

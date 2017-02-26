@@ -6,8 +6,8 @@
     <file>./</file>
 
     <exclude-pattern>*/_data/*</exclude-pattern>
-    <exclude-pattern>*/_outputs/*</exclude-pattern>
-    <exclude-pattern>*/_support/_generated/*</exclude-pattern>
+    <exclude-pattern>*/_output/*</exclude-pattern>
+    <exclude-pattern>*/_support/*</exclude-pattern>
 
     <rule ref="PSR2"/>
 

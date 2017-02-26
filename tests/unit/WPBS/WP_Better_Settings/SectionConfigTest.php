@@ -6,45 +6,29 @@ use UnexpectedValueException;
 /**
  * @coversDefaultClass \WPBS\WP_Better_Settings\Section_Config
  */
-class Section_ConfigTest extends \Codeception\Test\Unit
+class SectionConfigTest extends \Codeception\Test\Unit
 {
     /**
      * @var Field_Config
      */
-    private $field_config_1;
+    private $fieldConfig1;
 
     /**
      * @var Field_Config
      */
-    private $field_config_2;
+    private $fieldConfig2;
 
     /**
      * @var Section_Config
      */
-    private $section_config;
-
-    public function setUp()
-    {
-        // before
-        parent::setUp();
-
-        $this->field_config_1 = new Field_Config([ 'id' => 'my_field_1' ]);
-        $this->field_config_2 = new Field_Config([ 'id' => 'my_field_2' ]);
-        $this->section_config = new Section_Config([
-            'id'     => 'my_section',
-            'fields' => [
-                $this->field_config_1,
-                $this->field_config_2,
-            ],
-        ]);
-    }
+    private $sectionConfig;
 
     /**
      * @coversNothing
      */
     public function testIsAnInstanceOfConfig()
     {
-        $this->assertInstanceOf(Config::class, $this->section_config);
+        $this->assertInstanceOf(Config::class, $this->sectionConfig);
     }
 
     /**
@@ -52,8 +36,8 @@ class Section_ConfigTest extends \Codeception\Test\Unit
      */
     public function testGetFields()
     {
-        $actual   = $this->section_config->get_fields();
-        $expected = [ $this->field_config_1, $this->field_config_2 ];
+        $actual   = $this->sectionConfig->get_fields();
+        $expected = [ $this->fieldConfig1, $this->fieldConfig2 ];
         $this->assertSame($expected, $actual);
     }
 
@@ -62,11 +46,11 @@ class Section_ConfigTest extends \Codeception\Test\Unit
      */
     public function testThrowNotArrayException()
     {
-        $section_config = new Section_Config([
+        $sectionConfig = new Section_Config([
             'fields' => 'not an array',
         ]);
         $this->expectException(UnexpectedValueException::class);
-        $section_config->get_fields();
+        $sectionConfig->get_fields();
     }
 
     /**
@@ -74,10 +58,26 @@ class Section_ConfigTest extends \Codeception\Test\Unit
      */
     public function testThrowNotFieldConfigException()
     {
-        $section_config = new Section_Config([
-            'fields' => [ $this->field_config_1, 'not Field_Config' ],
+        $sectionConfig = new Section_Config([
+            'fields' => [ $this->fieldConfig1, 'not Field_Config' ],
         ]);
         $this->expectException(UnexpectedValueException::class);
-        $section_config->get_fields();
+        $sectionConfig->get_fields();
+    }
+
+    protected function setUp()
+    {
+        // before
+        parent::setUp();
+
+        $this->fieldConfig1  = new Field_Config([ 'id' => 'my_field_1' ]);
+        $this->fieldConfig2  = new Field_Config([ 'id' => 'my_field_2' ]);
+        $this->sectionConfig = new Section_Config([
+            'id'     => 'my_section',
+            'fields' => [
+                $this->fieldConfig1,
+                $this->fieldConfig2,
+            ],
+        ]);
     }
 }

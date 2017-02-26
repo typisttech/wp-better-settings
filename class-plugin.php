@@ -14,7 +14,7 @@
 namespace WPBS;
 
 use WPBS\WP_Better_Settings\{
-	Field_Config, Menu_Page_Config, Menu_Pages, Option_Helper, Sanitizer, Section_Config, Setting_Config, Settings, View_Factory
+	Field_Config, Menu_Page_Config, Menu_Pages, Option_Store, Sanitizer, Section_Config, Setting_Config, Settings, View_Factory
 };
 
 /**
@@ -30,7 +30,7 @@ class Plugin {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @var WP_Better_Settings\Option_Helper_Interface
+	 * @var WP_Better_Settings\Option_Store_Interface
 	 */
 	protected $options_store;
 
@@ -40,7 +40,7 @@ class Plugin {
 	 * @since 0.1.0
 	 */
 	public function init() {
-		$this->options_store = new Option_Helper;
+		$this->options_store = new Option_Store;
 		$this->init_settings_page();
 	}
 

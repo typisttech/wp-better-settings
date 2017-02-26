@@ -7,75 +7,42 @@ use UnexpectedValueException;
 /**
  * @coversDefaultClass \WPBS\WP_Better_Settings\Setting_Config
  */
-class Setting_ConfigTest extends \Codeception\TestCase\WPTestCase
+class SettingConfigTest extends \Codeception\Test\Unit
 {
     /**
      * @var Field_Config
      */
-    private $field_1_1;
+    private $field11;
 
     /**
      * @var Field_Config
      */
-    private $field_1_2;
+    private $field12;
 
     /**
      * @var Field_Config
      */
-    private $field_2_1;
+    private $field21;
 
     /**
      * @var Field_Config
      */
-    private $field_2_2;
+    private $field22;
 
     /**
      * @var Section_Config
      */
-    private $section_1;
+    private $section1;
 
     /**
      * @var Section_Config
      */
-    private $section_2;
+    private $section2;
 
     /**
      * @var Setting_Config
      */
-    private $setting_config;
-
-    public function setUp()
-    {
-        // before
-        parent::setUp();
-
-        $this->field_1_1      = new Field_Config([ 'id' => 'my_field_1_1' ]);
-        $this->field_1_2      = new Field_Config([ 'id' => 'my_field_1_2' ]);
-        $this->field_2_1      = new Field_Config([ 'id' => 'my_field_2_1' ]);
-        $this->field_2_2      = new Field_Config([ 'id' => 'my_field_2_2' ]);
-        $this->section_2      = new Section_Config([
-            'id'     => 'my_section_2',
-            'fields' => [
-                $this->field_2_1,
-                $this->field_2_2,
-            ],
-        ]);
-        $this->section_1      = new Section_Config([
-            'id'     => 'my_section_1',
-            'fields' => [
-                $this->field_1_1,
-                $this->field_1_2,
-            ],
-        ]);
-        $this->setting_config = new Setting_Config([
-            'option_group' => 'my_option_group',
-            'option_name'  => 'my_option_name',
-            'sections'     => [
-                $this->section_1,
-                $this->section_2,
-            ],
-        ]);
-    }
+    private $settingConfig;
 
     /**
      * @coversNothing
@@ -91,12 +58,12 @@ class Setting_ConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testGetFields()
     {
-        $actual   = $this->setting_config->get_fields();
+        $actual   = $this->settingConfig->get_fields();
         $expected = [
-            $this->field_1_1,
-            $this->field_1_2,
-            $this->field_2_1,
-            $this->field_2_2,
+            $this->field11,
+            $this->field12,
+            $this->field21,
+            $this->field22,
         ];
         $this->assertSame($expected, $actual);
     }
@@ -106,32 +73,32 @@ class Setting_ConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testGetFieldsFlattenToFieldLevel()
     {
-        $multi_dimensional_field = new Field_Config([
+        $multidimensionalField = new Field_Config([
             'id'   => 'my_field_2_3',
             'some' => [ 'multi' => [ 'dimensional' => [ 'array' ] ] ],
         ]);
-        $section_2               = new Section_Config([
+        $section2              = new Section_Config([
             'id'     => 'my_section_2',
             'fields' => [
-                $this->field_2_1,
-                $this->field_2_2,
-                $multi_dimensional_field,
+                $this->field21,
+                $this->field22,
+                $multidimensionalField,
             ],
         ]);
-        $setting_config          = new Setting_Config([
+        $settingConfig         = new Setting_Config([
             'sections' => [
-                $this->section_1,
-                $section_2,
+                $this->section1,
+                $section2,
             ],
         ]);
 
-        $actual   = $setting_config->get_fields();
+        $actual   = $settingConfig->get_fields();
         $expected = [
-            $this->field_1_1,
-            $this->field_1_2,
-            $this->field_2_1,
-            $this->field_2_2,
-            $multi_dimensional_field,
+            $this->field11,
+            $this->field12,
+            $this->field21,
+            $this->field22,
+            $multidimensionalField,
         ];
         $this->assertSame($expected, $actual);
     }
@@ -141,8 +108,8 @@ class Setting_ConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testGetSections()
     {
-        $actual   = $this->setting_config->get_sections();
-        $expected = [ $this->section_1, $this->section_2 ];
+        $actual   = $this->settingConfig->get_sections();
+        $expected = [ $this->section1, $this->section2 ];
         $this->assertSame($expected, $actual);
     }
 
@@ -151,11 +118,11 @@ class Setting_ConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testThrowNotArrayException()
     {
-        $setting_config = new Setting_Config([
+        $settingConfig = new Setting_Config([
             'sections' => 'not an array',
         ]);
         $this->expectException(UnexpectedValueException::class);
-        $setting_config->get_sections();
+        $settingConfig->get_sections();
     }
 
     /**
@@ -163,13 +130,12 @@ class Setting_ConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testThrowNotSectionConfigException()
     {
-        $setting_config = new Setting_Config([
-            'sections' => [ $this->section_1, 'not Section_Config' ],
+        $settingConfig = new Setting_Config([
+            'sections' => [ $this->section1, 'not Section_Config' ],
         ]);
         $this->expectException(UnexpectedValueException::class);
-        $setting_config->get_sections();
+        $settingConfig->get_sections();
     }
-
 
     /**
      * @covers ::call_field_sanitize_fun
@@ -192,7 +158,7 @@ class Setting_ConfigTest extends \Codeception\TestCase\WPTestCase
             'field-something' => 'something',
         ];
 
-        $actual = $this->setting_config->call_field_sanitize_fun($input);
+        $actual = $this->settingConfig->call_field_sanitize_fun($input);
         $this->assertSame($expected, $actual);
     }
 
@@ -201,33 +167,66 @@ class Setting_ConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testFieldSanitizeCallbackIsCalled()
     {
-        $callback_mock = Mockery::mock('alias:\Test_Sanitizer');
-        $callback_mock->shouldReceive('to_safe')
-                      ->once()
-                      ->with('dangerous', 'sanitizable_field')
-                      ->andReturn('safe');
+        $callbackMock = Mockery::mock('alias:\Test_Sanitizer');
+        $callbackMock->shouldReceive('to_safe')
+                     ->once()
+                     ->with('dangerous', 'sanitizable_field')
+                     ->andReturn('safe');
 
-        $sanitizable_field = new Field_Config([
+        $sanitizableField = new Field_Config([
             'id'                => 'sanitizable_field',
             'sanitize_callback' => [ '\Test_Sanitizer', 'to_safe' ],
         ]);
 
-        $section        = new Section_Config([
+        $section       = new Section_Config([
             'id'     => 'my_section',
             'fields' => [
-                $this->field_2_1,
-                $sanitizable_field,
+                $this->field21,
+                $sanitizableField,
             ],
         ]);
-        $setting_config = new Setting_Config([
+        $settingConfig = new Setting_Config([
             'sections' => [
-                $this->section_1,
+                $this->section1,
                 $section,
             ],
         ]);
 
-        $actual   = $setting_config->call_field_sanitize_fun([ 'sanitizable_field' => 'dangerous' ]);
+        $actual   = $settingConfig->call_field_sanitize_fun([ 'sanitizable_field' => 'dangerous' ]);
         $expected = [ 'sanitizable_field' => 'safe' ];
         $this->assertSame($expected, $actual);
+    }
+
+    protected function setUp()
+    {
+        // before
+        parent::setUp();
+
+        $this->field11       = new Field_Config([ 'id' => 'my_field_1_1' ]);
+        $this->field12       = new Field_Config([ 'id' => 'my_field_1_2' ]);
+        $this->field21       = new Field_Config([ 'id' => 'my_field_2_1' ]);
+        $this->field22       = new Field_Config([ 'id' => 'my_field_2_2' ]);
+        $this->section2      = new Section_Config([
+            'id'     => 'my_section_2',
+            'fields' => [
+                $this->field21,
+                $this->field22,
+            ],
+        ]);
+        $this->section1      = new Section_Config([
+            'id'     => 'my_section_1',
+            'fields' => [
+                $this->field11,
+                $this->field12,
+            ],
+        ]);
+        $this->settingConfig = new Setting_Config([
+            'option_group' => 'my_option_group',
+            'option_name'  => 'my_option_name',
+            'sections'     => [
+                $this->section1,
+                $this->section2,
+            ],
+        ]);
     }
 }

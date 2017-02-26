@@ -6,7 +6,7 @@ use ArrayObject;
 /**
  * @coversDefaultClass \WPBS\WP_Better_Settings\Config
  */
-class ConfigTest extends \Codeception\TestCase\WPTestCase
+class ConfigTest extends \Codeception\Test\Unit
 {
     /**
      * @coversNothing

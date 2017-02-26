@@ -27,8 +27,8 @@ class ViewTest extends \Codeception\Test\Unit
      */
     public function testRenderUnreadableFile()
     {
-        $actual_view = new View(codecept_root_dir() . '/not-exist.phtml');
-        $actual      = $actual_view->render(new ArrayObject);
+        $view   = new View(codecept_root_dir() . '/not-exist.phtml');
+        $actual = $view->render(new ArrayObject);
         $this->assertSame('', $actual);
     }
 
@@ -40,8 +40,8 @@ class ViewTest extends \Codeception\Test\Unit
         $context       = new ArrayObject;
         $context->desc = '<p>Some text</p>';
 
-        $actual_view = new View(codecept_root_dir() . 'src/wp-better-settings/partials/section-description.phtml');
-        $actual      = $actual_view->render($context);
+        $view   = new View(codecept_root_dir() . 'src/wp-better-settings/partials/section-description.phtml');
+        $actual = $view->render($context);
 
         $expected = '<p>Some text</p>';
 

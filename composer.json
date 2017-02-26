@@ -33,7 +33,7 @@
   "require-dev": {
     "lucatume/wp-browser": "^1.19",
     "site5/phantoman": "^1.1",
-    "php-mock/php-mock-phpunit": "^1.1.2",
+    "php-mock/php-mock-phpunit": "^1.1",
     "codeception/mockery-module": "^0.2.2"
   },
   "autoload": {

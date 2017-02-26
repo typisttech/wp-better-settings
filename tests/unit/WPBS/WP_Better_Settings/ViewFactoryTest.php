@@ -6,7 +6,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \WPBS\WP_Better_Settings\View_Factory
  */
-class View_FactoryTest extends \Codeception\TestCase\WPTestCase
+class ViewFactoryTest extends \Codeception\Test\Unit
 {
 
     /**

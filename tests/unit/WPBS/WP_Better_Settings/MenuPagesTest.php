@@ -7,7 +7,7 @@ use phpmock\phpunit\PHPMock;
 /**
  * @coversDefaultClass \WPBS\WP_Better_Settings\Menu_Pages
  */
-class Menu_PagesTest extends \Codeception\Test\Unit
+class MenuPagesTest extends \Codeception\Test\Unit
 {
     use PHPMock;
 
@@ -16,38 +16,38 @@ class Menu_PagesTest extends \Codeception\Test\Unit
      */
     public function testAdminMenuInvokeParentPagesFirst()
     {
-        $parent_menu_1                = new ArrayObject;
-        $parent_menu_2                = new ArrayObject;
-        $submenu_1                  = new ArrayObject;
-        $submenu_1['parent_slug']   = 'options.php';
-        $submenu_2                  = new ArrayObject;
-        $submenu_2['parent_slug']   = 'abc';
-        $submenu_3                  = new ArrayObject;
-        $submenu_3['parent_slug']   = 'xyz';
-        $menu_page_configs          = [
-            $submenu_1,
-            $submenu_3,
-            $parent_menu_1,
-            $submenu_2,
-            $parent_menu_2
+        $parentMenu1             = new ArrayObject;
+        $parentMenu2             = new ArrayObject;
+        $submenu1                = new ArrayObject;
+        $submenu1['parent_slug'] = 'options.php';
+        $submenu2                = new ArrayObject;
+        $submenu2['parent_slug'] = 'abc';
+        $submenu3                = new ArrayObject;
+        $submenu3['parent_slug'] = 'xyz';
+        $menuPageConfigs         = [
+            $submenu1,
+            $submenu3,
+            $parentMenu1,
+            $submenu2,
+            $parentMenu2,
         ];
-        $menu_page = new Menu_Pages($menu_page_configs);
+        $menuPage                = new Menu_Pages($menuPageConfigs);
 
-        $expected_order = [
-            $parent_menu_1,
-            $parent_menu_2,
-            $submenu_2,
-            $submenu_1,
-            $submenu_3,
+        $expectedOrder = [
+            $parentMenu1,
+            $parentMenu2,
+            $submenu2,
+            $submenu1,
+            $submenu3,
         ];
 
-        $array_walk = $this->getFunctionMock(__NAMESPACE__, 'array_walk');
-        $array_walk->expects($this->once())
-                   ->with(
-                       $this->identicalTo($expected_order),
-                       $this->identicalTo([ $menu_page, 'add_menu_page' ])
-                   );
+        $arrayWalk = $this->getFunctionMock(__NAMESPACE__, 'array_walk');
+        $arrayWalk->expects($this->once())
+                  ->with(
+                      $this->identicalTo($expectedOrder),
+                      $this->identicalTo([ $menuPage, 'add_menu_page' ])
+                  );
 
-        $menu_page->admin_menu();
+        $menuPage->admin_menu();
     }
 }

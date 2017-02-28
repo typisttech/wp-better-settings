@@ -1,10 +1,20 @@
 # Change Log
 
-## [0.7.0](https://github.com/TypistTech/wp-better-settings/tree/0.7.0) (2017-02-27)
+## [0.7.1](https://github.com/TypistTech/wp-better-settings/tree/0.7.1) (2017-02-28)
+[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.7.0...0.7.1)
+
+**Merged pull requests:**
+
+- gitarrributes: White list export files [\#49](https://github.com/TypistTech/wp-better-settings/pull/49) ([TangRufus](https://github.com/TangRufus))
+- Use composer scripts [\#48](https://github.com/TypistTech/wp-better-settings/pull/48) ([TangRufus](https://github.com/TangRufus))
+- gitattributes export ignore .codecov.yml [\#47](https://github.com/TypistTech/wp-better-settings/pull/47) ([TangRufus](https://github.com/TangRufus))
+
+## [0.7.0](https://github.com/TypistTech/wp-better-settings/tree/0.7.0) (2017-02-26)
 [Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.6.0...0.7.0)
 
 **Merged pull requests:**
 
+- Version bump 0.7.0 [\#46](https://github.com/TypistTech/wp-better-settings/pull/46) ([TangRufus](https://github.com/TangRufus))
 - Rename: Option\_Helper -\> Option\_Store [\#45](https://github.com/TypistTech/wp-better-settings/pull/45) ([TangRufus](https://github.com/TangRufus))
 - Ignore all demo code, build scripts, test and documentation with "export-ignore" [\#44](https://github.com/TypistTech/wp-better-settings/pull/44) ([TangRufus](https://github.com/TangRufus))
 

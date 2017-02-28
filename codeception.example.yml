@@ -1,0 +1,17 @@
+modules:
+  config:
+    WPDb:
+      dsn: 'mysql:host=localhost;dbname=wpbs-tester'
+      password: root
+      url: 'http://wpbs-tester.dev'
+    WPLoader:
+      wpRootFolder: /srv/www/wpbs-tester/htdocs/
+      dbName: wpbs-tester_int
+      dbPassword: root
+    WPWebDriver:
+      url: 'http://wpbs-tester.dev'
+      host: 'wpbs-tester.dev'
+extensions:
+  config:
+    Codeception\Extension\Phantoman:
+      path: '/usr/bin/phantomjs'

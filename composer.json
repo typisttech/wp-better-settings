@@ -1,44 +1,81 @@
 {
-  "name": "typisttech/wp-better-settings",
-  "description": "A simplified OOP implementation of the WP Settings API",
-  "version": "0.7.0",
-  "keywords": [
-    "wordpress",
-    "wp",
-    "settings api"
-  ],
-  "homepage": "https://github.com/TypistTech/wp-better-settings",
-  "license": "GPL-2.0+",
-  "authors": [
-    {
-      "name": "Typist Tech",
-      "email": "wp-better-settings@typist.tech",
-      "homepage": "https://www.typist.tech/"
+    "name": "typisttech/wp-better-settings",
+    "description": "A simplified OOP implementation of the WP Settings API",
+    "version": "0.7.0",
+    "keywords": [
+        "wordpress",
+        "wp",
+        "settings api"
+    ],
+    "homepage": "https://github.com/TypistTech/wp-better-settings",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Typist Tech",
+            "email": "wp-better-settings@typist.tech",
+            "homepage": "https://www.typist.tech/"
+        },
+        {
+            "name": "Tang Rufus",
+            "email": "tangrufus@gmail.com",
+            "homepage": "https://www.typist.tech/",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "wp-better-settings@typist.tech",
+        "issues": "https://github.com/TypistTech/wp-better-settings/issues",
+        "source": "https://github.com/TypistTech/wp-better-settings"
     },
-    {
-      "name": "Tang Rufus",
-      "email": "tangrufus@gmail.com",
-      "homepage": "https://www.typist.tech/",
-      "role": "Developer"
+    "require": {
+        "php": ">7.0"
+    },
+    "require-dev": {
+        "lucatume/wp-browser": "^1.19",
+        "site5/phantoman": "^1.1",
+        "php-mock/php-mock-phpunit": "^1.1",
+        "codeception/mockery-module": "^0.2.2",
+        "wp-coding-standards/wpcs": "^0.10.0"
+    },
+    "autoload": {
+        "classmap": [
+            "src/wp-better-settings"
+        ]
+    },
+    "scripts": {
+        "set-wpcs": "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
+        "check-style": [
+            "@set-wpcs",
+            "phpcs --standard=ruleset.xml",
+            "phpcs --standard=tests/ruleset.xml"
+        ],
+        "fix-style": [
+            "@set-wpcs",
+            "phpcbf --standard=ruleset.xml -p --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 .",
+            "phpcbf --standard=tests/ruleset.xml -p --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 tests/"
+        ],
+        "test-acceptance": "codecept run acceptance",
+        "test": [
+            "@test-acceptance",
+            "codecept run unit"
+        ],
+        "test-with-coverage": [
+            "@test-acceptance",
+            "codecept run unit --coverage --coverage-xml --coverage-html"
+        ],
+        "build": [
+            "npm update",
+            "grunt pre-build",
+            "composer install --no-dev --prefer-dist -o --no-suggest",
+            "grunt build"
+        ],
+        "pre-tag": [
+            "grunt pre-tag",
+            "doctoc README.md",
+            "github_changelog_generator --no-verbose"
+        ]
+    },
+    "config": {
+        "sort-packages": true
     }
-  ],
-  "support": {
-    "email": "wp-better-settings@typist.tech",
-    "issues": "https://github.com/TypistTech/wp-better-settings/issues",
-    "source": "https://github.com/TypistTech/wp-better-settings"
-  },
-  "require": {
-    "php": ">7.0"
-  },
-  "require-dev": {
-    "lucatume/wp-browser": "^1.19",
-    "site5/phantoman": "^1.1",
-    "php-mock/php-mock-phpunit": "^1.1",
-    "codeception/mockery-module": "^0.2.2"
-  },
-  "autoload": {
-    "classmap": [
-      "src/wp-better-settings"
-    ]
-  }
 }

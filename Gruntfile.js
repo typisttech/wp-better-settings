@@ -31,27 +31,12 @@ module.exports = function (grunt) {
 
         // Clean the build folder
         clean: {
-            build: {
+            "pre-build": {
                 src: [
                     'build/',
-                    'release/'
+                    'release/',
+                    'vendor/'
                 ]
-            }
-        },
-
-        // Install composer dependencies and generate autoloader
-        exec: {
-            composer_install: {
-                command: 'composer install --prefer-dist --no-dev --no-interaction --no-suggest --optimize-autoloader'
-            },
-            composer_update: {
-                command: 'composer update --no-interaction --no-suggest --optimize-autoloader'
-            },
-            changelog: {
-                command: 'github_changelog_generator'
-            },
-            readme_toc: {
-                command: 'doctoc README.md'
             }
         },
 
@@ -60,40 +45,12 @@ module.exports = function (grunt) {
             build: {
                 expand: true,
                 src: [
-                    '**',
-                    '!.distignore',
-                    '!.editorconfig',
-                    '!.git/**',
-                    '!.gitignore',
-                    '!.gitlab-ci.yml',
-                    '!.travis.yml',
-                    '!.DS_Store',
-                    '!Thumbs.db',
-                    '!assets/**',
-                    '!behat.yml',
-                    '!bin/**',
-                    '!build/**',
-                    '!CHANGELOG.md',
-                    '!codecept-runner.php',
-                    '!codeception.yml',
-                    '!codeception.dist.yml',
-                    '!circle.yml',
-                    '!composer.json',
-                    '!composer.lock',
-                    '!Gruntfile.js',
-                    '!package.json',
-                    '!phpunit.xml',
-                    '!multisite.xml',
-                    '!phpunit.xml.dist',
-                    '!phpcs.ruleset.xml',
-                    '!TODO.md',
-                    '!release/**',
-                    '!ruleset.xml',
-                    '!wp-cli.local.yml',
-                    '!tests/**',
-                    '!node_modules/**',
-                    '!*.zip',
-                    '!*.tar.gz'
+                    'partials/**',
+                    'src/**',
+                    'vendor/**',
+                    'class-plugin.php',
+                    'LICENSE',
+                    '<%= pkg.name %>.php'
                 ],
                 dest: 'build/'
             }
@@ -117,9 +74,9 @@ module.exports = function (grunt) {
     });
 
     require('load-grunt-tasks')(grunt);
-    grunt.registerTask('markdown', ['exec:changelog', 'exec:readme_toc']);
-    grunt.registerTask('pretag', ['version', 'exec:composer_update', 'markdown']);
-    grunt.registerTask('build', ['clean:build', 'exec:composer_install', 'copy:build', 'compress:build']);
+    grunt.registerTask('pre-build', ['clean:pre-build']);
+    grunt.registerTask('build', ['copy:build', 'compress:build']);
+    grunt.registerTask('pre-tag', ['version']);
 
     grunt.util.linefeed = '\n';
 

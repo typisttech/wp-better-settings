@@ -74,7 +74,7 @@ install:
 script:
 #  - if [[ "$WITH_COVERAGE" == "true" ]]; then composer test-with-coverage; fi
 #  - if [[ "$WITH_COVERAGE" != "true" ]]; then composer test; fi
-  - composer check-style
+  - composer check-style $TRAVIS_BUILD_DIR
 
 #after_script:
 #  - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-scrutinizer; fi

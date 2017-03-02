@@ -22,7 +22,8 @@ use ArrayObject;
  *
  * @since 0.1.0
  */
-class Config extends ArrayObject {
+class Config extends ArrayObject 
+{
 
 	/**
 	 * Config constructor.

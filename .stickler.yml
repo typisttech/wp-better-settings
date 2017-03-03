@@ -1,0 +1,7 @@
+linters:
+  phpcs:
+    standard: 'WordPress'
+    extensions: '.php,.phtml'
+
+files:
+    ignore: ['assets/*', 'tests/*', 'vendor/*']

@@ -3,7 +3,6 @@ filter:
     - 'assets/*'
     - 'tests/*'
     - 'vendor/*'
-    - 'codeception-runner.php'
 
 tools:
   external_code_coverage:

@@ -30,8 +30,7 @@ class ConfigTest extends \Codeception\Test\Unit
     /**
      * @covers ::has_key
      */
-    public function testHasKey()
-    {
+    public function testHasKey() {
         $config = new Config([ 'a' => 'abc', 'z' => 'xyz' ]);
         $this->assertTrue($config->has_key('a'));
         $this->assertFalse($config->has_key('b'));

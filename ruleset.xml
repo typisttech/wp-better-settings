@@ -14,8 +14,4 @@
     <exclude-pattern>/tests/*</exclude-pattern>
     <exclude-pattern>/vendor/*</exclude-pattern>
 
-    <arg name='colors'/>
-    <arg value='p'/>
-    <arg value='s'/>
-
 </ruleset>

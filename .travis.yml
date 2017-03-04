@@ -16,10 +16,10 @@ cache:
     - $HOME/.composer/cache/files
     - node_modules
 
-addons:
-  apt:
-    packages:
-      - nginx
+#addons:
+#  apt:
+#    packages:
+#      - nginx
 
 notifications:
   email:
@@ -55,29 +55,30 @@ before_install:
   - if [[ "$WITH_COVERAGE" != "true" && $(phpenv version-name) != "nightly" ]]; then phpenv config-rm xdebug.ini; fi
 
   # Install helper scripts
-  - travis_retry composer global require --prefer-dist --no-suggest "typisttech/travis-nginx-wordpress:^1.2"
-  - export PATH=$HOME/.composer/vendor/bin:$PATH
-  - tnw-install-nginx
-  - tnw-install-wordpress
-  - tnw-prepare-codeception
+#  - travis_retry composer global require --prefer-dist --no-suggest "typisttech/travis-nginx-wordpress:^1.2"
+#  - export PATH=$HOME/.composer/vendor/bin:$PATH
+#  - tnw-install-nginx
+#  - tnw-install-wordpress
+#  - tnw-prepare-codeception
 
   # Build the production plugin
-  - travis_retry composer build
+#  - travis_retry composer build
   # Activate the plugin
-  - wp plugin install ./release/wp-better-settings.zip --force --activate --path=/tmp/wordpress
+#  - wp plugin install ./release/wp-better-settings.zip --force --activate --path=/tmp/wordpress
   # Export a dump of plugin-activated database to the _data folder
-  - wp db export $TRAVIS_BUILD_DIR/tests/_data/dump.sql --path=/tmp/wordpress
+#  - wp db export $TRAVIS_BUILD_DIR/tests/_data/dump.sql --path=/tmp/wordpress
 
 install:
   - travis_retry composer install --prefer-dist --no-suggest
 
 script:
-  - if [[ "$WITH_COVERAGE" == "true" ]]; then composer test-with-coverage; fi
-  - if [[ "$WITH_COVERAGE" != "true" ]]; then composer test; fi
+#  - if [[ "$WITH_COVERAGE" == "true" ]]; then composer test-with-coverage; fi
+#  - if [[ "$WITH_COVERAGE" != "true" ]]; then composer test; fi
+  - composer check-style
 
-after_script:
-  - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-scrutinizer; fi
-  - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-codecov; fi
+#after_script:
+#  - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-scrutinizer; fi
+#  - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-codecov; fi
 
 deploy:
   provider: releases

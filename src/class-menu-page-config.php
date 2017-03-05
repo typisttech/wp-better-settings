@@ -97,7 +97,7 @@ class Menu_Page_Config extends Config {
 	protected function default_config() : array {
 		return [
 			'capability' => 'manage_options',
-			'view'       => View_Factory::build( 'basic-options-page' ),
+			'view'       => View_Factory::build( 'tabbed-options-page' ),
 			'function'   => [ $this, 'echo_view' ],
 		];
 	}

@@ -68,7 +68,6 @@ class Plugin {
 				'page_title'   => 'WP Better Settings',
 				'menu_title'   => 'WP Better Settings',
 				'option_group' => 'wpbs_1',
-				'view'         => View_Factory::build( 'tabbed-options-page' ),
 			] ),
 			new Menu_Page_Config( [
 				'menu_slug'    => 'wpbs_2',

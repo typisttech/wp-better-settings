@@ -1,19 +1,18 @@
 <?php
 /**
+ * WP Better Settings
  *
- * This code is part of the article "Using A Config To Write Reusable Code"
- * as published on https://www.alainschlesser.com/.
+ * A simplified OOP implementation of the WP Settings API.
  *
- * @see       https://www.alainschlesser.com/config-files-for-reusable-code/
- *
- * @package   WPBS\WPBetterSettings
- * @author    Alain Schlesser <alain.schlesser@gmail.com>
+ * @package   WP_Better_Settings
+ * @author    Typist Tech <wp-better-settings@typist.tech>
+ * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
- * @link      https://www.alainschlesser.com/
- * @copyright 2016 Alain Schlesser
+ * @see       https://www.typist.tech/projects/wp-better-settings
+ * @see       https://github.com/TypistTech/wp-better-settings
  */
 
-namespace WP_Better_Settings\WPBetterSettings;
+namespace WP_Better_Settings;
 
 /* @var \ArrayObject $context Context passed through from Settings class. */
 

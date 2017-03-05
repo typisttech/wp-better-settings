@@ -8,7 +8,7 @@ class Option_Store_Test extends \Codeception\Test\Unit
 {
 
     /**
-     * @var \WPBS\Option_Store
+     * @var \WP_Better_Settings\Option_Store
      */
     private $optionStore;
 

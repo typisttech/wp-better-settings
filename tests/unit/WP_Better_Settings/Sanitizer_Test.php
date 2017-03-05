@@ -11,37 +11,40 @@ class Sanitizer_Test extends \Codeception\Test\Unit
     use PHPMock;
 
     /**
+     * @test
      * @covers ::sanitize_checkbox
      */
-    public function testSanitizeValidCheckbox()
+    public function it_sanitize_valid_checkbox()
     {
-        $validInputs = [
+        $valid_inputs = [
             true,
             '1',
             1,
         ];
 
-        foreach ($validInputs as $validInput) {
-            $actual = Sanitizer::sanitize_checkbox($validInput);
-            $this->assertSame('1', $actual, "$validInput should be sanitized to '1'");
+        foreach ($valid_inputs as $valid_input) {
+            $actual = Sanitizer::sanitize_checkbox($valid_input);
+            $this->assertSame('1', $actual, "$valid_input should be sanitized to '1'");
         }
     }
 
     /**
+     * @test
      * @covers ::sanitize_checkbox
      */
-    public function testSanitizeValidUnsettedCheckbox()
+    public function it_sanitize_valid_unchecked_checkbox()
     {
         $actual = Sanitizer::sanitize_checkbox('');
         $this->assertSame('', $actual, 'Empty string should be sanitized to empty string');
     }
 
     /**
+     * @test
      * @covers ::sanitize_checkbox
      */
-    public function testSanitizeInvalidCheckbox()
+    public function it_sanitize_invalid_checkbox()
     {
-        $invalidInputs = [
+        $invalid_inputs = [
             'checked',
             'false',
             false,
@@ -50,45 +53,54 @@ class Sanitizer_Test extends \Codeception\Test\Unit
             0,
         ];
 
-        foreach ($invalidInputs as $invalidInput) {
-            $actual = Sanitizer::sanitize_checkbox($invalidInput);
-            $this->assertSame('', $actual, "$invalidInput should be sanitized to empty string");
+        foreach ($invalid_inputs as $invalid_input) {
+            $actual = Sanitizer::sanitize_checkbox($invalid_input);
+            $this->assertSame('', $actual, "$invalid_input should be sanitized to empty string");
         }
     }
 
     /**
+     * @test
      * @covers ::sanitize_email
      */
-    public function testSanitizeValidEmail()
+    public function it_sanitize_valid_email()
     {
         $actual = Sanitizer::sanitize_email('valid_e.mail+address@gmail.com', 'my_email_id');
         $this->assertSame('valid_e.mail+address@gmail.com', $actual);
     }
 
     /**
+     * @test
      * @covers ::sanitize_email
      */
-    public function testSanitizeInvalidEmailAddSettingsError()
+    public function it_sanitize_invalid_email_add_settings_error()
     {
-        $errorMessage = 'The email address entered did not appear to be a valid email address. ';
-        $errorMessage .= 'Please enter a valid email address.';
-        $addSettingsError = $this->getFunctionMock(__NAMESPACE__, 'add_settings_error');
-        $addSettingsError->expects($this->once())
-                         ->with(
-                             $this->equalTo('my_email_id'),
-                             $this->equalTo('invalid_my_email_id'),
-                             $this->equalTo($errorMessage)
-                         );
+        $error_message = 'Sorry, that isn&#8217;t a valid email address. ';
+        $error_message .= 'Email addresses look like <code>username@example.com</code>.';
+        $add_settings_error_mock = $this->getFunctionMock(__NAMESPACE__, 'add_settings_error');
+        $add_settings_error_mock->expects($this->once())
+                                ->with(
+                                    $this->equalTo('my_email_id'),
+                                    $this->equalTo('invalid_my_email_id'),
+                                    $this->equalTo($error_message)
+                                );
 
         Sanitizer::sanitize_email('invalid_email@gmail', 'my_email_id');
     }
 
     /**
+     * @test
      * @covers ::sanitize_email
      */
-    public function testSanitizeInvalidEmailToEmptyString()
+    public function it_sanitize_invalid_email_to_empty_string()
     {
         $actual = Sanitizer::sanitize_email('invalid_email@gmail', 'my_email_id');
         $this->assertSame('', $actual);
+    }
+
+    protected function _before()
+    {
+        PHPMock::defineFunctionMock(__NAMESPACE__, 'add_settings_error');
+        parent::_before();
     }
 }

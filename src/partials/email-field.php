@@ -4,14 +4,15 @@
  *
  * A simplified OOP implementation of the WP Settings API.
  *
- * @package   WPBS\WP_Better_Settings
+ * @package   WP_Better_Settings
  * @author    Typist Tech <wp-better-settings@typist.tech>
- * @license   GPL-2.0+
- * @link      https://www.typist.tech/
  * @copyright 2017 Typist Tech
+ * @license   GPL-2.0+
+ * @see       https://www.typist.tech/projects/wp-better-settings
+ * @see       https://github.com/TypistTech/wp-better-settings
  */
 
-namespace WP_Better_Settings\WPBetterSettings\partials;
+namespace WP_Better_Settings;
 
 $type = 'email';
 

@@ -4,11 +4,12 @@
  *
  * A simplified OOP implementation of the WP Settings API.
  *
- * @package   WPBS\WP_Better_Settings
+ * @package   WP_Better_Settings
  * @author    Typist Tech <wp-better-settings@typist.tech>
- * @license   GPL-2.0+
- * @link      https://www.typist.tech/
  * @copyright 2017 Typist Tech
+ * @license   GPL-2.0+
+ * @see       https://www.typist.tech/projects/wp-better-settings
+ * @see       https://github.com/TypistTech/wp-better-settings
  */
 
 namespace WP_Better_Settings;
@@ -21,7 +22,6 @@ namespace WP_Better_Settings;
  * @since 0.1.0
  */
 class View implements View_Interface {
-
 	/**
 	 * Array of allowed tags to let through escaping.
 	 *
@@ -29,7 +29,7 @@ class View implements View_Interface {
 	 * @access private
 	 * @var array
 	 */
-	private $allowed_tags = [];
+	private $allowed_tags;
 
 	/**
 	 * Filename of the PHP view to render.
@@ -116,7 +116,7 @@ class View implements View_Interface {
 	/**
 	 * Render the associated view as string.
 	 *
-	 * @see   https://github.com/Medium/medium-wordpress-plugin/blob/c31713968990bab5d83db68cf486953ea161a009/lib/medium-view.php
+	 * @see    https://github.com/Medium/medium-wordpress-plugin/blob/c31713968990bab5d83db68cf486953ea161a009/lib/medium-view.php
 	 * @since  0.1.0
 	 *
 	 * @param mixed $context Context object to be passed into view partial.

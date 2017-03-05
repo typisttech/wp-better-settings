@@ -4,12 +4,15 @@
  *
  * A simplified OOP implementation of the WP Settings API.
  *
- * @package   WPBS\WP_Better_Settings
+ * @package   WP_Better_Settings
  * @author    Typist Tech <wp-better-settings@typist.tech>
- * @license   GPL-2.0+
- * @link      https://www.typist.tech/
  * @copyright 2017 Typist Tech
- *
+ * @license   GPL-2.0+
+ * @see       https://www.typist.tech/projects/wp-better-settings
+ * @see       https://github.com/TypistTech/wp-better-settings
+ */
+
+/**
  * Plugin Name: WP Better Settings
  * Plugin URI:  https://github.com/TypistTech/wp-better-settings
  * Description: Example Plugin for WP Better Settings
@@ -34,3 +37,12 @@ require_once plugin_dir_path( __FILE__ ) . 'class-plugin.php';
 
 // Initialize the plugin.
 ( new Plugin() )->init();
+
+/**
+ * You can use hooks like so.
+ */
+function add_paragraph_after_option_form() {
+	echo 'This paragraph is add via <code>{$snakecased_menu_slug}_after_option_form hook</code>';
+}
+
+add_action( 'wpbs_1_after_option_form', '\WP_Better_Settings\add_paragraph_after_option_form' );

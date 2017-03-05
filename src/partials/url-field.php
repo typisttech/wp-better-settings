@@ -13,6 +13,6 @@
 
 namespace WP_Better_Settings\WPBetterSettings\partials;
 
-$type = 'email';
+$type = 'url';
 
-include __DIR__ . '/input-field.phtml';
+include __DIR__ . '/input-field.php';

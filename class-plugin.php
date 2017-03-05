@@ -169,7 +169,7 @@ class Plugin {
 						'id'     => 'wpbs_section_2',
 						'title'  => __( 'Useless Name Settings', 'as-settings-better-v1' ),
 						'page'   => 'wpbs_2',
-						'view'   => plugin_dir_path( __FILE__ ) . 'partials/section-description.phtml',
+						'view'   => plugin_dir_path( __FILE__ ) . 'partials/section-description.php',
 						'fields' => [
 							new Field_Config( [
 								'id'      => 'wpbs_first_name',
@@ -180,7 +180,7 @@ class Plugin {
 							new Field_Config( [
 								'id'    => 'wpbs_last_name',
 								'title' => __( 'Last Name', 'as-settings-better-v1' ),
-								'view'  => plugin_dir_path( __FILE__ ) . 'partials/last-name-field.phtml',
+								'view'  => plugin_dir_path( __FILE__ ) . 'partials/last-name-field.php',
 							] ),
 						],
 					] ),

@@ -21,13 +21,13 @@ echo '<span>' . esc_html( $context->title ) . '</span></legend>';
 echo '<label for="' . esc_html( $context->id ) . '">';
 
 echo '<input type="checkbox" value="1" ';
-include __DIR__ . '/common-attributes.phtml';
+include __DIR__ . '/common-attributes.php';
 checked( $context->value );
 echo ' >';
 
 echo wp_kses_post( $context->label );
 echo '</label>';
 
-include __DIR__ . '/description-paragraph.phtml';
+include __DIR__ . '/description-paragraph.php';
 
 echo '</fieldset>';

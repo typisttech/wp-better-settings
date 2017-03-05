@@ -13,6 +13,12 @@
 
 namespace WP_Better_Settings\WPBetterSettings\partials;
 
-$type = 'url';
+/* @var \ArrayObject $context Context passed through from Settings class. */
 
-include __DIR__ . '/input-field.phtml';
+echo '<input class="regular-text" ';
+echo 'type="' . esc_attr( $type ?? 'text' ) . '" ';
+echo 'value="' . esc_attr( $context->value ) . '" ';
+include __DIR__ . '/common-attributes.php';
+echo ' >';
+
+include __DIR__ . '/description-paragraph.php';

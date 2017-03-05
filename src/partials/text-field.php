@@ -13,4 +13,4 @@
 
 namespace WP_Better_Settings\WPBetterSettings\partials;
 
-include __DIR__ . '/input-field.phtml';
+include __DIR__ . '/input-field.php';

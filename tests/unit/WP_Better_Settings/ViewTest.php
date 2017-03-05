@@ -16,7 +16,7 @@ class ViewTest extends \Codeception\Test\Unit
         $context       = new ArrayObject;
         $context->desc = '<p>Some text</p>';
 
-        $view = new View(codecept_root_dir() . 'src/partials/section-description.phtml');
+        $view = new View(codecept_root_dir() . 'src/partials/section-description.php');
 
         $this->expectOutputString('<p>Some text</p>');
         $view->echo_kses($context);
@@ -27,7 +27,7 @@ class ViewTest extends \Codeception\Test\Unit
      */
     public function testRenderUnreadableFile()
     {
-        $view   = new View(codecept_root_dir() . '/not-exist.phtml');
+        $view   = new View(codecept_root_dir() . '/not-exist.php');
         $actual = $view->render(new ArrayObject);
         $this->assertSame('', $actual);
     }
@@ -40,7 +40,7 @@ class ViewTest extends \Codeception\Test\Unit
         $context       = new ArrayObject;
         $context->desc = '<p>Some text</p>';
 
-        $view   = new View(codecept_root_dir() . 'src/partials/section-description.phtml');
+        $view   = new View(codecept_root_dir() . 'src/partials/section-description.php');
         $actual = $view->render($context);
 
         $expected = '<p>Some text</p>';

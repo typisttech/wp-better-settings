@@ -19,11 +19,11 @@ echo '<textarea class="regular-text" ';
 if ( absint( $context->rows ) > 0 ) {
 	echo 'rows="' . absint( $context->rows ) . '" ';
 }
-include __DIR__ . '/common-attributes.phtml';
+include __DIR__ . '/common-attributes.php';
 echo ' >';
 
 echo esc_textarea( $context->value );
 
 echo '</textarea>';
 
-include __DIR__ . '/description-paragraph.phtml';
+include __DIR__ . '/description-paragraph.php';

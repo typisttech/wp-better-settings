@@ -13,7 +13,7 @@ class ViewEchoTraitTest extends \Codeception\Test\Unit
     {
         $mock       = $this->getMockForTrait(View_Echo_Trait::class);
         $mock->desc = '<p>Some text</p>';
-        $mock->view = new View(codecept_root_dir() . 'src/partials/section-description.phtml');
+        $mock->view = new View(codecept_root_dir() . 'src/partials/section-description.php');
 
         $this->expectOutputString('<p>Some text</p>');
         $mock->echo_view();
@@ -26,7 +26,7 @@ class ViewEchoTraitTest extends \Codeception\Test\Unit
     {
         $mock       = $this->getMockForTrait(View_Echo_Trait::class);
         $mock->desc = '<p>Some text</p>';
-        $mock->view = codecept_root_dir() . 'src/partials/section-description.phtml';
+        $mock->view = codecept_root_dir() . 'src/partials/section-description.php';
 
         $this->expectOutputString('<p>Some text</p>');
         $mock->echo_view();

@@ -17,4 +17,4 @@ namespace WP_Better_Settings\WPBetterSettings;
 
 echo '<h1>' . esc_html( $context->page_title ) . '</h1>';
 
-include __DIR__ . '/options-form.phtml';
+include __DIR__ . '/options-form.php';

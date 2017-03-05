@@ -35,4 +35,4 @@ foreach ( (array) $context->tabs as $tab ) {
 }
 echo '</h2>';
 
-include __DIR__ . '/options-form.phtml';
+include __DIR__ . '/options-form.php';

@@ -16,10 +16,22 @@ namespace WP_Better_Settings\WPBetterSettings;
 /* @var \ArrayObject $context Context passed through from Menu_Pages class. */
 
 settings_errors();
-?>
 
-<form action='options.php' method='post'>
-	<?php settings_fields( $context->option_group ); ?>
-	<?php do_settings_sections( $context->menu_slug ); ?>
-	<?php submit_button(); ?>
-</form>
+do_action( str_replace( '-', '_', $context->menu_slug ) . '_before_option_form' );
+
+echo '<form action="options.php" method="post">';
+settings_fields( $context->option_group );
+
+do_action( str_replace( '-', '_', $context->menu_slug ) . '_before_settings_sections' );
+
+do_settings_sections( $context->menu_slug );
+
+do_action( str_replace( '-', '_', $context->menu_slug ) . '_before_submit_button' );
+
+submit_button();
+
+do_action( str_replace( '-', '_', $context->menu_slug ) . '_after_submit_button' );
+
+echo '</form>';
+
+do_action( str_replace( '-', '_', $context->menu_slug ) . '_after_option_form' );

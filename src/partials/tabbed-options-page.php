@@ -15,7 +15,11 @@ namespace WP_Better_Settings\WPBetterSettings;
 
 /* @var \ArrayObject $context Context passed through from Menu_Pages class. */
 
+do_action( str_replace( '-', '_', $context->menu_slug ) . '_before_page_title' );
+
 echo '<h1>' . esc_html( $context->page_title ) . '</h1>';
+
+do_action( str_replace( '-', '_', $context->menu_slug ) . '_after_page_title' );
 
 echo '<h2 class="nav-tab-wrapper">';
 foreach ( (array) $context->tabs as $tab ) {
@@ -34,5 +38,7 @@ foreach ( (array) $context->tabs as $tab ) {
 	);
 }
 echo '</h2>';
+
+do_action( str_replace( '-', '_', $context->menu_slug ) . '_after_nav_tabs' );
 
 include __DIR__ . '/options-form.php';

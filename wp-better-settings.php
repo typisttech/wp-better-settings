@@ -34,3 +34,11 @@ require_once plugin_dir_path( __FILE__ ) . 'class-plugin.php';
 
 // Initialize the plugin.
 ( new Plugin() )->init();
+
+/**
+ * You can use hooks like so.
+ */
+function add_paragraph_after_option_form() {
+	echo 'This paragraph is add via <code>{$menu_page_config->menu_slug}_after_option_form hook</code>';
+}
+add_action( 'wpbs_1_after_option_form', '\WP_Better_Settings\add_paragraph_after_option_form' );

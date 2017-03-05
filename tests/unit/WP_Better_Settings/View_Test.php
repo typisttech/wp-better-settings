@@ -4,7 +4,7 @@ namespace WP_Better_Settings;
 use ArrayObject;
 
 /**
- * @coversDefaultClass \WPBS\View
+ * @coversDefaultClass \WP_Better_Settings\View
  */
 class View_Test extends \Codeception\Test\Unit
 {

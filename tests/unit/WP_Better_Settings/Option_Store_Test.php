@@ -2,7 +2,7 @@
 namespace WP_Better_Settings;
 
 /**
- * @coversDefaultClass \WPBS\Option_Store
+ * @coversDefaultClass \WP_Better_Settings\Option_Store
  */
 class Option_Store_Test extends \Codeception\Test\Unit
 {

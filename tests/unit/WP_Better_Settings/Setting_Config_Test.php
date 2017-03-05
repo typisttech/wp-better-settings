@@ -5,7 +5,7 @@ use Mockery;
 use UnexpectedValueException;
 
 /**
- * @coversDefaultClass \WPBS\Setting_Config
+ * @coversDefaultClass \WP_Better_Settings\Setting_Config
  */
 class Setting_Config_Test extends \Codeception\Test\Unit
 {

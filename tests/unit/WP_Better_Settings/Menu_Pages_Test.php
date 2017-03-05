@@ -5,7 +5,7 @@ use ArrayObject;
 use phpmock\phpunit\PHPMock;
 
 /**
- * @coversDefaultClass \WPBS\Menu_Pages
+ * @coversDefaultClass \WP_Better_Settings\Menu_Pages
  */
 class Menu_Pages_Test extends \Codeception\Test\Unit
 {

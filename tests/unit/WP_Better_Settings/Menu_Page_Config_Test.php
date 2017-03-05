@@ -2,7 +2,7 @@
 namespace WP_Better_Settings;
 
 /**
- * @coversDefaultClass \WPBS\Menu_Page_Config
+ * @coversDefaultClass \WP_Better_Settings\Menu_Page_Config
  */
 class Menu_Page_Config_Test extends \Codeception\Test\Unit
 {

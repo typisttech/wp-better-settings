@@ -4,7 +4,7 @@ namespace WP_Better_Settings;
 use UnexpectedValueException;
 
 /**
- * @coversDefaultClass \WPBS\Section_Config
+ * @coversDefaultClass \WP_Better_Settings\Section_Config
  */
 class Section_Config_Test extends \Codeception\Test\Unit
 {

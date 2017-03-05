@@ -4,7 +4,7 @@ namespace WP_Better_Settings;
 use phpmock\phpunit\PHPMock;
 
 /**
- * @coversDefaultClass \WPBS\Sanitizer
+ * @coversDefaultClass \WP_Better_Settings\Sanitizer
  */
 class Sanitizer_Test extends \Codeception\Test\Unit
 {

@@ -2,7 +2,7 @@
 namespace WP_Better_Settings;
 
 /**
- * @coversDefaultClass \WPBS\View_Echo_Trait
+ * @coversDefaultClass \WP_Better_Settings\View_Echo_Trait
  */
 class View_Echo_Trait_Test extends \Codeception\Test\Unit
 {

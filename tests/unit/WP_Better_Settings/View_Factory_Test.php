@@ -4,7 +4,7 @@ namespace WP_Better_Settings;
 use InvalidArgumentException;
 
 /**
- * @coversDefaultClass \WPBS\View_Factory
+ * @coversDefaultClass \WP_Better_Settings\View_Factory
  */
 class View_Factory_Test extends \Codeception\Test\Unit
 {

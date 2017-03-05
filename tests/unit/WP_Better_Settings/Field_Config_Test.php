@@ -2,7 +2,7 @@
 namespace WP_Better_Settings;
 
 /**
- * @coversDefaultClass \WPBS\Field_Config
+ * @coversDefaultClass \WP_Better_Settings\Field_Config
  */
 class Field_Config_Test extends \Codeception\Test\Unit
 {

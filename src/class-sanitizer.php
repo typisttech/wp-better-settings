@@ -4,11 +4,12 @@
  *
  * A simplified OOP implementation of the WP Settings API.
  *
- * @package   WPBS\WP_Better_Settings
+ * @package   WP_Better_Settings
  * @author    Typist Tech <wp-better-settings@typist.tech>
- * @license   GPL-2.0+
- * @link      https://www.typist.tech/
  * @copyright 2017 Typist Tech
+ * @license   GPL-2.0+
+ * @see       https://www.typist.tech/projects/wp-better-settings
+ * @see       https://github.com/TypistTech/wp-better-settings
  */
 
 namespace WP_Better_Settings;
@@ -56,7 +57,7 @@ final class Sanitizer {
 
 		$sanitized_input = sanitize_email( $input );
 		if ( ! is_email( $sanitized_input ) ) {
-			$error = __( 'The email address entered did not appear to be a valid email address. Please enter a valid email address.' );
+			$error = __( 'Sorry, that isn&#8217;t a valid email address. Email addresses look like <code>username@example.com</code>.' );
 			add_settings_error( $field_id, "invalid_$field_id", $error );
 		}
 

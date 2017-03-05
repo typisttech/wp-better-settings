@@ -4,22 +4,25 @@
  *
  * A simplified OOP implementation of the WP Settings API.
  *
- * @package   WPBS\WP_Better_Settings
+ * @package   WP_Better_Settings
  * @author    Typist Tech <wp-better-settings@typist.tech>
- * @license   GPL-2.0+
- * @link      https://www.typist.tech/
  * @copyright 2017 Typist Tech
+ * @license   GPL-2.0+
+ * @see       https://www.typist.tech/projects/wp-better-settings
+ * @see       https://github.com/TypistTech/wp-better-settings
  */
 
 namespace WP_Better_Settings;
 
 /* @var \ArrayObject $context Context passed through from Menu_Pages class. */
 
-do_action( str_replace( '-', '_', $context->menu_slug ) . '_before_page_title' );
+$snakecased_menu_slug = str_replace( '-', '_', $context->menu_slug );
+
+do_action( $snakecased_menu_slug . '_before_page_title' );
 
 echo '<h1>' . esc_html( $context->page_title ) . '</h1>';
 
-do_action( str_replace( '-', '_', $context->menu_slug ) . '_after_page_title' );
+do_action( $snakecased_menu_slug . '_after_page_title' );
 
 echo '<h2 class="nav-tab-wrapper">';
 foreach ( (array) $context->tabs as $tab ) {
@@ -39,6 +42,6 @@ foreach ( (array) $context->tabs as $tab ) {
 }
 echo '</h2>';
 
-do_action( str_replace( '-', '_', $context->menu_slug ) . '_after_nav_tabs' );
+do_action( $snakecased_menu_slug . '_after_nav_tabs' );
 
 include __DIR__ . '/options-form.php';

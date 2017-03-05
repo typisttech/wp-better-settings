@@ -3,4 +3,4 @@ $I = new AcceptanceTester($scenario);
 
 $I->amOnWPBSOptionPage();
 
-$I->see('This paragraph is add via {$menu_page_config->menu_slug}_after_option_form hook');
+$I->see('This paragraph is add via {$snakecased_menu_slug}_after_option_form hook');

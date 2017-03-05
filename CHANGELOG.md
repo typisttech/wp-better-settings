@@ -1,10 +1,22 @@
 # Change Log
 
+## [0.8.0](https://github.com/TypistTech/wp-better-settings/tree/0.8.0) (2017-03-05)
+[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.7.1...0.8.0)
+
+**Merged pull requests:**
+
+- Add page hooks and minor fixes [\#56](https://github.com/TypistTech/wp-better-settings/pull/56) ([TangRufus](https://github.com/TangRufus))
+- Default page config view to tabbed page [\#55](https://github.com/TypistTech/wp-better-settings/pull/55) ([TangRufus](https://github.com/TangRufus))
+- Namespace: Remove WPBS and \*.phtml --\> \*.php; Underscore test file names [\#54](https://github.com/TypistTech/wp-better-settings/pull/54) ([TangRufus](https://github.com/TangRufus))
+- Add SticklerCI config [\#53](https://github.com/TypistTech/wp-better-settings/pull/53) ([TangRufus](https://github.com/TangRufus))
+- Optimize scripts for VVV and phpstorm [\#51](https://github.com/TypistTech/wp-better-settings/pull/51) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.7.1](https://github.com/TypistTech/wp-better-settings/tree/0.7.1) (2017-02-28)
 [Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.7.0...0.7.1)
 
 **Merged pull requests:**
 
+- Version bump 0.7.1 [\#50](https://github.com/TypistTech/wp-better-settings/pull/50) ([TangRufus](https://github.com/TangRufus))
 - gitarrributes: White list export files [\#49](https://github.com/TypistTech/wp-better-settings/pull/49) ([TangRufus](https://github.com/TangRufus))
 - Use composer scripts [\#48](https://github.com/TypistTech/wp-better-settings/pull/48) ([TangRufus](https://github.com/TangRufus))
 - gitattributes export ignore .codecov.yml [\#47](https://github.com/TypistTech/wp-better-settings/pull/47) ([TangRufus](https://github.com/TangRufus))

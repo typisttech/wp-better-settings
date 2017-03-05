@@ -7,6 +7,7 @@ paths:
 settings:
   backup_globals: false # See: https://core.trac.wordpress.org/ticket/39327
   bootstrap: _bootstrap.php
+  shuffle: true
   colors: true
   memory_limit: 1024M
 coverage:

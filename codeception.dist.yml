@@ -14,7 +14,7 @@ coverage:
   include:
     - src/*
   exclude:
-    - src/**/partials/*
+    - src/partials/*
 modules:
   config:
     WPDb:

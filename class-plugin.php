@@ -11,11 +11,7 @@
  * @copyright 2017 Typist Tech
  */
 
-namespace WPBS;
-
-use WPBS\WP_Better_Settings\{
-	Field_Config, Menu_Page_Config, Menu_Pages, Option_Store, Sanitizer, Section_Config, Setting_Config, Settings, View_Factory
-};
+namespace WP_Better_Settings;
 
 /**
  * Class Plugin.
@@ -30,7 +26,7 @@ class Plugin {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @var WP_Better_Settings\Option_Store_Interface
+	 * @var Option_Store_Interface
 	 */
 	protected $options_store;
 
@@ -63,7 +59,7 @@ class Plugin {
 	 *
 	 * #since 0.3.0
 	 *
-	 * @return WP_Better_Settings\Menu_Page_Config[]
+	 * @return Menu_Page_Config[]
 	 */
 	private function page_configs() : array {
 		return [
@@ -90,7 +86,7 @@ class Plugin {
 	 *
 	 * @since 0.3.0
 	 *
-	 * @return WP_Better_Settings\Setting_Config[]
+	 * @return Setting_Config[]
 	 */
 	private function settings_configs() : array {
 		return [
@@ -173,7 +169,7 @@ class Plugin {
 						'id'     => 'wpbs_section_2',
 						'title'  => __( 'Useless Name Settings', 'as-settings-better-v1' ),
 						'page'   => 'wpbs_2',
-						'view'   => plugin_dir_path( __FILE__ ) . 'partials/section-description.phtml',
+						'view'   => plugin_dir_path( __FILE__ ) . 'partials/section-description.php',
 						'fields' => [
 							new Field_Config( [
 								'id'      => 'wpbs_first_name',
@@ -184,7 +180,7 @@ class Plugin {
 							new Field_Config( [
 								'id'    => 'wpbs_last_name',
 								'title' => __( 'Last Name', 'as-settings-better-v1' ),
-								'view'  => plugin_dir_path( __FILE__ ) . 'partials/last-name-field.phtml',
+								'view'  => plugin_dir_path( __FILE__ ) . 'partials/last-name-field.php',
 							] ),
 						],
 					] ),

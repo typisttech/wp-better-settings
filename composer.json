@@ -1,7 +1,7 @@
 {
 	"name": "typisttech/wp-better-settings",
 	"description": "A simplified OOP implementation of the WP Settings API",
-	"version": "0.7.1",
+	"version": "0.8.0",
 	"keywords": [
 		"wordpress",
 		"wp",

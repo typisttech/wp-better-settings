@@ -22,7 +22,7 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
-namespace WPBS;
+namespace WP_Better_Settings;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {

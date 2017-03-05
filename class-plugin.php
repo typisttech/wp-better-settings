@@ -11,11 +11,7 @@
  * @copyright 2017 Typist Tech
  */
 
-namespace WPBS;
-
-use WPBS\WP_Better_Settings\{
-	Field_Config, Menu_Page_Config, Menu_Pages, Option_Store, Sanitizer, Section_Config, Setting_Config, Settings, View_Factory
-};
+namespace WP_Better_Settings;
 
 /**
  * Class Plugin.
@@ -30,7 +26,7 @@ class Plugin {
 	 *
 	 * @since 0.1.0
 	 *
-	 * @var WP_Better_Settings\Option_Store_Interface
+	 * @var Option_Store_Interface
 	 */
 	protected $options_store;
 
@@ -63,7 +59,7 @@ class Plugin {
 	 *
 	 * #since 0.3.0
 	 *
-	 * @return WP_Better_Settings\Menu_Page_Config[]
+	 * @return Menu_Page_Config[]
 	 */
 	private function page_configs() : array {
 		return [
@@ -90,7 +86,7 @@ class Plugin {
 	 *
 	 * @since 0.3.0
 	 *
-	 * @return WP_Better_Settings\Setting_Config[]
+	 * @return Setting_Config[]
 	 */
 	private function settings_configs() : array {
 		return [

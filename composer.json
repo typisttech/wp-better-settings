@@ -41,7 +41,7 @@
 	},
 	"autoload": {
 		"classmap": [
-			"src/wp-better-settings"
+			"src"
 		]
 	},
 	"scripts": {

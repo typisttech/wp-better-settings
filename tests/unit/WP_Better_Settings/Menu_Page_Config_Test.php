@@ -4,7 +4,7 @@ namespace WP_Better_Settings;
 /**
  * @coversDefaultClass \WPBS\Menu_Page_Config
  */
-class MenuPageConfigTest extends \Codeception\Test\Unit
+class Menu_Page_Config_Test extends \Codeception\Test\Unit
 {
     /**
      * @coversNothing

@@ -4,7 +4,7 @@ namespace WP_Better_Settings;
 /**
  * @coversDefaultClass \WPBS\View_Echo_Trait
  */
-class ViewEchoTraitTest extends \Codeception\Test\Unit
+class View_Echo_Trait_Test extends \Codeception\Test\Unit
 {
     /**
      * @covers ::echo_view

@@ -6,7 +6,7 @@ use phpmock\phpunit\PHPMock;
 /**
  * @coversDefaultClass \WPBS\Sanitizer
  */
-class SanitizerTest extends \Codeception\Test\Unit
+class Sanitizer_Test extends \Codeception\Test\Unit
 {
     use PHPMock;
 

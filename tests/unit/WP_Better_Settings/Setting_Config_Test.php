@@ -7,7 +7,7 @@ use UnexpectedValueException;
 /**
  * @coversDefaultClass \WPBS\Setting_Config
  */
-class SettingConfigTest extends \Codeception\Test\Unit
+class Setting_Config_Test extends \Codeception\Test\Unit
 {
     /**
      * @var Field_Config

@@ -6,7 +6,7 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \WPBS\View_Factory
  */
-class ViewFactoryTest extends \Codeception\Test\Unit
+class View_Factory_Test extends \Codeception\Test\Unit
 {
 
     /**

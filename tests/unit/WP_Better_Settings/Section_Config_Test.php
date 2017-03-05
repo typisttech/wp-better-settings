@@ -6,7 +6,7 @@ use UnexpectedValueException;
 /**
  * @coversDefaultClass \WPBS\Section_Config
  */
-class SectionConfigTest extends \Codeception\Test\Unit
+class Section_Config_Test extends \Codeception\Test\Unit
 {
     /**
      * @var Field_Config

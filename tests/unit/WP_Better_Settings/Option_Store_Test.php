@@ -4,7 +4,7 @@ namespace WP_Better_Settings;
 /**
  * @coversDefaultClass \WPBS\Option_Store
  */
-class OptionStoreTest extends \Codeception\Test\Unit
+class Option_Store_Test extends \Codeception\Test\Unit
 {
 
     /**

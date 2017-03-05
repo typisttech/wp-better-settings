@@ -7,7 +7,7 @@ use phpmock\phpunit\PHPMock;
 /**
  * @coversDefaultClass \WPBS\Menu_Pages
  */
-class MenuPagesTest extends \Codeception\Test\Unit
+class Menu_Pages_Test extends \Codeception\Test\Unit
 {
     use PHPMock;
 

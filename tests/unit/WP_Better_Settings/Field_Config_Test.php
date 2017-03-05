@@ -4,7 +4,7 @@ namespace WP_Better_Settings;
 /**
  * @coversDefaultClass \WPBS\Field_Config
  */
-class FieldConfigTest extends \Codeception\Test\Unit
+class Field_Config_Test extends \Codeception\Test\Unit
 {
     /**
      * @coversNothing

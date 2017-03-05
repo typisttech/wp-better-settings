@@ -6,7 +6,7 @@ use ArrayObject;
 /**
  * @coversDefaultClass \WPBS\View
  */
-class ViewTest extends \Codeception\Test\Unit
+class View_Test extends \Codeception\Test\Unit
 {
     /**
      * @covers ::echo_kses

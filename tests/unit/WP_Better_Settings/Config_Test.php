@@ -6,7 +6,7 @@ use ArrayObject;
 /**
  * @coversDefaultClass \WPBS\Config
  */
-class ConfigTest extends \Codeception\Test\Unit
+class Config_Test extends \Codeception\Test\Unit
 {
     /**
      * @coversNothing

@@ -11,7 +11,7 @@
  * @copyright 2017 Typist Tech
  */
 
-namespace WP_Better_Settings\WPBetterSettings;
+namespace WP_Better_Settings;
 
 /* @var \ArrayObject $context Context passed through from Menu_Pages class. */
 

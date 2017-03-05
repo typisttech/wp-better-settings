@@ -11,6 +11,6 @@
  * @copyright 2017 Typist Tech
  */
 
-namespace WP_Better_Settings\WPBetterSettings\partials;
+namespace WP_Better_Settings;
 
 include __DIR__ . '/input-field.php';

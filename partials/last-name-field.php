@@ -13,7 +13,7 @@
  * @copyright 2016 Alain Schlesser
  */
 
-namespace WP_Better_Settings\WPBetterSettings;
+namespace WP_Better_Settings;
 
 /* @var \ArrayObject $context Context passed through from Settings class. */
 

@@ -13,7 +13,7 @@
  * @copyright 2016 Alain Schlesser
  */
 
-namespace WP_Better_Settings\WPBetterSettings;
+namespace WP_Better_Settings;
 
 esc_html_e(
 	'These settings store a completely useless pair of first and last names.',

@@ -17,7 +17,7 @@ namespace WP_Better_Settings;
 /* @var \ArrayObject $context Context passed through from Settings class. */
 
 echo '<textarea class="regular-text" ';
-if ( absint( $context->rows ) > 0 ) {
+if ( ! empty( $context->rows ) ) {
 	echo 'rows="' . absint( $context->rows ) . '" ';
 }
 include __DIR__ . '/common-attributes.php';

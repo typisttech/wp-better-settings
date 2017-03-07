@@ -1,10 +1,18 @@
 # Change Log
 
+## [0.8.1](https://github.com/TypistTech/wp-better-settings/tree/0.8.1) (2017-03-07)
+[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.8.0...0.8.1)
+
+**Merged pull requests:**
+
+- Fix: PHP undefined notices [\#58](https://github.com/TypistTech/wp-better-settings/pull/58) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.8.0](https://github.com/TypistTech/wp-better-settings/tree/0.8.0) (2017-03-05)
 [Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.7.1...0.8.0)
 
 **Merged pull requests:**
 
+- Version bump 0.8.0 [\#57](https://github.com/TypistTech/wp-better-settings/pull/57) ([TangRufus](https://github.com/TangRufus))
 - Add page hooks and minor fixes [\#56](https://github.com/TypistTech/wp-better-settings/pull/56) ([TangRufus](https://github.com/TangRufus))
 - Default page config view to tabbed page [\#55](https://github.com/TypistTech/wp-better-settings/pull/55) ([TangRufus](https://github.com/TangRufus))
 - Namespace: Remove WPBS and \*.phtml --\> \*.php; Underscore test file names [\#54](https://github.com/TypistTech/wp-better-settings/pull/54) ([TangRufus](https://github.com/TangRufus))

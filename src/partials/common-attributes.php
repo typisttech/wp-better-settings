@@ -27,5 +27,5 @@ echo 'id="' . esc_attr( $context->id ) . '" ';
 if ( ! empty( $context->desc ) ) {
 	echo 'aria-describedby="' . esc_attr( esc_attr( $context->id . '-description' ) ) . '" ';
 }
-disabled( $context->disabled );
+disabled( $context->disabled ?? false );
 echo ' ';

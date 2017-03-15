@@ -1,13 +1,12 @@
 {
 	"name": "typisttech/wp-better-settings",
 	"description": "A simplified OOP implementation of the WP Settings API",
-	"version": "0.8.1",
 	"keywords": [
 		"wordpress",
 		"wp",
 		"settings api"
 	],
-	"homepage": "https://github.com/TypistTech/wp-better-settings",
+	"homepage": "https://www.typist.tech/projects/wp-better-settings",
 	"license": "GPL-2.0+",
 	"authors": [
 		{
@@ -34,7 +33,7 @@
 		"codeception/mockery-module": "^0.2.2",
 		"jakoch/phantomjs-installer": "^2.1",
 		"lucatume/wp-browser": "^1.19",
-		"neronmoon/scriptsdev": "^0.1.0",
+		"neronmoon/scriptsdev": "^0.1.1",
 		"php-mock/php-mock-phpunit": "^1.1",
 		"site5/phantoman": "^1.1",
 		"wp-coding-standards/wpcs": "^0.10.0"
@@ -80,13 +79,15 @@
 			"@test-acceptance"
 		]
 	},
-	"scripts-dev": {
-		"post-install-cmd": [
-			"@install-dev-extra"
-		],
-		"post-update-cmd": [
-			"@install-dev-extra"
-		]
+	"extra": {
+		"scripts-dev": {
+			"post-install-cmd": [
+				"@install-dev-extra"
+			],
+			"post-update-cmd": [
+				"@install-dev-extra"
+			]
+		}
 	},
 	"config": {
 		"optimize-autoloader": true,

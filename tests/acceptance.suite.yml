@@ -3,11 +3,10 @@
 # Suite for WordPress acceptance tests.
 # Perform tests using or simulating a browser.
 
-
 class_name: AcceptanceTester
 modules:
-  enabled:
-    - \Helper\Acceptance
-    - Asserts
-    - WPDb
-    - WPWebDriver
+    enabled:
+        - \TypistTech\WPBetterSettings\Helper\Acceptance
+        - Asserts
+        - WPDb
+        - WPWebDriver

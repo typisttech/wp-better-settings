@@ -45,10 +45,9 @@
     },
     "scripts": {
         "build": [
-            "npm update",
-            "grunt pre-build",
+            "rm -fr vendor",
             "composer install --no-dev --prefer-dist --no-suggest",
-            "grunt build"
+            "composer archive --format=zip --dir=release --file=wp-better-settings"
         ],
         "check-style": [
             "phpcs --standard=ruleset.xml --colors -p -s ."
@@ -61,8 +60,7 @@
             "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs"
         ],
         "pre-tag": [
-            "npm update",
-            "grunt pre-tag",
+            "composer update --no-suggest",
             "doctoc README.md",
             "github_changelog_generator --no-verbose"
         ],
@@ -90,5 +88,18 @@
     "config": {
         "optimize-autoloader": true,
         "sort-packages": true
+    },
+    "archive": {
+        "exclude": [
+            "/*",
+            ".*",
+            "!/languages",
+            "!/partials",
+            "!/src",
+            "!/vendor",
+            "!/LICENSE",
+            "!/README.txt",
+            "!/*.php"
+        ]
     }
 }

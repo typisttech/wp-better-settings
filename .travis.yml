@@ -14,7 +14,6 @@ cache:
   apt: true
   directories:
     - $HOME/.composer/cache/files
-    - node_modules
 
 addons:
   apt:
@@ -55,7 +54,7 @@ before_install:
   - if [[ "$WITH_COVERAGE" != "true" && $(phpenv version-name) != "nightly" ]]; then phpenv config-rm xdebug.ini; fi
 
   # Install helper scripts
-  - travis_retry composer global require --prefer-dist --no-suggest "typisttech/travis-nginx-wordpress:^1.2"
+  - travis_retry composer global require --prefer-dist --no-suggest typisttech/travis-nginx-wordpress
   - export PATH=$HOME/.composer/vendor/bin:$PATH
   - tnw-install-nginx
   - tnw-install-wordpress
@@ -72,8 +71,10 @@ install:
   - travis_retry composer install --prefer-dist --no-suggest
 
 script:
-  - if [[ "$WITH_COVERAGE" == "true" ]]; then composer test-with-coverage; fi
-  - if [[ "$WITH_COVERAGE" != "true" ]]; then composer test; fi
+  - if [[ "$WITH_COVERAGE" == "true" ]]; then vendor/bin/codecept run unit --coverage --coverage-xml; fi
+  - if [[ "$WITH_COVERAGE" != "true" ]]; then vendor/bin/codecept run unit; fi
+
+  - vendor/bin/codecept run acceptance
 
 after_script:
   - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-scrutinizer; fi

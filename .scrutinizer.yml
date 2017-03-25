@@ -111,10 +111,8 @@ checks:
     deprecated_code_usage: true
     deadlock_detection_in_loops: true
     custom_coding_standard:
-      ruleset_path: ruleset.xml
+      ruleset_path: './ruleset.xml'
     comparison_always_same_result: true
-    coding_standard:
-      name: WordPress
     code_rating: true
     closure_use_not_conflicting: true
     closure_use_modifiable: true

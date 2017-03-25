@@ -1,3 +1,4 @@
+namespace: TypistTech\WPBetterSettings
 actor: Tester
 paths:
   tests: tests

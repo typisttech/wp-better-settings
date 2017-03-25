@@ -1,10 +1,20 @@
 # Change Log
 
+## [0.9.0](https://github.com/TypistTech/wp-better-settings/tree/0.9.0) (2017-03-25)
+[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.8.1...0.9.0)
+
+**Merged pull requests:**
+
+- Use composer archive to build [\#63](https://github.com/TypistTech/wp-better-settings/pull/63) ([TangRufus](https://github.com/TangRufus))
+- Code style: Change namespace, Use PSR 2, PSR4 and WordPress coding standard [\#61](https://github.com/TypistTech/wp-better-settings/pull/61) ([TangRufus](https://github.com/TangRufus))
+- composer update [\#60](https://github.com/TypistTech/wp-better-settings/pull/60) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.8.1](https://github.com/TypistTech/wp-better-settings/tree/0.8.1) (2017-03-07)
 [Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.8.0...0.8.1)
 
 **Merged pull requests:**
 
+- Version bump 0.8.1 [\#59](https://github.com/TypistTech/wp-better-settings/pull/59) ([TangRufus](https://github.com/TangRufus))
 - Fix: PHP undefined notices [\#58](https://github.com/TypistTech/wp-better-settings/pull/58) ([TangRufus](https://github.com/TangRufus))
 
 ## [0.8.0](https://github.com/TypistTech/wp-better-settings/tree/0.8.0) (2017-03-05)

@@ -1,11 +1,20 @@
 # Change Log
 
+## [0.9.1](https://github.com/TypistTech/wp-better-settings/tree/0.9.1) (2017-03-27)
+[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.9.0...0.9.1)
+
+**Merged pull requests:**
+
+- Fix: Settings not being saved [\#65](https://github.com/TypistTech/wp-better-settings/pull/65) ([TangRufus](https://github.com/TangRufus))
+- ScrutinizerCI: Update coding standard config [\#64](https://github.com/TypistTech/wp-better-settings/pull/64) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.9.0](https://github.com/TypistTech/wp-better-settings/tree/0.9.0) (2017-03-25)
 [Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.8.1...0.9.0)
 
 **Merged pull requests:**
 
 - Use composer archive to build [\#63](https://github.com/TypistTech/wp-better-settings/pull/63) ([TangRufus](https://github.com/TangRufus))
+- Version bump 0.9.0 [\#62](https://github.com/TypistTech/wp-better-settings/pull/62) ([TangRufus](https://github.com/TangRufus))
 - Code style: Change namespace, Use PSR 2, PSR4 and WordPress coding standard [\#61](https://github.com/TypistTech/wp-better-settings/pull/61) ([TangRufus](https://github.com/TangRufus))
 - composer update [\#60](https://github.com/TypistTech/wp-better-settings/pull/60) ([TangRufus](https://github.com/TangRufus))
 

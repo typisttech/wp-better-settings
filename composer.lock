@@ -1289,16 +1289,16 @@
         },
         {
             "name": "lucatume/wp-browser",
-            "version": "1.19.12",
+            "version": "1.19.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucatume/wp-browser.git",
-                "reference": "3b3ce54baf2afd8af0245c8fb90d1cabde9d009f"
+                "reference": "c3de23854d53d52d3bed9f320d4dd5a223bbbf93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/3b3ce54baf2afd8af0245c8fb90d1cabde9d009f",
-                "reference": "3b3ce54baf2afd8af0245c8fb90d1cabde9d009f",
+                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/c3de23854d53d52d3bed9f320d4dd5a223bbbf93",
+                "reference": "c3de23854d53d52d3bed9f320d4dd5a223bbbf93",
                 "shasum": ""
             },
             "require": {
@@ -1306,7 +1306,7 @@
                 "lucatume/codeception-setup-local": "~1.0",
                 "lucatume/wp-browser-commons": "^1.2.5",
                 "symfony/process": "~2.1",
-                "wp-cli/wp-cli": "^0.24.1"
+                "wp-cli/wp-cli": "^1.1"
             },
             "require-dev": {
                 "codeception/codeception": "~2.2",
@@ -1345,7 +1345,7 @@
                 "codeception",
                 "wordpress"
             ],
-            "time": "2017-03-09T19:45:05+00:00"
+            "time": "2017-03-25T08:30:07+00:00"
         },
         {
             "name": "lucatume/wp-browser-commons",
@@ -3800,33 +3800,33 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v3.0.9",
+            "version": "v2.8.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "697c527acd9ea1b2d3efac34d9806bf255278b0a"
+                "reference": "e90099a2958d4833a02d05b504cc06e1c234abcc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/697c527acd9ea1b2d3efac34d9806bf255278b0a",
-                "reference": "697c527acd9ea1b2d3efac34d9806bf255278b0a",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/e90099a2958d4833a02d05b504cc06e1c234abcc",
+                "reference": "e90099a2958d4833a02d05b504cc06e1c234abcc",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.9",
+                "php": ">=5.3.9",
                 "psr/log": "~1.0"
             },
             "conflict": {
                 "symfony/http-kernel": ">=2.3,<2.3.24|~2.4.0|>=2.5,<2.5.9|>=2.6,<2.6.2"
             },
             "require-dev": {
-                "symfony/class-loader": "~2.8|~3.0",
-                "symfony/http-kernel": "~2.8|~3.0"
+                "symfony/class-loader": "~2.2|~3.0.0",
+                "symfony/http-kernel": "~2.3.24|~2.5.9|^2.6.2|~3.0.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "2.8-dev"
                 }
             },
             "autoload": {
@@ -3853,7 +3853,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2016-07-30T07:22:48+00:00"
+            "time": "2017-02-18T19:13:35+00:00"
         },
         {
             "name": "symfony/dependency-injection",
@@ -4455,20 +4455,20 @@
         },
         {
             "name": "wp-cli/wp-cli",
-            "version": "v0.24.1",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-cli/wp-cli.git",
-                "reference": "97424dc18431a2d4d10e590157b57b9ea4a88da4"
+                "reference": "5a28b49f7e725c74f747620fb5b1d6060953abf1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/97424dc18431a2d4d10e590157b57b9ea4a88da4",
-                "reference": "97424dc18431a2d4d10e590157b57b9ea4a88da4",
+                "url": "https://api.github.com/repos/wp-cli/wp-cli/zipball/5a28b49f7e725c74f747620fb5b1d6060953abf1",
+                "reference": "5a28b49f7e725c74f747620fb5b1d6060953abf1",
                 "shasum": ""
             },
             "require": {
-                "composer/composer": "^1.0.0",
+                "composer/composer": "^1.2.0",
                 "composer/semver": "~1.0",
                 "mustache/mustache": "~2.4",
                 "mustangostang/spyc": "~0.5",
@@ -4478,6 +4478,7 @@
                 "rmccue/requests": "~1.6",
                 "symfony/config": "~2.7",
                 "symfony/console": "~2.7",
+                "symfony/debug": "~2.7",
                 "symfony/dependency-injection": "~2.7",
                 "symfony/event-dispatcher": "~2.7",
                 "symfony/filesystem": "~2.7",
@@ -4517,7 +4518,7 @@
                 "cli",
                 "wordpress"
             ],
-            "time": "2016-08-09T13:25:56+00:00"
+            "time": "2017-02-01T14:20:12+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",

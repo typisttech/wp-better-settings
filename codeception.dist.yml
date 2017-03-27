@@ -1,55 +1,55 @@
 namespace: TypistTech\WPBetterSettings
 actor: Tester
 paths:
-  tests: tests
-  log: tests/_output
-  data: tests/_data
-  helpers: tests/_support
+    tests: tests
+    log: tests/_output
+    data: tests/_data
+    helpers: tests/_support
 settings:
-  backup_globals: false # See: https://core.trac.wordpress.org/ticket/39327
-  bootstrap: _bootstrap.php
-  shuffle: true
-  colors: true
-  memory_limit: 1024M
+    backup_globals: false # See: https://core.trac.wordpress.org/ticket/39327
+    bootstrap: _bootstrap.php
+    shuffle: true
+    colors: true
+    memory_limit: 1024M
 coverage:
-  enabled: true
-  include:
-    - src/*
-  exclude:
-    - src/partials/*
+    enabled: true
+    include:
+        - src/*
+    exclude:
+        - src/partials/*
 modules:
-  config:
-    WPDb:
-      dsn: 'mysql:host=localhost;dbname=wordpress'
-      user: root
-      password: ''
-      dump: tests/_data/dump.sql
-      populate: true
-      cleanup: true
-      url: 'http://wp.dev:8080'
-      tablePrefix: wp_
-    WPLoader:
-      wpRootFolder: /tmp/wordpress
-      dbName: wordpress_int
-      dbHost: localhost
-      dbUser: root
-      dbPassword: ''
-      tablePrefix: int_wp_
-      domain: wordpress.dev
-      adminEmail: admin@wordpress.dev
-    WPWebDriver:
-      url: 'http://wp.dev:8080'
-      port: 4444
-      window_size: '1024x768'
-      adminUsername: 'admin'
-      adminPassword: 'password'
-      adminPath: /wp-admin
-      host: 'wp.dev'
-      browser: phantomjs
+    config:
+        WPDb:
+            dsn: 'mysql:host=127.0.0.1;dbname=wordpress'
+            user: root
+            password: ''
+            dump: tests/_data/dump.sql
+            populate: true
+            cleanup: true
+            url: 'http://wp.dev:8080'
+            tablePrefix: wp_
+        WPLoader:
+            wpRootFolder: /tmp/wordpress
+            dbName: wordpress_int
+            dbHost: 127.0.0.1
+            dbUser: root
+            dbPassword: ''
+            tablePrefix: int_wp_
+            domain: wordpress.dev
+            adminEmail: admin@wordpress.dev
+        WPWebDriver:
+            url: 'http://wp.dev:8080'
+            port: 4444
+            window_size: '1024x768'
+            adminUsername: 'admin'
+            adminPassword: 'password'
+            adminPath: /wp-admin
+            host: 'wp.dev'
+            browser: phantomjs
 extensions:
-  enabled:
-    - Codeception\Extension\Phantoman
-  config:
-    Codeception\Extension\Phantoman:
-      port: 4444
-      suites: ['acceptance']
+    enabled:
+        - Codeception\Extension\Phantoman
+    config:
+        Codeception\Extension\Phantoman:
+        port: 4444
+        suites: ['acceptance']

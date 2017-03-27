@@ -4,12 +4,12 @@
  *
  * A simplified OOP implementation of the WP Settings API.
  *
- * @package TypistTech\WPBetterSettings
- * @author Typist Tech <wp-better-settings@typist.tech>
+ * @package   TypistTech\WPBetterSettings
+ * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
- * @license GPL-2.0+
- * @see https://www.typist.tech/projects/wp-better-settings
- * @see https://github.com/TypistTech/wp-better-settings
+ * @license   GPL-2.0+
+ * @see       https://www.typist.tech/projects/wp-better-settings
+ * @see       https://github.com/TypistTech/wp-better-settings
  */
 
 declare(strict_types=1);
@@ -53,7 +53,7 @@ class Config extends ArrayObject
      * @since 0.1.0
      * @return array
      */
-    protected function defaultConfig() : array
+    protected function defaultConfig(): array
     {
         return [];
     }
@@ -79,7 +79,7 @@ class Config extends ArrayObject
      * @since 0.1.0
      * @return array Array of config keys.
      */
-    public function getKeys() : array
+    public function getKeys(): array
     {
         return array_keys((array) $this);
     }
@@ -93,7 +93,7 @@ class Config extends ArrayObject
      *
      * @return bool Whether the specified key exists.
      */
-    public function hasKey(string $key) : bool
+    public function hasKey(string $key): bool
     {
         return array_key_exists($key, (array) $this);
     }

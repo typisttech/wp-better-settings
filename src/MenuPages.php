@@ -4,12 +4,12 @@
  *
  * A simplified OOP implementation of the WP Settings API.
  *
- * @package TypistTech\WPBetterSettings
- * @author Typist Tech <wp-better-settings@typist.tech>
+ * @package   TypistTech\WPBetterSettings
+ * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
- * @license GPL-2.0+
- * @see https://www.typist.tech/projects/wp-better-settings
- * @see https://github.com/TypistTech/wp-better-settings
+ * @license   GPL-2.0+
+ * @see       https://www.typist.tech/projects/wp-better-settings
+ * @see       https://github.com/TypistTech/wp-better-settings
  */
 
 declare(strict_types=1);
@@ -97,7 +97,7 @@ class MenuPages
      *
      * @return int
      */
-    private function compareParentSlug(ArrayObject $first, ArrayObject $other) : int
+    private function compareParentSlug(ArrayObject $first, ArrayObject $other): int
     {
         $firstParentSlug = empty($first['parent_slug']) ? '' : $first['parent_slug'];
         $otherParentSlug = empty($other['parent_slug']) ? '' : $other['parent_slug'];

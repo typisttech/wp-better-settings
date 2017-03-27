@@ -4,12 +4,12 @@
  *
  * A simplified OOP implementation of the WP Settings API.
  *
- * @package TypistTech\WPBetterSettings
- * @author Typist Tech <wp-better-settings@typist.tech>
+ * @package   TypistTech\WPBetterSettings
+ * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
- * @license GPL-2.0+
- * @see https://www.typist.tech/projects/wp-better-settings
- * @see https://github.com/TypistTech/wp-better-settings
+ * @license   GPL-2.0+
+ * @see       https://www.typist.tech/projects/wp-better-settings
+ * @see       https://github.com/TypistTech/wp-better-settings
  */
 
 declare(strict_types=1);
@@ -32,13 +32,13 @@ use UnexpectedValueException;
  *                                  section.
  *
  * 'page' (string)              =>  The menu page on which to display this section.
- *                                  Should match $menu_slug in Menu_Page_Config.
+ *                                  Should match $menu_slug in MenuPageConfig.
  *
  * 'view' (string|View)         =>  View to use for rendering the section. Can be
  *                                  a path to a view file or an instance of a
  *                                  View object.
  *
- * 'fields' (Field_Config[])    =>  Array of Field_Config to attach to this
+ * 'fields' (FieldConfig[])     =>  Array of FieldConfig to attach to this
  *                                  section.
  *
  * @since 0.1.0
@@ -54,7 +54,7 @@ class SectionConfig extends Config
      * @return FieldConfig[]
      * @throws UnexpectedValueException If fields is not Field_Config[].
      */
-    public function getFields() : array
+    public function getFields(): array
     {
         $this->validateFields();
 
@@ -67,7 +67,7 @@ class SectionConfig extends Config
      * @since  0.5.0
      * @access private
      * @return void
-     * @throws UnexpectedValueException If fields is not Field_Config[].
+     * @throws UnexpectedValueException If fields is not FieldConfig[].
      */
     private function validateFields()
     {
@@ -79,19 +79,19 @@ class SectionConfig extends Config
 
         array_walk($fields, function ($field) {
             if (! $field instanceof FieldConfig) {
-                $error_message = 'Field items in class ' . __CLASS__ . ' must be instances of Field_Config.';
+                $error_message = 'Field items in class ' . __CLASS__ . ' must be instances of FieldConfig.';
                 throw new UnexpectedValueException($error_message);
             }
         });
     }
 
     /**
-     * Default config of Section_Config.
+     * Default config of SectionConfig.
      *
      * @since 0.1.0
      * @return array
      */
-    protected function defaultConfig() : array
+    protected function defaultConfig(): array
     {
         return [
             'view'     => ViewFactory::build('section-description'),

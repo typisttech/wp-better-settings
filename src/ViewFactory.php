@@ -4,12 +4,12 @@
  *
  * A simplified OOP implementation of the WP Settings API.
  *
- * @package TypistTech\WPBetterSettings
- * @author Typist Tech <wp-better-settings@typist.tech>
+ * @package   TypistTech\WPBetterSettings
+ * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
- * @license GPL-2.0+
- * @see https://www.typist.tech/projects/wp-better-settings
- * @see https://github.com/TypistTech/wp-better-settings
+ * @license   GPL-2.0+
+ * @see       https://www.typist.tech/projects/wp-better-settings
+ * @see       https://github.com/TypistTech/wp-better-settings
  */
 
 declare(strict_types=1);
@@ -45,6 +45,13 @@ final class ViewFactory
     ];
 
     /**
+     * Private constructor.
+     */
+    private function __construct()
+    {
+    }
+
+    /**
      * Built a View object for one of the built-in field types.
      *
      * @since 0.1.0
@@ -56,7 +63,7 @@ final class ViewFactory
      *
      * @throws InvalidArgumentException If the partial is not supported.
      */
-    public static function build(string $type) : View
+    public static function build(string $type): View
     {
         if (! array_key_exists($type, self::PARTIALS)) {
             $errorMessage = sprintf(

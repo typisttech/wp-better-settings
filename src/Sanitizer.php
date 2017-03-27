@@ -4,12 +4,12 @@
  *
  * A simplified OOP implementation of the WP Settings API.
  *
- * @package TypistTech\WPBetterSettings
- * @author Typist Tech <wp-better-settings@typist.tech>
+ * @package   TypistTech\WPBetterSettings
+ * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
- * @license GPL-2.0+
- * @see https://www.typist.tech/projects/wp-better-settings
- * @see https://github.com/TypistTech/wp-better-settings
+ * @license   GPL-2.0+
+ * @see       https://www.typist.tech/projects/wp-better-settings
+ * @see       https://github.com/TypistTech/wp-better-settings
  */
 
 declare(strict_types=1);
@@ -24,6 +24,13 @@ namespace TypistTech\WPBetterSettings;
 final class Sanitizer
 {
     /**
+     * Private constructor.
+     */
+    private function __construct()
+    {
+    }
+
+    /**
      * Sanitize checkbox
      *
      * Sanitize any input other than '1', 1 or boolean true to empty string.
@@ -34,7 +41,7 @@ final class Sanitizer
      *
      * @return string Empty string OR '1'
      */
-    public static function sanitizeCheckbox(string $input) : string
+    public static function sanitizeCheckbox(string $input): string
     {
         $sanitizedInput = sanitize_text_field($input);
         if ('1' !== $sanitizedInput) {
@@ -57,7 +64,7 @@ final class Sanitizer
      *
      * @return string           Valid email address OR empty string.
      */
-    public static function sanitizeEmail(string $input, string $fieldId) : string
+    public static function sanitizeEmail(string $input, string $fieldId): string
     {
         $sanitizedInput = sanitize_email($input);
         if (! is_email($sanitizedInput)) {

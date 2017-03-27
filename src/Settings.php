@@ -4,12 +4,12 @@
  *
  * A simplified OOP implementation of the WP Settings API.
  *
- * @package TypistTech\WPBetterSettings
- * @author Typist Tech <wp-better-settings@typist.tech>
+ * @package   TypistTech\WPBetterSettings
+ * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
- * @license GPL-2.0+
- * @see https://www.typist.tech/projects/wp-better-settings
- * @see https://github.com/TypistTech/wp-better-settings
+ * @license   GPL-2.0+
+ * @see       https://www.typist.tech/projects/wp-better-settings
+ * @see       https://github.com/TypistTech/wp-better-settings
  */
 
 declare(strict_types=1);
@@ -81,24 +81,24 @@ class Settings
      *
      * @since 0.1.0
      *
-     * @param ArrayObject $field_config Arguments for the add_settings_field WP function.
-     * @param string      $_key         [Unused] Key of the settings field.
-     * @param array       $args         Contains both page and section name.
+     * @param ArrayObject $fieldConfig Arguments for the add_settings_field WP function.
+     * @param string      $key         [Unused] Key of the settings field.
+     * @param array       $args        Contains both page and section name.
      *
      * @return void
      * @throws \InvalidArgumentException If add_settings_field cannot be invoked.
      */
-    protected function addField(ArrayObject $field_config, string $_key, array $args)
+    protected function addField(ArrayObject $fieldConfig, string $key, array $args)
     {
-        $field_config->page        = $args['page'];
-        $field_config->section     = $args['section'];
-        $field_config->option_name = $args['option_name'];
-        $field_config->value       = $this->optionHelper->get(
-            $field_config->option_name,
-            $field_config->id
+        $fieldConfig->page        = $args['page'];
+        $fieldConfig->section     = $args['section'];
+        $fieldConfig->option_name = $args['option_name'];
+        $fieldConfig->value       = $this->optionHelper->get(
+            $fieldConfig->option_name,
+            $fieldConfig->id
         );
 
-        $this->invokeFunction('add_settings_field', $field_config);
+        $this->invokeFunction('add_settings_field', $fieldConfig);
     }
 
     /**
@@ -107,13 +107,13 @@ class Settings
      * @since 0.1.0
      *
      * @param ArrayObject $sectionConfig Arguments for the add_settings_section WP function.
-     * @param string      $_key          [Unused] Key of the settings section.
+     * @param string      $key           [Unused] Key of the settings section.
      * @param array       $args          Additional arguments to pass on.
      *
      * @return void
      * @throws \InvalidArgumentException If add_settings_section cannot be invoked.
      */
-    protected function addSection(ArrayObject $sectionConfig, string $_key, array $args)
+    protected function addSection(ArrayObject $sectionConfig, string $key, array $args)
     {
         $this->invokeFunction('add_settings_section', $sectionConfig);
 
@@ -129,19 +129,19 @@ class Settings
      *
      * @since 0.1.0
      *
-     * @param ArrayObject $setting_config Arguments for the register_setting WP function.
+     * @param ArrayObject $settingConfig Arguments for the register_setting WP function.
      *
      * @return void
      * @throws \InvalidArgumentException If register_setting cannot be invoked.
      */
-    protected function registerSetting(ArrayObject $setting_config)
+    protected function registerSetting(ArrayObject $settingConfig)
     {
-        $this->invokeFunction('register_setting', $setting_config);
+        $this->invokeFunction('register_setting', $settingConfig);
 
         // Prepare array to pass to array_walk as third parameter.
         $args                = [];
-        $args['option_name'] = $setting_config->option_name;
+        $args['option_name'] = $settingConfig->option_name;
 
-        array_walk($setting_config->sections, [ $this, 'addSection' ], $args);
+        array_walk($settingConfig->sections, [ $this, 'addSection' ], $args);
     }
 }

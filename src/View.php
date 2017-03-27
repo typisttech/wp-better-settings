@@ -4,12 +4,12 @@
  *
  * A simplified OOP implementation of the WP Settings API.
  *
- * @package TypistTech\WPBetterSettings
- * @author Typist Tech <wp-better-settings@typist.tech>
+ * @package   TypistTech\WPBetterSettings
+ * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
- * @license GPL-2.0+
- * @see https://www.typist.tech/projects/wp-better-settings
- * @see https://github.com/TypistTech/wp-better-settings
+ * @license   GPL-2.0+
+ * @see       https://www.typist.tech/projects/wp-better-settings
+ * @see       https://github.com/TypistTech/wp-better-settings
  */
 
 declare(strict_types=1);
@@ -72,7 +72,7 @@ class View implements ViewInterface
      * @access private
      * @return array Modified tags array.
      */
-    private function defaultAllowedTags() : array
+    private function defaultAllowedTags(): array
     {
         $formTags = [
             'form'     => [
@@ -129,7 +129,7 @@ class View implements ViewInterface
      *
      * @return string HTML string.
      */
-    public function render($context) : string
+    public function render($context): string
     {
         if (! is_readable($this->filename)) {
             return '';

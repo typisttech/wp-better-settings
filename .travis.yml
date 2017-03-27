@@ -1,6 +1,9 @@
 language: php
 
-sudo: false
+dist: trusty
+
+# Wait until travis bug fixes
+sudo: required
 
 branches:
   only:

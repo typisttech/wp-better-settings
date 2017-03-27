@@ -4,12 +4,12 @@
  *
  * A simplified OOP implementation of the WP Settings API.
  *
- * @package TypistTech\WPBetterSettings
- * @author Typist Tech <wp-better-settings@typist.tech>
+ * @package   TypistTech\WPBetterSettings
+ * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
- * @license GPL-2.0+
- * @see https://www.typist.tech/projects/wp-better-settings
- * @see https://github.com/TypistTech/wp-better-settings
+ * @license   GPL-2.0+
+ * @see       https://www.typist.tech/projects/wp-better-settings
+ * @see       https://github.com/TypistTech/wp-better-settings
  */
 
 declare(strict_types=1);
@@ -80,7 +80,7 @@ class SettingConfig extends Config
      * @return FieldConfig[]
      * @throws \UnexpectedValueException If section.fields is not Field_Config[].
      */
-    private function getFieldsBy(array $ids) : array
+    private function getFieldsBy(array $ids): array
     {
         $ids       = array_filter($ids);
         $allFields = $this->getFields();
@@ -99,7 +99,7 @@ class SettingConfig extends Config
      * @return FieldConfig[]
      * @throws \UnexpectedValueException If sections.fields is not Field_Config[].
      */
-    public function getFields() : array
+    public function getFields(): array
     {
         $sections = $this->getSections();
 
@@ -120,7 +120,7 @@ class SettingConfig extends Config
      * @return SectionConfig[]
      * @throws \UnexpectedValueException If sections is not Section_Config[].
      */
-    public function getSections() : array
+    public function getSections(): array
     {
         $this->validateSections();
 
@@ -157,13 +157,13 @@ class SettingConfig extends Config
      * @since 0.1.0
      * @return array
      */
-    protected function defaultConfig() : array
+    protected function defaultConfig(): array
     {
         return [
             'view'     => ViewFactory::build('section-description'),
             'function' => [ $this, 'echoView' ],
             'args'     => [
-                'sanitize_callback' => [ $this, 'call_field_sanitize_fun' ],
+                'sanitize_callback' => [ $this, 'callFieldSanitizeFun' ],
             ],
         ];
     }

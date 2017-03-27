@@ -4,12 +4,12 @@
  *
  * A simplified OOP implementation of the WP Settings API.
  *
- * @package TypistTech\WPBetterSettings
- * @author Typist Tech <wp-better-settings@typist.tech>
+ * @package   TypistTech\WPBetterSettings
+ * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
- * @license GPL-2.0+
- * @see https://www.typist.tech/projects/wp-better-settings
- * @see https://github.com/TypistTech/wp-better-settings
+ * @license   GPL-2.0+
+ * @see       https://www.typist.tech/projects/wp-better-settings
+ * @see       https://github.com/TypistTech/wp-better-settings
  */
 
 declare(strict_types=1);
@@ -85,7 +85,7 @@ class MenuPageConfig extends Config
      *
      * @return string Admin URL link with menu slug appended.
      */
-    public function url() : string
+    public function url(): string
     {
         // TODO: It doesn't work for standard WordPress admin pages.
         return admin_url('admin.php?page=' . $this->menu_slug);
@@ -99,7 +99,7 @@ class MenuPageConfig extends Config
      * @return array
      * @throws \InvalidArgumentException If the partial is not supported.
      */
-    protected function defaultConfig() : array
+    protected function defaultConfig(): array
     {
         return [
             'capability' => 'manage_options',

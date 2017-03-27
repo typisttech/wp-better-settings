@@ -4,12 +4,12 @@
  *
  * A simplified OOP implementation of the WP Settings API.
  *
- * @package TypistTech\WPBetterSettings
- * @author Typist Tech <wp-better-settings@typist.tech>
+ * @package   TypistTech\WPBetterSettings
+ * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
- * @license GPL-2.0+
- * @see https://www.typist.tech/projects/wp-better-settings
- * @see https://github.com/TypistTech/wp-better-settings
+ * @license   GPL-2.0+
+ * @see       https://www.typist.tech/projects/wp-better-settings
+ * @see       https://github.com/TypistTech/wp-better-settings
  */
 
 declare(strict_types=1);
@@ -67,7 +67,7 @@ class Plugin
      *
      * @return MenuPageConfig[]
      */
-    private function pageConfigs() : array
+    private function pageConfigs(): array
     {
         return [
             new MenuPageConfig([
@@ -94,7 +94,7 @@ class Plugin
      *
      * @return SettingConfig[]
      */
-    private function settingsConfigs() : array
+    private function settingsConfigs(): array
     {
         return [
             new SettingConfig([

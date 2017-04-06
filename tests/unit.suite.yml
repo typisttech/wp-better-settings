@@ -7,5 +7,4 @@ modules:
     enabled:
         - \TypistTech\WPBetterSettings\Helper\Unit
         - Asserts
-        - Mockery
         - WPLoader

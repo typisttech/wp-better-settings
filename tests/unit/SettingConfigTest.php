@@ -2,7 +2,7 @@
 
 namespace TypistTech\WPBetterSettings;
 
-use Mockery;
+use AspectMock\Test;
 use UnexpectedValueException;
 
 /**
@@ -75,15 +75,13 @@ class SettingConfigTest extends \Codeception\Test\Unit
      */
     public function testFieldSanitizeCallbackIsCalled()
     {
-        $callbackMock = Mockery::mock('alias:\Test_Sanitizer');
-        $callbackMock->shouldReceive('to_safe')
-                     ->once()
-                     ->with('dangerous', 'sanitizable_field')
-                     ->andReturn('safe');
+        $sanitizer = Test::double(Sanitizer::class, [
+            'sanitizeEmail' => 'safe',
+        ]);
 
         $sanitizableField = new FieldConfig([
             'id'                => 'sanitizable_field',
-            'sanitize_callback' => [ '\Test_Sanitizer', 'to_safe' ],
+            'sanitize_callback' => [ Sanitizer::class, 'sanitizeEmail' ],
         ]);
 
         $section       = new SectionConfig([
@@ -106,7 +104,10 @@ class SettingConfigTest extends \Codeception\Test\Unit
         $expected = [
             'sanitizable_field' => 'safe',
         ];
+
         $this->assertSame($expected, $actual);
+        $sanitizer->verifyInvokedMultipleTimes('sanitizeEmail', 1);
+        $sanitizer->verifyInvokedOnce('sanitizeEmail', [ 'dangerous', 'sanitizable_field' ]);
     }
 
     /**
@@ -208,10 +209,8 @@ class SettingConfigTest extends \Codeception\Test\Unit
         $settingConfig->getSections();
     }
 
-    protected function setUp()
+    protected function _before()
     {
-        parent::setUp();
-
         $this->field11       = new FieldConfig([
             'id' => 'my_field_1_1',
         ]);

@@ -2,21 +2,24 @@
 
 namespace TypistTech\WPBetterSettings;
 
-use phpmock\phpunit\PHPMock;
+use AspectMock\Test;
 
 /**
  * @coversDefaultClass \TypistTech\WPBetterSettings\Sanitizer
  */
 class SanitizerTest extends \Codeception\Test\Unit
 {
-    use PHPMock;
+    /**
+     * @var \AspectMock\Proxy\FuncProxy
+     */
+    private $addSettingsError;
 
     /**
      * @covers ::sanitizeCheckbox
      */
     public function testSanitizeInvalidCheckbox()
     {
-        $invalid_inputs = [
+        $invalidInputs = [
             'checked',
             'false',
             false,
@@ -25,9 +28,9 @@ class SanitizerTest extends \Codeception\Test\Unit
             0,
         ];
 
-        foreach ($invalid_inputs as $invalid_input) {
-            $actual = Sanitizer::sanitizeCheckbox($invalid_input);
-            $this->assertSame('', $actual, "$invalid_input should be sanitized to empty string");
+        foreach ($invalidInputs as $invalidInput) {
+            $actual = Sanitizer::sanitizeCheckbox($invalidInput);
+            $this->assertSame('', $actual, "$invalidInput should be sanitized to empty string");
         }
     }
 
@@ -36,17 +39,13 @@ class SanitizerTest extends \Codeception\Test\Unit
      */
     public function testSanitizeInvalidEmailAddSettingsError()
     {
-        $error_message           = 'Sorry, that isn&#8217;t a valid email address. ';
-        $error_message           .= 'Email addresses look like <code>username@example.com</code>.';
-        $add_settings_error_mock = $this->getFunctionMock(__NAMESPACE__, 'add_settings_error');
-        $add_settings_error_mock->expects($this->once())
-                                ->with(
-                                    $this->equalTo('my_email_id'),
-                                    $this->equalTo('invalid_my_email_id'),
-                                    $this->equalTo($error_message)
-                                );
+        $errorMessage = 'Sorry, that isn&#8217;t a valid email address. ';
+        $errorMessage .= 'Email addresses look like <code>username@example.com</code>.';
 
         Sanitizer::sanitizeEmail('invalid_email@gmail', 'my_email_id');
+
+        $this->addSettingsError->verifyInvokedMultipleTimes(1);
+        $this->addSettingsError->verifyInvokedOnce([ 'my_email_id', 'invalid_my_email_id', $errorMessage ]);
     }
 
     /**
@@ -63,15 +62,15 @@ class SanitizerTest extends \Codeception\Test\Unit
      */
     public function testSanitizeValidCheckbox()
     {
-        $valid_inputs = [
+        $validInputs = [
             true,
             '1',
             1,
         ];
 
-        foreach ($valid_inputs as $valid_input) {
-            $actual = Sanitizer::sanitizeCheckbox($valid_input);
-            $this->assertSame('1', $actual, "$valid_input should be sanitized to '1'");
+        foreach ($validInputs as $validInput) {
+            $actual = Sanitizer::sanitizeCheckbox($validInput);
+            $this->assertSame('1', $actual, "$validInput should be sanitized to '1'");
         }
     }
 
@@ -95,7 +94,6 @@ class SanitizerTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        PHPMock::defineFunctionMock(__NAMESPACE__, 'add_settings_error');
-        parent::_before();
+        $this->addSettingsError = Test::func(__NAMESPACE__, 'add_settings_error', true);
     }
 }

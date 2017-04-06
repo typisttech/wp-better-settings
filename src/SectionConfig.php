@@ -73,16 +73,16 @@ class SectionConfig extends Config
     {
         $fields = $this->getKey('fields');
         if (! is_array($fields)) {
-            $error_message = 'Fields in class ' . __CLASS__ . ' must be an array.';
+            $error_message = 'Fields in class ' . __CLASS__ . ' must be FieldConfig[]';
             throw new UnexpectedValueException($error_message);
         }
 
-        array_walk($fields, function ($field) {
+        foreach ($fields as $field) {
             if (! $field instanceof FieldConfig) {
                 $error_message = 'Field items in class ' . __CLASS__ . ' must be instances of FieldConfig.';
                 throw new UnexpectedValueException($error_message);
             }
-        });
+        }
     }
 
     /**

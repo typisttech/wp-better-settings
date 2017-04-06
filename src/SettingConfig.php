@@ -133,22 +133,22 @@ class SettingConfig extends Config
      * @since  0.5.0
      * @access private
      * @return void
-     * @throws UnexpectedValueException If fields is not Field_Config[].
+     * @throws UnexpectedValueException If fields is not SectionConfig[].
      */
     private function validateSections()
     {
         $sections = $this->getKey('sections');
         if (! is_array($sections)) {
-            $errorMessage = 'Sections in class ' . __CLASS__ . ' must be an array.';
+            $errorMessage = 'Sections in class ' . __CLASS__ . ' must be SectionConfig[]';
             throw new UnexpectedValueException($errorMessage);
         }
 
-        array_walk($sections, function ($section) {
+        foreach ($sections as $section) {
             if (! $section instanceof SectionConfig) {
-                $errorMessage = 'Section items in class ' . __CLASS__ . ' must be instances of Section_Config.';
+                $errorMessage = 'Section items in class ' . __CLASS__ . ' must be instances of SectionConfig.';
                 throw new UnexpectedValueException($errorMessage);
             }
-        });
+        }
     }
 
     /**

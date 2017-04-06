@@ -3,15 +3,13 @@
 namespace TypistTech\WPBetterSettings;
 
 use ArrayObject;
-use phpmock\phpunit\PHPMock;
+use AspectMock\Test;
 
 /**
  * @coversDefaultClass \TypistTech\WPBetterSettings\MenuPages
  */
 class MenuPagesTest extends \Codeception\Test\Unit
 {
-    use PHPMock;
-
     /**
      * @covers ::adminMenu
      */
@@ -42,13 +40,11 @@ class MenuPagesTest extends \Codeception\Test\Unit
             $submenu3,
         ];
 
-        $arrayWalk = $this->getFunctionMock(__NAMESPACE__, 'array_walk');
-        $arrayWalk->expects($this->once())
-                  ->with(
-                      $this->identicalTo($expectedOrder),
-                      $this->identicalTo([ $menuPage, 'addMenuPage' ])
-                  );
+        $arrayWalk = Test::func(__NAMESPACE__, 'array_walk', true);
 
         $menuPage->adminMenu();
+
+        $arrayWalk->verifyInvokedMultipleTimes(1);
+        $arrayWalk->verifyInvokedOnce([ $expectedOrder, [ $menuPage, 'addMenuPage' ] ]);
     }
 }

@@ -1,6 +1,8 @@
 <?php use TypistTech\WPBetterSettings\AcceptanceTester;
 
 $I = new AcceptanceTester($scenario);
+$I->wantToTest('checkbox fields');
+
 $I->amOnWPBSOptionPage();
 
 $I->wantToTest('two checkbox fields exist');

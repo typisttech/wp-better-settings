@@ -30,7 +30,7 @@ class SanitizerTest extends \Codeception\Test\Unit
 
         foreach ($invalidInputs as $invalidInput) {
             $actual = Sanitizer::sanitizeCheckbox($invalidInput);
-            $this->assertSame('', $actual, "$invalidInput should be sanitized to empty string");
+            $this->assertSame('', $actual, $invalidInput . ' should be sanitized to empty string');
         }
     }
 
@@ -70,7 +70,7 @@ class SanitizerTest extends \Codeception\Test\Unit
 
         foreach ($validInputs as $validInput) {
             $actual = Sanitizer::sanitizeCheckbox($validInput);
-            $this->assertSame('1', $actual, "$validInput should be sanitized to '1'");
+            $this->assertSame('1', $actual, $validInput . " should be sanitized to '1'");
         }
     }
 

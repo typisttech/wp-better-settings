@@ -8,6 +8,6 @@ $kernel = Kernel::getInstance();
 $kernel->init([
     'debug'        => true,
     'includePaths' => [
-        codecept_root_dir('src/')
+        codecept_root_dir('src/'),
     ],
 ]);

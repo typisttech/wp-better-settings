@@ -1,6 +1,8 @@
 <?php use TypistTech\WPBetterSettings\AcceptanceTester;
 
 $I = new AcceptanceTester($scenario);
+$I->wantToTest('textarea fields');
+
 $I->amOnWPBSOptionPage();
 
 $I->wantToTest('two textarea fields exist');

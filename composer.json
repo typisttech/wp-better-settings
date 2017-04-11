@@ -63,11 +63,9 @@
             "doctoc README.md",
             "github_changelog_generator --no-verbose"
         ],
-        "test": [
-            "@test-unit",
-            "@test-acceptance"
-        ],
+        "test": "codecept run",
         "test-acceptance": "codecept run acceptance",
+        "test-functional": "codecept run functional",
         "test-unit": "codecept run unit",
         "test-with-coverage": [
             "codecept run unit --coverage --coverage-xml --coverage-html",

@@ -19,6 +19,11 @@ coverage:
         - src/partials/*
 modules:
     config:
+        WordPress:
+            depends: WPDb
+            wpRootFolder: /tmp/wordpress
+            adminUsername: 'admin'
+            adminPassword: 'password'
         WPDb:
             dsn: 'mysql:host=127.0.0.1;dbname=wordpress'
             user: root

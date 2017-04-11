@@ -2,6 +2,8 @@
 
 namespace TypistTech\WPBetterSettings;
 
+use AspectMock\Test;
+
 /**
  * @coversDefaultClass \TypistTech\WPBetterSettings\OptionStore
  */
@@ -58,26 +60,22 @@ class OptionStoreTest extends \Codeception\Test\Unit
         $this->assertFalse($actual);
     }
 
-    protected function setUp()
+    protected function _before()
     {
-        parent::setUp();
-
-        $optionArray  = [
-            'my_text'     => 'long long text.',
-            'my_checkbox' => '1',
-        ];
-        $optionString = 'i live in wp_option';
-        update_option('my_option_array', $optionArray);
-        update_option('my_option_string', $optionString);
+        Test::func(__NAMESPACE__, 'get_option', function (string $key) {
+            switch ($key) {
+                case 'my_option_array':
+                    return [
+                        'my_text'     => 'long long text.',
+                        'my_checkbox' => '1',
+                    ];
+                case 'my_option_string':
+                    return 'i live in wp_option';
+                default:
+                    return false;
+            }
+        });
 
         $this->optionStore = new OptionStore;
-    }
-
-    protected function tearDown()
-    {
-        delete_option('my_option_array');
-        delete_option('my_option_string');
-
-        parent::tearDown();
     }
 }

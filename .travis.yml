@@ -77,6 +77,7 @@ script:
   - if [[ "$WITH_COVERAGE" == "true" ]]; then vendor/bin/codecept run unit --coverage --coverage-xml; fi
   - if [[ "$WITH_COVERAGE" != "true" ]]; then vendor/bin/codecept run unit; fi
 
+  - vendor/bin/codecept run functional
   - vendor/bin/codecept run acceptance
 
 after_script:

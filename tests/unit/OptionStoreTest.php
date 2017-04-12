@@ -12,9 +12,26 @@ use AspectMock\Test;
 class OptionStoreTest extends \Codeception\Test\Unit
 {
     /**
+     * @var \AspectMock\Proxy\FuncProxy
+     */
+    private $applyFilters;
+
+    /**
      * @var \TypistTech\WPBetterSettings\OptionStore
      */
     private $optionStore;
+
+    /**
+     * @covers \TypistTech\WPBetterSettings\OptionStore
+     */
+    public function testGetArrayElementFromFilter()
+    {
+        $actual = $this->optionStore->get('my_option_array', 'my_text_filter');
+
+        $this->assertSame('i am filtered text', $actual);
+        $this->applyFilters->verifyInvokedMultipleTimes(1);
+        $this->applyFilters->verifyInvokedOnce([ 'my_option_array_my_text_filter', false ]);
+    }
 
     /**
      * @covers \TypistTech\WPBetterSettings\OptionStore
@@ -32,6 +49,18 @@ class OptionStoreTest extends \Codeception\Test\Unit
     {
         $actual = $this->optionStore->get('my_option_array', 'my_checked_checkbox_constant');
         $this->assertTrue($actual);
+    }
+
+    /**
+     * @covers \TypistTech\WPBetterSettings\OptionStore
+     */
+    public function testGetFromFilter()
+    {
+        $actual = $this->optionStore->get('my_option_string_filter');
+
+        $this->assertSame('i am filtered string', $actual);
+        $this->applyFilters->verifyInvokedMultipleTimes(1);
+        $this->applyFilters->verifyInvokedOnce([ 'my_option_string_filter', false ]);
     }
 
     /**
@@ -140,6 +169,17 @@ class OptionStoreTest extends \Codeception\Test\Unit
             }
 
             return false;
+        });
+
+        $this->applyFilters = Test::func(__NAMESPACE__, 'apply_filters', function (string $tag, $value) {
+            switch ($tag) {
+                case 'my_option_string_filter':
+                    return 'i am filtered string';
+                case 'my_option_array_my_text_filter':
+                    return 'i am filtered text';
+            }
+
+            return $value;
         });
 
         $this->optionStore = new OptionStore;

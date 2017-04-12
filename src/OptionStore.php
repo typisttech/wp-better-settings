@@ -41,14 +41,15 @@ class OptionStore implements OptionStoreInterface
     public function get(string $optionName, string $key = null)
     {
         $constantName = $this->constantNameFor($optionName, $key);
-
         if (defined($constantName)) {
-            return constant($constantName);
+            $value = constant($constantName);
+        } else {
+            $value = $this->getFromDatabase($optionName, $key);
         }
 
-        return $this->getFromDatabase($optionName, $key);
+        $filterTag = $this->filterTagFor($optionName, $key);
 
-        // TODO: Add filters and hooks.
+        return apply_filters($filterTag, $value);
     }
 
     /**
@@ -87,5 +88,22 @@ class OptionStore implements OptionStoreInterface
         }
 
         return $option;
+    }
+
+    /**
+     * Normalize option name and key to snake_case filter tag.
+     *
+     * @param string $optionName  Name of option to retrieve.
+     *                            Expected to not be SQL-escaped.
+     * @param string $key         Optional. Array key of the option element.
+     *                            Also, the field ID.
+     *
+     * @return string
+     */
+    private function filterTagFor(string $optionName, string $key = null): string
+    {
+        $name = empty($key) ? $optionName : $optionName . '_' . $key;
+
+        return strtolower($name);
     }
 }

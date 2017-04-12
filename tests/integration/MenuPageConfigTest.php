@@ -5,7 +5,7 @@ namespace TypistTech\WPBetterSettings;
 /**
  * @coversDefaultClass \TypistTech\WPBetterSettings\MenuPageConfig
  */
-class MenuPageConfigTest extends \Codeception\Test\Unit
+class MenuPageConfigTest extends \Codeception\TestCase\WPTestCase
 {
     /**
      * @covers ::url
@@ -14,7 +14,7 @@ class MenuPageConfigTest extends \Codeception\Test\Unit
     {
         $config   = new MenuPageConfig([
             'parent_slug' => 'father',
-            'menu_slug'   => 'son',
+            'menu_slug' => 'son',
         ]);
         $expected = admin_url('admin.php?page=son');
         $this->assertSame($expected, $config->url());

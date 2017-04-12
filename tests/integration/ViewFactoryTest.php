@@ -7,9 +7,8 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \TypistTech\WPBetterSettings\ViewFactory
  */
-class ViewFactoryTest extends \Codeception\Test\Unit
+class ViewFactoryTest extends \Codeception\TestCase\WPTestCase
 {
-
     /**
      * @covers ::build
      */

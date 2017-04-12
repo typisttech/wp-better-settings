@@ -7,7 +7,7 @@ use ArrayObject;
 /**
  * @coversDefaultClass \TypistTech\WPBetterSettings\View
  */
-class ViewTest extends \Codeception\Test\Unit
+class ViewTest extends \Codeception\TestCase\WPTestCase
 {
     /**
      * @covers ::echoKses

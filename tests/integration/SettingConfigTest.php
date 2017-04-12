@@ -8,7 +8,7 @@ use UnexpectedValueException;
 /**
  * @coversDefaultClass \TypistTech\WPBetterSettings\SettingConfig
  */
-class SettingConfigTest extends \Codeception\Test\Unit
+class SettingConfigTest extends \Codeception\TestCase\WPTestCase
 {
     /**
      * @var FieldConfig
@@ -51,18 +51,18 @@ class SettingConfigTest extends \Codeception\Test\Unit
     public function testCallFieldSanitizeFunUnsetEmptyInputs()
     {
         $input = [
-            'field-false'        => false,
-            'field-empty-array'  => [],
+            'field-false' => false,
+            'field-empty-array' => [],
             'field-empty-string' => '',
-            'field-null'         => null,
-            'field-one'          => '1',
-            'field-something'    => 'something',
-            'field-zero'         => 0,
-            'field-zero-string'  => '0',
+            'field-null' => null,
+            'field-one' => '1',
+            'field-something' => 'something',
+            'field-zero' => 0,
+            'field-zero-string' => '0',
         ];
 
         $expected = [
-            'field-one'       => '1',
+            'field-one' => '1',
             'field-something' => 'something',
         ];
 
@@ -80,12 +80,12 @@ class SettingConfigTest extends \Codeception\Test\Unit
         ]);
 
         $sanitizableField = new FieldConfig([
-            'id'                => 'sanitizable_field',
+            'id' => 'sanitizable_field',
             'sanitize_callback' => [ Sanitizer::class, 'sanitizeEmail' ],
         ]);
 
         $section       = new SectionConfig([
-            'id'     => 'my_section',
+            'id' => 'my_section',
             'fields' => [
                 $this->field21,
                 $sanitizableField,
@@ -131,7 +131,7 @@ class SettingConfigTest extends \Codeception\Test\Unit
     public function testGetFieldsFlattenToFieldLevel()
     {
         $multidimensionalField = new FieldConfig([
-            'id'   => 'my_field_2_3',
+            'id' => 'my_field_2_3',
             'some' => [
                 'multi' => [
                     'dimensional' => [
@@ -141,7 +141,7 @@ class SettingConfigTest extends \Codeception\Test\Unit
             ],
         ]);
         $section2              = new SectionConfig([
-            'id'     => 'my_section_2',
+            'id' => 'my_section_2',
             'fields' => [
                 $this->field21,
                 $this->field22,
@@ -228,14 +228,14 @@ class SettingConfigTest extends \Codeception\Test\Unit
             ]
         );
         $this->section2      = new SectionConfig([
-            'id'     => 'my_section_2',
+            'id' => 'my_section_2',
             'fields' => [
                 $this->field21,
                 $this->field22,
             ],
         ]);
         $this->section1      = new SectionConfig([
-            'id'     => 'my_section_1',
+            'id' => 'my_section_1',
             'fields' => [
                 $this->field11,
                 $this->field12,
@@ -243,8 +243,8 @@ class SettingConfigTest extends \Codeception\Test\Unit
         ]);
         $this->settingConfig = new SettingConfig([
             'option_group' => 'my_option_group',
-            'option_name'  => 'my_option_name',
-            'sections'     => [
+            'option_name' => 'my_option_name',
+            'sections' => [
                 $this->section1,
                 $this->section2,
             ],

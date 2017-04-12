@@ -5,7 +5,7 @@ namespace TypistTech\WPBetterSettings;
 /**
  * @coversDefaultClass \TypistTech\WPBetterSettings\ViewEchoTrait
  */
-class ViewEchoTraitTest extends \Codeception\Test\Unit
+class ViewEchoTraitTest extends \Codeception\TestCase\WPTestCase
 {
     /**
      * @covers ::echoView

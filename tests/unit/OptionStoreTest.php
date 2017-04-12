@@ -159,9 +159,9 @@ class OptionStoreTest extends \Codeception\Test\Unit
             switch ($key) {
                 case 'my_option_array':
                     return [
-                        'my_text'                        => 'long long text.',
-                        'my_text_constant'               => 'i am not constant',
-                        'my_checkbox'                    => true,
+                        'my_text' => 'long long text.',
+                        'my_text_constant' => 'i am not constant',
+                        'my_checkbox' => true,
                         'my_unchecked_checkbox_constant' => true,
                     ];
                 case 'my_option_string':

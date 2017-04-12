@@ -15,12 +15,11 @@ namespace TypistTech\WPBetterSettings;
  * @method void lookForwardTo($achieveValue)
  * @method void comment($description)
  * @method \Codeception\Lib\Friend haveFriend($name, $actorClass = null)
- *
  * @SuppressWarnings(PHPMD)
  */
-class UnitTester extends \Codeception\Actor
+class IntegrationTester extends \Codeception\Actor
 {
-    use _generated\UnitTesterActions;
+    use _generated\IntegrationTesterActions;
     /**
      * Define custom actions here
      */

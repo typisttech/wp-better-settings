@@ -7,7 +7,7 @@ use UnexpectedValueException;
 /**
  * @coversDefaultClass \TypistTech\WPBetterSettings\SectionConfig
  */
-class SectionConfigTest extends \Codeception\Test\Unit
+class SectionConfigTest extends \Codeception\TestCase\WPTestCase
 {
     /**
      * @var FieldConfig
@@ -66,10 +66,8 @@ class SectionConfigTest extends \Codeception\Test\Unit
         $sectionConfig->getFields();
     }
 
-    protected function setUp()
+    protected function _before()
     {
-        parent::setUp();
-
         $this->fieldConfig1  = new FieldConfig([
             'id' => 'my_field_1',
         ]);
@@ -77,7 +75,7 @@ class SectionConfigTest extends \Codeception\Test\Unit
             'id' => 'my_field_2',
         ]);
         $this->sectionConfig = new SectionConfig([
-            'id'     => 'my_section',
+            'id' => 'my_section',
             'fields' => [
                 $this->fieldConfig1,
                 $this->fieldConfig2,

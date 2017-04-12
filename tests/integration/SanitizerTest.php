@@ -7,7 +7,7 @@ use AspectMock\Test;
 /**
  * @coversDefaultClass \TypistTech\WPBetterSettings\Sanitizer
  */
-class SanitizerTest extends \Codeception\Test\Unit
+class SanitizerTest extends \Codeception\TestCase\WPTestCase
 {
     /**
      * @var \AspectMock\Proxy\FuncProxy

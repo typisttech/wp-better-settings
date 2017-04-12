@@ -47,7 +47,7 @@ class FieldConfig extends Config
     protected function defaultConfig(): array
     {
         return [
-            'callback'          => [ $this, 'echoView' ],
+            'callback' => [ $this, 'echoView' ],
             'sanitize_callback' => 'sanitize_text_field',
         ];
     }

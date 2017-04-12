@@ -103,8 +103,8 @@ class MenuPageConfig extends Config
     {
         return [
             'capability' => 'manage_options',
-            'view'       => ViewFactory::build('tabbed-options-page'),
-            'function'   => [ $this, 'echoView' ],
+            'view' => ViewFactory::build('tabbed-options-page'),
+            'function' => [ $this, 'echoView' ],
         ];
     }
 }

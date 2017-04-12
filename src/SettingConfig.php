@@ -160,9 +160,9 @@ class SettingConfig extends Config
     protected function defaultConfig(): array
     {
         return [
-            'view'     => ViewFactory::build('section-description'),
+            'view' => ViewFactory::build('section-description'),
             'function' => [ $this, 'echoView' ],
-            'args'     => [
+            'args' => [
                 'sanitize_callback' => [ $this, 'callFieldSanitizeFun' ],
             ],
         ];

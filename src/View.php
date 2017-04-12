@@ -75,27 +75,27 @@ class View implements ViewInterface
     private function defaultAllowedTags(): array
     {
         $formTags = [
-            'form'     => [
-                'id'     => true,
-                'class'  => true,
+            'form' => [
+                'id' => true,
+                'class' => true,
                 'action' => true,
                 'method' => true,
             ],
-            'input'    => [
-                'id'               => true,
-                'class'            => true,
-                'type'             => true,
-                'name'             => true,
-                'value'            => true,
-                'checked'          => true,
-                'disabled'         => true,
+            'input' => [
+                'id' => true,
+                'class' => true,
+                'type' => true,
+                'name' => true,
+                'value' => true,
+                'checked' => true,
+                'disabled' => true,
                 'aria-describedby' => true,
             ],
             'textarea' => [
                 'aria-describedby' => true,
-                'col'              => true,
-                'disabled'         => true,
-                'row'              => true,
+                'col' => true,
+                'disabled' => true,
+                'row' => true,
             ],
         ];
 

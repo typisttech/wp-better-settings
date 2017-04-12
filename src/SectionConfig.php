@@ -94,7 +94,7 @@ class SectionConfig extends Config
     protected function defaultConfig(): array
     {
         return [
-            'view'     => ViewFactory::build('section-description'),
+            'view' => ViewFactory::build('section-description'),
             'callback' => [ $this, 'echoView' ],
         ];
     }

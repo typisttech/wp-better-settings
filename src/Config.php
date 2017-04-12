@@ -5,9 +5,11 @@
  * A simplified OOP implementation of the WP Settings API.
  *
  * @package   TypistTech\WPBetterSettings
+ *
  * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
+ *
  * @see       https://www.typist.tech/projects/wp-better-settings
  * @see       https://github.com/TypistTech/wp-better-settings
  */
@@ -22,15 +24,11 @@ use ArrayObject;
  * Class Config.
  *
  * Config details for a settings field.
- *
- * @since 0.1.0
  */
 class Config extends ArrayObject
 {
     /**
      * Config constructor.
-     *
-     * @since 0.1.0
      *
      * @param array $config Custom config array.
      */
@@ -50,7 +48,6 @@ class Config extends ArrayObject
      *
      * To be overridden by subclass.
      *
-     * @since 0.1.0
      * @return array
      */
     protected function defaultConfig(): array
@@ -60,8 +57,6 @@ class Config extends ArrayObject
 
     /**
      * Get the value of a specific key.
-     *
-     * @since 0.1.0
      *
      * @param string $key The key to get the value for.
      *
@@ -76,7 +71,6 @@ class Config extends ArrayObject
     /**
      * Get an array with all the keys.
      *
-     * @since 0.1.0
      * @return array Array of config keys.
      */
     public function getKeys(): array
@@ -86,8 +80,6 @@ class Config extends ArrayObject
 
     /**
      * Check whether the Config has a specific key.
-     *
-     * @since 0.1.0
      *
      * @param string $key The key to check the existence for.
      *

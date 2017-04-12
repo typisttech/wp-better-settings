@@ -16,7 +16,7 @@ class ViewFactoryTest extends \Codeception\TestCase\WPTestCase
      */
     public function testBuildViewFilename()
     {
-        $actual   = ViewFactory::build('section-description');
+        $actual = ViewFactory::build('section-description');
         $expected = new View(codecept_root_dir() . 'src/partials/section-description.php');
         $this->assertEquals($expected, $actual);
     }

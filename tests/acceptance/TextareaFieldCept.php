@@ -13,12 +13,12 @@ $I->wantToTest('two textarea fields exist');
 $I->seeNumberOfElements('textarea', 2);
 
 $I->wantToTest('textarea field name attribute');
-$actualNames   = $I->grabMultiple('textarea', 'name');
+$actualNames = $I->grabMultiple('textarea', 'name');
 $expectedNames = [ 'wpbs_option_1[my_textarea]', 'wpbs_option_1[my_disabled_textarea]' ];
 $I->assertSame($expectedNames, $actualNames);
 
 $I->wantToTest('textarea field id attribute');
-$actualIds   = $I->grabMultiple('textarea', 'id');
+$actualIds = $I->grabMultiple('textarea', 'id');
 $expectedIds = [ 'my_textarea', 'my_disabled_textarea' ];
 $I->assertSame($expectedIds, $actualIds);
 

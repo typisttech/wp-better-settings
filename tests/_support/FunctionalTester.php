@@ -26,10 +26,7 @@ class FunctionalTester extends \Codeception\Actor
 
     public function amOnWPBSOptionPage()
     {
-        $I = $this;
-
-        $I->loginAsAdmin();
-
-        $I->amOnAdminPage('/admin.php?page=wpbs_1');
+        $this->loginAsAdmin();
+        $this->amOnAdminPage('/admin.php?page=wpbs_1');
     }
 }

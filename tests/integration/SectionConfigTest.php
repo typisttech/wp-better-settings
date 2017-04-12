@@ -31,7 +31,7 @@ class SectionConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testGetFields()
     {
-        $actual   = $this->sectionConfig->getFields();
+        $actual = $this->sectionConfig->getFields();
         $expected = [ $this->fieldConfig1, $this->fieldConfig2 ];
         $this->assertSame($expected, $actual);
     }
@@ -70,10 +70,10 @@ class SectionConfigTest extends \Codeception\TestCase\WPTestCase
 
     protected function _before()
     {
-        $this->fieldConfig1  = new FieldConfig([
+        $this->fieldConfig1 = new FieldConfig([
             'id' => 'my_field_1',
         ]);
-        $this->fieldConfig2  = new FieldConfig([
+        $this->fieldConfig2 = new FieldConfig([
             'id' => 'my_field_2',
         ]);
         $this->sectionConfig = new SectionConfig([

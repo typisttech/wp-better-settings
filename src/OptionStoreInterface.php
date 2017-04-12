@@ -5,9 +5,11 @@
  * A simplified OOP implementation of the WP Settings API.
  *
  * @package   TypistTech\WPBetterSettings
+ *
  * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
+ *
  * @see       https://www.typist.tech/projects/wp-better-settings
  * @see       https://github.com/TypistTech/wp-better-settings
  */
@@ -28,10 +30,10 @@ interface OptionStoreInterface
     /**
      * Get an option value.
      *
-     * @param string $optionName  Name of option to retrieve.
-     *                            Expected to not be SQL-escaped.
-     * @param string $key         Optional. Array key of the option element.
-     *                            Also, the field ID.
+     * @param string $optionName Name of option to retrieve.
+     *                           Expected to not be SQL-escaped.
+     * @param string $key        Optional. Array key of the option element.
+     *                           Also, the field ID.
      *
      * @return mixed
      */

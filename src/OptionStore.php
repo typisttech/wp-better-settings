@@ -5,9 +5,11 @@
  * A simplified OOP implementation of the WP Settings API.
  *
  * @package   TypistTech\WPBetterSettings
+ *
  * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
+ *
  * @see       https://www.typist.tech/projects/wp-better-settings
  * @see       https://github.com/TypistTech/wp-better-settings
  */
@@ -31,10 +33,10 @@ class OptionStore implements OptionStoreInterface
      * Wrapper around the WordPress function `get_option`.
      * Can be overridden by constant `OPTION_NAME_KEY`.
      *
-     * @param string $optionName  Name of option to retrieve.
-     *                            Expected to not be SQL-escaped.
-     * @param string $key         Optional. Array key of the option element.
-     *                            Also, the field ID.
+     * @param string $optionName Name of option to retrieve.
+     *                           Expected to not be SQL-escaped.
+     * @param string $key        Optional. Array key of the option element.
+     *                           Also, the field ID.
      *
      * @return mixed
      */
@@ -55,10 +57,10 @@ class OptionStore implements OptionStoreInterface
     /**
      * Normalize option name and key to SCREAMING_SNAKE_CASE constant name.
      *
-     * @param string $optionName  Name of option to retrieve.
-     *                            Expected to not be SQL-escaped.
-     * @param string $key         Optional. Array key of the option element.
-     *                            Also, the field ID.
+     * @param string $optionName Name of option to retrieve.
+     *                           Expected to not be SQL-escaped.
+     * @param string $key        Optional. Array key of the option element.
+     *                           Also, the field ID.
      *
      * @return string
      */
@@ -72,10 +74,10 @@ class OptionStore implements OptionStoreInterface
     /**
      * Get option from database.
      *
-     * @param string $optionName  Name of option to retrieve.
-     *                            Expected to not be SQL-escaped.
-     * @param string $key         Optional. Array key of the option element.
-     *                            Also, the field ID.
+     * @param string $optionName Name of option to retrieve.
+     *                           Expected to not be SQL-escaped.
+     * @param string $key        Optional. Array key of the option element.
+     *                           Also, the field ID.
      *
      * @return mixed
      */
@@ -93,10 +95,10 @@ class OptionStore implements OptionStoreInterface
     /**
      * Normalize option name and key to snake_case filter tag.
      *
-     * @param string $optionName  Name of option to retrieve.
-     *                            Expected to not be SQL-escaped.
-     * @param string $key         Optional. Array key of the option element.
-     *                            Also, the field ID.
+     * @param string $optionName Name of option to retrieve.
+     *                           Expected to not be SQL-escaped.
+     * @param string $key        Optional. Array key of the option element.
+     *                           Also, the field ID.
      *
      * @return string
      */

@@ -30,7 +30,7 @@ class ConfigTest extends \Codeception\Test\Unit
      */
     public function testGetKeys()
     {
-        $config   = new Config([
+        $config = new Config([
             'a' => 'abc',
             'z' => 'xyz',
         ]);
@@ -43,7 +43,7 @@ class ConfigTest extends \Codeception\Test\Unit
      */
     public function testGetKeysEmpty()
     {
-        $config   = new Config;
+        $config = new Config;
         $expected = [];
         $this->assertSame($expected, $config->getKeys());
     }
@@ -53,7 +53,7 @@ class ConfigTest extends \Codeception\Test\Unit
      */
     public function testGetKeysSingleElement()
     {
-        $config   = new Config([
+        $config = new Config([
             'a' => 'abc',
         ]);
         $expected = [ 'a' ];
@@ -91,7 +91,7 @@ class ConfigTest extends \Codeception\Test\Unit
             'a' => 'abc',
             'z' => 'xyz',
         ]);
-        $this->assertAttributeEquals('abc', 'a', $config);
-        $this->assertAttributeEquals('xyz', 'z', $config);
+        $this->assertAttributeSame('abc', 'a', $config);
+        $this->assertAttributeSame('xyz', 'z', $config);
     }
 }

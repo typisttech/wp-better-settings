@@ -14,7 +14,7 @@ class ViewEchoTraitTest extends \Codeception\TestCase\WPTestCase
      */
     public function testEchoInvalidView()
     {
-        $mock       = $this->getMockForTrait(ViewEchoTrait::class);
+        $mock = $this->getMockForTrait(ViewEchoTrait::class);
         $mock->desc = '<p>Some text</p>';
         $mock->view = 1234;
 
@@ -28,7 +28,7 @@ class ViewEchoTraitTest extends \Codeception\TestCase\WPTestCase
      */
     public function testEchoView()
     {
-        $mock       = $this->getMockForTrait(ViewEchoTrait::class);
+        $mock = $this->getMockForTrait(ViewEchoTrait::class);
         $mock->desc = '<p>Some text</p>';
         $mock->view = new View(codecept_root_dir() . 'src/partials/section-description.php');
 
@@ -41,7 +41,7 @@ class ViewEchoTraitTest extends \Codeception\TestCase\WPTestCase
      */
     public function testEchoViewFilePathAsView()
     {
-        $mock       = $this->getMockForTrait(ViewEchoTrait::class);
+        $mock = $this->getMockForTrait(ViewEchoTrait::class);
         $mock->desc = '<p>Some text</p>';
         $mock->view = codecept_root_dir() . 'src/partials/section-description.php';
 

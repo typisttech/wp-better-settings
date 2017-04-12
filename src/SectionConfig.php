@@ -5,9 +5,11 @@
  * A simplified OOP implementation of the WP Settings API.
  *
  * @package   TypistTech\WPBetterSettings
+ *
  * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
+ *
  * @see       https://www.typist.tech/projects/wp-better-settings
  * @see       https://github.com/TypistTech/wp-better-settings
  */
@@ -40,8 +42,6 @@ use UnexpectedValueException;
  *
  * 'fields' (FieldConfig[])     =>  Array of FieldConfig to attach to this
  *                                  section.
- *
- * @since 0.1.0
  */
 class SectionConfig extends Config
 {
@@ -50,9 +50,9 @@ class SectionConfig extends Config
     /**
      * Fields getter.
      *
-     * @since 0.5.0
-     * @return FieldConfig[]
      * @throws UnexpectedValueException If fields is not Field_Config[].
+     *
+     * @return FieldConfig[]
      */
     public function getFields(): array
     {
@@ -64,10 +64,9 @@ class SectionConfig extends Config
     /**
      * Check the fields.
      *
-     * @since  0.5.0
-     * @access private
-     * @return void
      * @throws UnexpectedValueException If fields is not FieldConfig[].
+     *
+     * @return void
      */
     private function validateFields()
     {
@@ -88,7 +87,6 @@ class SectionConfig extends Config
     /**
      * Default config of SectionConfig.
      *
-     * @since 0.1.0
      * @return array
      */
     protected function defaultConfig(): array

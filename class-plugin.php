@@ -5,9 +5,11 @@
  * A simplified OOP implementation of the WP Settings API.
  *
  * @package   TypistTech\WPBetterSettings
+ *
  * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
+ *
  * @see       https://www.typist.tech/projects/wp-better-settings
  * @see       https://github.com/TypistTech/wp-better-settings
  */
@@ -53,7 +55,7 @@ class Plugin
     public function initSettingsPage()
     {
         $menuPages = new MenuPages($this->pageConfigs());
-        $settings  = new Settings($this->settingsConfigs(), $this->optionStore);
+        $settings = new Settings($this->settingsConfigs(), $this->optionStore);
 
         // Register the settings page with WordPress.
         add_action('admin_menu', [ $menuPages, 'adminMenu' ]);

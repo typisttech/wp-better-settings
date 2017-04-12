@@ -15,7 +15,7 @@ class FieldConfigTest extends \Codeception\Test\Unit
     public function testDefaultSanitizeCallback()
     {
         $config = new FieldConfig;
-        $this->assertAttributeEquals('sanitize_text_field', 'sanitize_callback', $config);
+        $this->assertAttributeSame('sanitize_text_field', 'sanitize_callback', $config);
     }
 
     /**

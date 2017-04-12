@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TypistTech\WPBetterSettings;
 
 use AspectMock\Test;
 
 /**
- * @todo declare(strict_types=1);
- *
  * @coversDefaultClass \TypistTech\WPBetterSettings\Sanitizer
  */
 class SanitizerTest extends \Codeception\TestCase\WPTestCase

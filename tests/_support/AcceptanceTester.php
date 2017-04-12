@@ -24,24 +24,14 @@ class AcceptanceTester extends \Codeception\Actor
 {
     use _generated\AcceptanceTesterActions;
 
-    /**
-     * Define custom actions here
-     */
-
-    /**
-     * @since 0.4.0
-     * @return void
-     */
     public function amOnWPBSOptionPage()
     {
-        $I = $this;
+        $this->loginAsAdmin();
+        $this->waitForText('Dashboard', 10, 'h1');
+        $this->waitForElementVisible("a[href$='admin.php?page=wpbs_1']", 10);
 
-        $I->loginAsAdmin();
-        $I->waitForText('Dashboard', 10, 'h1');
-        $I->waitForElementVisible("a[href$='admin.php?page=wpbs_1']", 10);
-
-        $I->click('WP Better Settings');
-        $I->click('WP Better Settings');
-        $I->waitForText('WP Better Settings', 10, 'h1');
+        $this->click('WP Better Settings');
+        $this->click('WP Better Settings');
+        $this->waitForText('WP Better Settings', 10, 'h1');
     }
 }

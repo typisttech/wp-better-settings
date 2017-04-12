@@ -5,9 +5,11 @@
  * A simplified OOP implementation of the WP Settings API.
  *
  * @package   TypistTech\WPBetterSettings
+ *
  * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
+ *
  * @see       https://www.typist.tech/projects/wp-better-settings
  * @see       https://github.com/TypistTech/wp-better-settings
  */
@@ -22,15 +24,12 @@ use InvalidArgumentException;
  * Final class ViewFactory
  *
  * Factory for View objects.
- *
- * @since 0.1.0
  */
 final class ViewFactory
 {
     /**
      * Relative path to built-in view partials.
      *
-     * @since 0.1.0
      * @var array
      */
     const PARTIALS = [
@@ -54,14 +53,12 @@ final class ViewFactory
     /**
      * Built a View object for one of the built-in field types.
      *
-     * @since 0.1.0
-     *
      * @param string $type Type of the partial. Must be one of
      *                     the built-in partial.
      *
-     * @return View        View object for the partial.
-     *
      * @throws InvalidArgumentException If the partial is not supported.
+     *
+     * @return View View object for the partial.
      */
     public static function build(string $type): View
     {

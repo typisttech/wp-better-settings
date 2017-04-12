@@ -5,9 +5,11 @@
  * A simplified OOP implementation of the WP Settings API.
  *
  * @package   TypistTech\WPBetterSettings
+ *
  * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
+ *
  * @see       https://www.typist.tech/projects/wp-better-settings
  * @see       https://github.com/TypistTech/wp-better-settings
  */
@@ -53,8 +55,6 @@ namespace TypistTech\WPBetterSettings;
  *
  * 'parent_slug' (string) => The slug name for the parent menu (or the file
  *                           name of a standard WordPress admin page).
- *
- * @since 0.1.0
  */
 class MenuPageConfig extends Config
 {
@@ -62,8 +62,6 @@ class MenuPageConfig extends Config
 
     /**
      * Menu_Page_Config constructor.
-     *
-     * @since 0.1.0
      *
      * @param array $config Custom config array.
      */
@@ -81,8 +79,6 @@ class MenuPageConfig extends Config
     /**
      * Url of this menu page.
      *
-     * @since 0.3.0
-     *
      * @return string Admin URL link with menu slug appended.
      */
     public function url(): string
@@ -94,10 +90,9 @@ class MenuPageConfig extends Config
     /**
      * Default config of Menu_Page_Config.
      *
-     * @since 0.1.0
+     * @throws \InvalidArgumentException If the partial is not supported.
      *
      * @return array
-     * @throws \InvalidArgumentException If the partial is not supported.
      */
     protected function defaultConfig(): array
     {

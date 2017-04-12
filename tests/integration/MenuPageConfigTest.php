@@ -14,7 +14,7 @@ class MenuPageConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testCanReturnUrlWithParentSlug()
     {
-        $config   = new MenuPageConfig([
+        $config = new MenuPageConfig([
             'parent_slug' => 'father',
             'menu_slug' => 'son',
         ]);
@@ -27,7 +27,7 @@ class MenuPageConfigTest extends \Codeception\TestCase\WPTestCase
      */
     public function testCanReturnUrlWithoutParentSlug()
     {
-        $config   = new MenuPageConfig([
+        $config = new MenuPageConfig([
             'menu_slug' => 'me',
         ]);
         $expected = admin_url('admin.php?page=me');
@@ -40,7 +40,7 @@ class MenuPageConfigTest extends \Codeception\TestCase\WPTestCase
     public function testDefaultsFunctionNameToAddMenuPage()
     {
         $config = new MenuPageConfig;
-        $this->assertAttributeEquals('add_menu_page', 'function_name', $config);
+        $this->assertAttributeSame('add_menu_page', 'function_name', $config);
     }
 
     /**
@@ -52,7 +52,7 @@ class MenuPageConfigTest extends \Codeception\TestCase\WPTestCase
 
         $expected_view = ViewFactory::build('tabbed-options-page');
 
-        $this->assertAttributeEquals('manage_options', 'capability', $config);
+        $this->assertAttributeSame('manage_options', 'capability', $config);
         $this->assertAttributeEquals($expected_view, 'view', $config);
     }
 
@@ -73,6 +73,6 @@ class MenuPageConfigTest extends \Codeception\TestCase\WPTestCase
         $config = new MenuPageConfig([
             'parent_slug' => 'option.php',
         ]);
-        $this->assertAttributeEquals('add_submenu_page', 'function_name', $config);
+        $this->assertAttributeSame('add_submenu_page', 'function_name', $config);
     }
 }

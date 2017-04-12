@@ -1,4 +1,8 @@
-<?php use TypistTech\WPBetterSettings\AcceptanceTester;
+<?php
+
+declare(strict_types=1);
+
+use TypistTech\WPBetterSettings\AcceptanceTester;
 
 $I = new AcceptanceTester($scenario);
 $I->wantToTest('textarea fields');

@@ -1,4 +1,8 @@
-<?php use TypistTech\WPBetterSettings\FunctionalTester;
+<?php
+
+declare(strict_types=1);
+
+use TypistTech\WPBetterSettings\FunctionalTester;
 
 $I = new FunctionalTester($scenario);
 $I->wantToTest('option form fields are pre-populated database values');

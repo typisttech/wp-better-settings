@@ -74,11 +74,8 @@ install:
   - travis_retry composer install --prefer-dist --no-suggest
 
 script:
-  - if [[ "$WITH_COVERAGE" == "true" ]]; then vendor/bin/codecept run unit --coverage --coverage-xml; fi
-  - if [[ "$WITH_COVERAGE" != "true" ]]; then vendor/bin/codecept run unit; fi
-
-  - vendor/bin/codecept run functional
-  - vendor/bin/codecept run acceptance
+  - if [[ "$WITH_COVERAGE" == "true" ]]; then vendor/bin/codecept run --coverage --coverage-xml; fi
+  - if [[ "$WITH_COVERAGE" != "true" ]]; then vendor/bin/codecept run; fi
 
 after_script:
   - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-scrutinizer; fi

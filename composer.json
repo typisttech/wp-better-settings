@@ -48,12 +48,8 @@
             "composer install --no-dev --prefer-dist --no-suggest",
             "composer archive --format=zip --dir=release --file=wp-better-settings"
         ],
-        "check-style": [
-            "phpcs --standard=ruleset.xml --colors -p -s ."
-        ],
-        "fix-style": [
-            "phpcbf --standard=ruleset.xml -p --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 ."
-        ],
+        "check-style": "phpcs --standard=ruleset.xml --colors -p -s .",
+        "fix-style": "phpcbf --standard=ruleset.xml -p --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 .",
         "install-dev-extra": [
             "PhantomInstaller\\Installer::installPhantomJS",
             "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs"
@@ -67,23 +63,15 @@
         "test-acceptance": "codecept run acceptance",
         "test-functional": "codecept run functional",
         "test-unit": "codecept run unit",
-        "test-with-coverage": [
-            "codecept run unit --coverage --coverage-xml --coverage-html",
-            "@test-acceptance"
-        ]
+        "test-with-coverage": "codecept run --coverage --coverage-xml --coverage-html"
     },
     "extra": {
         "scripts-dev": {
-            "post-install-cmd": [
-                "@install-dev-extra"
-            ],
-            "post-update-cmd": [
-                "@install-dev-extra"
-            ]
+            "post-install-cmd": "@install-dev-extra",
+            "post-update-cmd": "@install-dev-extra"
         }
     },
     "config": {
-        "optimize-autoloader": true,
         "sort-packages": true
     },
     "archive": {

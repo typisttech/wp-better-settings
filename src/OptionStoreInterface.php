@@ -22,22 +22,18 @@ namespace TypistTech\WPBetterSettings;
  * This is a very basic adapter for the WordPress get_option()
  * function that can be configured to supply consistent default
  * values for particular options.
- *
- * @since 0.5.0
  */
 interface OptionStoreInterface
 {
     /**
      * Get an option value.
      *
-     * @since 0.5.0
-     *
      * @param string $optionName  Name of option to retrieve.
      *                            Expected to not be SQL-escaped.
-     * @param string $key         Array key of the option element.
+     * @param string $key         Optional. Array key of the option element.
      *                            Also, the field ID.
      *
      * @return mixed
      */
-    public function get(string $optionName, string $key);
+    public function get(string $optionName, string $key = null);
 }

@@ -22,34 +22,88 @@ namespace TypistTech\WPBetterSettings;
  * This is a very basic adapter for the WordPress get_option()
  * function that can be configured to supply consistent default
  * values for particular options.
- *
- * @since 0.5.0
  */
 class OptionStore implements OptionStoreInterface
 {
     /**
-     * Get an option value from database.
+     * Get an option value from constant or database.
      *
      * Wrapper around the WordPress function `get_option`.
-     *
-     * @since 0.5.0
+     * Can be overridden by constant `OPTION_NAME_KEY`.
      *
      * @param string $optionName  Name of option to retrieve.
      *                            Expected to not be SQL-escaped.
-     * @param string $key         Array key of the option element.
+     * @param string $key         Optional. Array key of the option element.
      *                            Also, the field ID.
      *
      * @return mixed
      */
-    public function get(string $optionName, string $key)
+    public function get(string $optionName, string $key = null)
     {
-        $option = get_option($optionName, []);
-
-        if (! is_array($option)) {
-            return $option;
+        $constantName = $this->constantNameFor($optionName, $key);
+        if (defined($constantName)) {
+            $value = constant($constantName);
+        } else {
+            $value = $this->getFromDatabase($optionName, $key);
         }
 
-        // TODO: Add filters and hooks.
-        return $option[ $key ] ?? false;
+        $filterTag = $this->filterTagFor($optionName, $key);
+
+        return apply_filters($filterTag, $value);
+    }
+
+    /**
+     * Normalize option name and key to SCREAMING_SNAKE_CASE constant name.
+     *
+     * @param string $optionName  Name of option to retrieve.
+     *                            Expected to not be SQL-escaped.
+     * @param string $key         Optional. Array key of the option element.
+     *                            Also, the field ID.
+     *
+     * @return string
+     */
+    private function constantNameFor(string $optionName, string $key = null): string
+    {
+        $name = empty($key) ? $optionName : $optionName . '_' . $key;
+
+        return strtoupper($name);
+    }
+
+    /**
+     * Get option from database.
+     *
+     * @param string $optionName  Name of option to retrieve.
+     *                            Expected to not be SQL-escaped.
+     * @param string $key         Optional. Array key of the option element.
+     *                            Also, the field ID.
+     *
+     * @return mixed
+     */
+    private function getFromDatabase(string $optionName, string $key = null)
+    {
+        $option = get_option($optionName);
+
+        if (! empty($key) && is_array($option)) {
+            return $option[ $key ] ?? false;
+        }
+
+        return $option;
+    }
+
+    /**
+     * Normalize option name and key to snake_case filter tag.
+     *
+     * @param string $optionName  Name of option to retrieve.
+     *                            Expected to not be SQL-escaped.
+     * @param string $key         Optional. Array key of the option element.
+     *                            Also, the field ID.
+     *
+     * @return string
+     */
+    private function filterTagFor(string $optionName, string $key = null): string
+    {
+        $name = empty($key) ? $optionName : $optionName . '_' . $key;
+
+        return strtolower($name);
     }
 }

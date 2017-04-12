@@ -12,7 +12,6 @@ settings:
     colors: true
     memory_limit: 1024M
 coverage:
-    enabled: true
     include:
         - src/*
     exclude:
@@ -56,5 +55,5 @@ extensions:
         - Codeception\Extension\Phantoman
     config:
         Codeception\Extension\Phantoman:
-        port: 4444
-        suites: ['acceptance']
+            port: 4444
+            suites: ['acceptance']

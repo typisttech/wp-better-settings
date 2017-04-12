@@ -56,5 +56,5 @@ extensions:
         - Codeception\Extension\Phantoman
     config:
         Codeception\Extension\Phantoman:
-        port: 4444
-        suites: ['acceptance']
+            port: 4444
+            suites: ['acceptance']

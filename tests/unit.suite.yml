@@ -8,3 +8,5 @@ modules:
         - \TypistTech\WPBetterSettings\Helper\Unit
         - Asserts
         - WPLoader
+coverage:
+    enabled: true

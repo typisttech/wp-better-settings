@@ -16,24 +16,29 @@ class SanitizerTest extends \Codeception\TestCase\WPTestCase
      */
     private $addSettingsError;
 
+    public function invalidCheckboxInputProvider(): array
+    {
+        return [
+            'checked' => [ 'checked' ],
+            'false' => [ 'false' ],
+            'true' => [ 'true' ],
+            'minus one' => [ '-1' ],
+            'zero' => [ '0' ],
+            'eleven' => [ '11' ],
+        ];
+    }
+
     /**
      * @covers ::sanitizeCheckbox
+     *
+     * @dataProvider invalidCheckboxInputProvider
+     *
+     * @param string $invalidCheckboxInput The invalid checkbox input.
      */
-    public function testSanitizeInvalidCheckbox()
+    public function testSanitizeInvalidCheckbox(string $invalidCheckboxInput)
     {
-        $invalidInputs = [
-            'checked',
-            'false',
-            false,
-            'true',
-            '0',
-            0,
-        ];
-
-        foreach ($invalidInputs as $invalidInput) {
-            $actual = Sanitizer::sanitizeCheckbox($invalidInput);
-            $this->assertSame('', $actual, $invalidInput . ' should be sanitized to empty string');
-        }
+        $actual = Sanitizer::sanitizeCheckbox($invalidCheckboxInput);
+        $this->assertSame('', $actual);
     }
 
     /**
@@ -64,16 +69,8 @@ class SanitizerTest extends \Codeception\TestCase\WPTestCase
      */
     public function testSanitizeValidCheckbox()
     {
-        $validInputs = [
-            true,
-            '1',
-            1,
-        ];
-
-        foreach ($validInputs as $validInput) {
-            $actual = Sanitizer::sanitizeCheckbox($validInput);
-            $this->assertSame('1', $actual, $validInput . " should be sanitized to '1'");
-        }
+        $actual = Sanitizer::sanitizeCheckbox('1');
+        $this->assertSame('1', $actual);
     }
 
     /**
@@ -91,7 +88,7 @@ class SanitizerTest extends \Codeception\TestCase\WPTestCase
     public function testSanitizeValidUncheckedCheckbox()
     {
         $actual = Sanitizer::sanitizeCheckbox('');
-        $this->assertSame('', $actual, 'Empty string should be sanitized to empty string');
+        $this->assertSame('', $actual);
     }
 
     protected function _before()

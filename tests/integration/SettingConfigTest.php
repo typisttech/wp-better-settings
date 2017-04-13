@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TypistTech\WPBetterSettings;
 
 use AspectMock\Test;
@@ -8,7 +10,7 @@ use UnexpectedValueException;
 /**
  * @coversDefaultClass \TypistTech\WPBetterSettings\SettingConfig
  */
-class SettingConfigTest extends \Codeception\Test\Unit
+class SettingConfigTest extends \Codeception\TestCase\WPTestCase
 {
     /**
      * @var FieldConfig
@@ -51,18 +53,18 @@ class SettingConfigTest extends \Codeception\Test\Unit
     public function testCallFieldSanitizeFunUnsetEmptyInputs()
     {
         $input = [
-            'field-false'        => false,
-            'field-empty-array'  => [],
+            'field-false' => false,
+            'field-empty-array' => [],
             'field-empty-string' => '',
-            'field-null'         => null,
-            'field-one'          => '1',
-            'field-something'    => 'something',
-            'field-zero'         => 0,
-            'field-zero-string'  => '0',
+            'field-null' => null,
+            'field-one' => '1',
+            'field-something' => 'something',
+            'field-zero' => 0,
+            'field-zero-string' => '0',
         ];
 
         $expected = [
-            'field-one'       => '1',
+            'field-one' => '1',
             'field-something' => 'something',
         ];
 
@@ -80,12 +82,12 @@ class SettingConfigTest extends \Codeception\Test\Unit
         ]);
 
         $sanitizableField = new FieldConfig([
-            'id'                => 'sanitizable_field',
+            'id' => 'sanitizable_field',
             'sanitize_callback' => [ Sanitizer::class, 'sanitizeEmail' ],
         ]);
 
-        $section       = new SectionConfig([
-            'id'     => 'my_section',
+        $section = new SectionConfig([
+            'id' => 'my_section',
             'fields' => [
                 $this->field21,
                 $sanitizableField,
@@ -98,7 +100,7 @@ class SettingConfigTest extends \Codeception\Test\Unit
             ],
         ]);
 
-        $actual   = $settingConfig->callFieldSanitizeFun([
+        $actual = $settingConfig->callFieldSanitizeFun([
             'sanitizable_field' => 'dangerous',
         ]);
         $expected = [
@@ -115,7 +117,7 @@ class SettingConfigTest extends \Codeception\Test\Unit
      */
     public function testGetFields()
     {
-        $actual   = $this->settingConfig->getFields();
+        $actual = $this->settingConfig->getFields();
         $expected = [
             $this->field11,
             $this->field12,
@@ -131,7 +133,7 @@ class SettingConfigTest extends \Codeception\Test\Unit
     public function testGetFieldsFlattenToFieldLevel()
     {
         $multidimensionalField = new FieldConfig([
-            'id'   => 'my_field_2_3',
+            'id' => 'my_field_2_3',
             'some' => [
                 'multi' => [
                     'dimensional' => [
@@ -140,22 +142,22 @@ class SettingConfigTest extends \Codeception\Test\Unit
                 ],
             ],
         ]);
-        $section2              = new SectionConfig([
-            'id'     => 'my_section_2',
+        $section2 = new SectionConfig([
+            'id' => 'my_section_2',
             'fields' => [
                 $this->field21,
                 $this->field22,
                 $multidimensionalField,
             ],
         ]);
-        $settingConfig         = new SettingConfig([
+        $settingConfig = new SettingConfig([
             'sections' => [
                 $this->section1,
                 $section2,
             ],
         ]);
 
-        $actual   = $settingConfig->getFields();
+        $actual = $settingConfig->getFields();
         $expected = [
             $this->field11,
             $this->field12,
@@ -171,7 +173,7 @@ class SettingConfigTest extends \Codeception\Test\Unit
      */
     public function testGetSections()
     {
-        $actual   = $this->settingConfig->getSections();
+        $actual = $this->settingConfig->getSections();
         $expected = [ $this->section1, $this->section2 ];
         $this->assertSame($expected, $actual);
     }
@@ -211,31 +213,31 @@ class SettingConfigTest extends \Codeception\Test\Unit
 
     protected function _before()
     {
-        $this->field11       = new FieldConfig([
+        $this->field11 = new FieldConfig([
             'id' => 'my_field_1_1',
         ]);
-        $this->field12       = new FieldConfig(
+        $this->field12 = new FieldConfig(
             [
                 'id' => 'my_field_1_2',
             ]
         );
-        $this->field21       = new FieldConfig([
+        $this->field21 = new FieldConfig([
             'id' => 'my_field_2_1',
         ]);
-        $this->field22       = new FieldConfig(
+        $this->field22 = new FieldConfig(
             [
                 'id' => 'my_field_2_2',
             ]
         );
-        $this->section2      = new SectionConfig([
-            'id'     => 'my_section_2',
+        $this->section2 = new SectionConfig([
+            'id' => 'my_section_2',
             'fields' => [
                 $this->field21,
                 $this->field22,
             ],
         ]);
-        $this->section1      = new SectionConfig([
-            'id'     => 'my_section_1',
+        $this->section1 = new SectionConfig([
+            'id' => 'my_section_1',
             'fields' => [
                 $this->field11,
                 $this->field12,
@@ -243,8 +245,8 @@ class SettingConfigTest extends \Codeception\Test\Unit
         ]);
         $this->settingConfig = new SettingConfig([
             'option_group' => 'my_option_group',
-            'option_name'  => 'my_option_name',
-            'sections'     => [
+            'option_name' => 'my_option_name',
+            'sections' => [
                 $this->section1,
                 $this->section2,
             ],

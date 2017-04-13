@@ -5,9 +5,11 @@
  * A simplified OOP implementation of the WP Settings API.
  *
  * @package   TypistTech\WPBetterSettings
+ *
  * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
+ *
  * @see       https://www.typist.tech/projects/wp-better-settings
  * @see       https://github.com/TypistTech/wp-better-settings
  */
@@ -27,8 +29,6 @@ use ArrayObject;
  * as hierarchical text representation in your Config file. In this way, you
  * don't have to deal with all the confusing callback code that the WordPress
  * Settings API forces you to use.
- *
- * @since 0.1.0
  */
 class Settings
 {
@@ -37,7 +37,6 @@ class Settings
     /**
      * Option helper instance.
      *
-     * @since 0.1.0
      * @var OptionStoreInterface;
      */
     protected $optionHelper;
@@ -45,7 +44,6 @@ class Settings
     /**
      * Config instance.
      *
-     * @since 0.1.0
      * @var ArrayObject[];
      */
     protected $settingConfigs;
@@ -53,22 +51,19 @@ class Settings
     /**
      * Instantiate Settings object.
      *
-     * @since 0.1.0
-     *
-     * @param ArrayObject[]        $settingConfigs     Config object that contains
-     *                                                 Settings configuration.
-     * @param OptionStoreInterface $optionHelper       Option helper.
+     * @param ArrayObject[]        $settingConfigs Config object that contains
+     *                                             Settings configuration.
+     * @param OptionStoreInterface $optionHelper   Option helper.
      */
     public function __construct(array $settingConfigs, OptionStoreInterface $optionHelper)
     {
         $this->settingConfigs = $settingConfigs;
-        $this->optionHelper   = $optionHelper;
+        $this->optionHelper = $optionHelper;
     }
 
     /**
      * Initialize the settings persistence.
      *
-     * @since 0.1.0
      * @return void
      */
     public function adminInit()
@@ -79,21 +74,20 @@ class Settings
     /**
      * Add a single settings field.
      *
-     * @since 0.1.0
-     *
      * @param ArrayObject $fieldConfig Arguments for the add_settings_field WP function.
      * @param string      $key         [Unused] Key of the settings field.
      * @param array       $args        Contains both page and section name.
      *
-     * @return void
      * @throws \InvalidArgumentException If add_settings_field cannot be invoked.
+     *
+     * @return void
      */
     protected function addField(ArrayObject $fieldConfig, string $key, array $args)
     {
-        $fieldConfig->page        = $args['page'];
-        $fieldConfig->section     = $args['section'];
+        $fieldConfig->page = $args['page'];
+        $fieldConfig->section = $args['section'];
         $fieldConfig->option_name = $args['option_name'];
-        $fieldConfig->value       = $this->optionHelper->get(
+        $fieldConfig->value = $this->optionHelper->get(
             $fieldConfig->option_name,
             $fieldConfig->id
         );
@@ -104,21 +98,20 @@ class Settings
     /**
      * Add a single settings section.
      *
-     * @since 0.1.0
-     *
      * @param ArrayObject $sectionConfig Arguments for the add_settings_section WP function.
      * @param string      $key           [Unused] Key of the settings section.
      * @param array       $args          Additional arguments to pass on.
      *
-     * @return void
      * @throws \InvalidArgumentException If add_settings_section cannot be invoked.
+     *
+     * @return void
      */
     protected function addSection(ArrayObject $sectionConfig, string $key, array $args)
     {
         $this->invokeFunction('add_settings_section', $sectionConfig);
 
         // Extend array to pass to array_walk as third parameter.
-        $args['page']    = $sectionConfig->page;
+        $args['page'] = $sectionConfig->page;
         $args['section'] = $sectionConfig->id;
 
         array_walk($sectionConfig->fields, [ $this, 'addField' ], $args);
@@ -127,19 +120,18 @@ class Settings
     /**
      * Register a single setting group.
      *
-     * @since 0.1.0
-     *
      * @param ArrayObject $settingConfig Arguments for the register_setting WP function.
      *
-     * @return void
      * @throws \InvalidArgumentException If register_setting cannot be invoked.
+     *
+     * @return void
      */
     protected function registerSetting(ArrayObject $settingConfig)
     {
         $this->invokeFunction('register_setting', $settingConfig);
 
         // Prepare array to pass to array_walk as third parameter.
-        $args                = [];
+        $args = [];
         $args['option_name'] = $settingConfig->option_name;
 
         array_walk($settingConfig->sections, [ $this, 'addSection' ], $args);

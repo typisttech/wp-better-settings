@@ -17,21 +17,9 @@ namespace TypistTech\WPBetterSettings;
  * @method void lookForwardTo($achieveValue)
  * @method void comment($description)
  * @method \Codeception\Lib\Friend haveFriend($name, $actorClass = null)
- *
  * @SuppressWarnings(PHPMD)
  */
-class AcceptanceTester extends \Codeception\Actor
+class IntegrationTester extends \Codeception\Actor
 {
-    use _generated\AcceptanceTesterActions;
-
-    public function amOnWPBSOptionPage()
-    {
-        $this->loginAsAdmin();
-        $this->waitForText('Dashboard', 10, 'h1');
-        $this->waitForElementVisible("a[href$='admin.php?page=wpbs_1']", 10);
-
-        $this->click('WP Better Settings');
-        $this->click('WP Better Settings');
-        $this->waitForText('WP Better Settings', 10, 'h1');
-    }
+    use _generated\IntegrationTesterActions;
 }

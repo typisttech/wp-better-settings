@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TypistTech\WPBetterSettings;
 
 use InvalidArgumentException;
@@ -7,15 +9,14 @@ use InvalidArgumentException;
 /**
  * @coversDefaultClass \TypistTech\WPBetterSettings\ViewFactory
  */
-class ViewFactoryTest extends \Codeception\Test\Unit
+class ViewFactoryTest extends \Codeception\TestCase\WPTestCase
 {
-
     /**
      * @covers ::build
      */
     public function testBuildViewFilename()
     {
-        $actual   = ViewFactory::build('section-description');
+        $actual = ViewFactory::build('section-description');
         $expected = new View(codecept_root_dir() . 'src/partials/section-description.php');
         $this->assertEquals($expected, $actual);
     }

@@ -5,9 +5,11 @@
  * A simplified OOP implementation of the WP Settings API.
  *
  * @package   TypistTech\WPBetterSettings
+ *
  * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
+ *
  * @see       https://www.typist.tech/projects/wp-better-settings
  * @see       https://github.com/TypistTech/wp-better-settings
  */
@@ -31,8 +33,6 @@ namespace TypistTech\WPBetterSettings;
  * 'view' (string|View_Interface)   =>  View to use for rendering the
  *                                      section. Can be a path to a view file
  *                                      or an instance of a View object.
- *
- * @since 0.1.0
  */
 class FieldConfig extends Config
 {
@@ -41,13 +41,12 @@ class FieldConfig extends Config
     /**
      * Default config of Field_Config.
      *
-     * @since 0.1.0
      * @return array
      */
     protected function defaultConfig(): array
     {
         return [
-            'callback'          => [ $this, 'echoView' ],
+            'callback' => [ $this, 'echoView' ],
             'sanitize_callback' => 'sanitize_text_field',
         ];
     }

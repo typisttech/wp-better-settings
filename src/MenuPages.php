@@ -5,9 +5,11 @@
  * A simplified OOP implementation of the WP Settings API.
  *
  * @package   TypistTech\WPBetterSettings
+ *
  * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
+ *
  * @see       https://www.typist.tech/projects/wp-better-settings
  * @see       https://github.com/TypistTech/wp-better-settings
  */
@@ -23,7 +25,7 @@ use ArrayObject;
  *
  * This class registers menu pages via the WordPress API.
  *
- * @since 0.1.0
+ *
  *
  * It enables you an entire collection of menu pages as as hierarchical
  * representation in your Menu_Page_Config objects. In this way, you
@@ -37,8 +39,6 @@ class MenuPages
     /**
      * Array of Config instance.
      *
-     * @since 0.1.0
-     *
      * @var ArrayObject[];
      */
     protected $menuPageConfigs;
@@ -46,10 +46,8 @@ class MenuPages
     /**
      * Menu_Pages constructor.
      *
-     * @since 0.1.0
-     *
-     * @param ArrayObject[] $menuPageConfigs   Array of config objects that contains
-     *                                         menu page configurations.
+     * @param ArrayObject[] $menuPageConfigs Array of config objects that contains
+     *                                       menu page configurations.
      */
     public function __construct(array $menuPageConfigs)
     {
@@ -60,7 +58,6 @@ class MenuPages
      * Add the pages from the configuration objects to the WordPress admin
      * backend. Parent pages are invoked first.
      *
-     * @since 0.1.0
      * @return void
      */
     public function adminMenu()
@@ -73,12 +70,11 @@ class MenuPages
     /**
      * Add a single page to the WordPress admin backend.
      *
-     * @since 0.1.0
-     *
      * @param ArrayObject $menuPageConfig Arguments for the menu page creation function.
      *
-     * @return void
      * @throws \InvalidArgumentException If the function cannot be invoked.
+     *
+     * @return void
      */
     protected function addMenuPage(ArrayObject $menuPageConfig)
     {
@@ -88,9 +84,6 @@ class MenuPages
 
     /**
      * Compare two ArrayObject by their parent_slug.
-     *
-     * @since  0.5.1
-     * @access private
      *
      * @param ArrayObject $first The first to be compared.
      * @param ArrayObject $other The other to be compared.

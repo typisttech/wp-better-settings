@@ -5,9 +5,11 @@
  * A simplified OOP implementation of the WP Settings API.
  *
  * @package   TypistTech\WPBetterSettings
+ *
  * @author    Typist Tech <wp-better-settings@typist.tech>
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
+ *
  * @see       https://www.typist.tech/projects/wp-better-settings
  * @see       https://github.com/TypistTech/wp-better-settings
  */
@@ -32,8 +34,6 @@ use UnexpectedValueException;
  * 'option_name' (string)           =>  The name of an option to sanitize and save.
  *
  * 'sections' (Section_Config[])    =>  Array of Section_Config to add to the settings page.
- *
- * @since 0.1.0
  */
 class SettingConfig extends Config
 {
@@ -42,17 +42,16 @@ class SettingConfig extends Config
     /**
      * Sanitize settings fields.
      *
-     * @since 0.5.0
-     *
      * @param array $input The value entered in the field.
      *
-     * @return array The sanitized values.
      * @throws \UnexpectedValueException If fields is not Field_Config[].
+     *
+     * @return array The sanitized values.
      */
     public function callFieldSanitizeFun(array $input)
     {
-        $fieldIds     = array_keys($input);
-        $fieldIds     = array_filter($fieldIds);
+        $fieldIds = array_keys($input);
+        $fieldIds = array_filter($fieldIds);
         $fieldConfigs = $this->getFieldsBy($fieldIds);
 
         foreach ($fieldConfigs as $fieldConfig) {
@@ -61,7 +60,7 @@ class SettingConfig extends Config
                 continue;
             }
 
-            $id           = $fieldConfig->getKey('id');
+            $id = $fieldConfig->getKey('id');
             $input[ $id ] = $sanitizeCallback($input[ $id ], $id);
         }
 
@@ -72,17 +71,15 @@ class SettingConfig extends Config
     /**
      * Get fields by ids.
      *
-     * @since  0.5.0
-     * @access private
-     *
      * @param array $ids IDs of the fields to return.
      *
-     * @return FieldConfig[]
      * @throws \UnexpectedValueException If section.fields is not Field_Config[].
+     *
+     * @return FieldConfig[]
      */
     private function getFieldsBy(array $ids): array
     {
-        $ids       = array_filter($ids);
+        $ids = array_filter($ids);
         $allFields = $this->getFields();
 
         return array_filter($allFields, function (FieldConfig $field) use ($ids) {
@@ -95,9 +92,9 @@ class SettingConfig extends Config
     /**
      * Get all fields.
      *
-     * @since 0.1.0
-     * @return FieldConfig[]
      * @throws \UnexpectedValueException If sections.fields is not Field_Config[].
+     *
+     * @return FieldConfig[]
      */
     public function getFields(): array
     {
@@ -116,9 +113,9 @@ class SettingConfig extends Config
     /**
      * Sections getter.
      *
-     * @since 0.5.0
-     * @return SectionConfig[]
      * @throws \UnexpectedValueException If sections is not Section_Config[].
+     *
+     * @return SectionConfig[]
      */
     public function getSections(): array
     {
@@ -130,10 +127,9 @@ class SettingConfig extends Config
     /**
      * Check the sections.
      *
-     * @since  0.5.0
-     * @access private
-     * @return void
      * @throws UnexpectedValueException If fields is not SectionConfig[].
+     *
+     * @return void
      */
     private function validateSections()
     {
@@ -154,15 +150,14 @@ class SettingConfig extends Config
     /**
      * Default config of Setting_Config.
      *
-     * @since 0.1.0
      * @return array
      */
     protected function defaultConfig(): array
     {
         return [
-            'view'     => ViewFactory::build('section-description'),
+            'view' => ViewFactory::build('section-description'),
             'function' => [ $this, 'echoView' ],
-            'args'     => [
+            'args' => [
                 'sanitize_callback' => [ $this, 'callFieldSanitizeFun' ],
             ],
         ];

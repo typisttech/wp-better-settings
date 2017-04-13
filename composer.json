@@ -62,6 +62,7 @@
         "test": "codecept run",
         "test-acceptance": "codecept run acceptance",
         "test-functional": "codecept run functional",
+        "test-integration": "codecept run integration",
         "test-unit": "codecept run unit",
         "test-with-coverage": "codecept run --coverage --coverage-xml --coverage-html"
     },

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TypistTech\WPBetterSettings;
 
 use AspectMock\Test;
@@ -7,7 +9,7 @@ use AspectMock\Test;
 /**
  * @coversDefaultClass \TypistTech\WPBetterSettings\Sanitizer
  */
-class SanitizerTest extends \Codeception\Test\Unit
+class SanitizerTest extends \Codeception\TestCase\WPTestCase
 {
     /**
      * @var \AspectMock\Proxy\FuncProxy

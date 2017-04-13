@@ -1,4 +1,8 @@
-<?php use TypistTech\WPBetterSettings\AcceptanceTester;
+<?php
+
+declare(strict_types=1);
+
+use TypistTech\WPBetterSettings\AcceptanceTester;
 
 $I = new AcceptanceTester($scenario);
 $I->wantToTest('checkbox fields');
@@ -9,12 +13,12 @@ $I->wantToTest('two checkbox fields exist');
 $I->seeNumberOfElements('input[type="checkbox"]', 2);
 
 $I->wantToTest('checkbox field name attribute');
-$actualNames   = $I->grabMultiple('input[type="checkbox"]', 'name');
+$actualNames = $I->grabMultiple('input[type="checkbox"]', 'name');
 $expectedNames = [ 'wpbs_option_1[my_checkbox]', 'wpbs_option_1[my_disabled_checkbox]' ];
 $I->assertSame($expectedNames, $actualNames);
 
 $I->wantToTest('checkbox field id attribute');
-$actualIds   = $I->grabMultiple('input[type="checkbox"]', 'id');
+$actualIds = $I->grabMultiple('input[type="checkbox"]', 'id');
 $expectedIds = [ 'my_checkbox', 'my_disabled_checkbox' ];
 $I->assertSame($expectedIds, $actualIds);
 

@@ -33,13 +33,13 @@ final class Sanitizer
     /**
      * Sanitize checkbox
      *
-     * Sanitize any input other than '1', 1 or boolean true to empty string.
+     * Sanitize any input other than '1' to empty string.
      *
-     * @param mixed $input User submitted value.
+     * @param string $input User submitted value.
      *
      * @return string Empty string OR '1'
      */
-    public static function sanitizeCheckbox($input): string
+    public static function sanitizeCheckbox(string $input): string
     {
         $sanitizedInput = sanitize_text_field($input);
         if ('1' !== $sanitizedInput) {

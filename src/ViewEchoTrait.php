@@ -44,4 +44,16 @@ trait ViewEchoTrait
 
         $view->echoKses($this);
     }
+
+    /**
+     * Returns the function to be called to output the content for this page.
+     *
+     * @todo Move to ViewEchoTrait.
+     *
+     * @return callable
+     */
+    public function getCallbackFunction(): callable
+    {
+        return [ $this, 'echoView' ];
+    }
 }

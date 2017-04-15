@@ -12,40 +12,29 @@ use Codeception\TestCase\WPTestCase;
  */
 class SubmenuPageTest extends WPTestCase
 {
+    use AttributeGetterTrait;
+    use ConstructWithAttributesTrait;
+    use ConstructWithMinimalAttributesTrait;
     use PageTraitTestTrait;
-
-    /**
-     * @var ViewInterface
-     */
-    public $view;
 
     /**
      * @var SubmenuPage
      */
     private $submenuPage;
 
-    public function _before()
-    {
-        $this->view = Test::double(View::class)->make();
+    /**
+     * @var ViewInterface
+     */
+    private $view;
 
-        $this->submenuPage = new SubmenuPage(
-            'my-parent-slug',
-            'my-menu-slug',
-            'My Menu Title',
-            $this->view,
-            'My Page Title',
-            'promote_users'
-        );
-    }
-
-    public function attributeGettersProvider(): array
+    public function attributeGetterProvider(): array
     {
         return [
             'parentSlug' => [ 'getParentSlug', 'my-parent-slug' ],
         ];
     }
 
-    public function configProvider(): array
+    public function attributesProvider(): array
     {
         return [
             'parentSlug' => [ 'parentSlug', 'my-parent-slug' ],
@@ -56,7 +45,22 @@ class SubmenuPageTest extends WPTestCase
         ];
     }
 
-    public function minimalConfigProvider(): array
+    /**
+     * @covers ::__construct
+     */
+    public function testConstructWithDefaultViewAttribute()
+    {
+        $expected = ViewFactory::build('tabbed-options-page');
+
+        $this->assertAttributeEquals($expected, 'view', $this->getMinimalSubject());
+    }
+
+    protected function getMinimalSubject()
+    {
+        return new SubmenuPage('my-parent-slug', 'my-menu-slug', 'My Menu Title');
+    }
+
+    public function minimalAttributesProvider(): array
     {
         return [
             'parentSlug' => [ 'parentSlug', 'my-parent-slug' ],
@@ -68,63 +72,11 @@ class SubmenuPageTest extends WPTestCase
     }
 
     /**
-     * @covers       \TypistTech\WPBetterSettings\SubmenuPage
-     * @dataProvider attributeGettersProvider
-     *
-     * @param string $getterName Getter function to be tested.
-     * @param mixed  $expected   Expected attribute.
-     */
-    public function testAttributeGetters(string $getterName, $expected)
-    {
-        $actual = $this->submenuPage->{$getterName}();
-
-        $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * @covers ::__construct
-     * @dataProvider configProvider
-     *
-     * @param string $actualAttributeName Attribute to be tested.
-     * @param mixed  $expected            Expected attribute.
-     */
-    public function testConstructWithConfig(string $actualAttributeName, $expected)
-    {
-        $this->assertAttributeSame($expected, $actualAttributeName, $this->submenuPage);
-    }
-
-    /**
      * @covers ::__construct
      */
-    public function testConstructWithConfigViewAttribute()
+    public function testConstructWithViewAttribute()
     {
         $this->assertAttributeSame($this->view, 'view', $this->submenuPage);
-    }
-
-    /**
-     * @covers ::__construct
-     */
-    public function testConstructWithDefaultViewAttribute()
-    {
-        $actual = new SubmenuPage('my-parent-slug', 'my-menu-slug', 'My Menu Title');
-
-        $expected = ViewFactory::build('tabbed-options-page');
-
-        $this->assertAttributeEquals($expected, 'view', $actual);
-    }
-
-    /**
-     * @covers ::__construct
-     * @dataProvider minimalConfigProvider
-     *
-     * @param string $actualAttributeName Attribute to be tested.
-     * @param mixed  $expected            Expected attribute.
-     */
-    public function testConstructWithMinimalConfig(string $actualAttributeName, $expected)
-    {
-        $actual = new SubmenuPage('my-parent-slug', 'my-menu-slug', 'My Menu Title');
-
-        $this->assertAttributeSame($expected, $actualAttributeName, $actual);
     }
 
     /**
@@ -149,6 +101,20 @@ class SubmenuPageTest extends WPTestCase
         $actual = $this->submenuPage->getCallbackFunction();
 
         $this->assertInternalType('callable', $actual);
+    }
+
+    protected function _before()
+    {
+        $this->view = Test::double(View::class)->make();
+
+        $this->submenuPage = new SubmenuPage(
+            'my-parent-slug',
+            'my-menu-slug',
+            'My Menu Title',
+            $this->view,
+            'My Page Title',
+            'promote_users'
+        );
     }
 
     protected function getSubject()

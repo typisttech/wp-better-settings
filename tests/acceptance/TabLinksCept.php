@@ -9,5 +9,5 @@ $I->wantToTest('tab links');
 
 $I->amOnWPBSOptionPage();
 
-$I->seeElement('#wpbs_1-tab');
-$I->seeElement('#wpbs_2-tab');
+$I->seeElement('#wpbs-1-tab');
+$I->seeElement('#wpbs-2-tab');

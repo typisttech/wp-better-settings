@@ -18,14 +18,14 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
-/* @var \ArrayObject $context Context passed through from Menu_Pages class. */
+/* @var MenuPage $context Context passed through from View object. */
 
-$snakecased_menu_slug = str_replace('-', '_', $context->menu_slug);
+$snakecasedMenuSlug = str_replace('-', '_', $context->getMenuSlug());
 
-do_action($snakecased_menu_slug . '_before_page_title');
+do_action($snakecasedMenuSlug . '_before_page_title');
 
-echo '<h1>' . esc_html($context->page_title) . '</h1>';
+echo '<h1>' . esc_html($context->getPageTitle()) . '</h1>';
 
-do_action($snakecased_menu_slug . '_after_page_title');
+do_action($snakecasedMenuSlug . '_after_page_title');
 
 include __DIR__ . '/options-form.php';

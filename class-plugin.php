@@ -49,43 +49,36 @@ class Plugin
 
     /**
      * Initialize Settings page.
-     *
-     * @since 0.1.0
      */
     public function initSettingsPage()
     {
-        $menuPages = new MenuPages($this->pageConfigs());
+        $pageRegister = new PageRegister($this->getPages());
         $settings = new Settings($this->settingsConfigs(), $this->optionStore);
 
         // Register the settings page with WordPress.
-        add_action('admin_menu', [ $menuPages, 'adminMenu' ]);
+        add_action('admin_menu', [ $pageRegister, 'run' ]);
         add_action('admin_init', [ $settings, 'adminInit' ]);
     }
 
     /**
      * Page configs
      *
-     * #since 0.3.0
-     *
-     * @return MenuPageConfig[]
+     * @return (MenuPage|SubmenuPage)[]
      */
-    private function pageConfigs(): array
+    private function getPages(): array
     {
         return [
-            new MenuPageConfig([
-                'menu_slug' => 'wpbs_1',
-                'page_title' => 'WP Better Settings',
-                'menu_title' => 'WP Better Settings',
-                'option_group' => 'wpbs_1',
-            ]),
-            new MenuPageConfig([
-                'menu_slug' => 'wpbs_2',
-                'page_title' => 'WP Better Settings Two',
-                'menu_title' => 'WPBS Two',
-                'option_group' => 'wpbs_2',
-                'parent_slug' => 'wpbs_1',
-                'view' => ViewFactory::build('basic-options-page'),
-            ]),
+            new MenuPage(
+                'wpbs-1',
+                'WP Better Settings'
+            ),
+            new SubmenuPage(
+                'wpbs-1',
+                'wpbs-2',
+                'WPBS Two',
+                ViewFactory::build('basic-options-page'),
+                'WP Better Settings Two'
+            ),
         ];
     }
 
@@ -100,12 +93,12 @@ class Plugin
     {
         return [
             new SettingConfig([
-                'option_group' => 'wpbs_1',
-                'option_name' => 'wpbs_option_1',
+                'option_group' => 'wpbs-1',
+                'option_name' => 'wpbs_1',
                 'sections' => [
                     new SectionConfig([
                         'id' => 'wpbs_section_1',
-                        'page' => 'wpbs_1',
+                        'page' => 'wpbs-1',
                         'title' => __('My Useless Name Settings', 'wp-better-settings'),
                         'desc' => 'Just my section desc',
                         'fields' => [
@@ -171,13 +164,13 @@ class Plugin
             ]),
 
             new SettingConfig([
-                'option_group' => 'wpbs_2',
-                'option_name' => 'wpbs_option_2',
+                'option_group' => 'wpbs-2',
+                'option_name' => 'wpbs_2',
                 'sections' => [
                     new SectionConfig([
                         'id' => 'wpbs_section_2',
                         'title' => __('Useless Name Settings', 'wp-better-settings'),
-                        'page' => 'wpbs_2',
+                        'page' => 'wpbs-2',
                         'view' => plugin_dir_path(__FILE__) . 'partials/section-description.php',
                         'fields' => [
                             new FieldConfig([

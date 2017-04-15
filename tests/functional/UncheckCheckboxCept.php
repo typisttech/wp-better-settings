@@ -8,7 +8,7 @@ $I = new FunctionalTester($scenario);
 $I->wantToTest('un-checking checkbox removes option value from database');
 
 $I->amGoingTo('set options in database');
-$I->haveOptionInDatabase('wpbs_option_1', [
+$I->haveOptionInDatabase('wpbs_1', [
     'my_checkbox' => '1',
 ]);
 
@@ -21,6 +21,6 @@ $I->click('#submit');
 
 $I->wantToTest('option value is removed from database');
 $I->seeOptionInDatabase([
-    'option_name' => 'wpbs_option_1',
+    'option_name' => 'wpbs_1',
     'option_value' => false,
 ]);

@@ -23,9 +23,6 @@ namespace TypistTech\WPBetterSettings;
  *
  * Reusable trait that you can use in any ArrayObject
  * which has a ViewInterface or String as view property.
- *
- * @property ViewInterface|string $view View_Interface object to render.
- *                                       Or, string of path to view partial.
  */
 trait ViewEchoTrait
 {

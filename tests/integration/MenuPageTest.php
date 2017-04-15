@@ -12,34 +12,22 @@ use Codeception\TestCase\WPTestCase;
  */
 class MenuPageTest extends WPTestCase
 {
+    use AttributeGetterTrait;
+    use ConstructWithAttributesTrait;
+    use ConstructWithMinimalAttributesTrait;
     use PageTraitTestTrait;
-
-    /**
-     * @var ViewInterface
-     */
-    public $view;
 
     /**
      * @var MenuPage
      */
     private $menuPage;
 
-    public function _before()
-    {
-        $this->view = Test::double(View::class)->make();
+    /**
+     * @var ViewInterface
+     */
+    private $view;
 
-        $this->menuPage = new MenuPage(
-            'my-menu-slug',
-            'My Menu Title',
-            $this->view,
-            'My Page Title',
-            'promote_users',
-            'dashicons-shield',
-            99
-        );
-    }
-
-    public function attributeGettersProvider(): array
+    public function attributeGetterProvider(): array
     {
         return [
             'iconUrl' => [ 'getIconUrl', 'dashicons-shield' ],
@@ -47,7 +35,7 @@ class MenuPageTest extends WPTestCase
         ];
     }
 
-    public function configProvider(): array
+    public function attributesProvider(): array
     {
         return [
             'menuSlug' => [ 'menuSlug', 'my-menu-slug' ],
@@ -59,7 +47,22 @@ class MenuPageTest extends WPTestCase
         ];
     }
 
-    public function minimalConfigProvider(): array
+    /**
+     * @covers ::__construct
+     */
+    public function testConstructWithDefaultViewAttribute()
+    {
+        $expected = ViewFactory::build('tabbed-options-page');
+
+        $this->assertAttributeEquals($expected, 'view', $this->getMinimalSubject());
+    }
+
+    protected function getMinimalSubject()
+    {
+        return new MenuPage('my-menu-slug', 'My Menu Title');
+    }
+
+    public function minimalAttributesProvider(): array
     {
         return [
             'menuSlug' => [ 'menuSlug', 'my-menu-slug' ],
@@ -72,63 +75,11 @@ class MenuPageTest extends WPTestCase
     }
 
     /**
-     * @covers       \TypistTech\WPBetterSettings\MenuPage
-     * @dataProvider attributeGettersProvider
-     *
-     * @param string $getterName Getter function to be tested.
-     * @param mixed  $expected   Expected attribute.
-     */
-    public function testAttributeGetters(string $getterName, $expected)
-    {
-        $actual = $this->menuPage->{$getterName}();
-
-        $this->assertSame($expected, $actual);
-    }
-
-    /**
-     * @covers ::__construct
-     * @dataProvider configProvider
-     *
-     * @param string $actualAttributeName Attribute to be tested.
-     * @param mixed  $expected            Expected attribute.
-     */
-    public function testConstructWithConfig(string $actualAttributeName, $expected)
-    {
-        $this->assertAttributeSame($expected, $actualAttributeName, $this->menuPage);
-    }
-
-    /**
      * @covers ::__construct
      */
-    public function testConstructWithConfigViewAttribute()
+    public function testConstructWithViewAttribute()
     {
         $this->assertAttributeSame($this->view, 'view', $this->menuPage);
-    }
-
-    /**
-     * @covers ::__construct
-     */
-    public function testConstructWithDefaultViewAttribute()
-    {
-        $actual = new MenuPage('my-menu-slug', 'My Menu Title');
-
-        $expected = ViewFactory::build('tabbed-options-page');
-
-        $this->assertAttributeEquals($expected, 'view', $actual);
-    }
-
-    /**
-     * @covers ::__construct
-     * @dataProvider minimalConfigProvider
-     *
-     * @param string $actualAttributeName Attribute to be tested.
-     * @param mixed  $expected            Expected attribute.
-     */
-    public function testConstructWithMinimalConfig(string $actualAttributeName, $expected)
-    {
-        $actual = new MenuPage('my-menu-slug', 'My Menu Title');
-
-        $this->assertAttributeSame($expected, $actualAttributeName, $actual);
     }
 
     /**
@@ -153,6 +104,21 @@ class MenuPageTest extends WPTestCase
         $actual = $this->menuPage->getCallbackFunction();
 
         $this->assertInternalType('callable', $actual);
+    }
+
+    protected function _before()
+    {
+        $this->view = Test::double(View::class)->make();
+
+        $this->menuPage = new MenuPage(
+            'my-menu-slug',
+            'My Menu Title',
+            $this->view,
+            'My Page Title',
+            'promote_users',
+            'dashicons-shield',
+            99
+        );
     }
 
     protected function getSubject()

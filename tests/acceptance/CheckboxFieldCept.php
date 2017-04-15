@@ -14,7 +14,7 @@ $I->seeNumberOfElements('input[type="checkbox"]', 2);
 
 $I->wantToTest('checkbox field name attribute');
 $actualNames = $I->grabMultiple('input[type="checkbox"]', 'name');
-$expectedNames = [ 'wpbs_option_1[my_checkbox]', 'wpbs_option_1[my_disabled_checkbox]' ];
+$expectedNames = [ 'wpbs_1[my_checkbox]', 'wpbs_1[my_disabled_checkbox]' ];
 $I->assertSame($expectedNames, $actualNames);
 
 $I->wantToTest('checkbox field id attribute');

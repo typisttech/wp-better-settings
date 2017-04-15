@@ -14,7 +14,7 @@ $I->seeNumberOfElements('textarea', 2);
 
 $I->wantToTest('textarea field name attribute');
 $actualNames = $I->grabMultiple('textarea', 'name');
-$expectedNames = [ 'wpbs_option_1[my_textarea]', 'wpbs_option_1[my_disabled_textarea]' ];
+$expectedNames = [ 'wpbs_1[my_textarea]', 'wpbs_1[my_disabled_textarea]' ];
 $I->assertSame($expectedNames, $actualNames);
 
 $I->wantToTest('textarea field id attribute');

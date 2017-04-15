@@ -18,20 +18,21 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
-/* @var \ArrayObject $context Context passed through from Menu_Pages class. */
+/* @var MenuPage $context Context passed through from View object. */
 
-$snakecased_menu_slug = str_replace('-', '_', $context->menu_slug);
+$snakecased_menu_slug = str_replace('-', '_', $context->getMenuSlug());
 
 settings_errors();
 
 do_action($snakecased_menu_slug . '_before_option_form');
 
 echo '<form action="options.php" method="post">';
-settings_fields($context->option_group);
+
+settings_fields($context->getMenuSlug());
 
 do_action($snakecased_menu_slug . '_before_settings_sections');
 
-do_settings_sections($context->menu_slug);
+do_settings_sections($context->getMenuSlug());
 
 do_action($snakecased_menu_slug . '_before_submit_button');
 

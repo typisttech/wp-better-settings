@@ -22,10 +22,10 @@ $I->seeElement('input', [
 
 $I->wantToTest('input field name attribute');
 $actualNames = $I->grabMultiple('input', 'name');
-$I->assertContains('wpbs_option_1[my_name]', $actualNames);
-$I->assertContains('wpbs_option_1[my_email]', $actualNames);
-$I->assertContains('wpbs_option_1[my_url]', $actualNames);
-$I->assertContains('wpbs_option_1[my_disabled_input]', $actualNames);
+$I->assertContains('wpbs_1[my_name]', $actualNames);
+$I->assertContains('wpbs_1[my_email]', $actualNames);
+$I->assertContains('wpbs_1[my_url]', $actualNames);
+$I->assertContains('wpbs_1[my_disabled_input]', $actualNames);
 
 $I->wantToTest('input field id attribute');
 $actualIds = $I->grabMultiple('input', 'id');

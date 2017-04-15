@@ -42,6 +42,11 @@
             "TypistTech\\WPBetterSettings\\": "src/"
         }
     },
+    "autoload-dev": {
+        "files": [
+            "tests/integration/PageTraitTestTrait.php"
+        ]
+    },
     "scripts": {
         "build": [
             "rm -fr vendor",

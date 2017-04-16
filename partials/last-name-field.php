@@ -18,8 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
-/* @var \ArrayObject $context Context passed through from Settings class. */
+/* @var \TypistTech\WPBetterSettings\Fields\AbstractInput $context Context */
 
-echo '<input ';
-echo 'type="text" name="wpbs_option_2[wpbs_last_name]" ';
-echo 'value="' . esc_html($context->value) . '">';
+echo '<input type="text" name="wpbs_option_2[wpbs_last_name]" ';
+echo 'value="' . esc_html($context->getValue()) . '">';

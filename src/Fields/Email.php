@@ -16,37 +16,32 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\WPBetterSettings;
+namespace TypistTech\WPBetterSettings\Fields;
+
+use TypistTech\WPBetterSettings\View;
+use TypistTech\WPBetterSettings\ViewFactory;
 
 /**
- * Final class Sanitizer.
+ * Final class Email
  */
-final class Sanitizer
+final class Email extends AbstractInput
 {
+    const TYPE = 'email';
+
     /**
-     * Private constructor.
+     * {@inheritdoc}
      */
-    private function __construct()
+    public function getSanitizeCallback(): callable
     {
+        return $this->sanitizeCallback ?? [ $this, 'sanitizeEmail' ];
     }
 
     /**
-     * Sanitize checkbox
-     *
-     * Sanitize any input other than '1' to empty string.
-     *
-     * @param string $input User submitted value.
-     *
-     * @return string Empty string OR '1'
+     * {@inheritdoc}
      */
-    public static function sanitizeCheckbox(string $input): string
+    protected function getDefaultView(): View
     {
-        $sanitizedInput = sanitize_text_field($input);
-        if ('1' !== $sanitizedInput) {
-            $sanitizedInput = '';
-        }
-
-        return $sanitizedInput;
+        return ViewFactory::build('fields/input');
     }
 
     /**
@@ -55,12 +50,11 @@ final class Sanitizer
      * Strips out all characters that are not allowable in an email address.
      * Add settings error if email is not valid.
      *
-     * @param string $input   Input email.
-     * @param string $fieldId ID of the settings field.
+     * @param string $input Input email.
      *
      * @return string Valid email address OR empty string.
      */
-    public static function sanitizeEmail(string $input, string $fieldId): string
+    public function sanitizeEmail(string $input): string
     {
         $sanitizedInput = sanitize_email($input);
         if (! is_email($sanitizedInput)) {
@@ -70,7 +64,7 @@ final class Sanitizer
                 'wp-better-settings'
             );
             // @codingStandardsIgnoreEnd
-            add_settings_error($fieldId, 'invalid_' . $fieldId, $errorMessage);
+            add_settings_error($this->id, 'invalid_' . $this->id, $errorMessage);
         }
 
         return $sanitizedInput;

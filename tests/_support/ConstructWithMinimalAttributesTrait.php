@@ -8,7 +8,7 @@ trait ConstructWithMinimalAttributesTrait
 {
     abstract protected function getMinimalSubject();
 
-    abstract protected function minimalAttributesProvider(): array;
+    abstract public function minimalAttributesProvider(): array;
 
     /**
      * @covers ::__construct

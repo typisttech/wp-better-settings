@@ -6,7 +6,7 @@ namespace TypistTech\WPBetterSettings;
 
 trait AttributeGetterTrait
 {
-    abstract protected function attributeGetterProvider(): array;
+    abstract public function attributeGetterProvider(): array;
 
     abstract protected function getSubject();
 

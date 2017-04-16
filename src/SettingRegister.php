@@ -19,6 +19,7 @@ declare(strict_types=1);
 namespace TypistTech\WPBetterSettings;
 
 use ArrayObject;
+use TypistTech\WPBetterSettings\Fields\AbstractField;
 
 /**
  * Class Settings.
@@ -30,7 +31,7 @@ use ArrayObject;
  * don't have to deal with all the confusing callback code that the WordPress
  * Settings API forces you to use.
  */
-class Settings
+class SettingRegister
 {
     use FunctionInvokerTrait;
 
@@ -72,27 +73,29 @@ class Settings
     }
 
     /**
-     * Add a single settings field.
+     * Register a single settings field to WordPress.
      *
-     * @param ArrayObject $fieldConfig Arguments for the add_settings_field WP function.
-     * @param string      $key         [Unused] Key of the settings field.
-     * @param array       $args        Contains both page and section name.
-     *
-     * @throws \InvalidArgumentException If add_settings_field cannot be invoked.
+     * @param AbstractField $field Arguments for the add_settings_field WP function.
+     * @param string        $key   [Unused] Key of the settings field.
+     * @param array         $args  Contains both page and section name.
      *
      * @return void
      */
-    protected function addField(ArrayObject $fieldConfig, string $key, array $args)
+    protected function addField(AbstractField $field, string $key, array $args)
     {
-        $fieldConfig->page = $args['page'];
-        $fieldConfig->section = $args['section'];
-        $fieldConfig->option_name = $args['option_name'];
-        $fieldConfig->value = $this->optionHelper->get(
-            $fieldConfig->option_name,
-            $fieldConfig->id
-        );
+        $field->setExtraElement('optionName', $args['optionName']);
+        $field->setExtraElement('value', $this->optionHelper->get(
+            $args['optionName'],
+            $field->getId()
+        ));
 
-        $this->invokeFunction('add_settings_field', $fieldConfig);
+        add_settings_field(
+            $field->getId(),
+            $field->getTitle(),
+            $field->getCallbackFunction(),
+            $args['page'],
+            $args['section']
+        );
     }
 
     /**
@@ -133,6 +136,7 @@ class Settings
         // Prepare array to pass to array_walk as third parameter.
         $args = [];
         $args['option_name'] = $settingConfig->option_name;
+        $args['optionName'] = $settingConfig->option_name;
 
         array_walk($settingConfig->sections, [ $this, 'addSection' ], $args);
     }

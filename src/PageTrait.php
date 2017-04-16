@@ -53,7 +53,7 @@ trait PageTrait
      *
      * @var (MenuPage|SubmenuPage)[]
      */
-    private $tabs;
+    protected $tabs;
 
     /**
      * Capability getter.
@@ -93,6 +93,18 @@ trait PageTrait
     public function getPageTitle(): string
     {
         return $this->pageTitle;
+    }
+
+    /**
+     * Return MenuSlug in snake_case.
+     *
+     * @return string
+     */
+    public function getSnakecasedMenuSlug(): string
+    {
+        $lowercaseMenuSlug = strtolower($this->menuSlug);
+
+        return str_replace('-', '_', $lowercaseMenuSlug);
     }
 
     /**

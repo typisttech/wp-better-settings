@@ -11,11 +11,11 @@ $I->amOnWPBSOptionPage();
 
 $I->amGoingTo('submit a form');
 $formValues = [
-    'wpbs_1[my_name]' => 'Jane Doe',
-    'wpbs_1[my_email]' => 'janedoe@example.com',
-    'wpbs_1[my_url]' => 'https://www.example.com/janedoe',
-    'wpbs_1[my_textarea]' => 'I am jane doe.',
-    'wpbs_1[my_checkbox]' => true,
+    'wpbs_simple_text' => 'Jane Doe',
+    'wpbs_simple_email' => 'janedoe@example.com',
+    'wpbs_simple_url' => 'https://www.example.com/janedoe',
+    'wpbs_simple_textarea' => 'I am jane doe.',
+    'wpbs_simple_checkbox' => '1',
 ];
 $I->submitForm('form', $formValues);
 

@@ -33,14 +33,12 @@ final class ViewFactory
      * @var array
      */
     const PARTIALS = [
-        'basic-options-page' => 'partials/basic-options-page.php',
-        'section-description' => 'partials/section-description.php',
-        'checkbox-field' => 'partials/checkbox-field.php',
-        'email-field' => 'partials/email-field.php',
-        'tabbed-options-page' => 'partials/tabbed-options-page.php',
-        'text-field' => 'partials/text-field.php',
-        'textarea-field' => 'partials/textarea-field.php',
-        'url-field' => 'partials/url-field.php',
+        'basic-page' => 'partials/basic-page.php',
+        'section' => 'partials/section.php',
+        'tabbed-page' => 'partials/tabbed-page.php',
+        'fields/checkbox' => 'partials/fields/checkbox.php',
+        'fields/input' => 'partials/fields/input.php',
+        'fields/textarea' => 'partials/fields/textarea.php',
     ];
 
     /**

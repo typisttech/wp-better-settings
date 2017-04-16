@@ -16,21 +16,22 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\WPBetterSettings;
+namespace TypistTech\WPBetterSettings\Fields;
 
 /**
- * Interface ViewInterface
- *
- * Accepts a context and echo its content on request.
+ * Final class Url
  */
-interface ViewInterface
+final class Url extends AbstractInput
 {
+    const TYPE = 'url';
+
+    const DEFAULT_VIEW_PARTIAL = 'fields/input';
+
     /**
-     * Echo a given view safely.
-     *
-     * @param mixed $context Context for which to render the view.
-     *
-     * @return void
+     * {@inheritdoc}
      */
-    public function echoKses($context);
+    public function getSanitizeCallback(): callable
+    {
+        return $this->sanitizeCallback ?? 'esc_url_raw';
+    }
 }

@@ -28,7 +28,7 @@ class AcceptanceTester extends \Codeception\Actor
     {
         $this->loginAsAdmin();
         $this->waitForText('Dashboard', 10, 'h1');
-        $this->waitForElementVisible("a[href$='admin.php?page=wpbs-1']", 10);
+        $this->waitForElementVisible("a[href$='admin.php?page=wpbs-simple']", 10);
 
         $this->click('WP Better Settings');
         $this->click('WP Better Settings');

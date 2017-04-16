@@ -19,11 +19,7 @@ declare(strict_types=1);
 namespace TypistTech\WPBetterSettings;
 
 /**
- * Class OptionStore.
- *
- * This is a very basic adapter for the WordPress get_option()
- * function that can be configured to supply consistent default
- * values for particular options.
+ * Final class OptionStore.
  */
 class OptionStore implements OptionStoreInterface
 {
@@ -31,25 +27,23 @@ class OptionStore implements OptionStoreInterface
      * Get an option value from constant or database.
      *
      * Wrapper around the WordPress function `get_option`.
-     * Can be overridden by constant `OPTION_NAME_KEY`.
+     * Can be overridden by constant `OPTION_NAME`.
      *
      * @param string $optionName Name of option to retrieve.
      *                           Expected to not be SQL-escaped.
-     * @param string $key        Optional. Array key of the option element.
-     *                           Also, the field ID.
      *
      * @return mixed
      */
-    public function get(string $optionName, string $key = null)
+    public function get(string $optionName)
     {
-        $constantName = $this->constantNameFor($optionName, $key);
+        $constantName = $this->constantNameFor($optionName);
         if (defined($constantName)) {
             $value = constant($constantName);
         } else {
-            $value = $this->getFromDatabase($optionName, $key);
+            $value = $this->getFromDatabase($optionName);
         }
 
-        $filterTag = $this->filterTagFor($optionName, $key);
+        $filterTag = $this->filterTagFor($optionName);
 
         return apply_filters($filterTag, $value);
     }
@@ -59,16 +53,12 @@ class OptionStore implements OptionStoreInterface
      *
      * @param string $optionName Name of option to retrieve.
      *                           Expected to not be SQL-escaped.
-     * @param string $key        Optional. Array key of the option element.
-     *                           Also, the field ID.
      *
      * @return string
      */
-    private function constantNameFor(string $optionName, string $key = null): string
+    private function constantNameFor(string $optionName): string
     {
-        $name = empty($key) ? $optionName : $optionName . '_' . $key;
-
-        return strtoupper($name);
+        return strtoupper($optionName);
     }
 
     /**
@@ -76,20 +66,12 @@ class OptionStore implements OptionStoreInterface
      *
      * @param string $optionName Name of option to retrieve.
      *                           Expected to not be SQL-escaped.
-     * @param string $key        Optional. Array key of the option element.
-     *                           Also, the field ID.
      *
      * @return mixed
      */
-    private function getFromDatabase(string $optionName, string $key = null)
+    private function getFromDatabase(string $optionName)
     {
-        $option = get_option($optionName);
-
-        if (! empty($key) && is_array($option)) {
-            return $option[ $key ] ?? false;
-        }
-
-        return $option;
+        return get_option($optionName);
     }
 
     /**
@@ -97,15 +79,11 @@ class OptionStore implements OptionStoreInterface
      *
      * @param string $optionName Name of option to retrieve.
      *                           Expected to not be SQL-escaped.
-     * @param string $key        Optional. Array key of the option element.
-     *                           Also, the field ID.
      *
      * @return string
      */
-    private function filterTagFor(string $optionName, string $key = null): string
+    private function filterTagFor(string $optionName): string
     {
-        $name = empty($key) ? $optionName : $optionName . '_' . $key;
-
-        return strtolower($name);
+        return strtolower($optionName);
     }
 }

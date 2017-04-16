@@ -18,19 +18,12 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
-/**
- * Interface ViewInterface
- *
- * Accepts a context and echo its content on request.
- */
-interface ViewInterface
-{
-    /**
-     * Echo a given view safely.
-     *
-     * @param mixed $context Context for which to render the view.
-     *
-     * @return void
-     */
-    public function echoKses($context);
-}
+?>
+
+<div class="wrap">
+
+    <h1>Custom View</h1>
+
+    <p>Hello World!</p>
+
+</div>

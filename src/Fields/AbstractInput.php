@@ -16,21 +16,22 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\WPBetterSettings;
+namespace TypistTech\WPBetterSettings\Fields;
 
 /**
- * Interface ViewInterface
- *
- * Accepts a context and echo its content on request.
+ * Abstract class AbstractInput
  */
-interface ViewInterface
+abstract class AbstractInput extends AbstractField
 {
+    const TYPE = self::TYPE;
+
     /**
-     * Echo a given view safely.
+     * Type getter.
      *
-     * @param mixed $context Context for which to render the view.
-     *
-     * @return void
+     * @return string
      */
-    public function echoKses($context);
+    public function getType(): string
+    {
+        return static::TYPE;
+    }
 }

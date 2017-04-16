@@ -18,19 +18,16 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
-/**
- * Interface ViewInterface
- *
- * Accepts a context and echo its content on request.
- */
-interface ViewInterface
-{
-    /**
-     * Echo a given view safely.
-     *
-     * @param mixed $context Context for which to render the view.
-     *
-     * @return void
-     */
-    public function echoKses($context);
-}
+/* @var MenuPage|SubmenuPage $context */
+
+echo '<div class="wrap">';
+
+do_action($context->getSnakecasedMenuSlug() . '_before_page_title');
+
+echo '<h1>' . esc_html($context->getPageTitle()) . '</h1>';
+
+do_action($context->getSnakecasedMenuSlug() . '_after_page_title');
+
+include __DIR__ . '/options-form.php';
+
+echo '</div>';

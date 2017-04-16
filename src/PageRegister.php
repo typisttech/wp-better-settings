@@ -24,7 +24,7 @@ namespace TypistTech\WPBetterSettings;
  * This class registers menu pages and submenu pages via the WordPress API.
  *
  * It enables you an entire collection of menu pages and submenu pages as
- * represented by your MenuPageConfig objects. In this way, you
+ * represented by your MenuPage and SubmenuPage objects. In this way, you
  * don't have to deal with all the confusing callback code that the
  * WordPress Settings API forces you to use.
  */
@@ -71,7 +71,7 @@ final class PageRegister
     public function run()
     {
         foreach ($this->menuPages as $menuPage) {
-            $menuPage->setTabs($this->getPages());
+            $menuPage->setTabs($this->getAllPages());
 
             add_menu_page(
                 $menuPage->getPageTitle(),
@@ -85,7 +85,7 @@ final class PageRegister
         }
 
         foreach ($this->submenuPages as $submenuPage) {
-            $submenuPage->setTabs($this->getPages());
+            $submenuPage->setTabs($this->getAllPages());
 
             add_submenu_page(
                 $submenuPage->getParentSlug(),
@@ -103,7 +103,7 @@ final class PageRegister
      *
      * @return (MenuPage|SubmenuPage)[]
      */
-    private function getPages(): array
+    private function getAllPages(): array
     {
         return array_merge($this->menuPages, $this->submenuPages);
     }

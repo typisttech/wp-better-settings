@@ -1,10 +1,34 @@
 # Change Log
 
+## [0.10.0](https://github.com/TypistTech/wp-better-settings/tree/0.10.0) (2017-04-17)
+[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.9.1...0.10.0)
+
+**Closed issues:**
+
+- Fix: Test for Sanitizer::sanitizeCheckbox invaild [\#80](https://github.com/TypistTech/wp-better-settings/issues/80)
+- Add functional test [\#74](https://github.com/TypistTech/wp-better-settings/issues/74)
+- Ditch ArrayObject [\#73](https://github.com/TypistTech/wp-better-settings/issues/73)
+- Add acceptance tests [\#68](https://github.com/TypistTech/wp-better-settings/issues/68)
+- Override option values by constants and filters [\#67](https://github.com/TypistTech/wp-better-settings/issues/67)
+
+**Merged pull requests:**
+
+- Ditch ArrayObject [\#88](https://github.com/TypistTech/wp-better-settings/pull/88) ([TangRufus](https://github.com/TangRufus))
+- Refactor test [\#85](https://github.com/TypistTech/wp-better-settings/pull/85) ([TangRufus](https://github.com/TangRufus))
+- Ditch ArrayObject: MenuPageConfig [\#83](https://github.com/TypistTech/wp-better-settings/pull/83) ([TangRufus](https://github.com/TangRufus))
+- Fix: Test for Sanitizer::sanitizeCheckbox use improper inputs [\#81](https://github.com/TypistTech/wp-better-settings/pull/81) ([TangRufus](https://github.com/TangRufus))
+- Test: Extract integration tests from unit tests [\#79](https://github.com/TypistTech/wp-better-settings/pull/79) ([TangRufus](https://github.com/TangRufus))
+- Override option values by constants and filters [\#76](https://github.com/TypistTech/wp-better-settings/pull/76) ([TangRufus](https://github.com/TangRufus))
+- Add functional tests [\#75](https://github.com/TypistTech/wp-better-settings/pull/75) ([TangRufus](https://github.com/TangRufus))
+- Add acceptance tests [\#71](https://github.com/TypistTech/wp-better-settings/pull/71) ([TangRufus](https://github.com/TangRufus))
+- Use Typist Tech config [\#70](https://github.com/TypistTech/wp-better-settings/pull/70) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.9.1](https://github.com/TypistTech/wp-better-settings/tree/0.9.1) (2017-03-27)
 [Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.9.0...0.9.1)
 
 **Merged pull requests:**
 
+- Version bump 0.9.1 [\#66](https://github.com/TypistTech/wp-better-settings/pull/66) ([TangRufus](https://github.com/TangRufus))
 - Fix: Settings not being saved [\#65](https://github.com/TypistTech/wp-better-settings/pull/65) ([TangRufus](https://github.com/TangRufus))
 - ScrutinizerCI: Update coding standard config [\#64](https://github.com/TypistTech/wp-better-settings/pull/64) ([TangRufus](https://github.com/TangRufus))
 

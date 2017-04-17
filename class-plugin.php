@@ -18,46 +18,29 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
+use TypistTech\WPBetterSettings\Fields\Checkbox;
+use TypistTech\WPBetterSettings\Fields\Email;
+use TypistTech\WPBetterSettings\Fields\Text;
+use TypistTech\WPBetterSettings\Fields\Textarea;
+use TypistTech\WPBetterSettings\Fields\Url;
+
 /**
  * Class Plugin.
  *
  * This class hooks our plugin into the WordPress life-cycle.
- *
- * @since 0.1.0
  */
-class Plugin
+final class Plugin
 {
     /**
-     * Options store instance.
-     *
-     * @since 0.1.0
-     *
-     * @var OptionStoreInterface
-     */
-    protected $optionStore;
-
-    /**
      * Launch the initialization process.
-     *
-     * @since 0.1.0
      */
     public function init()
     {
-        $this->optionStore = new OptionStore;
-        $this->initSettingsPage();
-    }
-
-    /**
-     * Initialize Settings page.
-     */
-    public function initSettingsPage()
-    {
         $pageRegister = new PageRegister($this->getPages());
-        $settings = new Settings($this->settingsConfigs(), $this->optionStore);
+        $settingRegister = new SettingRegister($this->getSections(), new OptionStore);
 
-        // Register the settings page with WordPress.
         add_action('admin_menu', [ $pageRegister, 'run' ]);
-        add_action('admin_init', [ $settings, 'adminInit' ]);
+        add_action('admin_init', [ $settingRegister, 'run' ]);
     }
 
     /**
@@ -67,127 +50,215 @@ class Plugin
      */
     private function getPages(): array
     {
+        $simple = new MenuPage(
+            'wpbs-simple',
+            __('WP Better Settings', 'wp-better-settings')
+        );
+
+        $text = new SubmenuPage(
+            'wpbs-simple',
+            'wpbs-text',
+            __('Text', 'wp-better-settings')
+        );
+
+        $email = new SubmenuPage(
+            'wpbs-simple',
+            'wpbs-email',
+            __('Email', 'wp-better-settings')
+        );
+
+        $url = new SubmenuPage(
+            'wpbs-simple',
+            'wpbs-url',
+            __('Url', 'wp-better-settings')
+        );
+
+        $checkbox = new SubmenuPage(
+            'wpbs-simple',
+            'wpbs-checkbox',
+            __('Checkbox', 'wp-better-settings')
+        );
+
+        $textarea = new SubmenuPage(
+            'wpbs-simple',
+            'wpbs-textarea',
+            __('Textarea', 'wp-better-settings')
+        );
+
+        $basic = new SubmenuPage(
+            'wpbs-simple',
+            'wpbs-basic-page',
+            'Basic Page',
+            'Basic Page without Tabs'
+        );
+        $basic->setView(
+            ViewFactory::build('basic-page')
+        );
+
+        $customView = new SubmenuPage(
+            'wpbs-simple',
+            'wpbs-custom-view',
+            __('Custom View', 'wp-better-settings')
+        );
+        $customView->setView(
+            new View(plugin_dir_path(__FILE__) . 'partials/custom-view.php')
+        );
+
         return [
-            new MenuPage(
-                'wpbs-1',
-                'WP Better Settings'
-            ),
-            new SubmenuPage(
-                'wpbs-1',
-                'wpbs-2',
-                'WPBS Two',
-                ViewFactory::build('basic-options-page'),
-                'WP Better Settings Two'
-            ),
+            $simple,
+            $text,
+            $email,
+            $url,
+            $checkbox,
+            $textarea,
+            $basic,
+            $customView,
         ];
     }
 
     /**
      * Setting configs
      *
-     * @since 0.3.0
-     *
-     * @return SettingConfig[]
+     * @return Section[]
      */
-    private function settingsConfigs(): array
+    private function getSections(): array
     {
-        return [
-            new SettingConfig([
-                'option_group' => 'wpbs-1',
-                'option_name' => 'wpbs_1',
-                'sections' => [
-                    new SectionConfig([
-                        'id' => 'wpbs_section_1',
-                        'page' => 'wpbs-1',
-                        'title' => __('My Useless Name Settings', 'wp-better-settings'),
-                        'desc' => 'Just my section desc',
-                        'fields' => [
-                            new FieldConfig([
-                                'id' => 'my_name',
-                                'title' => __('My Name', 'wp-better-settings'),
-                                'default' => 'Tang Rufus',
-                                'view' => ViewFactory::build('text-field'),
-                                'desc' => 'I am a description paragraph',
-                            ]),
-                            new FieldConfig([
-                                'id' => 'my_email',
-                                'title' => __('My Email', 'wp-better-settings'),
-                                'view' => ViewFactory::build('email-field'),
-                                'sanitize_callback' => [ Sanitizer::class, 'sanitize_email' ],
-                            ]),
-                            new FieldConfig([
-                                'id' => 'my_url',
-                                'title' => __('My Url', 'wp-better-settings'),
-                                'default' => 'https://www.typist.tech',
-                                'view' => ViewFactory::build('url-field'),
-                                'sanitize_callback' => 'esc_url_raw',
-                            ]),
-                            new FieldConfig([
-                                'id' => 'my_textarea',
-                                'title' => __('My Textarea', 'wp-better-settings'),
-                                'view' => ViewFactory::build('textarea-field'),
-                                'rows' => 11,
-                            ]),
-                            new FieldConfig([
-                                'id' => 'my_checkbox',
-                                'title' => __('My Checkbox', 'wp-better-settings'),
-                                'view' => ViewFactory::build('checkbox-field'),
-                                'label' => __('Click me', 'wp-better-settings'),
-                                'desc' => __('Checkmate', 'wp-better-settings'),
-                                'sanitize_callback' => [ Sanitizer::class, 'sanitize_checkbox' ],
-                            ]),
-                            new FieldConfig([
-                                'id' => 'my_disabled_input',
-                                'title' => __('My Disabled Input', 'wp-better-settings'),
-                                'desc' => 'Disabled on purpose',
-                                'view' => ViewFactory::build('text-field'),
-                                'disabled' => true,
-                            ]),
-                            new FieldConfig([
-                                'id' => 'my_disabled_textarea',
-                                'title' => __('My Disabled Textarea', 'wp-better-settings'),
-                                'view' => ViewFactory::build('textarea-field'),
-                                'desc' => 'You shall not type',
-                                'disabled' => true,
-                            ]),
-                            new FieldConfig([
-                                'id' => 'my_disabled_checkbox',
-                                'title' => __('My Disabled Checkbox', 'wp-better-settings'),
-                                'view' => ViewFactory::build('checkbox-field'),
-                                'desc' => __('You shall not check', 'wp-better-settings'),
-                                'disabled' => true,
-                                'sanitize_callback' => [ Sanitizer::class, 'sanitize_checkbox' ],
-                            ]),
-                        ],
-                    ]),
-                ],
-            ]),
+        $simple = new Section(
+            'wpbs-simple',
+            __('List of Supported Fields with Minimal Config', 'wp-better-settings'),
+            [
+                new Text('wpbs_simple_text', __('Simple Text', 'wp-better-settings')),
+                new Email('wpbs_simple_email', __('Simple Email', 'wp-better-settings')),
+                new Text('wpbs_simple_url', __('Simple Url', 'wp-better-settings')),
+                new Checkbox('wpbs_simple_checkbox', __('Simple Checkbox', 'wp-better-settings')),
+                new Textarea('wpbs_simple_textarea', __('Simple Textarea', 'wp-better-settings')),
+            ]
+        );
 
-            new SettingConfig([
-                'option_group' => 'wpbs-2',
-                'option_name' => 'wpbs_2',
-                'sections' => [
-                    new SectionConfig([
-                        'id' => 'wpbs_section_2',
-                        'title' => __('Useless Name Settings', 'wp-better-settings'),
-                        'page' => 'wpbs-2',
-                        'view' => plugin_dir_path(__FILE__) . 'partials/section-description.php',
-                        'fields' => [
-                            new FieldConfig([
-                                'id' => 'wpbs_first_name',
-                                'title' => __('First Name', 'wp-better-settings'),
-                                'view' => ViewFactory::build('text-field'),
-                                'default' => 'Elliot',
-                            ]),
-                            new FieldConfig([
-                                'id' => 'wpbs_last_name',
-                                'title' => __('Last Name', 'wp-better-settings'),
-                                'view' => plugin_dir_path(__FILE__) . 'partials/last-name-field.php',
-                            ]),
-                        ],
-                    ]),
-                ],
-            ]),
+        $basic = new Section(
+            'wpbs-basic-page',
+            __('List of Supported Fields with Minimal Config', 'wp-better-settings'),
+            [
+                new Text('wpbs_basic_text', __('Simple Text', 'wp-better-settings')),
+            ]
+        );
+
+        $text = new Section(
+            'wpbs-text',
+            __('Showcase of Different Field Configuration', 'wp-better-settings'),
+            [
+                new Text('wpbs_text', __('Minimal', 'wp-better-settings')),
+                new Text('wpbs_text_desc', __('With Description', 'wp-better-settings'), [
+                    'desc' => 'I am a <strong>helpful description</strong> with <code>html</code> tags',
+                ]),
+                new Text('wpbs_text_disabled', __('Disabled', 'wp-better-settings'), [
+                    'disabled' => true,
+                ]),
+                new Text(
+                    'wpbs_text_small',
+                    __("With WordPress' <code>small-text</code> HTML class", 'wp-better-settings'),
+                    [
+                        'htmlClass' => 'small-text',
+                    ]
+                ),
+            ]
+        );
+
+        $email = new Section(
+            'wpbs-email',
+            __('Showcase of Different Field Configuration', 'wp-better-settings'),
+            [
+                new Email('wpbs_email', __('Minimal', 'wp-better-settings')),
+                new Email('wpbs_email_desc', __('With Description', 'wp-better-settings'), [
+                    'desc' => 'I am a <strong>helpful description</strong> with <code>html</code> tags',
+                ]),
+                new Email('wpbs_email_disabled', __('Disabled', 'wp-better-settings'), [
+                    'disabled' => true,
+                ]),
+                new Email(
+                    'wpbs_email_small',
+                    __("With WordPress' <code>small-text</code> HTML class", 'wp-better-settings'),
+                    [
+                        'htmlClass' => 'small-text',
+                    ]
+                ),
+            ]
+        );
+
+        $url = new Section(
+            'wpbs-url',
+            __('Showcase of Different Field Configuration', 'wp-better-settings'),
+            [
+                new Url('wpbs_url', __('Minimal', 'wp-better-settings')),
+                new Url('wpbs_url_desc', __('With Description', 'wp-better-settings'), [
+                    'desc' => 'I am a <strong>helpful description</strong> with <code>html</code> tags',
+                ]),
+                new Url('wpbs_url_disabled', __('Disabled', 'wp-better-settings'), [
+                    'disabled' => true,
+                ]),
+                new Url(
+                    'wpbs_url_small',
+                    __("With WordPress' <code>small-text</code> HTML class", 'wp-better-settings'),
+                    [
+                        'htmlClass' => 'small-text',
+                    ]
+                ),
+            ]
+        );
+
+        $checkbox = new Section(
+            'wpbs-checkbox',
+            __('Showcase of Different Field Configuration', 'wp-better-settings'),
+            [
+                new Checkbox('wpbs_checkbox', __('Minimal', 'wp-better-settings')),
+                new Checkbox('wpbs_checkbox_desc', __('With Description', 'wp-better-settings'), [
+                    'desc' => 'I am a <strong>helpful description</strong> with <code>html</code> tags',
+                ]),
+                new Checkbox('wpbs_checkbox_disabled', __('Disabled', 'wp-better-settings'), [
+                    'disabled' => true,
+                ]),
+                new Checkbox('wpbs_checkbox_label', __('With Label', 'wp-better-settings'), [
+                    'label' => 'I am a <strong>helpful label</strong> with <code>html</code> tags',
+                ]),
+            ]
+        );
+
+        $textarea = new Section(
+            'wpbs-textarea',
+            __('Showcase of Different Field Configuration', 'wp-better-settings'),
+            [
+                new Textarea('wpbs_textarea', __('Minimal', 'wp-better-settings')),
+                new Textarea('wpbs_textarea_desc', __('With Description', 'wp-better-settings'), [
+                    'desc' => 'I am a <strong>helpful description</strong> with <code>html</code> tags',
+                ]),
+                new Textarea('wpbs_textarea_disabled', __('Disabled', 'wp-better-settings'), [
+                    'disabled' => true,
+                ]),
+                new Textarea(
+                    'wpbs_textarea_small',
+                    __("With WordPress' <code>small-text</code> HTML class", 'wp-better-settings'),
+                    [
+                        'htmlClass' => 'small-text',
+                    ]
+                ),
+                new Textarea(
+                    'wpbs_textarea_rows',
+                    __('Ten Rows', 'wp-better-settings'),
+                    [
+                        'rows' => 10,
+                    ]
+                ),
+            ]
+        );
+
+        return [
+            $simple,
+            $basic,
+            $text,
+            $email,
+            $url,
+            $checkbox,
+            $textarea,
         ];
     }
 }

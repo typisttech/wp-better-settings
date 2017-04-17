@@ -16,21 +16,22 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\WPBetterSettings;
+namespace TypistTech\WPBetterSettings\Fields;
 
 /**
- * Interface ViewInterface
- *
- * Accepts a context and echo its content on request.
+ * Final class Textarea
  */
-interface ViewInterface
+class Textarea extends AbstractField
 {
+    const DEFAULT_VIEW_PARTIAL = 'fields/textarea';
+
     /**
-     * Echo a given view safely.
+     * Get rows from extra.
      *
-     * @param mixed $context Context for which to render the view.
-     *
-     * @return void
+     * @return int
      */
-    public function echoKses($context);
+    public function getRows(): int
+    {
+        return $this->extra['rows'] ?? 0;
+    }
 }

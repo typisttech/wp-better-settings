@@ -6,7 +6,7 @@ namespace TypistTech\WPBetterSettings;
 
 trait ConstructWithAttributesTrait
 {
-    abstract protected function attributesProvider(): array;
+    abstract public function attributesProvider(): array;
 
     abstract protected function getSubject();
 

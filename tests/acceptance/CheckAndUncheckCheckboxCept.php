@@ -8,22 +8,20 @@ $I = new AcceptanceTester($scenario);
 $I->wantToTest('checking and un-checking checkbox');
 
 $I->amOnWPBSOptionPage();
-$I->dontSeeCheckboxIsChecked('#my_checkbox');
+$I->dontSeeCheckboxIsChecked('#wpbs_simple_checkbox');
 
 $I->amGoingTo('check and submit the checkbox');
-$formValues = [
-    'wpbs_1[my_checkbox]' => '1',
-];
-$I->submitForm('form', $formValues);
+$I->click('#wpbs_simple_checkbox');
+$I->click('#submit');
+$I->waitForText('Settings saved', 10);
 
-$I->amOnWPBSOptionPage();
-$I->seeCheckboxIsChecked('#my_checkbox');
+$I->amOnAdminPage('admin.php?page=wpbs-simple');
+$I->seeCheckboxIsChecked('#wpbs_simple_checkbox');
 
 $I->amGoingTo('un-check and submit the checkbox');
-$formValues = [
-    'wpbs_1[my_checkbox]' => '',
-];
-$I->submitForm('form', $formValues);
+$I->click('#wpbs_simple_checkbox');
+$I->click('#submit');
+$I->waitForText('Settings saved', 10);
 
-$I->amOnWPBSOptionPage();
-$I->dontSeeCheckboxIsChecked('#my_checkbox');
+$I->amOnAdminPage('admin.php?page=wpbs-simple');
+$I->dontSeeCheckboxIsChecked('#wpbs_simple_checkbox');

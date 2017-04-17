@@ -18,28 +18,26 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
-/* @var MenuPage $context Context passed through from View object. */
-
-$snakecased_menu_slug = str_replace('-', '_', $context->getMenuSlug());
+/* @var MenuPage|SubmenuPage $context */
 
 settings_errors();
 
-do_action($snakecased_menu_slug . '_before_option_form');
+do_action($context->getSnakecasedMenuSlug() . '_before_option_form');
 
 echo '<form action="options.php" method="post">';
 
 settings_fields($context->getMenuSlug());
 
-do_action($snakecased_menu_slug . '_before_settings_sections');
+do_action($context->getSnakecasedMenuSlug() . '_before_settings_sections');
 
 do_settings_sections($context->getMenuSlug());
 
-do_action($snakecased_menu_slug . '_before_submit_button');
+do_action($context->getSnakecasedMenuSlug() . '_before_submit_button');
 
 submit_button();
 
-do_action($snakecased_menu_slug . '_after_submit_button');
+do_action($context->getSnakecasedMenuSlug() . '_after_submit_button');
 
 echo '</form>';
 
-do_action($snakecased_menu_slug . '_after_option_form');
+do_action($context->getSnakecasedMenuSlug() . '_after_option_form');

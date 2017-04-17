@@ -32,10 +32,8 @@ interface OptionStoreInterface
      *
      * @param string $optionName Name of option to retrieve.
      *                           Expected to not be SQL-escaped.
-     * @param string $key        Optional. Array key of the option element.
-     *                           Also, the field ID.
      *
      * @return mixed
      */
-    public function get(string $optionName, string $key = null);
+    public function get(string $optionName);
 }

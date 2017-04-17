@@ -6,9 +6,9 @@ namespace TypistTech\WPBetterSettings;
 
 trait ConstructWithMinimalAttributesTrait
 {
-    abstract protected function getMinimalSubject();
+    abstract public function minimalAttributesProvider(): array;
 
-    abstract protected function minimalAttributesProvider(): array;
+    abstract protected function getMinimalSubject();
 
     /**
      * @covers ::__construct

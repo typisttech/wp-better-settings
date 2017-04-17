@@ -16,21 +16,14 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\WPBetterSettings;
+namespace TypistTech\WPBetterSettings\Fields;
 
 /**
- * Interface ViewInterface
- *
- * Accepts a context and echo its content on request.
+ * Final class Text
  */
-interface ViewInterface
+final class Text extends AbstractInput
 {
-    /**
-     * Echo a given view safely.
-     *
-     * @param mixed $context Context for which to render the view.
-     *
-     * @return void
-     */
-    public function echoKses($context);
+    const TYPE = 'text';
+
+    const DEFAULT_VIEW_PARTIAL = 'fields/input';
 }

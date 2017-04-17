@@ -4,20 +4,21 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
+use Codeception\TestCase\WPTestCase;
 use InvalidArgumentException;
 
 /**
  * @coversDefaultClass \TypistTech\WPBetterSettings\ViewFactory
  */
-class ViewFactoryTest extends \Codeception\TestCase\WPTestCase
+class ViewFactoryTest extends WPTestCase
 {
     /**
      * @covers ::build
      */
     public function testBuildViewFilename()
     {
-        $actual = ViewFactory::build('section-description');
-        $expected = new View(codecept_root_dir() . 'src/partials/section-description.php');
+        $actual = ViewFactory::build('section');
+        $expected = new View(codecept_root_dir() . 'src/partials/section.php');
         $this->assertEquals($expected, $actual);
     }
 
@@ -26,7 +27,7 @@ class ViewFactoryTest extends \Codeception\TestCase\WPTestCase
      */
     public function testBuildViewObject()
     {
-        $actual = ViewFactory::build('text-field');
+        $actual = ViewFactory::build('section');
         $this->assertInstanceOf(View::class, $actual);
     }
 

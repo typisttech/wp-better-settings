@@ -45,9 +45,19 @@ require_once plugin_dir_path(__FILE__) . 'class-plugin.php';
 /**
  * You can use hooks like so.
  */
-function add_paragraph_after_option_form()
+function add_hooked_paragraph()
 {
-    echo 'This paragraph is add via <code>{$snakecased_menu_slug}_after_option_form hook</code>';
+    echo '<p>This paragraph is add via <code>';
+    echo esc_attr(str_replace('wpbs_simple', '{$snakecased_menu_slug}', current_filter()));
+    echo '</code> hook </p>';
 }
 
-add_action('wpbs_1_after_option_form', 'TypistTech\WPBetterSettings\add_paragraph_after_option_form');
+add_action('wpbs_simple_before_page_title', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
+add_action('wpbs_simple_after_page_title', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
+add_action('wpbs_simple_before_nav_tabs', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
+add_action('wpbs_simple_after_nav_tabs', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
+add_action('wpbs_simple_before_option_form', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
+add_action('wpbs_simple_before_settings_sections', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
+add_action('wpbs_simple_before_submit_button', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
+add_action('wpbs_simple_after_submit_button', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
+add_action('wpbs_simple_after_option_form', 'TypistTech\WPBetterSettings\add_hooked_paragraph');

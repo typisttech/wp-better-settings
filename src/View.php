@@ -19,11 +19,11 @@ declare(strict_types=1);
 namespace TypistTech\WPBetterSettings;
 
 /**
- * Class View.
+ * Final class View.
  *
  * Accepts a filename of a PHP file and renders its content on request.
  */
-class View implements ViewInterface
+final class View implements ViewInterface
 {
     /**
      * Array of allowed tags to let through escaping.

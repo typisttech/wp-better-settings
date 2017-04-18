@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\WPBetterSettings;
+namespace TypistTech\WPBetterSettings\Pages;
 
-trait PageUnitTestTrait
+trait PageTestTrait
 {
     abstract protected function getSubject();
 
@@ -15,12 +15,19 @@ trait PageUnitTestTrait
             'menuTitle' => [ 'getMenuTitle', 'My Menu Title' ],
             'pageTitle' => [ 'getPageTitle', 'My Page Title' ],
             'capability' => [ 'getCapability', 'promote_users' ],
-            'snakecasedMenuSlug' => [ 'getSnakecasedMenuSlug', 'my_menu_slug' ],
         ];
     }
 
     /**
-     * @covers       \TypistTech\WPBetterSettings\PageTrait
+     * @covers ::__construct
+     */
+    public function testImplementsPageInterface()
+    {
+        $this->assertInstanceOf(PageInterface::class, $this->getSubject());
+    }
+
+    /**
+     * @covers       \TypistTech\WPBetterSettings\Pages\PageTrait
      * @dataProvider pageAttributeGettersProvider
      *
      * @param string $getterName Getter function to be tested.

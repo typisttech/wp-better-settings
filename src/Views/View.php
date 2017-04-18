@@ -16,7 +16,7 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\WPBetterSettings;
+namespace TypistTech\WPBetterSettings\Views;
 
 /**
  * Final class View.

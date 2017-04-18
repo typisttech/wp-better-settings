@@ -2,16 +2,14 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\WPBetterSettings;
+namespace TypistTech\WPBetterSettings\Views;
 
 use AspectMock\Test;
 
-trait ViewAwareUnitTestTrait
+trait ViewAwareTestTrait
 {
-    abstract protected function getSubject();
-
     /**
-     * @covers \TypistTech\WPBetterSettings\ViewAwareTrait::getCallbackFunction
+     * @covers \TypistTech\WPBetterSettings\Views\ViewAwareTrait::getCallbackFunction
      */
     public function testGetCallbackFunction()
     {
@@ -23,9 +21,11 @@ trait ViewAwareUnitTestTrait
         $this->assertSame($expected, $actual);
     }
 
+    abstract protected function getSubject();
+
     /**
-     * @covers \TypistTech\WPBetterSettings\ViewAwareTrait::setView
-     * @covers \TypistTech\WPBetterSettings\ViewAwareTrait::echoView
+     * @covers \TypistTech\WPBetterSettings\Views\ViewAwareTrait::setView
+     * @covers \TypistTech\WPBetterSettings\Views\ViewAwareTrait::echoView
      */
     public function testSetAndEchoView()
     {

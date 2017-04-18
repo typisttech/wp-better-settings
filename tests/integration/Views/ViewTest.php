@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\WPBetterSettings;
+namespace TypistTech\WPBetterSettings\Views;
 
 use ArrayObject;
 use Codeception\TestCase\WPTestCase;
 
 /**
- * @coversDefaultClass \TypistTech\WPBetterSettings\View
+ * @coversDefaultClass \TypistTech\WPBetterSettings\Views\View
  */
 class ViewTest extends WPTestCase
 {

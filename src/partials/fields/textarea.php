@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
-/* @var \TypistTech\WPBetterSettings\Fields\Textarea $context Context */
+/* @var Decorators\Fields\Textarea $context Context */
 
 echo '<textarea ';
 if ($context->getRows() > 0) {

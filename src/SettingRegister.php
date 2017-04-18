@@ -41,18 +41,18 @@ final class SettingRegister
      *
      * @var Section[];
      */
-    private $sections = [];
+    private $sections;
 
     /**
      * Instantiate Settings object.
      *
-     * @param Section[]            $sections     Section configuration.
      * @param OptionStoreInterface $optionHelper Option helper.
+     * @param Section|Section[]    ...$sections  Section configuration.
      */
-    public function __construct(array $sections, OptionStoreInterface $optionHelper)
+    public function __construct(OptionStoreInterface $optionHelper, Section ...$sections)
     {
-        $this->setSections(...$sections);
         $this->optionStore = $optionHelper;
+        $this->sections = $sections;
     }
 
     /**
@@ -62,7 +62,7 @@ final class SettingRegister
      *
      * @return void
      */
-    public function setSections(Section ...$sections)
+    public function addSections(Section ...$sections)
     {
         $this->sections = array_unique(
             array_merge($this->sections, $sections),
@@ -113,9 +113,10 @@ final class SettingRegister
      */
     private function registerField(Field $field, string $page)
     {
-        $field->setValue($this->optionStore->get(
-            $field->getId()
-        ));
+        $field->getDecorator()
+              ->setValue($this->optionStore->get(
+                  $field->getId()
+              ));
 
         register_setting(
             $page,

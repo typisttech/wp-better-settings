@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\WPBetterSettings;
+namespace TypistTech\WPBetterSettings\Views;
 
 use Codeception\TestCase\WPTestCase;
 use InvalidArgumentException;
 
 /**
- * @coversDefaultClass \TypistTech\WPBetterSettings\ViewFactory
+ * @coversDefaultClass \TypistTech\WPBetterSettings\Views\ViewFactory
  */
 class ViewFactoryTest extends WPTestCase
 {

@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
-/* @var \TypistTech\WPBetterSettings\Fields\Checkbox $context Context */
+/* @var Decorators\Fields\Checkbox $context Context */
 
 echo '<fieldset>';
 echo '<legend class="screen-reader-text"><span>' . esc_html($context->getTitle()) . '</span></legend>';

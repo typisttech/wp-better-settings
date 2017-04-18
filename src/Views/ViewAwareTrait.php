@@ -16,7 +16,7 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\WPBetterSettings;
+namespace TypistTech\WPBetterSettings\Views;
 
 /**
  * Trait ViewAwareTrait.
@@ -31,23 +31,32 @@ trait ViewAwareTrait
     protected $view;
 
     /**
+     * Default view getter.
+     *
+     * @return ViewInterface
+     */
+    abstract protected function getDefaultView(): ViewInterface;
+
+    /**
      * Echo the view safely.
      *
      * @return void
      */
     public function echoView()
     {
-        $this->view->echoKses($this);
+        $this->getView()->echoKses($this);
     }
 
     /**
-     * Returns the function to be called to output the content for this page.
+     * View getter.
      *
-     * @return callable
+     * @return ViewInterface
      */
-    public function getCallbackFunction(): callable
+    protected function getView(): ViewInterface
     {
-        return [ $this, 'echoView' ];
+        $this->view = $this->view ?? $this->getDefaultView();
+
+        return $this->view;
     }
 
     /**
@@ -60,5 +69,15 @@ trait ViewAwareTrait
     public function setView(ViewInterface $view)
     {
         $this->view = $view;
+    }
+
+    /**
+     * Returns the function to be called to output the content for this page.
+     *
+     * @return callable
+     */
+    public function getCallbackFunction(): callable
+    {
+        return [ $this, 'echoView' ];
     }
 }

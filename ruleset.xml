@@ -40,6 +40,7 @@
         <exclude name="PEAR.Functions.FunctionCallSignature.SpaceAfterOpenBracket"/>
         <exclude name="PEAR.Functions.FunctionCallSignature.SpaceBeforeCloseBracket"/>
 
+        <exclude name="Squiz.Commenting.FunctionComment.IncorrectTypeHint"/>
         <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterOpen"/>
         <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterOpenHint"/>
 

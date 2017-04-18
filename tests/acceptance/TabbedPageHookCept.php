@@ -15,6 +15,9 @@ $I->see('This paragraph is add via {$snakecased_menu_slug}_before_nav_tabs hook'
 $I->see('This paragraph is add via {$snakecased_menu_slug}_after_nav_tabs hook');
 $I->see('This paragraph is add via {$snakecased_menu_slug}_before_option_form hook');
 $I->see('This paragraph is add via {$snakecased_menu_slug}_before_settings_sections hook');
+$I->see('This paragraph is add via {$snakecased_menu_slug}_before_section_content hook');
+$I->see('This paragraph is add via {$snakecased_menu_slug}_after_section_content hook');
+$I->see('This paragraph is add via {$snakecased_menu_slug}_after_settings_sections hook');
 $I->see('This paragraph is add via {$snakecased_menu_slug}_before_submit_button hook');
 $I->see('This paragraph is add via {$snakecased_menu_slug}_after_submit_button hook');
 $I->see('This paragraph is add via {$snakecased_menu_slug}_after_option_form hook');

@@ -18,31 +18,14 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings\Fields;
 
+use TypistTech\WPBetterSettings\Decorators\Fields\Checkbox as CheckboxDecorator;
+use TypistTech\WPBetterSettings\Views\ViewAwareInterface;
+
 /**
  * Final class Checkbox
  */
 final class Checkbox extends AbstractField
 {
-    const DEFAULT_VIEW_PARTIAL = 'fields/checkbox';
-
-    /**
-     * Get label form extra.
-     *
-     * @return string
-     */
-    public function getLabel(): string
-    {
-        return $this->extra['label'] ?? '';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSanitizeCallback(): callable
-    {
-        return $this->sanitizeCallback ?? [ $this, 'sanitizeCheckbox' ];
-    }
-
     /**
      * Sanitize checkbox
      *
@@ -57,5 +40,21 @@ final class Checkbox extends AbstractField
         $sanitizedInput = sanitize_text_field($input);
 
         return ('1' === $sanitizedInput) ? '1' : '';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getDefaultDecorator(): ViewAwareInterface
+    {
+        return new CheckboxDecorator($this);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSanitizeCallback(): callable
+    {
+        return $this->sanitizeCallback ?? [ $this, 'sanitizeCheckbox' ];
     }
 }

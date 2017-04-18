@@ -18,15 +18,17 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
+use TypistTech\WPBetterSettings\Decorators\DecoratorAwareInterface;
+use TypistTech\WPBetterSettings\Decorators\DecoratorAwareTrait;
+use TypistTech\WPBetterSettings\Decorators\Section as SectionDecorator;
 use TypistTech\WPBetterSettings\Fields\AbstractField;
 
 /**
  * Final class Section
  */
-final class Section
+final class Section implements DecoratorAwareInterface
 {
-    use ExtraAwareTrait;
-    use ViewAwareTrait;
+    use DecoratorAwareTrait;
 
     /**
      * Fields of this section.
@@ -52,36 +54,30 @@ final class Section
     /**
      * Section constructor.
      *
-     * @param string             $page   The page slug name which this section should be shown.
-     * @param string             $title  Title of the section.
-     * @param array              $fields Fields of this section.
-     * @param array|null         $extra  Optional. Additional information that is passed to the template
-     *                                   partial through view object.
-     * @param ViewInterface|null $view   Optional. ViewInterface object to render.
+     * @param string                        $page      The page slug name which this section should be shown.
+     * @param string                        $title     Title of the section.
+     * @param AbstractField|AbstractField[] ...$fields Fields of this section.
      */
-    public function __construct(
-        string $page,
-        string $title,
-        array $fields,
-        array $extra = null,
-        ViewInterface $view = null
-    ) {
+    public function __construct(string $page, string $title, AbstractField ...$fields)
+    {
         $this->page = $page;
         $this->title = $title;
-        $this->setFields(...$fields);
-
-        $this->extra = $extra ?? [];
-        $this->view = $view ?? ViewFactory::build('section');
+        $this->fields = $fields;
     }
 
     /**
-     * Get description from extra.
+     * Fields setter.
      *
-     * @return string
+     * @param AbstractField|AbstractField[] ...$fields Fields to be added.
+     *
+     * @return void
      */
-    public function getDescription(): string
+    public function addFields(AbstractField ...$fields)
     {
-        return $this->extra['desc'] ?? '';
+        $this->fields = array_unique(
+            array_merge($this->fields, $fields),
+            SORT_REGULAR
+        );
     }
 
     /**
@@ -92,21 +88,6 @@ final class Section
     public function getFields(): array
     {
         return $this->fields;
-    }
-
-    /**
-     * Fields setter.
-     *
-     * @param AbstractField|AbstractField[] ...$fields Fields to be added.
-     *
-     * @return void
-     */
-    public function setFields(AbstractField ...$fields)
-    {
-        $this->fields = array_unique(
-            array_merge($this->fields, $fields),
-            SORT_REGULAR
-        );
     }
 
     /**
@@ -127,5 +108,13 @@ final class Section
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getDefaultDecorator(): SectionDecorator
+    {
+        return new SectionDecorator($this);
     }
 }

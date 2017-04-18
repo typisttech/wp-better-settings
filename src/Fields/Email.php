@@ -18,18 +18,14 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings\Fields;
 
-use TypistTech\WPBetterSettings\View;
-use TypistTech\WPBetterSettings\ViewFactory;
+use TypistTech\WPBetterSettings\Decorators\Fields\Input as InputDecorator;
+use TypistTech\WPBetterSettings\Views\ViewAwareInterface;
 
 /**
  * Final class Email
  */
-final class Email extends AbstractInput
+final class Email extends AbstractField
 {
-    const TYPE = 'email';
-
-    const DEFAULT_VIEW_PARTIAL = 'fields/input';
-
     /**
      * Sanitize email
      *
@@ -59,9 +55,9 @@ final class Email extends AbstractInput
     /**
      * {@inheritdoc}
      */
-    protected function getDefaultView(): View
+    protected function getDefaultDecorator(): ViewAwareInterface
     {
-        return ViewFactory::build('fields/input');
+        return new InputDecorator($this, 'email');
     }
 
     /**

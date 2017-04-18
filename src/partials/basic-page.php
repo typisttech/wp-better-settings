@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
-/* @var MenuPage|SubmenuPage $context */
+/* @var Decorators\Page $context */
 
 echo '<div class="wrap">';
 

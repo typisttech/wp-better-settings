@@ -16,14 +16,14 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\WPBetterSettings\Fields;
+namespace TypistTech\WPBetterSettings\Decorators;
 
-use TypistTech\WPBetterSettings\Decorators\DecoratorAwareInterface;
+use TypistTech\WPBetterSettings\Views\ViewAwareInterface;
 
 /**
- * Interface FieldInterface
+ * Interface DecoratorAwareInterface
  */
-interface FieldInterface extends DecoratorAwareInterface
+interface DecoratorAwareInterface
 {
     /**
      * Returns the function to be called to output the content for this page.
@@ -33,23 +33,18 @@ interface FieldInterface extends DecoratorAwareInterface
     public function getCallbackFunction(): callable;
 
     /**
-     * Id getter.
+     * Decorator getter.
      *
-     * @return string
+     * @return ViewAwareInterface
      */
-    public function getId(): string;
+    public function getDecorator(): ViewAwareInterface;
 
     /**
-     * SanitizeCallback getter.
+     * Decorator setter.
      *
-     * @return callable
-     */
-    public function getSanitizeCallback(): callable;
-
-    /**
-     * Title getter.
+     * @param ViewAwareInterface $decorator New decorator.
      *
-     * @return string
+     * @return void
      */
-    public function getTitle(): string;
+    public function setDecorator(ViewAwareInterface $decorator);
 }

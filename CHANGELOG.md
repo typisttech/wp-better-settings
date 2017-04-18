@@ -1,5 +1,16 @@
 # Change Log
 
+## [0.11.0](https://github.com/TypistTech/wp-better-settings/tree/0.11.0) (2017-04-18)
+[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.10.0...0.11.0)
+
+**Closed issues:**
+
+- Extract decorators for views [\#90](https://github.com/TypistTech/wp-better-settings/issues/90)
+
+**Merged pull requests:**
+
+- Extract decorators; Add after\_settings\_sections hook; Re-organize files [\#91](https://github.com/TypistTech/wp-better-settings/pull/91) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.10.0](https://github.com/TypistTech/wp-better-settings/tree/0.10.0) (2017-04-17)
 [Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.9.1...0.10.0)
 
@@ -13,6 +24,7 @@
 
 **Merged pull requests:**
 
+- Version bump 0.10.0 [\#89](https://github.com/TypistTech/wp-better-settings/pull/89) ([TangRufus](https://github.com/TangRufus))
 - Ditch ArrayObject [\#88](https://github.com/TypistTech/wp-better-settings/pull/88) ([TangRufus](https://github.com/TangRufus))
 - Refactor test [\#85](https://github.com/TypistTech/wp-better-settings/pull/85) ([TangRufus](https://github.com/TangRufus))
 - Ditch ArrayObject: MenuPageConfig [\#83](https://github.com/TypistTech/wp-better-settings/pull/83) ([TangRufus](https://github.com/TangRufus))

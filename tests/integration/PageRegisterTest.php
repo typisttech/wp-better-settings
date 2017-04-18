@@ -6,6 +6,8 @@ namespace TypistTech\WPBetterSettings;
 
 use AspectMock\Test;
 use Codeception\TestCase\WPTestCase;
+use TypistTech\WPBetterSettings\Pages\MenuPage;
+use TypistTech\WPBetterSettings\Pages\SubmenuPage;
 
 /**
  * @coversDefaultClass \TypistTech\WPBetterSettings\PageRegister
@@ -143,26 +145,6 @@ class PageRegisterTest extends WPTestCase
             $this->submenuPageFour->getMenuSlug(),
             $this->submenuPageFour->getCallbackFunction(),
         ]);
-    }
-
-    /**
-     * @covers ::run
-     */
-    public function testSetTabs()
-    {
-        $this->pageRegister->run();
-
-        $expected = [
-            $this->menuPageOne,
-            $this->menuPageTwo,
-            $this->submenuPageThree,
-            $this->submenuPageFour,
-        ];
-
-        $this->assertSame($expected, $this->menuPageOne->getTabs());
-        $this->assertSame($expected, $this->menuPageTwo->getTabs());
-        $this->assertSame($expected, $this->submenuPageThree->getTabs());
-        $this->assertSame($expected, $this->submenuPageFour->getTabs());
     }
 
     protected function getSubject()

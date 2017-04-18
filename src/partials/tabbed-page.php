@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
-/* @var MenuPage|SubmenuPage $context */
+/* @var Decorators\Page $context */
 
 echo '<div class="wrap">';
 
@@ -32,7 +32,7 @@ do_action($context->getSnakecasedMenuSlug() . '_before_nav_tabs');
 
 echo '<h2 class="nav-tab-wrapper">';
 
-/* @var MenuPage|SubmenuPage $tab */
+/* @var Decorators\Page $tab */
 foreach ($context->getTabs() as $tab) {
     $active = '';
     if ($context->getMenuSlug() === $tab->getMenuSlug()) {

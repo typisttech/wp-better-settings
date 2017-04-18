@@ -16,8 +16,16 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\WPBetterSettings;
+namespace TypistTech\WPBetterSettings\Pages;
 
+use TypistTech\WPBetterSettings\Decorators\Pages\TabbedPage;
+use TypistTech\WPBetterSettings\Views\ViewAwareInterface;
+
+/**
+ * Trait PageTrait
+ *
+ * Common code between MenuPage and SubmenuPage.
+ */
 trait PageTrait
 {
     /**
@@ -49,16 +57,7 @@ trait PageTrait
     protected $pageTitle;
 
     /**
-     * Array of MenuPage or SubmenuPage objects.
-     *
-     * @var (MenuPage|SubmenuPage)[]
-     */
-    protected $tabs;
-
-    /**
-     * Capability getter.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getCapability(): string
     {
@@ -66,9 +65,7 @@ trait PageTrait
     }
 
     /**
-     * MenuSlug getter.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getMenuSlug(): string
     {
@@ -76,9 +73,7 @@ trait PageTrait
     }
 
     /**
-     * MenuTitle getter.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getMenuTitle(): string
     {
@@ -86,9 +81,7 @@ trait PageTrait
     }
 
     /**
-     * PageTitle getter.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getPageTitle(): string
     {
@@ -96,49 +89,11 @@ trait PageTrait
     }
 
     /**
-     * Return MenuSlug in snake_case.
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    public function getSnakecasedMenuSlug(): string
+    protected function getDefaultDecorator(): ViewAwareInterface
     {
-        $lowercaseMenuSlug = strtolower($this->menuSlug);
-
-        return str_replace('-', '_', $lowercaseMenuSlug);
-    }
-
-    /**
-     * Tabs getter.
-     *
-     * @return (MenuPage|SubmenuPage)[]
-     */
-    public function getTabs(): array
-    {
-        return $this->tabs;
-    }
-
-    /**
-     * Tabs setter.
-     *
-     * @param (MenuPage|SubmenuPage)[] $tabs MenuPage or SubmenuPage objects that contains page configurations.
-     *
-     * @return void
-     */
-    public function setTabs(array $tabs)
-    {
-        $typedTabs = array_filter($tabs, function ($page) {
-            return $page instanceof MenuPage || $page instanceof SubmenuPage;
-        });
-        $this->tabs = array_values($typedTabs);
-    }
-
-    /**
-     * Returns the URL of this page.
-     *
-     * @return string
-     */
-    public function getUrl(): string
-    {
-        return admin_url('admin.php?page=' . $this->menuSlug);
+        /* @var PageInterface $this */
+        return new TabbedPage($this);
     }
 }

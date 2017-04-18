@@ -18,6 +18,11 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
+use TypistTech\WPBetterSettings\Decorators\DecoratorAwareInterface;
+use TypistTech\WPBetterSettings\Decorators\Pages\TabbedPageInterface;
+use TypistTech\WPBetterSettings\Pages\MenuPage;
+use TypistTech\WPBetterSettings\Pages\SubmenuPage;
+
 /**
  * Final class PageRegister
  *
@@ -70,9 +75,15 @@ final class PageRegister
      */
     public function run()
     {
-        foreach ($this->menuPages as $menuPage) {
-            $menuPage->setTabs($this->getAllPages());
+        $allPageDecorators = array_map(function (DecoratorAwareInterface $page) {
+            return $page->getDecorator();
+        }, array_merge($this->menuPages, $this->submenuPages));
 
+        array_map(function (TabbedPageInterface $tabbedPage) use ($allPageDecorators) {
+            $tabbedPage->setTabs(...$allPageDecorators);
+        }, $allPageDecorators);
+
+        foreach ($this->menuPages as $menuPage) {
             add_menu_page(
                 $menuPage->getPageTitle(),
                 $menuPage->getMenuTitle(),
@@ -85,8 +96,6 @@ final class PageRegister
         }
 
         foreach ($this->submenuPages as $submenuPage) {
-            $submenuPage->setTabs($this->getAllPages());
-
             add_submenu_page(
                 $submenuPage->getParentSlug(),
                 $submenuPage->getPageTitle(),
@@ -96,15 +105,5 @@ final class PageRegister
                 $submenuPage->getCallbackFunction()
             );
         }
-    }
-
-    /**
-     * Return all menu pages and submenu page objects.
-     *
-     * @return (MenuPage|SubmenuPage)[]
-     */
-    private function getAllPages(): array
-    {
-        return array_merge($this->menuPages, $this->submenuPages);
     }
 }

@@ -18,14 +18,21 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings\Fields;
 
+use TypistTech\WPBetterSettings\Decorators\Fields\Input as InputDecorator;
+use TypistTech\WPBetterSettings\Views\ViewAwareInterface;
+
 /**
  * Final class Url
  */
-final class Url extends AbstractInput
+final class Url extends AbstractField
 {
-    const TYPE = 'url';
-
-    const DEFAULT_VIEW_PARTIAL = 'fields/input';
+    /**
+     * {@inheritdoc}
+     */
+    protected function getDefaultDecorator(): ViewAwareInterface
+    {
+        return new InputDecorator($this, 'url');
+    }
 
     /**
      * {@inheritdoc}

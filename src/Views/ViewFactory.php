@@ -16,7 +16,7 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\WPBetterSettings;
+namespace TypistTech\WPBetterSettings\Views;
 
 use InvalidArgumentException;
 
@@ -71,7 +71,7 @@ final class ViewFactory
         }
 
         return new View(
-            plugin_dir_path(__FILE__) . self::PARTIALS[ $type ]
+            plugin_dir_path(__DIR__) . self::PARTIALS[ $type ]
         );
     }
 }

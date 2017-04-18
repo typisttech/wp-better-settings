@@ -18,8 +18,12 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
-/* @var \TypistTech\WPBetterSettings\Section $context Context */
+/* @var \TypistTech\WPBetterSettings\Decorators\Section $context Context */
 
-if (! empty($context->getDescription())) {
-    echo wp_kses_post($context->getDescription());
+do_action($context->getSnakecasedMenuSlug() . '_before_section_content');
+
+if (! empty($context->getContent())) {
+    echo wp_kses_post($context->getContent());
 }
+
+do_action($context->getSnakecasedMenuSlug() . '_after_section_content');

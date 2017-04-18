@@ -16,18 +16,20 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\WPBetterSettings;
+namespace TypistTech\WPBetterSettings\Pages;
+
+use TypistTech\WPBetterSettings\Decorators\DecoratorAwareInterface;
+use TypistTech\WPBetterSettings\Decorators\DecoratorAwareTrait;
 
 /**
  * Final class SubmenuPage
  *
  * Config details for a single submenu page.
  */
-final class SubmenuPage
+final class SubmenuPage implements PageInterface, DecoratorAwareInterface
 {
-    use ExtraAwareTrait;
+    use DecoratorAwareTrait;
     use PageTrait;
-    use ViewAwareTrait;
 
     /**
      * The slug name for the parent menu
@@ -40,24 +42,19 @@ final class SubmenuPage
     /**
      * MenuPage constructor.
      *
-     * @param string             $parentSlug The slug name for the parent menu (or the file name of a standard
-     *                                       WordPress
-     *                                       admin page).
-     * @param string             $menuSlug   The slug name to refer to this menu by (should be unique for this menu).
-     * @param string             $menuTitle  The text to be displayed in the title tags of the page when the menu is
-     *                                       selected.
-     * @param string|null        $pageTitle  Optional. The text to be used for the menu.
-     * @param string|null        $capability Optional. The capability required for this menu to be displayed to the
-     *                                       user.
-     * @param ViewInterface|null $view       View object to render.
+     * @param string      $parentSlug The slug name for the parent menu (or the file name of a standard WordPress admin
+     *                                page).
+     * @param string      $menuSlug   The slug name to refer to this menu by (should be unique for this menu).
+     * @param string      $menuTitle  The text to be displayed in the title tags of the page when the menu is selected.
+     * @param string|null $pageTitle  Optional. The text to be used for the menu.
+     * @param string|null $capability Optional. The capability required for this menu to be displayed to the user.
      */
     public function __construct(
         string $parentSlug,
         string $menuSlug,
         string $menuTitle,
         string $pageTitle = null,
-        string $capability = null,
-        ViewInterface $view = null
+        string $capability = null
     ) {
         $this->parentSlug = $parentSlug;
         $this->menuSlug = $menuSlug;
@@ -65,7 +62,6 @@ final class SubmenuPage
 
         $this->pageTitle = $pageTitle ?? $menuTitle;
         $this->capability = $capability ?? 'manage_options';
-        $this->view = $view ?? ViewFactory::build('tabbed-page');
     }
 
     /**

@@ -58,6 +58,9 @@ add_action('wpbs_simple_before_nav_tabs', 'TypistTech\WPBetterSettings\add_hooke
 add_action('wpbs_simple_after_nav_tabs', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
 add_action('wpbs_simple_before_option_form', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
 add_action('wpbs_simple_before_settings_sections', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
+add_action('wpbs_simple_before_section_content', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
+add_action('wpbs_simple_after_section_content', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
+add_action('wpbs_simple_after_settings_sections', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
 add_action('wpbs_simple_before_submit_button', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
 add_action('wpbs_simple_after_submit_button', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
 add_action('wpbs_simple_after_option_form', 'TypistTech\WPBetterSettings\add_hooked_paragraph');

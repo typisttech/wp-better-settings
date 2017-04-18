@@ -18,20 +18,19 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings\Fields;
 
+use TypistTech\WPBetterSettings\Decorators\Fields\Textarea as TextareaDecorator;
+use TypistTech\WPBetterSettings\Views\ViewAwareInterface;
+
 /**
  * Final class Textarea
  */
-class Textarea extends AbstractField
+final class Textarea extends AbstractField
 {
-    const DEFAULT_VIEW_PARTIAL = 'fields/textarea';
-
     /**
-     * Get rows from extra.
-     *
-     * @return int
+     * {@inheritdoc}
      */
-    public function getRows(): int
+    protected function getDefaultDecorator(): ViewAwareInterface
     {
-        return $this->extra['rows'] ?? 0;
+        return new TextareaDecorator($this);
     }
 }

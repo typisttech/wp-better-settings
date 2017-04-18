@@ -18,12 +18,19 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings\Fields;
 
+use TypistTech\WPBetterSettings\Decorators\Fields\Input as InputDecorator;
+use TypistTech\WPBetterSettings\Views\ViewAwareInterface;
+
 /**
  * Final class Text
  */
-final class Text extends AbstractInput
+final class Text extends AbstractField
 {
-    const TYPE = 'text';
-
-    const DEFAULT_VIEW_PARTIAL = 'fields/input';
+    /**
+     * {@inheritdoc}
+     */
+    protected function getDefaultDecorator(): ViewAwareInterface
+    {
+        return new InputDecorator($this, 'text');
+    }
 }

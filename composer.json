@@ -44,9 +44,8 @@
     },
     "autoload-dev": {
         "files": [
-            "tests/unit/ExtraAwareUnitTestTrait.php",
-            "tests/unit/PageUnitTestTrait.php",
-            "tests/unit/ViewAwareUnitTestTrait.php"
+            "tests/unit/Pages/PageTestTrait.php",
+            "tests/unit/Views/ViewAwareTestTrait.php"
         ]
     },
     "scripts": {

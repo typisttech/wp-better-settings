@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
-/* @var \TypistTech\WPBetterSettings\Fields\AbstractInput $context Context */
+/* @var Decorators\Fields\Input $context Context */
 
 echo '<input ';
 echo 'type="' . esc_attr($context->getType()) . '" ';

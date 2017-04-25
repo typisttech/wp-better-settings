@@ -19,6 +19,7 @@ declare(strict_types=1);
 namespace TypistTech\WPBetterSettings;
 
 use TypistTech\WPBetterSettings\Factories\Fields\CheckboxFactory;
+use TypistTech\WPBetterSettings\Factories\Fields\InputFactory;
 use TypistTech\WPBetterSettings\Factories\Fields\TextareaFactory;
 use TypistTech\WPBetterSettings\Factories\ViewFactory;
 use TypistTech\WPBetterSettings\Fields\Checkbox;
@@ -164,18 +165,34 @@ final class Plugin
             new Text('wpbs_basic_text', __('Simple Text', 'wp-better-settings'))
         );
 
-        $textDesc = new Text('wpbs_text_desc', __('With Description', 'wp-better-settings'));
-        $textDesc->getDecorator()
-                 ->setDescription('I am a <strong>helpful description</strong> with <code>html</code> tags');
+        $inputFactory = new InputFactory($this->optionStore);
 
-        $textDisabled = new Text('wpbs_text_disabled', __('Disabled', 'wp-better-settings'));
-        $textDisabled->getDecorator()->disable();
-
-        $textSmall = new Text(
-            'wpbs_text_small',
-            __("With WordPress' <code>small-text</code> HTML class", 'wp-better-settings')
+        $textDesc = $inputFactory->build(
+            'wpbs_text_desc',
+            __('With Description', 'wp-better-settings'),
+            [
+                'type' => 'text',
+                'description' => 'I am a <strong>helpful description</strong> with <code>html</code> tags',
+            ]
         );
-        $textSmall->getDecorator()->setHtmlClass('small-text');
+
+        $textDisabled = $inputFactory->build(
+            'wpbs_text_disabled',
+            __('Disabled', 'wp-better-settings'),
+            [
+                'type' => 'text',
+                'disabled' => true,
+            ]
+        );
+
+        $textSmall = $inputFactory->build(
+            'wpbs_text_small',
+            __("With WordPress' <code>small-text</code> HTML class", 'wp-better-settings'),
+            [
+                'type' => 'text',
+                'htmlClass' => 'small-text',
+            ]
+        );
 
         $textSection = new Section(
             'wpbs-text',
@@ -186,18 +203,32 @@ final class Plugin
             $textSmall
         );
 
-        $emailDesc = new Email('wpbs_email_desc', __('With Description', 'wp-better-settings'));
-        $emailDesc->getDecorator()
-                  ->setDescription('I am a <strong>helpful description</strong> with <code>html</code> tags');
-
-        $emailDisabled = new Email('wpbs_email_disabled', __('Disabled', 'wp-better-settings'));
-        $emailDisabled->getDecorator()->disable();
-
-        $emailSmall = new Email(
-            'wpbs_email_small',
-            __("With WordPress' <code>small-text</code> HTML class", 'wp-better-settings')
+        $emailDesc = $inputFactory->build(
+            'wpbs_email_desc',
+            __('With Description', 'wp-better-settings'),
+            [
+                'type' => 'email',
+                'description' => 'I am a <strong>helpful description</strong> with <code>html</code> tags',
+            ]
         );
-        $emailSmall->getDecorator()->setHtmlClass('small-text');
+
+        $emailDisabled = $inputFactory->build(
+            'wpbs_email_disabled',
+            __('Disabled', 'wp-better-settings'),
+            [
+                'type' => 'email',
+                'disabled' => true,
+            ]
+        );
+
+        $emailSmall = $inputFactory->build(
+            'wpbs_email_small',
+            __("With WordPress' <code>small-text</code> HTML class", 'wp-better-settings'),
+            [
+                'type' => 'email',
+                'htmlClass' => 'small-text',
+            ]
+        );
 
         $emailSection = new Section(
             'wpbs-email',
@@ -208,18 +239,32 @@ final class Plugin
             $emailSmall
         );
 
-        $urlDesc = new Url('wpbs_url_desc', __('With Description', 'wp-better-settings'));
-        $urlDesc->getDecorator()
-                ->setDescription('I am a <strong>helpful description</strong> with <code>html</code> tags');
-
-        $urlDisabled = new Url('wpbs_url_disabled', __('Disabled', 'wp-better-settings'));
-        $urlDisabled->getDecorator()->disable();
-
-        $urlSmall = new Url(
-            'wpbs_url_small',
-            __("With WordPress' <code>small-text</code> HTML class", 'wp-better-settings')
+        $urlDesc = $inputFactory->build(
+            'wpbs_url_desc',
+            __('With Description', 'wp-better-settings'),
+            [
+                'type' => 'url',
+                'description' => 'I am a <strong>helpful description</strong> with <code>html</code> tags',
+            ]
         );
-        $urlSmall->getDecorator()->setHtmlClass('small-text');
+
+        $urlDisabled = $inputFactory->build(
+            'wpbs_url_disabled',
+            __('Disabled', 'wp-better-settings'),
+            [
+                'type' => 'url',
+                'disabled' => true,
+            ]
+        );
+
+        $urlSmall = $inputFactory->build(
+            'wpbs_url_small',
+            __("With WordPress' <code>small-text</code> HTML class", 'wp-better-settings'),
+            [
+                'type' => 'url',
+                'htmlClass' => 'small-text',
+            ]
+        );
 
         $urlSection = new Section(
             'wpbs-url',

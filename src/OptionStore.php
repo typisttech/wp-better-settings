@@ -18,11 +18,37 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
+use TypistTech\WPBetterSettings\OptionStores\ConstantStrategy;
+use TypistTech\WPBetterSettings\OptionStores\DatabaseStrategy;
+use TypistTech\WPBetterSettings\OptionStores\FilterStrategy;
+use TypistTech\WPBetterSettings\OptionStores\StrategyInterface;
+
 /**
  * Final class OptionStore.
  */
 class OptionStore implements OptionStoreInterface
 {
+    /**
+     * Strategies
+     *
+     * @var StrategyInterface[]
+     */
+    private $strategies;
+
+    /**
+     * OptionStore constructor.
+     *
+     * @param StrategyInterface[] ...$strategies Strategies to get options.
+     */
+    public function __construct(StrategyInterface ...$strategies)
+    {
+        $this->strategies = (count($strategies) > 0) ? $strategies : [
+            new ConstantStrategy,
+            new DatabaseStrategy,
+            new FilterStrategy,
+        ];
+    }
+
     /**
      * Get an option value from constant or database.
      *
@@ -36,54 +62,8 @@ class OptionStore implements OptionStoreInterface
      */
     public function get(string $optionName)
     {
-        $constantName = $this->constantNameFor($optionName);
-        if (defined($constantName)) {
-            $value = constant($constantName);
-        } else {
-            $value = $this->getFromDatabase($optionName);
-        }
-
-        $filterTag = $this->filterTagFor($optionName);
-
-        return apply_filters($filterTag, $value);
-    }
-
-    /**
-     * Normalize option name and key to SCREAMING_SNAKE_CASE constant name.
-     *
-     * @param string $optionName Name of option to retrieve.
-     *                           Expected to not be SQL-escaped.
-     *
-     * @return string
-     */
-    private function constantNameFor(string $optionName): string
-    {
-        return strtoupper($optionName);
-    }
-
-    /**
-     * Get option from database.
-     *
-     * @param string $optionName Name of option to retrieve.
-     *                           Expected to not be SQL-escaped.
-     *
-     * @return mixed
-     */
-    private function getFromDatabase(string $optionName)
-    {
-        return get_option($optionName);
-    }
-
-    /**
-     * Normalize option name and key to snake_case filter tag.
-     *
-     * @param string $optionName Name of option to retrieve.
-     *                           Expected to not be SQL-escaped.
-     *
-     * @return string
-     */
-    private function filterTagFor(string $optionName): string
-    {
-        return strtolower($optionName);
+        return array_reduce($this->strategies, function ($value, StrategyInterface $strategy) use ($optionName) {
+            return $strategy->get($optionName, $value);
+        }, null);
     }
 }

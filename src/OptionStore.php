@@ -119,8 +119,8 @@ class OptionStore implements OptionStoreInterface
     {
         // Allow child class to override TRUE_VALUES.
         return in_array(
-            static::TRUE_VALUES,
             $this->get($optionName),
+            static::TRUE_VALUES,
             true
         );
     }

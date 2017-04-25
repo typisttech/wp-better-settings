@@ -80,6 +80,9 @@ after_script:
   - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-scrutinizer; fi
   - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-codecov; fi
 
+before_deploy:
+  - unzip -qo release/wp-better-settings.zip -d build
+
 deploy:
   - provider: releases
     api_key:

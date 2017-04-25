@@ -42,17 +42,15 @@ final class View implements ViewInterface
     /**
      * View constructor.
      *
-     * @param string $filename    Filename of the PHP view to render.
-     * @param array  $allowedTags [Optional] Array of allowed tags to
-     *                            let through escaping functions. Set
-     *                            to sane defaults if none provided.
+     * @param string     $filename    Filename of the PHP view to render.
+     * @param array|null $allowedTags Optional. Array of allowed tags to
+     *                                let through escaping functions. Set
+     *                                to sane defaults if none provided.
      */
-    public function __construct(string $filename, array $allowedTags = [])
+    public function __construct(string $filename, array $allowedTags = null)
     {
         $this->filename = $filename;
-        $this->allowedTags = empty($allowedTags)
-            ? $this->defaultAllowedTags()
-            : $allowedTags;
+        $this->allowedTags = $allowedTags ?? $this->defaultAllowedTags();
     }
 
     /**

@@ -26,33 +26,6 @@ class OptionStoreTest extends WPTestCase
      */
     private $optionStore;
 
-    public function testGet()
-    {
-        $actual = $this->optionStore->get('my_option');
-        $this->assertSame('i live in wp_option', $actual);
-    }
-
-    public function testGetFromFilter()
-    {
-        $actual = $this->optionStore->get('my_option_filter');
-
-        $this->assertSame('i am filtered', $actual);
-        $this->applyFilters->verifyInvokedMultipleTimes(1);
-        $this->applyFilters->verifyInvokedOnce([ 'my_option_filter', false ]);
-    }
-
-    public function testGetNonExistOption()
-    {
-        $actual = $this->optionStore->get('non_exist_option');
-        $this->assertFalse($actual);
-    }
-
-    public function testGetStringFromConstant()
-    {
-        $actual = $this->optionStore->get('my_option_constant');
-        $this->assertSame('i am a constant', $actual);
-    }
-
     public function setUp()
     {
         parent::setUp();
@@ -102,5 +75,32 @@ class OptionStoreTest extends WPTestCase
         );
 
         $this->optionStore = new OptionStore;
+    }
+
+    public function testGet()
+    {
+        $actual = $this->optionStore->get('my_option');
+        $this->assertSame('i live in wp_option', $actual);
+    }
+
+    public function testGetFromFilter()
+    {
+        $actual = $this->optionStore->get('my_option_filter');
+
+        $this->assertSame('i am filtered', $actual);
+        $this->applyFilters->verifyInvokedMultipleTimes(1);
+        $this->applyFilters->verifyInvokedOnce([ 'my_option_filter', false ]);
+    }
+
+    public function testGetNonExistOption()
+    {
+        $actual = $this->optionStore->get('non_exist_option');
+        $this->assertFalse($actual);
+    }
+
+    public function testGetStringFromConstant()
+    {
+        $actual = $this->optionStore->get('my_option_constant');
+        $this->assertSame('i am a constant', $actual);
     }
 }

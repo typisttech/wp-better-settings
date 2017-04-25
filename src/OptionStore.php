@@ -24,10 +24,27 @@ use TypistTech\WPBetterSettings\OptionStores\FilterStrategy;
 use TypistTech\WPBetterSettings\OptionStores\StrategyInterface;
 
 /**
- * Final class OptionStore.
+ * Class OptionStore.
  */
 class OptionStore implements OptionStoreInterface
 {
+    const TRUE_VALUES = [
+        '1',
+        'on',
+        'On',
+        'ON',
+        'true',
+        'True',
+        'TRUE',
+        'y',
+        'Y',
+        'yes',
+        'Yes',
+        'YES',
+        1,
+        true,
+    ];
+
     /**
      * Strategies
      *
@@ -100,6 +117,11 @@ class OptionStore implements OptionStoreInterface
      */
     public function getBoolean(string $optionName): bool
     {
-        return (bool) $this->get($optionName);
+        // Allow child class to override TRUE_VALUES.
+        return in_array(
+            $this->get($optionName),
+            static::TRUE_VALUES,
+            true
+        );
     }
 }

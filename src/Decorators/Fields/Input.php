@@ -18,8 +18,8 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings\Decorators\Fields;
 
+use TypistTech\WPBetterSettings\Factories\ViewFactory;
 use TypistTech\WPBetterSettings\Fields\FieldInterface as OriginalField;
-use TypistTech\WPBetterSettings\Views\ViewFactory;
 use TypistTech\WPBetterSettings\Views\ViewInterface;
 
 /**

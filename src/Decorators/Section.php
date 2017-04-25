@@ -18,11 +18,11 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings\Decorators;
 
+use TypistTech\WPBetterSettings\Factories\ViewFactory;
 use TypistTech\WPBetterSettings\Section as DecoratedSection;
 use TypistTech\WPBetterSettings\Views\View;
 use TypistTech\WPBetterSettings\Views\ViewAwareInterface;
 use TypistTech\WPBetterSettings\Views\ViewAwareTrait;
-use TypistTech\WPBetterSettings\Views\ViewFactory;
 
 /**
  * Final class Section

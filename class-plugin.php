@@ -18,6 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
+use TypistTech\WPBetterSettings\Factories\Fields\CheckboxFactory;
 use TypistTech\WPBetterSettings\Factories\ViewFactory;
 use TypistTech\WPBetterSettings\Fields\Checkbox;
 use TypistTech\WPBetterSettings\Fields\Email;
@@ -36,12 +37,29 @@ use TypistTech\WPBetterSettings\Views\View;
 final class Plugin
 {
     /**
+     * The plugin option store.
+     *
+     * @var OptionStore
+     */
+    private $optionStore;
+
+    /**
+     * Plugin constructor.
+     *
+     * @param OptionStore $optionStore The plugin option store.
+     */
+    public function __construct(OptionStore $optionStore = null)
+    {
+        $this->optionStore = $optionStore ?? new OptionStore;
+    }
+
+    /**
      * Launch the initialization process.
      */
     public function init()
     {
         $pageRegister = new PageRegister($this->getPages());
-        $settingRegister = new SettingRegister(new OptionStore, ...$this->getSections());
+        $settingRegister = new SettingRegister($this->optionStore, ...$this->getSections());
 
         add_action('admin_menu', [ $pageRegister, 'run' ]);
         add_action('admin_init', [ $settingRegister, 'run' ]);
@@ -211,15 +229,31 @@ final class Plugin
             $urlSmall
         );
 
-        $checkboxDesc = new Checkbox('wpbs_checkbox_desc', __('With Description', 'wp-better-settings'));
-        $checkboxDesc->getDecorator()
-                     ->setDescription('I am a <strong>helpful description</strong> with <code>html</code> tags');
+        $checkboxFactory = new CheckboxFactory($this->optionStore);
 
-        $checkboxDisabled = new Checkbox('wpbs_checkbox_disabled', __('Disabled', 'wp-better-settings'));
-        $checkboxDisabled->getDecorator()->disable();
+        $checkboxDesc = $checkboxFactory->build(
+            'wpbs_checkbox_desc',
+            __('With Description', 'wp-better-settings'),
+            [
+                'description' => 'I am a <strong>helpful description</strong> with <code>html</code> tags',
+            ]
+        );
 
-        $checkboxLabel = new Checkbox('wpbs_checkbox_label', __('With Label', 'wp-better-settings'));
-        $checkboxLabel->getDecorator()->setLabel('I am a <strong>helpful label</strong> with <code>html</code> tags');
+        $checkboxDisabled = $checkboxFactory->build(
+            'wpbs_checkbox_disabled',
+            __('Disabled', 'wp-better-settings'),
+            [
+                'disabled' => true,
+            ]
+        );
+
+        $checkboxLabel = $checkboxFactory->build(
+            'wpbs_checkbox_label',
+            __('With Label', 'wp-better-settings'),
+            [
+                'label' => 'I am a <strong>helpful label</strong> with <code>html</code> tags',
+            ]
+        );
 
         $checkboxSection = new Section(
             'wpbs-checkbox',

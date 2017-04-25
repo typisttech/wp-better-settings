@@ -113,6 +113,7 @@ final class SettingRegister
      */
     private function registerField(Field $field, string $page)
     {
+        // TODO: Move setValue out of this class.
         $field->getDecorator()
               ->setValue($this->optionStore->get(
                   $field->getId()

@@ -18,16 +18,39 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
+use TypistTech\WPBetterSettings\OptionStores\ConstantStrategy;
+use TypistTech\WPBetterSettings\OptionStores\DatabaseStrategy;
+use TypistTech\WPBetterSettings\OptionStores\FilterStrategy;
+use TypistTech\WPBetterSettings\OptionStores\StrategyInterface;
+
 /**
  * Final class OptionStore.
  */
 class OptionStore implements OptionStoreInterface
 {
     /**
-     * Get an option value from constant or database.
+     * Strategies
      *
-     * Wrapper around the WordPress function `get_option`.
-     * Can be overridden by constant `OPTION_NAME`.
+     * @var StrategyInterface[]
+     */
+    private $strategies;
+
+    /**
+     * OptionStore constructor.
+     *
+     * @param StrategyInterface[] ...$strategies Strategies to get options.
+     */
+    public function __construct(StrategyInterface ...$strategies)
+    {
+        $this->strategies = (count($strategies) > 0) ? $strategies : [
+            new ConstantStrategy,
+            new DatabaseStrategy,
+            new FilterStrategy,
+        ];
+    }
+
+    /**
+     * Get an option value from strategies.
      *
      * @param string $optionName Name of option to retrieve.
      *                           Expected to not be SQL-escaped.
@@ -36,54 +59,47 @@ class OptionStore implements OptionStoreInterface
      */
     public function get(string $optionName)
     {
-        $constantName = $this->constantNameFor($optionName);
-        if (defined($constantName)) {
-            $value = constant($constantName);
-        } else {
-            $value = $this->getFromDatabase($optionName);
-        }
-
-        $filterTag = $this->filterTagFor($optionName);
-
-        return apply_filters($filterTag, $value);
+        return array_reduce($this->strategies, function ($value, StrategyInterface $strategy) use ($optionName) {
+            return $strategy->get($optionName, $value);
+        }, null);
     }
 
     /**
-     * Normalize option name and key to SCREAMING_SNAKE_CASE constant name.
+     * Cast option value from strategies into string.
      *
      * @param string $optionName Name of option to retrieve.
      *                           Expected to not be SQL-escaped.
      *
      * @return string
      */
-    private function constantNameFor(string $optionName): string
+    public function getString(string $optionName): string
     {
-        return strtoupper($optionName);
+        return (string) $this->get($optionName);
     }
 
     /**
-     * Get option from database.
+     * Cast option value from strategies into integer.
      *
      * @param string $optionName Name of option to retrieve.
      *                           Expected to not be SQL-escaped.
      *
-     * @return mixed
+     * @return int
      */
-    private function getFromDatabase(string $optionName)
+    public function getInt(string $optionName): int
     {
-        return get_option($optionName);
+        return (int) $this->get($optionName);
     }
 
     /**
-     * Normalize option name and key to snake_case filter tag.
+     * Cast option value from strategies into boolean.
      *
      * @param string $optionName Name of option to retrieve.
      *                           Expected to not be SQL-escaped.
      *
-     * @return string
+     * @return bool
      */
-    private function filterTagFor(string $optionName): string
+    public function getBoolean(string $optionName): bool
     {
-        return strtolower($optionName);
+        return (bool) $this->get($optionName);
     }
 }

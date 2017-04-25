@@ -21,19 +21,44 @@ namespace TypistTech\WPBetterSettings;
 /**
  * Interface OptionStoreInterface.
  *
- * This is a very basic adapter for the WordPress get_option()
- * function that can be configured to supply consistent default
- * values for particular options.
+ * This is a adapter for the WordPress get_option() function that can be configured to supply consistent interface for
+ * particular options.
  */
 interface OptionStoreInterface
 {
     /**
      * Get an option value.
      *
-     * @param string $optionName Name of option to retrieve.
-     *                           Expected to not be SQL-escaped.
+     * @param string $optionName Name of option to retrieve. Expected to not be SQL-escaped.
      *
      * @return mixed
      */
     public function get(string $optionName);
+
+    /**
+     * Cast option value into boolean.
+     *
+     * @param string $optionName Name of option to retrieve. Expected to not be SQL-escaped.
+     *
+     * @return bool
+     */
+    public function getBoolean(string $optionName): bool;
+
+    /**
+     * Cast option value into integer.
+     *
+     * @param string $optionName Name of option to retrieve. Expected to not be SQL-escaped.
+     *
+     * @return int
+     */
+    public function getInt(string $optionName): int;
+
+    /**
+     * Cast option value into string.
+     *
+     * @param string $optionName Name of option to retrieve. Expected to not be SQL-escaped.
+     *
+     * @return string
+     */
+    public function getString(string $optionName): string;
 }

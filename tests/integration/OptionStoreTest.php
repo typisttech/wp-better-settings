@@ -5,12 +5,16 @@ declare(strict_types=1);
 namespace TypistTech\WPBetterSettings;
 
 use AspectMock\Test;
-use Codeception\Test\Unit;
+use Codeception\TestCase\WPTestCase;
 
 /**
  * @coversDefaultClass \TypistTech\WPBetterSettings\OptionStore
+ * @covers \TypistTech\WPBetterSettings\OptionStore
+ * @covers \TypistTech\WPBetterSettings\OptionStores\ConstantStrategy
+ * @covers \TypistTech\WPBetterSettings\OptionStores\DatabaseStrategy
+ * @covers \TypistTech\WPBetterSettings\OptionStores\FilterStrategy
  */
-class OptionStoreTest extends Unit
+class OptionStoreTest extends WPTestCase
 {
     /**
      * @var \AspectMock\Proxy\FuncProxy
@@ -22,18 +26,12 @@ class OptionStoreTest extends Unit
      */
     private $optionStore;
 
-    /**
-     * @covers \TypistTech\WPBetterSettings\OptionStore
-     */
     public function testGet()
     {
         $actual = $this->optionStore->get('my_option');
         $this->assertSame('i live in wp_option', $actual);
     }
 
-    /**
-     * @covers \TypistTech\WPBetterSettings\OptionStore
-     */
     public function testGetFromFilter()
     {
         $actual = $this->optionStore->get('my_option_filter');
@@ -43,27 +41,23 @@ class OptionStoreTest extends Unit
         $this->applyFilters->verifyInvokedOnce([ 'my_option_filter', false ]);
     }
 
-    /**
-     * @covers \TypistTech\WPBetterSettings\OptionStore
-     */
     public function testGetNonExistOption()
     {
         $actual = $this->optionStore->get('non_exist_option');
         $this->assertFalse($actual);
     }
 
-    /**
-     * @covers \TypistTech\WPBetterSettings\OptionStore
-     */
     public function testGetStringFromConstant()
     {
         $actual = $this->optionStore->get('my_option_constant');
         $this->assertSame('i am a constant', $actual);
     }
 
-    protected function _before()
+    public function setUp()
     {
-        Test::func(__NAMESPACE__, 'defined', function (string $name) {
+        parent::setUp();
+
+        Test::func(__NAMESPACE__ . '\OptionStores', 'defined', function (string $name) {
             switch ($name) {
                 case 'MY_OPTION_CONSTANT':
                     return true;
@@ -72,32 +66,40 @@ class OptionStoreTest extends Unit
             }
         });
 
-        Test::func(__NAMESPACE__, 'constant', function (string $name) {
-            switch ($name) {
-                case 'MY_OPTION_CONSTANT':
-                    return 'i am a constant';
-                default:
-                    $this->fail($name . ' is not defined');
+        Test::func(
+            __NAMESPACE__ . '\OptionStores',
+            'constant',
+            function (string $name) {
+                switch ($name) {
+                    case 'MY_OPTION_CONSTANT':
+                        return 'i am a constant';
+                    default:
+                        $this->fail($name . ' is not defined');
+                }
             }
-        });
+        );
 
-        Test::func(__NAMESPACE__, 'get_option', function (string $key) {
+        Test::func(__NAMESPACE__ . '\OptionStores', 'get_option', function (string $key) {
             switch ($key) {
                 case 'my_option':
                     return 'i live in wp_option';
-            }
-
-            return false;
-        });
-
-        $this->applyFilters = Test::func(__NAMESPACE__, 'apply_filters', function (string $tag, $value) {
-            switch ($tag) {
-                case 'my_option_filter':
-                    return 'i am filtered';
                 default:
-                    return $value;
+                    return false;
             }
         });
+
+        $this->applyFilters = Test::func(
+            __NAMESPACE__ . '\OptionStores',
+            'apply_filters',
+            function (string $tag, $value) {
+                switch ($tag) {
+                    case 'my_option_filter':
+                        return 'i am filtered';
+                    default:
+                        return $value;
+                }
+            }
+        );
 
         $this->optionStore = new OptionStore;
     }

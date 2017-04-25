@@ -19,6 +19,7 @@ declare(strict_types=1);
 namespace TypistTech\WPBetterSettings;
 
 use TypistTech\WPBetterSettings\Factories\Fields\CheckboxFactory;
+use TypistTech\WPBetterSettings\Factories\Fields\TextareaFactory;
 use TypistTech\WPBetterSettings\Factories\ViewFactory;
 use TypistTech\WPBetterSettings\Fields\Checkbox;
 use TypistTech\WPBetterSettings\Fields\Email;
@@ -264,21 +265,39 @@ final class Plugin
             $checkboxLabel
         );
 
-        $textareaDesc = new Textarea('wpbs_textarea_desc', __('With Description', 'wp-better-settings'));
-        $textareaDesc->getDecorator()
-                     ->setDescription('I am a <strong>helpful description</strong> with <code>html</code> tags');
+        $textareaFactory = new TextareaFactory($this->optionStore);
 
-        $textareaDisabled = new Textarea('wpbs_textarea_disabled', __('Disabled', 'wp-better-settings'));
-        $textareaDisabled->getDecorator()->disable();
-
-        $textareaSmall = new Textarea(
-            'wpbs_textarea_small',
-            __("With WordPress' <code>small-text</code> HTML class", 'wp-better-settings')
+        $textareaDesc = $textareaFactory->build(
+            'wpbs_textarea_desc',
+            __('With Description', 'wp-better-settings'),
+            [
+                'description' => 'I am a <strong>helpful description</strong> with <code>html</code> tags',
+            ]
         );
-        $textareaSmall->getDecorator()->setHtmlClass('small-text');
 
-        $textareaRows = new Textarea('wpbs_textarea_rows', __('Ten Rows', 'wp-better-settings'));
-        $textareaRows->getDecorator()->setRows(10);
+        $textareaDisabled = $textareaFactory->build(
+            'wpbs_textarea_disabled',
+            __('Disabled', 'wp-better-settings'),
+            [
+                'disabled' => true,
+            ]
+        );
+
+        $textareaSmall = $textareaFactory->build(
+            'wpbs_textarea_small',
+            __("With WordPress' <code>small-text</code> HTML class", 'wp-better-settings'),
+            [
+                'htmlClass' => 'small-text',
+            ]
+        );
+
+        $textareaRows = $textareaFactory->build(
+            'wpbs_textarea_small',
+            __("With WordPress' <code>small-text</code> HTML class", 'wp-better-settings'),
+            [
+                'rows' => 10,
+            ]
+        );
 
         $textareaSection = new Section(
             'wpbs-textarea',

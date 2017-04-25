@@ -50,7 +50,7 @@ abstract class AbstractFieldFactory
      *
      * @param string $id    ID of this field. Should be unique for each section/page.
      * @param string $title Title of the field.
-     * @param array  $args  Configuration for this Fields\Checkbox and its decorator.
+     * @param array  $args  Configuration for this AbstractField and its decorator.
      *
      * @return AbstractField
      */

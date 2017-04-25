@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
-/* @var \TypistTech\WPBetterSettings\Decorators\Section $context Context */
+/* @var Decorators\Section $context Context */
 
 do_action($context->getSnakecasedMenuSlug() . '_before_section_content');
 

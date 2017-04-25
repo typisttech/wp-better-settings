@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
-/* @var Decorators\Page $context */
+/* @var Decorators\Pages\TabbedPageInterface $context Context*/
 
 settings_errors();
 

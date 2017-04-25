@@ -16,9 +16,10 @@
 
 declare(strict_types=1);
 
-namespace TypistTech\WPBetterSettings\Views;
+namespace TypistTech\WPBetterSettings\Factories;
 
 use InvalidArgumentException;
+use TypistTech\WPBetterSettings\Views\View;
 
 /**
  * Final class ViewFactory

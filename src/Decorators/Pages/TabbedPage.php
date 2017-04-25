@@ -21,7 +21,7 @@ namespace TypistTech\WPBetterSettings\Decorators\Pages;
 use TypistTech\WPBetterSettings\Pages\PageInterface;
 use TypistTech\WPBetterSettings\Views\ViewAwareInterface;
 use TypistTech\WPBetterSettings\Views\ViewAwareTrait;
-use TypistTech\WPBetterSettings\Views\ViewFactory;
+use TypistTech\WPBetterSettings\Factories\ViewFactory;
 use TypistTech\WPBetterSettings\Views\ViewInterface;
 
 /**

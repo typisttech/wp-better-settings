@@ -18,6 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
+use TypistTech\WPBetterSettings\Factories\ViewFactory;
 use TypistTech\WPBetterSettings\Fields\Checkbox;
 use TypistTech\WPBetterSettings\Fields\Email;
 use TypistTech\WPBetterSettings\Fields\Text;
@@ -26,10 +27,9 @@ use TypistTech\WPBetterSettings\Fields\Url;
 use TypistTech\WPBetterSettings\Pages\MenuPage;
 use TypistTech\WPBetterSettings\Pages\SubmenuPage;
 use TypistTech\WPBetterSettings\Views\View;
-use TypistTech\WPBetterSettings\Views\ViewFactory;
 
 /**
- * Class Plugin.
+ * Final class Plugin.
  *
  * This class hooks our plugin into the WordPress life-cycle.
  */

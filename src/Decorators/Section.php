@@ -22,7 +22,7 @@ use TypistTech\WPBetterSettings\Section as DecoratedSection;
 use TypistTech\WPBetterSettings\Views\View;
 use TypistTech\WPBetterSettings\Views\ViewAwareInterface;
 use TypistTech\WPBetterSettings\Views\ViewAwareTrait;
-use TypistTech\WPBetterSettings\Views\ViewFactory;
+use TypistTech\WPBetterSettings\Factories\ViewFactory;
 
 /**
  * Final class Section

@@ -81,13 +81,28 @@ after_script:
   - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-codecov; fi
 
 deploy:
-  provider: releases
-  api_key:
-    secure: k7m0Dld63XcOzfcwZ9jL1Y5O9vEsKoxt9RPa49GSe6YzcLk5Utak8ImNA9x+JKGIEiO3npp3YJ/HB457Hxjjfwl3pqAod2CJR7nFpoPac3qsy13LJj8dGPH87+crfwnfBJ9S9w6+/dWVwYjk++NjPP2ZPOBCg5An2Mhm+V/TbkQZWCjerc8nEo6SIviJNi+TocV2vDuihF3mot8iJYUKcbBn902Wns8QpvtZXISxHD30p5ImgS08dYSal8x5uFw5l70uhAm9cxEqD/QQiPb8JLbugeWnZfQtFs0q/CYZyoN3KU5rlPt8R6rnUBkCJRUqqveMVnzjHOvMLf/a4AobM4XpJadwRS2pGwuXCeYHYe79l0ILvAIW6UWPiw0lFit/7+d0VWlz0hhysYbSM+npd6vXpgT0dzd4tGsxMGqKIgI68gdpelraUlAQrllhbC7Bydh6K4ZMlTmns5K6Ofs9f2esTUhTbXoaNOCXuQaJYAL8gzDwvbUNXNf5+pDEYEaqGPGDXQCMU8qrhja3xR2/N+ki6jpsfIOtr4mCcPJGiPZcWH1comLQpfRysb4RSwnkW7auZcqCTnPkpRcbhBFFrC6Zrw1uSHbv209A+88Tt6z25Jmay5TLsXR0JBc4HCWEdKWbLsnvVcj5G75Xxh6saDOkPY5zpQeIGblwdFvZGDw=
-  file: release/wp-better-settings.zip
-  skip_cleanup: true
-  on:
-    condition: "$WP_VERSION = latest"
-    php: 7.0
-    tags: true
-    repo: TypistTech/wp-better-settings
+  - provider: releases
+    api_key:
+      secure: k7m0Dld63XcOzfcwZ9jL1Y5O9vEsKoxt9RPa49GSe6YzcLk5Utak8ImNA9x+JKGIEiO3npp3YJ/HB457Hxjjfwl3pqAod2CJR7nFpoPac3qsy13LJj8dGPH87+crfwnfBJ9S9w6+/dWVwYjk++NjPP2ZPOBCg5An2Mhm+V/TbkQZWCjerc8nEo6SIviJNi+TocV2vDuihF3mot8iJYUKcbBn902Wns8QpvtZXISxHD30p5ImgS08dYSal8x5uFw5l70uhAm9cxEqD/QQiPb8JLbugeWnZfQtFs0q/CYZyoN3KU5rlPt8R6rnUBkCJRUqqveMVnzjHOvMLf/a4AobM4XpJadwRS2pGwuXCeYHYe79l0ILvAIW6UWPiw0lFit/7+d0VWlz0hhysYbSM+npd6vXpgT0dzd4tGsxMGqKIgI68gdpelraUlAQrllhbC7Bydh6K4ZMlTmns5K6Ofs9f2esTUhTbXoaNOCXuQaJYAL8gzDwvbUNXNf5+pDEYEaqGPGDXQCMU8qrhja3xR2/N+ki6jpsfIOtr4mCcPJGiPZcWH1comLQpfRysb4RSwnkW7auZcqCTnPkpRcbhBFFrC6Zrw1uSHbv209A+88Tt6z25Jmay5TLsXR0JBc4HCWEdKWbLsnvVcj5G75Xxh6saDOkPY5zpQeIGblwdFvZGDw=
+    file: release/wp-better-settings.zip
+    skip_cleanup: true
+    on:
+      condition: "$WP_VERSION = latest"
+      php: 7.0
+      tags: true
+      repo: TypistTech/wp-better-settings
+  - provider: build-branch
+    edge:
+      source: TypistTech/dpl
+      branch: add-build-branch
+    skip_cleanup: true
+    github_token:
+      secure: k7m0Dld63XcOzfcwZ9jL1Y5O9vEsKoxt9RPa49GSe6YzcLk5Utak8ImNA9x+JKGIEiO3npp3YJ/HB457Hxjjfwl3pqAod2CJR7nFpoPac3qsy13LJj8dGPH87+crfwnfBJ9S9w6+/dWVwYjk++NjPP2ZPOBCg5An2Mhm+V/TbkQZWCjerc8nEo6SIviJNi+TocV2vDuihF3mot8iJYUKcbBn902Wns8QpvtZXISxHD30p5ImgS08dYSal8x5uFw5l70uhAm9cxEqD/QQiPb8JLbugeWnZfQtFs0q/CYZyoN3KU5rlPt8R6rnUBkCJRUqqveMVnzjHOvMLf/a4AobM4XpJadwRS2pGwuXCeYHYe79l0ILvAIW6UWPiw0lFit/7+d0VWlz0hhysYbSM+npd6vXpgT0dzd4tGsxMGqKIgI68gdpelraUlAQrllhbC7Bydh6K4ZMlTmns5K6Ofs9f2esTUhTbXoaNOCXuQaJYAL8gzDwvbUNXNf5+pDEYEaqGPGDXQCMU8qrhja3xR2/N+ki6jpsfIOtr4mCcPJGiPZcWH1comLQpfRysb4RSwnkW7auZcqCTnPkpRcbhBFFrC6Zrw1uSHbv209A+88Tt6z25Jmay5TLsXR0JBc4HCWEdKWbLsnvVcj5G75Xxh6saDOkPY5zpQeIGblwdFvZGDw=
+    local_dir: build
+    target_branch: nightly
+    project_name: "WPBS Demo"
+    on:
+      branch: master
+      condition: "$WP_VERSION = latest"
+      php: 7.1
+      repo: TypistTech/wp-better-settings

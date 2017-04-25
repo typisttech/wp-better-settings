@@ -50,10 +50,7 @@ class OptionStore implements OptionStoreInterface
     }
 
     /**
-     * Get an option value from constant or database.
-     *
-     * Wrapper around the WordPress function `get_option`.
-     * Can be overridden by constant `OPTION_NAME`.
+     * Get an option value from strategies.
      *
      * @param string $optionName Name of option to retrieve.
      *                           Expected to not be SQL-escaped.
@@ -65,5 +62,44 @@ class OptionStore implements OptionStoreInterface
         return array_reduce($this->strategies, function ($value, StrategyInterface $strategy) use ($optionName) {
             return $strategy->get($optionName, $value);
         }, null);
+    }
+
+    /**
+     * Cast option value from strategies into string.
+     *
+     * @param string $optionName Name of option to retrieve.
+     *                           Expected to not be SQL-escaped.
+     *
+     * @return string
+     */
+    public function getString(string $optionName): string
+    {
+        return (string) $this->get($optionName);
+    }
+
+    /**
+     * Cast option value from strategies into integer.
+     *
+     * @param string $optionName Name of option to retrieve.
+     *                           Expected to not be SQL-escaped.
+     *
+     * @return int
+     */
+    public function getInt(string $optionName): int
+    {
+        return (int) $this->get($optionName);
+    }
+
+    /**
+     * Cast option value from strategies into boolean.
+     *
+     * @param string $optionName Name of option to retrieve.
+     *                           Expected to not be SQL-escaped.
+     *
+     * @return bool
+     */
+    public function getBoolean(string $optionName): bool
+    {
+        return (bool) $this->get($optionName);
     }
 }

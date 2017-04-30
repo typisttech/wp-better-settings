@@ -1,5 +1,19 @@
 # Change Log
 
+## [0.12.0](https://github.com/TypistTech/wp-better-settings/tree/0.12.0) (2017-04-30)
+[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.11.0...0.12.0)
+
+**Closed issues:**
+
+- OptionStore type cast methods [\#94](https://github.com/TypistTech/wp-better-settings/issues/94)
+- Add field facroties [\#93](https://github.com/TypistTech/wp-better-settings/issues/93)
+
+**Merged pull requests:**
+
+- Minor fixes [\#98](https://github.com/TypistTech/wp-better-settings/pull/98) ([TangRufus](https://github.com/TangRufus))
+- Add field facroties [\#97](https://github.com/TypistTech/wp-better-settings/pull/97) ([TangRufus](https://github.com/TangRufus))
+- Add OptionStore type cast methods [\#96](https://github.com/TypistTech/wp-better-settings/pull/96) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.11.0](https://github.com/TypistTech/wp-better-settings/tree/0.11.0) (2017-04-18)
 [Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.10.0...0.11.0)
 
@@ -9,6 +23,7 @@
 
 **Merged pull requests:**
 
+- Version bump 0.11.0 [\#92](https://github.com/TypistTech/wp-better-settings/pull/92) ([TangRufus](https://github.com/TangRufus))
 - Extract decorators; Add after\_settings\_sections hook; Re-organize files [\#91](https://github.com/TypistTech/wp-better-settings/pull/91) ([TangRufus](https://github.com/TangRufus))
 
 ## [0.10.0](https://github.com/TypistTech/wp-better-settings/tree/0.10.0) (2017-04-17)

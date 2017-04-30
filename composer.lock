@@ -837,16 +837,16 @@
         },
         {
             "name": "facebook/webdriver",
-            "version": "1.4.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facebook/php-webdriver.git",
-                "reference": "3ea034c056189e11c0ce7985332a9f4b5b2b5db2"
+                "reference": "eadb0b7a7c3e6578185197fd40158b08c3164c83"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facebook/php-webdriver/zipball/3ea034c056189e11c0ce7985332a9f4b5b2b5db2",
-                "reference": "3ea034c056189e11c0ce7985332a9f4b5b2b5db2",
+                "url": "https://api.github.com/repos/facebook/php-webdriver/zipball/eadb0b7a7c3e6578185197fd40158b08c3164c83",
+                "reference": "eadb0b7a7c3e6578185197fd40158b08c3164c83",
                 "shasum": ""
             },
             "require": {
@@ -885,20 +885,20 @@
                 "selenium",
                 "webdriver"
             ],
-            "time": "2017-03-22T10:56:03+00:00"
+            "time": "2017-04-28T14:54:49+00:00"
         },
         {
             "name": "goaop/framework",
-            "version": "2.1.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/goaop/framework.git",
-                "reference": "945e39ac0b78bc5c5ac6cd5b7266a3d46749a9ab"
+                "reference": "c6fc1db1e623bbfbf3bc2f165e03250603ff27b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/goaop/framework/zipball/945e39ac0b78bc5c5ac6cd5b7266a3d46749a9ab",
-                "reference": "945e39ac0b78bc5c5ac6cd5b7266a3d46749a9ab",
+                "url": "https://api.github.com/repos/goaop/framework/zipball/c6fc1db1e623bbfbf3bc2f165e03250603ff27b8",
+                "reference": "c6fc1db1e623bbfbf3bc2f165e03250603ff27b8",
                 "shasum": ""
             },
             "require": {
@@ -947,7 +947,7 @@
                 "library",
                 "php"
             ],
-            "time": "2017-02-04T15:55:21+00:00"
+            "time": "2017-04-25T11:27:19+00:00"
         },
         {
             "name": "goaop/parser-reflection",
@@ -1224,7 +1224,7 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v5.4.17",
+            "version": "v5.4.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -1266,16 +1266,16 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v5.4.17",
+            "version": "v5.4.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "c7e7c9daf5044e76b46085b8351f8235a3e979c6"
+                "reference": "b8cb37e15331c59da51c8ee5838038baa22d7955"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/c7e7c9daf5044e76b46085b8351f8235a3e979c6",
-                "reference": "c7e7c9daf5044e76b46085b8351f8235a3e979c6",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/b8cb37e15331c59da51c8ee5838038baa22d7955",
+                "reference": "b8cb37e15331c59da51c8ee5838038baa22d7955",
                 "shasum": ""
             },
             "require": {
@@ -1319,7 +1319,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2017-03-28T12:49:45+00:00"
+            "time": "2017-04-09T14:34:57+00:00"
         },
         {
             "name": "jakoch/phantomjs-installer",
@@ -1537,16 +1537,16 @@
         },
         {
             "name": "lucatume/wp-browser",
-            "version": "1.19.13",
+            "version": "1.19.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucatume/wp-browser.git",
-                "reference": "c3de23854d53d52d3bed9f320d4dd5a223bbbf93"
+                "reference": "f1fd80ef401842dc85b812b445d3db6266b7dda4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/c3de23854d53d52d3bed9f320d4dd5a223bbbf93",
-                "reference": "c3de23854d53d52d3bed9f320d4dd5a223bbbf93",
+                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/f1fd80ef401842dc85b812b445d3db6266b7dda4",
+                "reference": "f1fd80ef401842dc85b812b445d3db6266b7dda4",
                 "shasum": ""
             },
             "require": {
@@ -1593,7 +1593,7 @@
                 "codeception",
                 "wordpress"
             ],
-            "time": "2017-03-25T08:30:07+00:00"
+            "time": "2017-04-28T18:24:01+00:00"
         },
         {
             "name": "lucatume/wp-browser-commons",

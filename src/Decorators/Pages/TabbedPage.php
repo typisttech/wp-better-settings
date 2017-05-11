@@ -87,9 +87,7 @@ final class TabbedPage implements TabbedPageInterface, ViewAwareInterface
      */
     public function getSnakecasedMenuSlug(): string
     {
-        $lowercaseMenuSlug = strtolower($this->getMenuSlug());
-
-        return str_replace('-', '_', $lowercaseMenuSlug);
+        return $this->page->getSnakecasedMenuSlug();
     }
 
     /**

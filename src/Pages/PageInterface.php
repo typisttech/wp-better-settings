@@ -59,4 +59,11 @@ interface PageInterface
      * @return string
      */
     public function getPageTitle(): string;
+
+    /**
+     * Return MenuSlug in snake_case.
+     *
+     * @return string
+     */
+    public function getSnakecasedMenuSlug(): string;
 }

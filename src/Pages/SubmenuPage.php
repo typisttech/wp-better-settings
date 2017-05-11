@@ -73,4 +73,12 @@ final class SubmenuPage implements PageInterface, DecoratorAwareInterface
     {
         return $this->parentSlug;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getHookSuffix(): string
+    {
+        return get_plugin_page_hookname($this->menuSlug, $this->parentSlug);
+    }
 }

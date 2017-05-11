@@ -67,14 +67,6 @@ trait PageTrait
     /**
      * {@inheritdoc}
      */
-    public function getMenuSlug(): string
-    {
-        return $this->menuSlug;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getMenuTitle(): string
     {
         return $this->menuTitle;
@@ -86,6 +78,24 @@ trait PageTrait
     public function getPageTitle(): string
     {
         return $this->pageTitle;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSnakecasedMenuSlug(): string
+    {
+        $lowercaseMenuSlug = strtolower($this->getMenuSlug());
+
+        return str_replace('-', '_', $lowercaseMenuSlug);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMenuSlug(): string
+    {
+        return $this->menuSlug;
     }
 
     /**

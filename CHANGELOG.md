@@ -1,5 +1,20 @@
 # Change Log
 
+## [0.13.0](https://github.com/TypistTech/wp-better-settings/tree/0.13.0) (2017-05-11)
+[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.12.0...0.13.0)
+
+**Closed issues:**
+
+- Rename Register --\> Registrar [\#102](https://github.com/TypistTech/wp-better-settings/issues/102)
+- Add meta boxes [\#101](https://github.com/TypistTech/wp-better-settings/issues/101)
+- Add `MenuPage::getHookSuffix` and `SubmenuPage::getHookSuffix` [\#100](https://github.com/TypistTech/wp-better-settings/issues/100)
+
+**Merged pull requests:**
+
+- Rename Register --\> Registrar [\#105](https://github.com/TypistTech/wp-better-settings/pull/105) ([TangRufus](https://github.com/TangRufus))
+- Add `PageInterface::getMenuSlug`; Add `PageInterface::getSnakecasedMenuSlug` [\#104](https://github.com/TypistTech/wp-better-settings/pull/104) ([TangRufus](https://github.com/TangRufus))
+- Show metaboxes on tabbed pages [\#103](https://github.com/TypistTech/wp-better-settings/pull/103) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.12.0](https://github.com/TypistTech/wp-better-settings/tree/0.12.0) (2017-04-30)
 [Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.11.0...0.12.0)
 
@@ -10,6 +25,7 @@
 
 **Merged pull requests:**
 
+- Version bump 0.12.0 [\#99](https://github.com/TypistTech/wp-better-settings/pull/99) ([TangRufus](https://github.com/TangRufus))
 - Minor fixes [\#98](https://github.com/TypistTech/wp-better-settings/pull/98) ([TangRufus](https://github.com/TangRufus))
 - Add field facroties [\#97](https://github.com/TypistTech/wp-better-settings/pull/97) ([TangRufus](https://github.com/TangRufus))
 - Add OptionStore type cast methods [\#96](https://github.com/TypistTech/wp-better-settings/pull/96) ([TangRufus](https://github.com/TangRufus))

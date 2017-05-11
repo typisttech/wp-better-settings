@@ -10,7 +10,7 @@ use TypistTech\WPBetterSettings\Pages\MenuPage;
 use TypistTech\WPBetterSettings\Pages\SubmenuPage;
 
 /**
- * @coversDefaultClass \TypistTech\WPBetterSettings\PageRegister
+ * @coversDefaultClass \TypistTech\WPBetterSettings\PageRegistrar
  */
 class PageRegisterTest extends WPTestCase
 {
@@ -35,9 +35,9 @@ class PageRegisterTest extends WPTestCase
     private $menuPageTwo;
 
     /**
-     * @var PageRegister
+     * @var PageRegistrar
      */
-    private $pageRegister;
+    private $pageRegistrar;
 
     /**
      * @var SubmenuPage
@@ -59,7 +59,7 @@ class PageRegisterTest extends WPTestCase
         $this->submenuPageThree = new SubmenuPage('parent-slug-three', 'slug-three', 'title three');
         $this->submenuPageFour = new SubmenuPage('parent-slug-four', 'slug-four', 'title four');
 
-        $this->pageRegister = new PageRegister([
+        $this->pageRegistrar = new PageRegistrar([
             $this->menuPageOne,
             $this->menuPageTwo,
             $this->submenuPageThree,
@@ -77,7 +77,7 @@ class PageRegisterTest extends WPTestCase
             $this->menuPageTwo,
         ];
 
-        $this->assertAttributeSame($expected, 'menuPages', $this->pageRegister);
+        $this->assertAttributeSame($expected, 'menuPages', $this->pageRegistrar);
     }
 
     /**
@@ -90,7 +90,7 @@ class PageRegisterTest extends WPTestCase
             $this->submenuPageFour,
         ];
 
-        $this->assertAttributeSame($expected, 'submenuPages', $this->pageRegister);
+        $this->assertAttributeSame($expected, 'submenuPages', $this->pageRegistrar);
     }
 
     /**
@@ -98,7 +98,7 @@ class PageRegisterTest extends WPTestCase
      */
     public function testRegisterMenuPages()
     {
-        $this->pageRegister->run();
+        $this->pageRegistrar->run();
 
         $this->addMenuPage->verifyInvokedMultipleTimes(2);
         $this->addMenuPage->verifyInvokedOnce([
@@ -126,7 +126,7 @@ class PageRegisterTest extends WPTestCase
      */
     public function testRegisterSubmenuPages()
     {
-        $this->pageRegister->run();
+        $this->pageRegistrar->run();
 
         $this->addSubmenuPage->verifyInvokedMultipleTimes(2);
         $this->addSubmenuPage->verifyInvokedOnce([
@@ -149,6 +149,6 @@ class PageRegisterTest extends WPTestCase
 
     protected function getSubject()
     {
-        return $this->pageRegister;
+        return $this->pageRegistrar;
     }
 }

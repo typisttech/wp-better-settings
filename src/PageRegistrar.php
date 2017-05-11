@@ -24,7 +24,7 @@ use TypistTech\WPBetterSettings\Pages\MenuPage;
 use TypistTech\WPBetterSettings\Pages\SubmenuPage;
 
 /**
- * Final class PageRegister
+ * Final class PageRegistrar
  *
  * This class registers menu pages and submenu pages via the WordPress API.
  *
@@ -33,7 +33,7 @@ use TypistTech\WPBetterSettings\Pages\SubmenuPage;
  * don't have to deal with all the confusing callback code that the
  * WordPress Settings API forces you to use.
  */
-final class PageRegister
+final class PageRegistrar
 {
     /**
      * Array of MenuPage instances.

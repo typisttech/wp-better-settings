@@ -60,11 +60,11 @@ final class Plugin
      */
     public function init()
     {
-        $pageRegister = new PageRegister($this->getPages());
-        $settingRegister = new SettingRegister($this->optionStore, ...$this->getSections());
+        $pageRegistrar = new PageRegistrar($this->getPages());
+        $settingRegistrar = new SettingRegistrar($this->optionStore, ...$this->getSections());
 
-        add_action('admin_menu', [ $pageRegister, 'run' ]);
-        add_action('admin_init', [ $settingRegister, 'run' ]);
+        add_action('admin_menu', [ $pageRegistrar, 'run' ]);
+        add_action('admin_init', [ $settingRegistrar, 'run' ]);
     }
 
     /**

@@ -21,13 +21,13 @@ namespace TypistTech\WPBetterSettings;
 use TypistTech\WPBetterSettings\Fields\FieldInterface as Field;
 
 /**
- * Final class Settings.
+ * Final class SettingRegistrar.
  *
  * This class registers settings via the WordPress Settings API.
  * Thus, you don't have to deal with all the confusing callback code that the WordPress
  * Settings API forces you to use.
  */
-final class SettingRegister
+final class SettingRegistrar
 {
     /**
      * Option store instance.

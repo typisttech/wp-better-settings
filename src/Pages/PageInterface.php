@@ -33,6 +33,13 @@ interface PageInterface
     public function getCapability(): string;
 
     /**
+     * Hook suffix getter.
+     *
+     * @return string
+     */
+    public function getHookSuffix(): string;
+
+    /**
      * MenuSlug getter.
      *
      * @return string

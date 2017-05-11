@@ -73,6 +73,16 @@ final class MenuPage implements PageInterface, DecoratorAwareInterface
     }
 
     /**
+     * Hook suffix getter.
+     *
+     * @return string
+     */
+    public function getHookSuffix(): string
+    {
+        return get_plugin_page_hookname($this->menuSlug, '');
+    }
+
+    /**
      * IconUrl getter.
      *
      * @return string
@@ -83,9 +93,7 @@ final class MenuPage implements PageInterface, DecoratorAwareInterface
     }
 
     /**
-     * Position getter.
-     *
-     * @return int|null
+     * {@inheritdoc}
      */
     public function getPosition()
     {

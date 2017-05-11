@@ -31,7 +31,9 @@ use TypistTech\WPBetterSettings\Views\ViewInterface;
  */
 final class TabbedPage implements TabbedPageInterface, ViewAwareInterface
 {
-    use ViewAwareTrait;
+    use ViewAwareTrait {
+        echoView as protected traitEchoView;
+    }
 
     /**
      * All page decorators of this plugin.
@@ -58,35 +60,26 @@ final class TabbedPage implements TabbedPageInterface, ViewAwareInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Echo the view safely and trigger meta box registration.
+     *
+     * @todo Improve JS enqueue.
+     * @todo Improve meta box registration.
+     * @todo Test hooks around postboxes.
+     *
+     * @return void
      */
-    protected function getDefaultView(): ViewInterface
+    public function echoView()
     {
-        return ViewFactory::build('tabbed-page');
-    }
+        wp_enqueue_script(
+            'wpbs_postbox',
+            plugins_url(plugin_basename(dirname(__FILE__, 3)) . '/partials/postbox.js'),
+            [ 'postbox' ],
+            '0.13.0'
+        );
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getMenuSlug(): string
-    {
-        return $this->page->getMenuSlug();
-    }
+        do_action('add_meta_boxes', $this->getSnakecasedMenuSlug(), $this);
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getMenuTitle(): string
-    {
-        return $this->page->getMenuTitle();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getPageTitle(): string
-    {
-        return $this->page->getPageTitle();
+        $this->traitEchoView();
     }
 
     /**
@@ -125,5 +118,37 @@ final class TabbedPage implements TabbedPageInterface, ViewAwareInterface
     public function getUrl(): string
     {
         return admin_url('admin.php?page=' . $this->getMenuSlug());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMenuSlug(): string
+    {
+        return $this->page->getMenuSlug();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMenuTitle(): string
+    {
+        return $this->page->getMenuTitle();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPageTitle(): string
+    {
+        return $this->page->getPageTitle();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getDefaultView(): ViewInterface
+    {
+        return ViewFactory::build('tabbed-page');
     }
 }

@@ -49,16 +49,35 @@ Installation should be done via composer, details of how to install composer can
 $ composer require typisttech/wp-better-settings
 ```
 
+You should put all `WP Better Settings` classes under your own namespace to avoid class name conflicts.
+
+- [imposter-plugin](https://github.com/Typisttech/imposter-plugin)
+- [mozart](https://github.com/coenjacobs/mozart)
+
 ## Config
+
+Coming soon...
 
 ## API
 
+Coming soon... Use the source...
+
 ## Frequently Asked Questions
 
-### Do you have an example plugin that use this package?
+### Do you have a demo plugin that use this package? 
+
+You can install this demo plugin by
+```bash
+$ wp plugin install https://github.com/TypistTech/wp-better-settings/archive/nightly.zip --activate
+```
+
+Check out [`class-plugin.php`](/class-plugin.php). We use it for acceptance tests.
+
+### Do you have real life examples that use this package?
 
 Here you go: 
 
+ * [Sunny](https://github.com/Typisttech/sunny)
  * [WP Cloudflare Guard](https://github.com/TypistTech/wp-cloudflare-guard)
 
 *Add your own plugin [here](https://github.com/TypistTech/wp-better-settings/edit/master/README.md)*

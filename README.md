@@ -49,16 +49,35 @@ Installation should be done via composer, details of how to install composer can
 $ composer require typisttech/wp-better-settings
 ```
 
+You should put all `WP Better Settings` classes under your own namespace to avoid class name conflicts.
+
+- [imposter-plugin](https://github.com/Typisttech/imposter-plugin)
+- [mozart](https://github.com/coenjacobs/mozart)
+
 ## Config
+
+Coming soon...
 
 ## API
 
+Coming soon... Use the source...
+
 ## Frequently Asked Questions
 
-### Do you have an example plugin that use this package?
+### Do you have a demo plugin that use this package? 
+
+You can install this demo plugin by
+```bash
+$ wp plugin install https://github.com/TypistTech/wp-better-settings/archive/nightly.zip --activate
+```
+
+Check out [`class-plugin.php`](/class-plugin.php). We use it for acceptance tests.
+
+### Do you have real life examples that use this package?
 
 Here you go: 
 
+ * [Sunny](https://github.com/Typisttech/sunny)
  * [WP Cloudflare Guard](https://github.com/TypistTech/wp-cloudflare-guard)
 
 *Add your own plugin [here](https://github.com/TypistTech/wp-better-settings/edit/master/README.md)*
@@ -124,6 +143,8 @@ Please see [CONTRIBUTING](.github/CONTRIBUTING.md) and [CONDUCT](.github/CONDUCT
 [WP Better Settings](https://github.com/TypistTech/wp-better-settings) is a [Typist Tech](https://www.typist.tech) project and maintained by [Tang Rufus](https://twitter.com/Tangrufus), freelance developer for [hire](https://www.typist.tech/contact/).
 
 Full list of contributors can be found [here](https://github.com/TypistTech/wp-better-settings/graphs/contributors).
+
+Special thanks to [Alain Schlesser](https://www.alainschlesser.com/) whose [Using A Config To Write Reusable Code Series](https://www.alainschlesser.com/config-files-for-reusable-code/) makes the first versions of this package.
 
 ## License
 

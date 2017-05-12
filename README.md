@@ -144,6 +144,8 @@ Please see [CONTRIBUTING](.github/CONTRIBUTING.md) and [CONDUCT](.github/CONDUCT
 
 Full list of contributors can be found [here](https://github.com/TypistTech/wp-better-settings/graphs/contributors).
 
+Special thanks to [Alain Schlesser](https://www.alainschlesser.com/) whose [Using A Config To Write Reusable Code Series](https://www.alainschlesser.com/config-files-for-reusable-code/) makes the first versions of this package.
+
 ## License
 
 [WP Better Settings](https://github.com/TypistTech/wp-better-settings) is licensed under the GPLv2 (or later) from the [Free Software Foundation](http://www.fsf.org/).

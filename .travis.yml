@@ -39,8 +39,8 @@ env:
   matrix:
     - WP_VERSION=nightly
     - WP_VERSION=latest WITH_COVERAGE=true
-    - WP_VERSION=4.7.4
-    - WP_VERSION=4.7
+    - WP_VERSION=4.8
+    - WP_VERSION=4.7.5
 
 matrix:
   allow_failures:
@@ -93,10 +93,7 @@ deploy:
       php: 7.0
       tags: true
       repo: TypistTech/wp-better-settings
-  - provider: build-branch
-    edge:
-      source: TypistTech/dpl
-      branch: add-build-branch
+  - provider: pages
     skip_cleanup: true
     github_token: $GITHUB_ACCESS_TOKEN
     local_dir: build

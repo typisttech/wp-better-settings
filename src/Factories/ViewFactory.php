@@ -68,6 +68,7 @@ final class ViewFactory
                 $type,
                 implode(', ', array_keys(self::PARTIALS))
             );
+
             throw new InvalidArgumentException($errorMessage);
         }
 

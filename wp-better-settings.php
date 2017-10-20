@@ -40,7 +40,7 @@ require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
 require_once plugin_dir_path(__FILE__) . 'class-plugin.php';
 
 // Initialize the plugin.
-(new Plugin)->init();
+(new Plugin())->init();
 
 /**
  * You can use hooks like so.

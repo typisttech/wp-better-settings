@@ -52,7 +52,7 @@ final class Plugin
      */
     public function __construct(OptionStore $optionStore = null)
     {
-        $this->optionStore = $optionStore ?? new OptionStore;
+        $this->optionStore = $optionStore ?? new OptionStore();
     }
 
     /**

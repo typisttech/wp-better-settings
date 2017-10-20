@@ -20,23 +20,33 @@ $formValues = [
 $I->submitForm('form', $formValues);
 
 $I->wantToTest('options are saved into database');
-$I->seeOptionInDatabase([
-    'option_name' => 'wpbs_simple_text',
-    'option_value' => 'Jane Doe',
-]);
-$I->seeOptionInDatabase([
-    'option_name' => 'wpbs_simple_email',
-    'option_value' => 'janedoe@example.com',
-]);
-$I->seeOptionInDatabase([
-    'option_name' => 'wpbs_simple_url',
-    'option_value' => 'https://www.example.com/janedoe',
-]);
-$I->seeOptionInDatabase([
-    'option_name' => 'wpbs_simple_textarea',
-    'option_value' => 'I am jane doe.',
-]);
-$I->seeOptionInDatabase([
-    'option_name' => 'wpbs_simple_checkbox',
-    'option_value' => '1',
-]);
+$I->seeOptionInDatabase(
+    [
+        'option_name' => 'wpbs_simple_text',
+        'option_value' => 'Jane Doe',
+    ]
+);
+$I->seeOptionInDatabase(
+    [
+        'option_name' => 'wpbs_simple_email',
+        'option_value' => 'janedoe@example.com',
+    ]
+);
+$I->seeOptionInDatabase(
+    [
+        'option_name' => 'wpbs_simple_url',
+        'option_value' => 'https://www.example.com/janedoe',
+    ]
+);
+$I->seeOptionInDatabase(
+    [
+        'option_name' => 'wpbs_simple_textarea',
+        'option_value' => 'I am jane doe.',
+    ]
+);
+$I->seeOptionInDatabase(
+    [
+        'option_name' => 'wpbs_simple_checkbox',
+        'option_value' => '1',
+    ]
+);

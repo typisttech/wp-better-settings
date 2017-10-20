@@ -56,14 +56,20 @@ final class PageRegistrar
      */
     public function __construct(array $pages)
     {
-        $menuPages = array_filter($pages, function ($page) {
-            return $page instanceof MenuPage;
-        });
+        $menuPages = array_filter(
+            $pages,
+            function ($page) {
+                return $page instanceof MenuPage;
+            }
+        );
         $this->menuPages = array_values($menuPages);
 
-        $submenuPages = array_filter($pages, function ($page) {
-            return $page instanceof SubmenuPage;
-        });
+        $submenuPages = array_filter(
+            $pages,
+            function ($page) {
+                return $page instanceof SubmenuPage;
+            }
+        );
         $this->submenuPages = array_values($submenuPages);
     }
 
@@ -75,13 +81,19 @@ final class PageRegistrar
      */
     public function run()
     {
-        $allPageDecorators = array_map(function (DecoratorAwareInterface $page) {
-            return $page->getDecorator();
-        }, array_merge($this->menuPages, $this->submenuPages));
+        $allPageDecorators = array_map(
+            function (DecoratorAwareInterface $page) {
+                return $page->getDecorator();
+            },
+            array_merge($this->menuPages, $this->submenuPages)
+        );
 
-        array_map(function (TabbedPageInterface $tabbedPage) use ($allPageDecorators) {
-            $tabbedPage->setTabs(...$allPageDecorators);
-        }, $allPageDecorators);
+        array_map(
+            function (TabbedPageInterface $tabbedPage) use ($allPageDecorators) {
+                $tabbedPage->setTabs(...$allPageDecorators);
+            },
+            $allPageDecorators
+        );
 
         foreach ($this->menuPages as $menuPage) {
             add_menu_page(

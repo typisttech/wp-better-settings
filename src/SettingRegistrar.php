@@ -114,9 +114,11 @@ final class SettingRegistrar
     private function registerField(Field $field, string $page)
     {
         $field->getDecorator()
-              ->setValue($this->optionStore->get(
-                  $field->getId()
-              ));
+              ->setValue(
+                  $this->optionStore->get(
+                      $field->getId()
+                  )
+              );
 
         register_setting(
             $page,

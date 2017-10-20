@@ -18,6 +18,8 @@ $I->uncheckOption('#wpbs_simple_checkbox');
 $I->click('#submit');
 
 $I->wantToTest('option value is removed from database');
-$I->dontSeeOptionInDatabase([
-    'option_name' => 'wpbs_1',
-]);
+$I->dontSeeOptionInDatabase(
+    [
+        'option_name' => 'wpbs_1',
+    ]
+);

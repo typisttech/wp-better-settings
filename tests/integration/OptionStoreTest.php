@@ -30,14 +30,18 @@ class OptionStoreTest extends WPTestCase
     {
         parent::setUp();
 
-        Test::func(__NAMESPACE__ . '\OptionStores', 'defined', function (string $name) {
-            switch ($name) {
-                case 'MY_OPTION_CONSTANT':
-                    return true;
-                default:
-                    return false;
+        Test::func(
+            __NAMESPACE__ . '\OptionStores',
+            'defined',
+            function (string $name) {
+                switch ($name) {
+                    case 'MY_OPTION_CONSTANT':
+                        return true;
+                    default:
+                        return false;
+                }
             }
-        });
+        );
 
         Test::func(
             __NAMESPACE__ . '\OptionStores',
@@ -52,14 +56,18 @@ class OptionStoreTest extends WPTestCase
             }
         );
 
-        Test::func(__NAMESPACE__ . '\OptionStores', 'get_option', function (string $key) {
-            switch ($key) {
-                case 'my_option':
-                    return 'i live in wp_option';
-                default:
-                    return false;
+        Test::func(
+            __NAMESPACE__ . '\OptionStores',
+            'get_option',
+            function (string $key) {
+                switch ($key) {
+                    case 'my_option':
+                        return 'i live in wp_option';
+                    default:
+                        return false;
+                }
             }
-        });
+        );
 
         $this->applyFilters = Test::func(
             __NAMESPACE__ . '\OptionStores',
@@ -74,7 +82,7 @@ class OptionStoreTest extends WPTestCase
             }
         );
 
-        $this->optionStore = new OptionStore;
+        $this->optionStore = new OptionStore();
     }
 
     public function testGet()

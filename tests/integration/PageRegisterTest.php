@@ -59,12 +59,14 @@ class PageRegisterTest extends WPTestCase
         $this->submenuPageThree = new SubmenuPage('parent-slug-three', 'slug-three', 'title three');
         $this->submenuPageFour = new SubmenuPage('parent-slug-four', 'slug-four', 'title four');
 
-        $this->pageRegistrar = new PageRegistrar([
-            $this->menuPageOne,
-            $this->menuPageTwo,
-            $this->submenuPageThree,
-            $this->submenuPageFour,
-        ]);
+        $this->pageRegistrar = new PageRegistrar(
+            [
+                $this->menuPageOne,
+                $this->menuPageTwo,
+                $this->submenuPageThree,
+                $this->submenuPageFour,
+            ]
+        );
     }
 
     /**
@@ -101,24 +103,28 @@ class PageRegisterTest extends WPTestCase
         $this->pageRegistrar->run();
 
         $this->addMenuPage->verifyInvokedMultipleTimes(2);
-        $this->addMenuPage->verifyInvokedOnce([
-            $this->menuPageOne->getPageTitle(),
-            $this->menuPageOne->getMenuTitle(),
-            $this->menuPageOne->getCapability(),
-            $this->menuPageOne->getMenuSlug(),
-            $this->menuPageOne->getCallbackFunction(),
-            $this->menuPageOne->getIconUrl(),
-            $this->menuPageOne->getPosition(),
-        ]);
-        $this->addMenuPage->verifyInvokedOnce([
-            $this->menuPageTwo->getPageTitle(),
-            $this->menuPageTwo->getMenuTitle(),
-            $this->menuPageTwo->getCapability(),
-            $this->menuPageTwo->getMenuSlug(),
-            $this->menuPageTwo->getCallbackFunction(),
-            $this->menuPageTwo->getIconUrl(),
-            $this->menuPageTwo->getPosition(),
-        ]);
+        $this->addMenuPage->verifyInvokedOnce(
+            [
+                $this->menuPageOne->getPageTitle(),
+                $this->menuPageOne->getMenuTitle(),
+                $this->menuPageOne->getCapability(),
+                $this->menuPageOne->getMenuSlug(),
+                $this->menuPageOne->getCallbackFunction(),
+                $this->menuPageOne->getIconUrl(),
+                $this->menuPageOne->getPosition(),
+            ]
+        );
+        $this->addMenuPage->verifyInvokedOnce(
+            [
+                $this->menuPageTwo->getPageTitle(),
+                $this->menuPageTwo->getMenuTitle(),
+                $this->menuPageTwo->getCapability(),
+                $this->menuPageTwo->getMenuSlug(),
+                $this->menuPageTwo->getCallbackFunction(),
+                $this->menuPageTwo->getIconUrl(),
+                $this->menuPageTwo->getPosition(),
+            ]
+        );
     }
 
     /**
@@ -129,22 +135,26 @@ class PageRegisterTest extends WPTestCase
         $this->pageRegistrar->run();
 
         $this->addSubmenuPage->verifyInvokedMultipleTimes(2);
-        $this->addSubmenuPage->verifyInvokedOnce([
-            $this->submenuPageThree->getParentSlug(),
-            $this->submenuPageThree->getPageTitle(),
-            $this->submenuPageThree->getMenuTitle(),
-            $this->submenuPageThree->getCapability(),
-            $this->submenuPageThree->getMenuSlug(),
-            $this->submenuPageThree->getCallbackFunction(),
-        ]);
-        $this->addSubmenuPage->verifyInvokedOnce([
-            $this->submenuPageFour->getParentSlug(),
-            $this->submenuPageFour->getPageTitle(),
-            $this->submenuPageFour->getMenuTitle(),
-            $this->submenuPageFour->getCapability(),
-            $this->submenuPageFour->getMenuSlug(),
-            $this->submenuPageFour->getCallbackFunction(),
-        ]);
+        $this->addSubmenuPage->verifyInvokedOnce(
+            [
+                $this->submenuPageThree->getParentSlug(),
+                $this->submenuPageThree->getPageTitle(),
+                $this->submenuPageThree->getMenuTitle(),
+                $this->submenuPageThree->getCapability(),
+                $this->submenuPageThree->getMenuSlug(),
+                $this->submenuPageThree->getCallbackFunction(),
+            ]
+        );
+        $this->addSubmenuPage->verifyInvokedOnce(
+            [
+                $this->submenuPageFour->getParentSlug(),
+                $this->submenuPageFour->getPageTitle(),
+                $this->submenuPageFour->getMenuTitle(),
+                $this->submenuPageFour->getCapability(),
+                $this->submenuPageFour->getMenuSlug(),
+                $this->submenuPageFour->getCallbackFunction(),
+            ]
+        );
     }
 
     protected function getSubject()

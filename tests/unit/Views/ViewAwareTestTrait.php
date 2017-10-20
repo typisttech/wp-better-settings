@@ -29,9 +29,12 @@ trait ViewAwareTestTrait
      */
     public function testSetAndEchoView()
     {
-        $viewDouble = Test::double(View::class, [
-            'echoKses' => true,
-        ]);
+        $viewDouble = Test::double(
+            View::class,
+            [
+                'echoKses' => true,
+            ]
+        );
 
         $subject = $this->getSubject();
 

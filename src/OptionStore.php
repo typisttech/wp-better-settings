@@ -60,9 +60,9 @@ class OptionStore implements OptionStoreInterface
     public function __construct(StrategyInterface ...$strategies)
     {
         $this->strategies = (count($strategies) > 0) ? $strategies : [
-            new ConstantStrategy,
-            new DatabaseStrategy,
-            new FilterStrategy,
+            new ConstantStrategy(),
+            new DatabaseStrategy(),
+            new FilterStrategy(),
         ];
     }
 
@@ -76,9 +76,13 @@ class OptionStore implements OptionStoreInterface
      */
     public function get(string $optionName)
     {
-        return array_reduce($this->strategies, function ($value, StrategyInterface $strategy) use ($optionName) {
-            return $strategy->get($optionName, $value);
-        }, null);
+        return array_reduce(
+            $this->strategies,
+            function ($value, StrategyInterface $strategy) use ($optionName) {
+                return $strategy->get($optionName, $value);
+            },
+            null
+        );
     }
 
     /**

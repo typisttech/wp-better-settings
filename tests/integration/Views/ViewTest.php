@@ -17,7 +17,7 @@ class ViewTest extends WPTestCase
      */
     public function testEchoKsesOutputString()
     {
-        $context = new ArrayObject;
+        $context = new ArrayObject();
         $context->desc = '<p>Some text</p>';
 
         $view = new View(codecept_data_dir() . 'test-partial.php');
@@ -32,7 +32,7 @@ class ViewTest extends WPTestCase
     public function testRenderUnreadableFile()
     {
         $view = new View(codecept_data_dir() . '/not-exist.php');
-        $actual = $view->render(new ArrayObject);
+        $actual = $view->render(new ArrayObject());
         $this->assertSame('', $actual);
     }
 
@@ -41,7 +41,7 @@ class ViewTest extends WPTestCase
      */
     public function testRenderWithContext()
     {
-        $context = new ArrayObject;
+        $context = new ArrayObject();
         $context->desc = '<p>Some text</p>';
 
         $view = new View(codecept_data_dir() . 'test-partial.php');

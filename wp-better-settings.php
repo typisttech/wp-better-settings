@@ -18,7 +18,7 @@
  * Plugin Name: WP Better Settings
  * Plugin URI:  https://github.com/TypistTech/wp-better-settings
  * Description: Example Plugin for WP Better Settings
- * Version:     0.11.0
+ * Version:     0.14.0
  * Author:      Tang Rufus
  * Author URI:  https://www.typist.tech/
  * Text Domain: wp-better-settings
@@ -36,31 +36,4 @@ if (! defined('WPINC')) {
     die;
 }
 
-require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
-require_once plugin_dir_path(__FILE__) . 'class-plugin.php';
-
-// Initialize the plugin.
-(new Plugin())->init();
-
-/**
- * You can use hooks like so.
- */
-function add_hooked_paragraph()
-{
-    echo '<p>This paragraph is add via <code>';
-    echo esc_attr(str_replace('wpbs_simple', '{$snakecased_menu_slug}', current_filter()));
-    echo '</code> hook </p>';
-}
-
-add_action('wpbs_simple_before_page_title', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_after_page_title', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_before_nav_tabs', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_after_nav_tabs', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_before_option_form', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_before_settings_sections', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_before_section_content', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_after_section_content', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_after_settings_sections', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_before_submit_button', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_after_submit_button', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_after_option_form', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
+require_once __DIR__ . '/vendor/autoload.php';

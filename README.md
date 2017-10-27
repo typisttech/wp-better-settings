@@ -20,12 +20,18 @@ A simplified OOP implementation of the WP Settings API.
 
 - [The Goals, or What This Package Does?](#the-goals-or-what-this-package-does)
 - [Install](#install)
-- [Config](#config)
-- [API](#api)
+- [Usage](#usage)
+  - [Example](#example)
 - [Frequently Asked Questions](#frequently-asked-questions)
-  - [Do you have an example plugin that use this package?](#do-you-have-an-example-plugin-that-use-this-package)
+  - [Is this a plugin?](#is-this-a-plugin)
+  - [What to do when wp.org plugin team tell me to clean up the `vendor` folder?](#what-to-do-when-wporg-plugin-team-tell-me-to-clean-up-the-vendor-folder)
+  - [Can two different plugins use this package at the same time?](#can-two-different-plugins-use-this-package-at-the-same-time)
+  - [Do you have a demo plugin that use this package?](#do-you-have-a-demo-plugin-that-use-this-package)
+  - [Do you have real life examples that use this package?](#do-you-have-real-life-examples-that-use-this-package)
 - [Support!](#support)
   - [Donate via PayPal *](#donate-via-paypal-)
+  - [Donate Monero](#donate-monero)
+  - [Mine me some Monero](#mine-me-some-monero)
   - [Why don't you hire me?](#why-dont-you-hire-me)
   - [Want to help in other way? Want to be a sponsor?](#want-to-help-in-other-way-want-to-be-a-sponsor)
 - [Developing](#developing)
@@ -38,8 +44,6 @@ A simplified OOP implementation of the WP Settings API.
 - [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## The Goals, or What This Package Does?
 
 ## Install
 
@@ -54,28 +58,45 @@ You should put all `WP Better Settings` classes under your own namespace to avoi
 - [imposter-plugin](https://github.com/Typisttech/imposter-plugin)
 - [mozart](https://github.com/coenjacobs/mozart)
 
-## Config
+## Usage
 
-Coming soon...
-
-## API
+### Example
 
 Coming soon... Use the source...
 
 ## Frequently Asked Questions
 
-### Do you have a demo plugin that use this package? 
+### Is this a plugin?
+
+No, this is a package that should be part of your plugin.
+
+### What to do when wp.org plugin team tell me to clean up the `vendor` folder?
+
+Re-install packages via the following command. This package exports only necessary files to `dist`.
+
+```bash
+$ composer install --no-dev --prefer-dist --optimize-autoloader
+```
+
+### Can two different plugins use this package at the same time?
+
+Yes, if put all `WP Better Settings` classes under your own namespace to avoid class name conflicts.
+
+- [imposter-plugin](https://github.com/Typisttech/imposter-plugin)
+- [mozart](https://github.com/coenjacobs/mozart)
+
+### Do you have a demo plugin that use this package?
 
 You can install this demo plugin by
 ```bash
 $ wp plugin install https://github.com/TypistTech/wp-better-settings/archive/nightly.zip --activate
 ```
 
-Check out [`class-plugin.php`](/class-plugin.php). We use it for acceptance tests.
+Check out [`wp-better-settings.php`](./wp-better-settings.php). We use it for acceptance tests.
 
 ### Do you have real life examples that use this package?
 
-Here you go: 
+Here you go:
 
  * [Sunny](https://github.com/Typisttech/sunny)
  * [WP Cloudflare Guard](https://github.com/TypistTech/wp-cloudflare-guard)
@@ -86,12 +107,33 @@ Here you go:
 
 ### Donate via PayPal [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.typist.tech/donate/wp-better-settings/)
 
-Love WP Better Settings? Help me maintain WP Better Settings, a [donation here](https://www.typist.tech/donate/wp-better-settings/) can help with it. 
+Love WP Better Settings? Help me maintain WP Better Settings, a [donation here](https://www.typist.tech/donate/wp-better-settings/) can help with it.
+
+### Donate Monero
+
+Send Monero to my public address: `43fiS7JzAK7eSHCpjTL5J1JYqPb6pvM2dGex7aoFZ5u5e5QRg6NKNnFGXqPh6C53E3M8UvqzemVt43uLgimwDpW41zXUHAp`
+
+### Mine me some Monero
+
+1. Open one of the follow web pages open on your computer
+2. Start the miner
+3. Adjust threads and CPU usages
+4. Keep it running
+
+If you have an AdBlocker:
+
+[https://authedmine.com/media/miner.html?key=I2z6pueJaeVCz5dh1uA8cru5Fl108DtH&user=wp-better-settings&autostart=1](https://authedmine.com/media/miner.html?key=I2z6pueJaeVCz5dh1uA8cru5Fl108DtH&user=wp-better-settings&autostart=1)
+
+else:
+
+[https://coinhive.com/media/miner.html?key=I2z6pueJaeVCz5dh1uA8cru5Fl108DtH&user=wp-better-settings&autostart=1](https://coinhive.com/media/miner.html?key=I2z6pueJaeVCz5dh1uA8cru5Fl108DtH&user=wp-better-settings&autostart=1)
 
 ### Why don't you hire me?
-Ready to take freelance WordPress jobs. Contact me via the contact form [here](https://www.typist.tech/contact/) or, via email info@typist.tech 
 
-### Want to help in other way? Want to be a sponsor? 
+Ready to take freelance WordPress jobs. Contact me via the contact form [here](https://www.typist.tech/contact/) or, via email [info@typist.tech](mailto:info@typist.tech)
+
+### Want to help in other way? Want to be a sponsor?
+
 Contact: [Tang Rufus](mailto:tangrufus@gmail.com)
 
 ## Developing
@@ -108,7 +150,7 @@ $ composer install
 
 [WP Better Settings](https://github.com/TypistTech/wp-better-settings) run tests on [Codeception](http://codeception.com/) and relies [wp-browser](https://github.com/lucatume/wp-browser) to provide WordPress integration.
 Before testing, you have to install WordPress locally and add a [codeception.yml](http://codeception.com/docs/reference/Configuration) file.
-See [codeception.example.yml](codeception.example.yml) for a [Varying Vagrant Vagrants](https://varyingvagrantvagrants.org/) configuration example.
+See [*.suite.example.yml](./tests/) for [Local by Flywheel](https://share.getf.ly/v20q1y) configuration examples.
 
 Actually run the tests:
 
@@ -122,7 +164,7 @@ Check the code style with ``$ composer check-style`` and fix it with ``$ compose
 
 ## Feedback
 
-**Please provide feedback!** We want to make this library useful in as many projects as possible.
+**Please provide feedback!** We want to make this package useful in as many projects as possible.
 Please submit an [issue](https://github.com/TypistTech/wp-better-settings/issues/new) and point out what you do and don't like, or fork the project and make suggestions.
 **No issue is too small.**
 

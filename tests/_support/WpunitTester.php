@@ -20,7 +20,11 @@ namespace TypistTech\WPBetterSettings;
  *
  * @SuppressWarnings(PHPMD)
  */
-class UnitTester extends \Codeception\Actor
+class WpunitTester extends \Codeception\Actor
 {
-    use _generated\UnitTesterActions;
+    use _generated\WpunitTesterActions;
+
+    /*
+     * Define custom actions here
+     */
 }

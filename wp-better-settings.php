@@ -37,3 +37,45 @@ if (! defined('WPINC')) {
 }
 
 require_once __DIR__ . '/vendor/autoload.php';
+
+const WPBS_DEMO_PAGE_SLUG = 'wpbs-demo';
+
+add_action(
+    'admin_init',
+    function () {
+        $section1 = new Section(
+            'my-section-1',
+            'My Section One'
+        );
+
+        $section2 = new Section(
+            'my-section-2',
+            'My Section Two'
+        );
+
+        $registrar = new Registrar(WPBS_DEMO_PAGE_SLUG);
+        $registrar->add($section1, $section2);
+
+        $registrar->run();
+    }
+);
+
+add_action(
+    'admin_menu',
+    function () {
+        add_menu_page(
+            'WPBS Demo',
+            'WP Better Settings Demo',
+            'manage_options',
+            WPBS_DEMO_PAGE_SLUG,
+            function () {
+                settings_errors();
+                echo '<form action="options.php" method="post">';
+                settings_fields(WPBS_DEMO_PAGE_SLUG);
+                do_settings_sections(WPBS_DEMO_PAGE_SLUG);
+                submit_button();
+                echo '</form>';
+            }
+        );
+    }
+);

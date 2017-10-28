@@ -7,13 +7,16 @@ namespace TypistTech\WPBetterSettings;
 use Codeception\TestCase\WPTestCase;
 use TypistTech\WPKsesView\ViewAwareTraitInterface;
 
+/**
+ * @covers \TypistTech\WPBetterSettings\Section
+ */
 class SectionTest extends WPTestCase
 {
     public function setUp()
     {
         parent::setUp();
 
-        $this->subject = new Section('my-id', 'My Title', 'my-page');
+        $this->subject = new Section('my-id', 'My Title');
     }
 
     /** @test */
@@ -43,15 +46,6 @@ class SectionTest extends WPTestCase
         $this->assertSame(
             'My Title',
             $this->subject->getTitle()
-        );
-    }
-
-    /** @test */
-    public function it_has_page_getter()
-    {
-        $this->assertSame(
-            'my-page',
-            $this->subject->getPage()
         );
     }
 

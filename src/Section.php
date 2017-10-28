@@ -45,26 +45,15 @@ class Section implements SectionInterface, ViewAwareTraitInterface
     private $title;
 
     /**
-     * The menu page on which to display this section. Should match $menu_slug from `add_menu_page` or
-     * `add_submenu_page`.
-     *
-     * @var string
-     */
-    private $page;
-
-    /**
      * Section constructor.
      *
      * @param string $id    String for use in the 'id' attribute of tags.
      * @param string $title Title of the section.
-     * @param string $page  The menu page on which to display this section. Should match $menu_slug from
-     *                      `add_menu_page` or `add_submenu_page`.
      */
-    public function __construct($id, $title, $page)
+    public function __construct($id, $title)
     {
         $this->id = $id;
         $this->title = $title;
-        $this->page = $page;
     }
 
     /**
@@ -85,16 +74,6 @@ class Section implements SectionInterface, ViewAwareTraitInterface
     public function getTitle(): string
     {
         return $this->title;
-    }
-
-    /**
-     * Page getter.
-     *
-     * @return string
-     */
-    public function getPage(): string
-    {
-        return $this->page;
     }
 
     /**

@@ -42,12 +42,4 @@ interface SectionInterface
      * @return Closure
      */
     public function getRenderClosure(): Closure;
-
-    /**
-     * The menu page on which to display this section. Should match $menu_slug from `add_menu_page` or
-     * `add_submenu_page`.
-     *
-     * @return string
-     */
-    public function getPage(): string;
 }

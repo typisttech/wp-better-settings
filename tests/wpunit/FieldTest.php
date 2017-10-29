@@ -92,4 +92,27 @@ class FieldTest extends WPTestCase
 
         $this->assertSame($expected, $actual);
     }
+
+    /** @test */
+    public function it_merges_additional_render_arguments()
+    {
+        $field = new Field(
+            'my_field_id',
+            'My Title',
+            $this->builder->text('my_field_id'),
+            [
+                'class' => 'my-class',
+            ]
+        );
+
+        $actual = $field->getAdditionalRenderArguments();
+
+        $this->assertSame(
+            [
+                'class' => 'my-class',
+                'label_for' => 'my_field_id',
+            ],
+            $actual
+        );
+    }
 }

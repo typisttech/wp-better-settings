@@ -31,9 +31,9 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
-// If this file is called directly, abort.
 use TypistTech\WPOptionStore\Factory as OptionStoreFactory;
 
+// If this file is called directly, abort.
 if (! defined('WPINC')) {
     die;
 }

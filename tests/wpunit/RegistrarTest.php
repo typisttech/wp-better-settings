@@ -75,45 +75,21 @@ class RegistrarTest extends WPTestCase
         $this->subject->run();
 
         $this->addSettingsSection->verifyInvokedMultipleTimes(2);
-
         $this->assertArraySubset(
             [
                 [
-                    'my-section-1',
-                    'My Section One',
+                    0 => 'my-section-1',
+                    1 => 'My Section One',
+                    3 => 'my-page',
                 ],
                 [
-                    'my-section-2',
-                    'My Section Two',
+                    0 => 'my-section-2',
+                    1 => 'My Section Two',
+                    3 => 'my-page',
                 ],
             ],
             $this->addSettingsSection->getCallsForMethod('add_settings_section')
         );
-    }
-
-    /** @test */
-    public function it_register_sections_using_page_slug()
-    {
-        $this->subject->add(
-            new Section(
-                'my-section-1',
-                'My Section One'
-            ),
-            new Section(
-                'my-section-2',
-                'My Section Two'
-            )
-        );
-
-        $this->subject->run();
-
-        $this->addSettingsSection->verifyInvokedMultipleTimes(2);
-        foreach ($this->addSettingsSection->getCallsForMethod('add_settings_section') as $params) {
-            $this->tester->assertContains(
-                'my-page',
-                $params
-            );
-        }
     }
 
     /** @test */

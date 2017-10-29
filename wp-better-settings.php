@@ -32,7 +32,7 @@ declare(strict_types=1);
 namespace TypistTech\WPBetterSettings;
 
 // If this file is called directly, abort.
-use AdamWathan\Form\FormBuilder;
+use TypistTech\WPOptionStore\Factory as OptionStoreFactory;
 
 if (! defined('WPINC')) {
     die;
@@ -45,45 +45,36 @@ const WPBS_DEMO_PAGE_SLUG = 'wpbs-demo';
 add_action(
     'admin_init',
     function () {
-        $builder = new FormBuilder();
-
-        $field1 = new Field(
-            'my_text',
-            'My Text',
-            $builder->text('my_text')
-                    ->addClass('regular-text')
-                    ->required()
+        $builder = new Builder(
+            OptionStoreFactory::build()
         );
 
-        $field2 = new Field(
-            'my_color',
-            'My Color',
-            $builder->select('my_color')
-                    ->addOption('red', 'Blood')
-                    ->addOption('blue', 'Sky')
-                    ->addOption('green', 'Grass')
+        $basicSection = new Section(
+            'basic-fields',
+            'Basic Fields'
         );
 
-        $field3 = new Field(
-            'my_checkbox',
-            'My Checkbox',
-            $builder->checkbox('my_checkbox')
-        );
-
-        $section1 = new Section(
-            'my-section-1',
-            'My Section One'
-        );
-
-        $section1->add($field1, $field2, $field3);
-
-        $section2 = new Section(
-            'my-section-2',
-            'My Section Two'
+        $basicSection->add(
+            $builder->text('my_text', 'My Text'),
+            $builder->password('my_password', 'My Password'),
+            $builder->email('my_email', 'My Email'),
+            $builder->url('my_url', 'My Url'),
+            $builder->number('my_number', 'My Number'),
+            $builder->textarea('my_textarea', 'My Textarea'),
+            $builder->checkbox('my_checkbox', 'My Checkbox'),
+            $builder->select(
+                'my_select',
+                'My Select',
+                [
+                    'a' => 'Option A',
+                    'b' => 'Option B',
+                    'c' => 'Option C',
+                ]
+            )
         );
 
         $registrar = new Registrar(WPBS_DEMO_PAGE_SLUG);
-        $registrar->add($section1, $section2);
+        $registrar->add($basicSection);
 
         $registrar->run();
     }

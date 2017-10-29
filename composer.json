@@ -28,7 +28,8 @@
     "require": {
         "php": ">7.0",
         "bupy7/php-html-form": "^1.0",
-        "typisttech/wp-kses-view": "^0.4.0"
+        "typisttech/wp-kses-view": "^0.4.0",
+        "typisttech/wp-option-store": "^0.1.1"
     },
     "require-dev": {
         "codeception/aspect-mock": "^2.1",

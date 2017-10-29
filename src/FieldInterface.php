@@ -50,4 +50,11 @@ interface FieldInterface
      * @return array
      */
     public function getAdditionalRenderArguments(): array;
+
+    /**
+     * Data used to describe the setting when registered.
+     *
+     * @return array
+     */
+    public function getAdditionalSettingArguments(): array;
 }

@@ -19,6 +19,7 @@ class RegistrarTest extends WPTestCase
 
         $this->addSettingsSection = Test::func(__NAMESPACE__, 'add_settings_section', true);
         $this->addSettingsField = Test::func(__NAMESPACE__, 'add_settings_field', true);
+        $this->registerSetting = Test::func(__NAMESPACE__, 'register_setting', true);
 
         $this->builder = new FormBuilder();
 
@@ -163,6 +164,80 @@ class RegistrarTest extends WPTestCase
                 ],
             ],
             $this->addSettingsField->getCallsForMethod('add_settings_field')
+        );
+    }
+
+    /** @test */
+    public function it_register_settings_with_wordpress()
+    {
+        $section1 = new Section(
+            'my-section-1',
+            'My Section One'
+        );
+        $section1->add(
+            new Field(
+                'my_text',
+                'My Text',
+                $this->builder->text('my_text')
+                              ->addClass('regular-text')
+                              ->required()
+            ),
+            new Field(
+                'my_color',
+                'My Color',
+                $this->builder->select('my_color')
+                              ->addOption('red', 'Blood')
+                              ->addOption('blue', 'Sky')
+                              ->addOption('green', 'Grass'),
+                [
+                    'show_in_rest' => true,
+                ],
+                []
+            )
+        );
+        $section2 = new Section(
+            'my-section-2',
+            'My Section Two'
+        );
+        $section2->add(
+            new Field(
+                'my_checkbox',
+                'My Checkbox',
+                $this->builder->checkbox('my_checkbox'),
+                [
+                    'type' => 'boolean',
+                ],
+                []
+            )
+        );
+        $this->subject->add($section1, $section2);
+
+        $this->subject->run();
+
+        $this->registerSetting->verifyInvokedMultipleTimes(3);
+        $this->assertArraySubset(
+            [
+                [
+                    0 => 'my-page',
+                    1 => 'my_text',
+                    2 => [],
+                ],
+                [
+                    0 => 'my-page',
+                    1 => 'my_color',
+                    2 => [
+                        'show_in_rest' => true,
+                    ],
+                ],
+                [
+                    0 => 'my-page',
+                    1 => 'my_checkbox',
+                    2 => [
+                        'type' => 'boolean',
+                    ],
+                ],
+            ],
+            $this->registerSetting->getCallsForMethod('register_setting')
         );
     }
 }

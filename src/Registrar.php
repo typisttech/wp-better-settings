@@ -55,6 +55,7 @@ class Registrar
             function (SectionInterface $section) {
                 $this->registerSection($section);
                 $this->registerFields($section);
+                $this->registerSettings($section);
             },
             $this->sections
         );
@@ -95,6 +96,27 @@ class Registrar
                     $this->pageSlug,
                     $section->getId(),
                     $field->getAdditionalRenderArguments()
+                );
+            },
+            $section->getFields()
+        );
+    }
+
+    /**
+     * Register a setting and its data with WordPress.
+     *
+     * @param SectionInterface $section Section which holds a list of its fields.
+     *
+     * @return void
+     */
+    private function registerSettings(SectionInterface $section)
+    {
+        array_map(
+            function (FieldInterface $field) {
+                register_setting(
+                    $this->pageSlug,
+                    $field->getId(),
+                    $field->getAdditionalSettingArguments()
                 );
             },
             $section->getFields()

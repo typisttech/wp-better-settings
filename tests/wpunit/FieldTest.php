@@ -100,8 +100,10 @@ class FieldTest extends WPTestCase
             'my_field_id',
             'My Title',
             $this->builder->text('my_field_id'),
+            [],
             [
                 'class' => 'my-class',
+                'label_for' => 'your_field_id',
             ]
         );
 
@@ -109,8 +111,50 @@ class FieldTest extends WPTestCase
 
         $this->assertSame(
             [
+                'label_for' => 'your_field_id',
                 'class' => 'my-class',
-                'label_for' => 'my_field_id',
+            ],
+            $actual
+        );
+    }
+
+    /** @test */
+    public function it_has_additional_setting_arguments_getter()
+    {
+        $actual = $this->subject->getAdditionalSettingArguments();
+
+        $this->assertSame(
+            [
+                'sanitize_callback' => 'sanitize_text_field',
+                'show_in_rest' => true,
+            ],
+            $actual
+        );
+    }
+
+    /** @test */
+    public function it_sets_additional_setting_arguments()
+    {
+        $field = new Field(
+            'my_field_id',
+            'My Title',
+            $this->builder->text('my_field_id'),
+            [
+                'abc' => 'zyx',
+                'foo' => 'bar',
+                'show_in_rest' => false,
+            ],
+            []
+        );
+
+        $actual = $field->getAdditionalSettingArguments();
+
+        $this->assertSame(
+            [
+                'sanitize_callback' => 'sanitize_text_field',
+                'show_in_rest' => false,
+                'abc' => 'zyx',
+                'foo' => 'bar',
             ],
             $actual
         );

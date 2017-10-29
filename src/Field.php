@@ -52,26 +52,52 @@ class Field implements FieldInterface
     private $additionalRenderArguments;
 
     /**
+     * Data used to describe the setting when registered.
+     *
+     * @var array
+     */
+    private $additionalSettingsArguments;
+
+    /**
      * Field constructor.
      *
-     * @param string      $id                        String for use in the 'id' attribute of tags.
-     * @param string      $title                     Title of the field.
-     * @param FormControl $formControl               Object that echos HTML tags.
-     * @param array       $additionalRenderArguments Optional. Extra arguments used when outputting the field.
+     * @param string      $id                          String for use in the 'id' attribute of tags.
+     * @param string      $title                       Title of the field.
+     * @param FormControl $formControl                 Object that echos HTML tags.
+     * @param array       $additionalSettingsArguments Optional. Data used to describe the setting when registered.
+     * @param array       $additionalRenderArguments   Optional. Extra arguments used when outputting the field.
      */
     public function __construct(
         string $id,
         string $title,
         FormControl $formControl,
+        array $additionalSettingsArguments = null,
         array $additionalRenderArguments = null
     ) {
         $this->id = $id;
         $this->title = $title;
         $this->formControl = $formControl;
-        $this->additionalRenderArguments = array_merge(
-            (array) $additionalRenderArguments,
-            $this->getDefaultAdditionalRenderArguments()
+        $this->additionalSettingsArguments = array_merge(
+            $this->getDefaultAdditionalSettingArguments(),
+            (array) $additionalSettingsArguments
         );
+        $this->additionalRenderArguments = array_merge(
+            $this->getDefaultAdditionalRenderArguments(),
+            (array) $additionalRenderArguments
+        );
+    }
+
+    /**
+     * Default data used to describe the setting when registered.
+     *
+     * @return array
+     */
+    public function getDefaultAdditionalSettingArguments(): array
+    {
+        return [
+            'sanitize_callback' => 'sanitize_text_field',
+            'show_in_rest' => true,
+        ];
     }
 
     /**
@@ -129,5 +155,15 @@ class Field implements FieldInterface
     public function getAdditionalRenderArguments(): array
     {
         return $this->additionalRenderArguments;
+    }
+
+    /**
+     * Data used to describe the setting when registered.
+     *
+     * @return array
+     */
+    public function getAdditionalSettingArguments(): array
+    {
+        return $this->additionalSettingsArguments;
     }
 }

@@ -51,7 +51,7 @@ class SectionTest extends WPTestCase
     }
 
     /** @test */
-    public function it_renders()
+    public function it_defaults_render_nothing()
     {
         $render = $this->subject->getRenderClosure();
 
@@ -59,10 +59,7 @@ class SectionTest extends WPTestCase
         $render();
         $actual = ob_get_clean();
 
-        $this->assertSame(
-            '<p id="my-id">My Title</p>',
-            $actual
-        );
+        $this->assertEmpty($actual);
     }
 
     /** @test */

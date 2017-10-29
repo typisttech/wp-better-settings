@@ -18,17 +18,12 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
-use TypistTech\WPKsesView\Factory;
 use TypistTech\WPKsesView\ViewAwareTrait;
 use TypistTech\WPKsesView\ViewAwareTraitInterface;
-use TypistTech\WPKsesView\ViewInterface;
-use UnexpectedValueException;
 
 class Section implements SectionInterface, ViewAwareTraitInterface
 {
-    use ViewAwareTrait {
-        getView as protected traitGetView;
-    }
+    use ViewAwareTrait;
 
     /**
      * String for use in the 'id' attribute of tags.
@@ -104,21 +99,5 @@ class Section implements SectionInterface, ViewAwareTraitInterface
     public function getTitle(): string
     {
         return $this->title;
-    }
-
-    /**
-     * View getter.
-     *
-     * @return ViewInterface
-     */
-    public function getView(): ViewInterface
-    {
-        try {
-            return $this->traitGetView();
-        } catch (UnexpectedValueException $_exception) {
-            $this->view = Factory::build(__DIR__ . '/partials/section.php');
-
-            return $this->view;
-        }
     }
 }

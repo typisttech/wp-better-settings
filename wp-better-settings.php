@@ -32,6 +32,8 @@ declare(strict_types=1);
 namespace TypistTech\WPBetterSettings;
 
 // If this file is called directly, abort.
+use AdamWathan\Form\FormBuilder;
+
 if (! defined('WPINC')) {
     die;
 }
@@ -43,10 +45,37 @@ const WPBS_DEMO_PAGE_SLUG = 'wpbs-demo';
 add_action(
     'admin_init',
     function () {
+        $builder = new FormBuilder();
+
+        $field1 = new Field(
+            'my_text',
+            'My Text',
+            $builder->text('my_text')
+                    ->addClass('regular-text')
+                    ->required()
+        );
+
+        $field2 = new Field(
+            'my_color',
+            'My Color',
+            $builder->select('my_color')
+                    ->addOption('red', 'Blood')
+                    ->addOption('blue', 'Sky')
+                    ->addOption('green', 'Grass')
+        );
+
+        $field3 = new Field(
+            'my_checkbox',
+            'My Checkbox',
+            $builder->checkbox('my_checkbox')
+        );
+
         $section1 = new Section(
             'my-section-1',
             'My Section One'
         );
+
+        $section1->add($field1, $field2, $field3);
 
         $section2 = new Section(
             'my-section-2',
@@ -69,12 +98,16 @@ add_action(
             'manage_options',
             WPBS_DEMO_PAGE_SLUG,
             function () {
+                echo '<div class="wrap">';
                 settings_errors();
+
+                echo '<h1>' . esc_html(get_admin_page_title()) . '</h1>';
                 echo '<form action="options.php" method="post">';
                 settings_fields(WPBS_DEMO_PAGE_SLUG);
                 do_settings_sections(WPBS_DEMO_PAGE_SLUG);
                 submit_button();
                 echo '</form>';
+                echo '</div>';
             }
         );
     }

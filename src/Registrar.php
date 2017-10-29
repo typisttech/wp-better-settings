@@ -51,26 +51,53 @@ class Registrar
      */
     public function run()
     {
-        $this->registerSections();
+        array_map(
+            function (SectionInterface $section) {
+                $this->registerSection($section);
+                $this->registerFields($section);
+            },
+            $this->sections
+        );
     }
 
     /**
-     * Add sections to the settings page.
+     * Register a section to the settings page with WordPress.
+     *
+     * @param SectionInterface $section Section to be registered.
      *
      * @void
      */
-    private function registerSections()
+    private function registerSection(SectionInterface $section)
+    {
+        add_settings_section(
+            $section->getId(),
+            $section->getTitle(),
+            $section->getRenderClosure(),
+            $this->pageSlug
+        );
+    }
+
+    /**
+     * Register fields of a section with WordPress.
+     *
+     * @param SectionInterface $section Section which holds a list of its fields.
+     *
+     * @return void
+     */
+    private function registerFields(SectionInterface $section)
     {
         array_map(
-            function (SectionInterface $section) {
-                add_settings_section(
+            function (FieldInterface $field) use ($section) {
+                add_settings_field(
+                    $field->getId(),
+                    $field->getTitle(),
+                    $field->getRenderClosure(),
+                    $this->pageSlug,
                     $section->getId(),
-                    $section->getTitle(),
-                    $section->getRenderClosure(),
-                    $this->pageSlug
+                    $field->getAdditionalRenderArguments()
                 );
             },
-            $this->sections
+            $section->getFields()
         );
     }
 

@@ -27,7 +27,7 @@
     },
     "require": {
         "php": ">7.0",
-        "form-manager/form-manager": "^5.1",
+        "bupy7/php-html-form": "^1.0",
         "typisttech/wp-kses-view": "^0.3.0"
     },
     "require-dev": {

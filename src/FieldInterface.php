@@ -20,7 +20,7 @@ namespace TypistTech\WPBetterSettings;
 
 use Closure;
 
-interface SectionInterface
+interface FieldInterface
 {
     /**
      * String for use in the 'id' attribute of tags.
@@ -30,30 +30,24 @@ interface SectionInterface
     public function getId(): string;
 
     /**
-     * Title of the section.
+     * Title of the field.
      *
      * @return string
      */
     public function getTitle(): string;
 
     /**
-     * Closure that fills the section with the desired content. The closure should echo its output.
+     * Closure that fills the field with the desired inputs as part of the larger form. The closure should echo its
+     * output.
      *
      * @return Closure
      */
     public function getRenderClosure(): Closure;
 
     /**
-     * Add fields into this section.
+     * Additional arguments that are passed to the render closure.
      *
-     * @param FieldInterface[] ...$fields Fields to be registered in this section.
+     * @return array
      */
-    public function add(FieldInterface ...$fields);
-
-    /**
-     * Fields getter.
-     *
-     * @return FieldInterface[]
-     */
-    public function getFields(): array;
+    public function getAdditionalRenderArguments(): array;
 }

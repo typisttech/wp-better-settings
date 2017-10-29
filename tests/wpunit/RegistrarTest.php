@@ -8,7 +8,7 @@ use AspectMock\Test;
 use Codeception\TestCase\WPTestCase;
 
 /**
- * @covers \TypistTech\WPBetterSettings\Section
+ * @covers \TypistTech\WPBetterSettings\Registrar
  */
 class RegistrarTest extends WPTestCase
 {
@@ -110,5 +110,11 @@ class RegistrarTest extends WPTestCase
                 $params
             );
         }
+    }
+
+    /** @test */
+    public function it_register_fields_with_wordpress()
+    {
+        $this->markTestIncomplete();
     }
 }

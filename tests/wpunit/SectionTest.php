@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
+use AdamWathan\Form\FormBuilder;
 use Codeception\TestCase\WPTestCase;
 use TypistTech\WPKsesView\ViewAwareTraitInterface;
 
@@ -61,6 +62,65 @@ class SectionTest extends WPTestCase
         $this->assertSame(
             '<p id="my-id">My Title</p>',
             $actual
+        );
+    }
+
+    /** @test */
+    public function it_holds_fields()
+    {
+        $builder = new FormBuilder();
+        $field1 = new Field(
+            'my_text',
+            'My Text',
+            $builder->text('my_text')
+        );
+        $field2 = new Field(
+            'my_color',
+            'My Color',
+            $builder->select('my_color')
+        );
+        $field3 = new Field(
+            'my_checkbox',
+            'My Checkbox',
+            $builder->checkbox('my_checkbox')
+        );
+
+        $this->subject->add($field1, $field2);
+        $this->subject->add($field3);
+
+        $this->assertAttributeSame(
+            [$field1, $field2, $field3],
+            'fields',
+            $this->subject
+        );
+    }
+
+    /** @test */
+    public function it_has_fields_getter()
+    {
+        $builder = new FormBuilder();
+        $field1 = new Field(
+            'my_text',
+            'My Text',
+            $builder->text('my_text')
+        );
+        $field2 = new Field(
+            'my_color',
+            'My Color',
+            $builder->select('my_color')
+        );
+        $field3 = new Field(
+            'my_checkbox',
+            'My Checkbox',
+            $builder->checkbox('my_checkbox')
+        );
+
+        $this->subject->add($field1, $field2);
+        $this->subject->add($field3);
+
+        $this->assertSame(
+            [$field1, $field2, $field3],
+            $this->subject->getFields()
         );
     }
 }

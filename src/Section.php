@@ -45,6 +45,13 @@ class Section implements SectionInterface, ViewAwareTraitInterface
     private $title;
 
     /**
+     * Fields in this section.
+     *
+     * @var FieldInterface[]
+     */
+    private $fields = [];
+
+    /**
      * Section constructor.
      *
      * @param string $id    String for use in the 'id' attribute of tags.
@@ -54,6 +61,29 @@ class Section implements SectionInterface, ViewAwareTraitInterface
     {
         $this->id = $id;
         $this->title = $title;
+    }
+
+    /**
+     * Add fields into this section.
+     *
+     * @param FieldInterface[] ...$fields Fields to be registered in this section.
+     */
+    public function add(FieldInterface ...$fields)
+    {
+        $this->fields = array_merge(
+            $this->fields,
+            $fields
+        );
+    }
+
+    /**
+     * Fields getter.
+     *
+     * @return FieldInterface[]
+     */
+    public function getFields(): array
+    {
+        return $this->fields;
     }
 
     /**

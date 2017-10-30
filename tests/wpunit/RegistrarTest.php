@@ -190,9 +190,8 @@ class RegistrarTest extends WPTestCase
                               ->addOption('blue', 'Sky')
                               ->addOption('green', 'Grass'),
                 [
-                    'show_in_rest' => true,
-                ],
-                []
+                    'sanitize_callback' => 'my_sanitize_callback',
+                ]
             )
         );
         $section2 = new Section(
@@ -206,8 +205,8 @@ class RegistrarTest extends WPTestCase
                 $this->builder->checkbox('my_checkbox'),
                 [
                     'type' => 'boolean',
-                ],
-                []
+                    'show_in_rest' => false,
+                ]
             )
         );
         $this->subject->add($section1, $section2);
@@ -220,12 +219,16 @@ class RegistrarTest extends WPTestCase
                 [
                     0 => 'my-page',
                     1 => 'my_text',
-                    2 => [],
+                    2 => [
+                        'sanitize_callback' => 'sanitize_text_field',
+                        'show_in_rest' => true,
+                    ],
                 ],
                 [
                     0 => 'my-page',
                     1 => 'my_color',
                     2 => [
+                        'sanitize_callback' => 'my_sanitize_callback',
                         'show_in_rest' => true,
                     ],
                 ],
@@ -233,6 +236,8 @@ class RegistrarTest extends WPTestCase
                     0 => 'my-page',
                     1 => 'my_checkbox',
                     2 => [
+                        'sanitize_callback' => 'sanitize_text_field',
+                        'show_in_rest' => false,
                         'type' => 'boolean',
                     ],
                 ],

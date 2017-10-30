@@ -46,15 +46,12 @@ interface FieldInterface
 
     /**
      * Additional arguments that are passed to the render closure.
-     *
-     * @return array
-     */
-    public function getAdditionalRenderArguments(): array;
-
-    /**
      * Data used to describe the setting when registered.
      *
+     * @see register_setting
+     * @see add_settings_field
+     *
      * @return array
      */
-    public function getAdditionalSettingArguments(): array;
+    public function getAdditionalArguments(): array;
 }

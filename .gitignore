@@ -4,10 +4,12 @@
 
 ### Codeception ###
 /codeception.yml
+/tests/*.suite.yml
 /tests/_output/*
 /tests/_support/_generated/
 
 ### Composer ###
+/composer.lock
 /vendor/
 
 ### npm ###

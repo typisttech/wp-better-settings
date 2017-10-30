@@ -1,0 +1,9 @@
+modules:
+    config:
+        WPLoader:
+            wpRootFolder: "/Users/me/Local Sites/wpbettersettings/app/public"
+            dbName: "local"
+            dbHost: "192.168.93.100:4010"
+            dbUser: "root"
+            dbPassword: "root"
+            domain: "wp-better-settings.local"

@@ -18,7 +18,7 @@
  * Plugin Name: WP Better Settings
  * Plugin URI:  https://github.com/TypistTech/wp-better-settings
  * Description: Example Plugin for WP Better Settings
- * Version:     0.11.0
+ * Version:     0.14.0
  * Author:      Tang Rufus
  * Author URI:  https://www.typist.tech/
  * Text Domain: wp-better-settings
@@ -31,36 +31,75 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
+use TypistTech\WPOptionStore\Factory as OptionStoreFactory;
+
 // If this file is called directly, abort.
 if (! defined('WPINC')) {
     die;
 }
 
-require_once plugin_dir_path(__FILE__) . 'vendor/autoload.php';
-require_once plugin_dir_path(__FILE__) . 'class-plugin.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
-// Initialize the plugin.
-(new Plugin())->init();
+const WPBS_DEMO_PAGE_SLUG = 'wpbs-demo';
 
-/**
- * You can use hooks like so.
- */
-function add_hooked_paragraph()
-{
-    echo '<p>This paragraph is add via <code>';
-    echo esc_attr(str_replace('wpbs_simple', '{$snakecased_menu_slug}', current_filter()));
-    echo '</code> hook </p>';
-}
+add_action(
+    'admin_init',
+    function () {
+        $builder = new Builder(
+            OptionStoreFactory::build()
+        );
 
-add_action('wpbs_simple_before_page_title', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_after_page_title', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_before_nav_tabs', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_after_nav_tabs', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_before_option_form', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_before_settings_sections', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_before_section_content', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_after_section_content', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_after_settings_sections', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_before_submit_button', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_after_submit_button', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
-add_action('wpbs_simple_after_option_form', 'TypistTech\WPBetterSettings\add_hooked_paragraph');
+        $basicSection = new Section(
+            'basic-fields',
+            'Basic Fields'
+        );
+
+        $basicSection->add(
+            $builder->text('my_text', 'My Text'),
+            $builder->password('my_password', 'My Password'),
+            $builder->email('my_email', 'My Email'),
+            $builder->url('my_url', 'My Url'),
+            $builder->number('my_number', 'My Number'),
+            $builder->textarea('my_textarea', 'My Textarea'),
+            $builder->checkbox('my_checkbox', 'My Checkbox'),
+            $builder->select(
+                'my_select',
+                'My Select',
+                [
+                    'a' => 'Option A',
+                    'b' => 'Option B',
+                    'c' => 'Option C',
+                ]
+            )
+        );
+
+        $registrar = new Registrar(WPBS_DEMO_PAGE_SLUG);
+        $registrar->add($basicSection);
+
+        $registrar->run();
+    }
+);
+
+add_action(
+    'admin_menu',
+    function () {
+        add_menu_page(
+            'WPBS Demo',
+            'WP Better Settings Demo',
+            'manage_options',
+            WPBS_DEMO_PAGE_SLUG,
+            function () {
+                echo '<div class="wrap">';
+                settings_errors();
+
+                echo '<h1>' . esc_html(get_admin_page_title()) . '</h1>';
+                echo '<form action="options.php" method="post">';
+                settings_fields(WPBS_DEMO_PAGE_SLUG);
+                do_settings_sections(WPBS_DEMO_PAGE_SLUG);
+                submit_button();
+                echo '</form>';
+                echo '</div>';
+            }
+        );
+    }
+);

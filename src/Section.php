@@ -18,31 +18,19 @@ declare(strict_types=1);
 
 namespace TypistTech\WPBetterSettings;
 
-use TypistTech\WPBetterSettings\Decorators\DecoratorAwareInterface;
-use TypistTech\WPBetterSettings\Decorators\DecoratorAwareTrait;
-use TypistTech\WPBetterSettings\Decorators\Section as SectionDecorator;
-use TypistTech\WPBetterSettings\Fields\AbstractField;
+use TypistTech\WPKsesView\ViewAwareTrait;
+use TypistTech\WPKsesView\ViewAwareTraitInterface;
 
-/**
- * Final class Section
- */
-final class Section implements DecoratorAwareInterface
+class Section implements SectionInterface, ViewAwareTraitInterface
 {
-    use DecoratorAwareTrait;
+    use ViewAwareTrait;
 
     /**
-     * Fields of this section.
-     *
-     * @var AbstractField[]
-     */
-    private $fields = [];
-
-    /**
-     * The page slug name which this section should be shown.
+     * String for use in the 'id' attribute of tags.
      *
      * @var string
      */
-    private $page;
+    private $id;
 
     /**
      * Title of the section.
@@ -52,38 +40,41 @@ final class Section implements DecoratorAwareInterface
     private $title;
 
     /**
+     * Fields in this section.
+     *
+     * @var FieldInterface[]
+     */
+    private $fields = [];
+
+    /**
      * Section constructor.
      *
-     * @param string                        $page      The page slug name which this section should be shown.
-     * @param string                        $title     Title of the section.
-     * @param AbstractField|AbstractField[] ...$fields Fields of this section.
+     * @param string $id    String for use in the 'id' attribute of tags.
+     * @param string $title Title of the section.
      */
-    public function __construct(string $page, string $title, AbstractField ...$fields)
+    public function __construct($id, $title)
     {
-        $this->page = $page;
+        $this->id = $id;
         $this->title = $title;
-        $this->fields = $fields;
     }
 
     /**
-     * Fields setter.
+     * Add fields into this section.
      *
-     * @param AbstractField|AbstractField[] ...$fields Fields to be added.
-     *
-     * @return void
+     * @param FieldInterface[] ...$fields Fields to be registered in this section.
      */
-    public function addFields(AbstractField ...$fields)
+    public function add(FieldInterface ...$fields)
     {
-        $this->fields = array_unique(
-            array_merge($this->fields, $fields),
-            SORT_REGULAR
+        $this->fields = array_merge(
+            $this->fields,
+            $fields
         );
     }
 
     /**
      * Fields getter.
      *
-     * @return AbstractField[]
+     * @return FieldInterface[]
      */
     public function getFields(): array
     {
@@ -91,13 +82,13 @@ final class Section implements DecoratorAwareInterface
     }
 
     /**
-     * Page getter.
+     * Id getter.
      *
      * @return string
      */
-    public function getPage(): string
+    public function getId(): string
     {
-        return $this->page;
+        return $this->id;
     }
 
     /**
@@ -108,13 +99,5 @@ final class Section implements DecoratorAwareInterface
     public function getTitle(): string
     {
         return $this->title;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getDefaultDecorator(): SectionDecorator
-    {
-        return new SectionDecorator($this);
     }
 }

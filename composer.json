@@ -3,8 +3,7 @@
     "description": "A simplified OOP implementation of the WP Settings API",
     "keywords": [
         "wordpress",
-        "wp",
-        "settings api"
+        "wp"
     ],
     "homepage": "https://www.typist.tech/projects/wp-better-settings",
     "license": "GPL-2.0+",
@@ -27,30 +26,26 @@
         "source": "https://github.com/TypistTech/wp-better-settings"
     },
     "require": {
-        "php": ">7.0"
+        "php": ">7.0",
+        "bupy7/php-html-form": "^1.0",
+        "typisttech/wp-kses-view": "^0.4.0",
+        "typisttech/wp-option-store": "^0.1.1"
     },
     "require-dev": {
-        "codeception/aspect-mock": "^2.0",
-        "jakoch/phantomjs-installer": "^2.1",
+        "codeception/aspect-mock": "^2.1",
         "lucatume/wp-browser": "^1.21",
         "neronmoon/scriptsdev": "^0.1.1",
-        "site5/phantoman": "^2.0",
         "wp-coding-standards/wpcs": "^0.13.1"
+    },
+    "suggest": {
+        "typisttech/imposter-plugin": "Wrap all composer vendor packages inside your own namespace, to prevent collisions when multiple plugins use this library",
+        "typisttech/wp-contained-hook": "Lazily instantiate objects from dependency injection container to WordPress hooks (actions and filters)",
+        "typisttech/wp-tabbed-admin-pages": "Create WordPress admin pages with tabbed navigations, the OOP way"
     },
     "autoload": {
         "psr-4": {
             "TypistTech\\WPBetterSettings\\": "src/"
         }
-    },
-    "autoload-dev": {
-        "files": [
-            "tests/unit/Pages/PageTestTrait.php",
-            "tests/unit/Views/ViewAwareTestTrait.php"
-        ]
-    },
-    "suggest": {
-      "typisttech/imposter-plugin": "Wrap all composer vendor packages inside your own namespace, to prevent collisions when multiple plugins use this library",
-      "typisttech/wp-contained-hook": "Lazily instantiate objects from dependency injection container to WordPress hooks (actions and filters)"
     },
     "scripts": {
         "build": [
@@ -61,20 +56,15 @@
         "check-style": "phpcs --standard=ruleset.xml --colors -p -s .",
         "fix-style": "phpcbf --standard=ruleset.xml -p --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 .",
         "install-dev-extra": [
-            "PhantomInstaller\\Installer::installPhantomJS",
             "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs"
         ],
         "pre-tag": [
-            "composer update --no-suggest",
             "doctoc README.md",
             "github_changelog_generator --no-verbose"
         ],
         "test": "codecept run",
-        "test-acceptance": "codecept run acceptance",
-        "test-functional": "codecept run functional",
-        "test-integration": "codecept run integration",
-        "test-unit": "codecept run unit",
-        "test-with-coverage": "codecept run --coverage --coverage-xml --coverage-html"
+        "test:coverage": "codecept run --coverage --coverage-xml --coverage-html",
+        "test:wpunit": "codecept run wpunit"
     },
     "extra": {
         "scripts-dev": {

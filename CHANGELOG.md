@@ -1,5 +1,24 @@
 # Change Log
 
+## [unreleased](https://github.com/TypistTech/wp-better-settings/tree/unreleased) (2017-10-27)
+[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.13.0...unreleased)
+
+**Closed issues:**
+
+- Composer: Suggest `typisttech/imposter-plugin` [\#116](https://github.com/TypistTech/wp-better-settings/issues/116)
+
+**Merged pull requests:**
+
+- Composer: Suggest `typisttech/imposter-plugin` & `typisttech/wp-contained-hook` [\#119](https://github.com/TypistTech/wp-better-settings/pull/119) ([TangRufus](https://github.com/TangRufus))
+- composer update [\#118](https://github.com/TypistTech/wp-better-settings/pull/118) ([TangRufus](https://github.com/TangRufus))
+- Scrutinizer: Remove `align\_assignments` [\#117](https://github.com/TypistTech/wp-better-settings/pull/117) ([TangRufus](https://github.com/TangRufus))
+- Fix broken link [\#113](https://github.com/TypistTech/wp-better-settings/pull/113) ([TangRufus](https://github.com/TangRufus))
+- Apply fixes from StyleCI [\#112](https://github.com/TypistTech/wp-better-settings/pull/112) ([TangRufus](https://github.com/TangRufus))
+- Rename: CONDUCT.md --\> CODE\_OF\_CONDUCT.md [\#111](https://github.com/TypistTech/wp-better-settings/pull/111) ([TangRufus](https://github.com/TangRufus))
+- composer update [\#110](https://github.com/TypistTech/wp-better-settings/pull/110) ([TangRufus](https://github.com/TangRufus))
+- TravisCI: Update config [\#109](https://github.com/TypistTech/wp-better-settings/pull/109) ([TangRufus](https://github.com/TangRufus))
+- Update readme [\#107](https://github.com/TypistTech/wp-better-settings/pull/107) ([TangRufus](https://github.com/TangRufus))
+
 ## [0.13.0](https://github.com/TypistTech/wp-better-settings/tree/0.13.0) (2017-05-11)
 [Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.12.0...0.13.0)
 
@@ -11,6 +30,7 @@
 
 **Merged pull requests:**
 
+- Version bump 0.13.0 [\#106](https://github.com/TypistTech/wp-better-settings/pull/106) ([TangRufus](https://github.com/TangRufus))
 - Rename Register --\> Registrar [\#105](https://github.com/TypistTech/wp-better-settings/pull/105) ([TangRufus](https://github.com/TangRufus))
 - Add `PageInterface::getMenuSlug`; Add `PageInterface::getSnakecasedMenuSlug` [\#104](https://github.com/TypistTech/wp-better-settings/pull/104) ([TangRufus](https://github.com/TangRufus))
 - Show metaboxes on tabbed pages [\#103](https://github.com/TypistTech/wp-better-settings/pull/103) ([TangRufus](https://github.com/TangRufus))

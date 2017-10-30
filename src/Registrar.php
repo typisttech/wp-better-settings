@@ -95,7 +95,7 @@ class Registrar
                     $field->getRenderClosure(),
                     $this->pageSlug,
                     $section->getId(),
-                    $field->getAdditionalRenderArguments()
+                    $field->getAdditionalArguments()
                 );
             },
             $section->getFields()
@@ -116,7 +116,7 @@ class Registrar
                 register_setting(
                     $this->pageSlug,
                     $field->getId(),
-                    $field->getAdditionalSettingArguments()
+                    $field->getAdditionalArguments()
                 );
             },
             $section->getFields()

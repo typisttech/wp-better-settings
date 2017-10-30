@@ -82,49 +82,13 @@ class FieldTest extends WPTestCase
     }
 
     /** @test */
-    public function it_has_additional_render_arguments_getter()
+    public function it_has_additional_arguments_getter()
     {
-        $expected = [
-            'label_for' => 'my_field_id',
-        ];
-
-        $actual = $this->subject->getAdditionalRenderArguments();
-
-        $this->assertSame($expected, $actual);
-    }
-
-    /** @test */
-    public function it_merges_additional_render_arguments()
-    {
-        $field = new Field(
-            'my_field_id',
-            'My Title',
-            $this->builder->text('my_field_id'),
-            [],
-            [
-                'class' => 'my-class',
-                'label_for' => 'your_field_id',
-            ]
-        );
-
-        $actual = $field->getAdditionalRenderArguments();
+        $actual = $this->subject->getAdditionalArguments();
 
         $this->assertSame(
             [
-                'label_for' => 'your_field_id',
-                'class' => 'my-class',
-            ],
-            $actual
-        );
-    }
-
-    /** @test */
-    public function it_has_additional_setting_arguments_getter()
-    {
-        $actual = $this->subject->getAdditionalSettingArguments();
-
-        $this->assertSame(
-            [
+                'label_for' => 'my_field_id',
                 'sanitize_callback' => 'sanitize_text_field',
                 'show_in_rest' => true,
             ],
@@ -133,7 +97,7 @@ class FieldTest extends WPTestCase
     }
 
     /** @test */
-    public function it_sets_additional_setting_arguments()
+    public function it_sets_additional_arguments()
     {
         $field = new Field(
             'my_field_id',
@@ -141,20 +105,24 @@ class FieldTest extends WPTestCase
             $this->builder->text('my_field_id'),
             [
                 'abc' => 'zyx',
+                'class' => 'my-class',
                 'foo' => 'bar',
+                'sanitize_callback' => 'sanitize_email',
                 'show_in_rest' => false,
-            ],
-            []
+                'label_for' => 'your_field_id',
+            ]
         );
 
-        $actual = $field->getAdditionalSettingArguments();
+        $actual = $field->getAdditionalArguments();
 
-        $this->assertSame(
+        $this->assertArraySubset(
             [
-                'sanitize_callback' => 'sanitize_text_field',
-                'show_in_rest' => false,
                 'abc' => 'zyx',
+                'class' => 'my-class',
                 'foo' => 'bar',
+                'label_for' => 'your_field_id',
+                'sanitize_callback' => 'sanitize_email',
+                'show_in_rest' => false,
             ],
             $actual
         );

@@ -45,70 +45,51 @@ class Field implements FieldInterface
     private $formControl;
 
     /**
-     * Extra arguments used when outputting the field.
-     *
-     * @var array
-     */
-    private $additionalRenderArguments;
-
-    /**
+     * Additional arguments that are passed to the render closure.
      * Data used to describe the setting when registered.
      *
+     * @see register_setting
+     * @see add_settings_field
+     *
      * @var array
      */
-    private $additionalSettingsArguments;
+    private $additionalArguments;
 
     /**
      * Field constructor.
      *
-     * @param string      $id                          String for use in the 'id' attribute of tags.
-     * @param string      $title                       Title of the field.
-     * @param FormControl $formControl                 Object that echos HTML tags.
-     * @param array       $additionalSettingsArguments Optional. Data used to describe the setting when registered.
-     * @param array       $additionalRenderArguments   Optional. Extra arguments used when outputting the field.
+     * @param string      $id                  String for use in the 'id' attribute of tags.
+     * @param string      $title               Title of the field.
+     * @param FormControl $formControl         Object that echos HTML tags.
+     * @param array       $additionalArguments Optional. Additional arguments that are passed to `register_setting` and
+     *                                         `add_settings_field`.
      */
     public function __construct(
         string $id,
         string $title,
         FormControl $formControl,
-        array $additionalSettingsArguments = null,
-        array $additionalRenderArguments = null
+        array $additionalArguments = null
     ) {
         $this->id = $id;
         $this->title = $title;
         $this->formControl = $formControl;
-        $this->additionalSettingsArguments = array_merge(
-            $this->getDefaultAdditionalSettingArguments(),
-            (array) $additionalSettingsArguments
-        );
-        $this->additionalRenderArguments = array_merge(
-            $this->getDefaultAdditionalRenderArguments(),
-            (array) $additionalRenderArguments
+        $this->additionalArguments = array_merge(
+            $this->getDefaultAdditionalArguments(),
+            (array) $additionalArguments
         );
     }
 
     /**
-     * Default data used to describe the setting when registered.
+     * Default additional arguments that are passed to `register_setting` and `add_settings_field`.
      *
      * @return array
      */
-    public function getDefaultAdditionalSettingArguments(): array
-    {
-        return [
-            'sanitize_callback' => 'sanitize_text_field',
-            'show_in_rest' => true,
-        ];
-    }
-
-    /**
-     * Default additional arguments that are passed to the render closure.
-     *
-     * @return array
-     */
-    protected function getDefaultAdditionalRenderArguments(): array
+    protected function getDefaultAdditionalArguments(): array
     {
         return [
             'label_for' => $this->getId(),
+            'sanitize_callback' => 'sanitize_text_field',
+            'show_in_rest' => true,
         ];
     }
 
@@ -149,21 +130,15 @@ class Field implements FieldInterface
 
     /**
      * Additional arguments that are passed to the render closure.
-     *
-     * @return array
-     */
-    public function getAdditionalRenderArguments(): array
-    {
-        return $this->additionalRenderArguments;
-    }
-
-    /**
      * Data used to describe the setting when registered.
      *
+     * @see register_setting
+     * @see add_settings_field
+     *
      * @return array
      */
-    public function getAdditionalSettingArguments(): array
+    public function getAdditionalArguments(): array
     {
-        return $this->additionalSettingsArguments;
+        return $this->additionalArguments;
     }
 }

@@ -52,56 +52,53 @@ final class Builder
     /**
      * Build a checkbox field.
      *
-     * @param string $id                          String for use in the 'id' attribute of tags.
-     * @param string $title                       Title of the field.
-     * @param array  $additionalSettingsArguments Optional. Data used to describe the setting when registered.
-     * @param array  $additionalRenderArguments   Optional. Extra arguments used when outputting the field.
+     * @param string $id                  String for use in the 'id' attribute of tags.
+     * @param string $title               Title of the field.
+     * @param array  $additionalArguments Optional. Additional arguments that are passed to `register_setting` and
+     *                                    `add_settings_field`.
      *
      * @return Field
      */
     public function checkbox(
         string $id,
         string $title,
-        array $additionalSettingsArguments = null,
-        array $additionalRenderArguments = null
+        array $additionalArguments = null
     ): Field {
         $formControl = $this->builder->checkbox($id)->value('true');
         $this->optionStore->getBoolean($id) ? $formControl->check() : $formControl->uncheck();
 
-        $additionalSettingsArguments = array_merge(
+        $additionalArguments = array_merge(
             [
                 'type' => 'boolean',
                 'sanitize_callback' => function ($value): bool {
                     return 'true' === sanitize_text_field($value);
                 },
             ],
-            (array) $additionalSettingsArguments
+            (array) $additionalArguments
         );
 
         return new Field(
             $id,
             $title,
             $formControl,
-            (array) $additionalSettingsArguments,
-            (array) $additionalRenderArguments
+            (array) $additionalArguments
         );
     }
 
     /**
      * Build an email field.
      *
-     * @param string $id                          String for use in the 'id' attribute of tags.
-     * @param string $title                       Title of the field.
-     * @param array  $additionalSettingsArguments Optional. Data used to describe the setting when registered.
-     * @param array  $additionalRenderArguments   Optional. Extra arguments used when outputting the field.
+     * @param string $id                  String for use in the 'id' attribute of tags.
+     * @param string $title               Title of the field.
+     * @param array  $additionalArguments Optional. Additional arguments that are passed to `register_setting` and
+     *                                    `add_settings_field`.
      *
      * @return Field
      */
     public function email(
         string $id,
         string $title,
-        array $additionalSettingsArguments = null,
-        array $additionalRenderArguments = null
+        array $additionalArguments = null
     ): Field {
         $formControl = $this->builder->email($id)
                                      ->addClass('regular-text')
@@ -109,37 +106,35 @@ final class Builder
                                          $this->optionStore->getString($id)
                                      );
 
-        $additionalSettingsArguments = array_merge(
+        $additionalArguments = array_merge(
             [
                 'sanitize_callback' => 'sanitize_email',
             ],
-            (array) $additionalSettingsArguments
+            (array) $additionalArguments
         );
 
         return new Field(
             $id,
             $title,
             $formControl,
-            (array) $additionalSettingsArguments,
-            (array) $additionalRenderArguments
+            (array) $additionalArguments
         );
     }
 
     /**
      * Build a password field.
      *
-     * @param string $id                          String for use in the 'id' attribute of tags.
-     * @param string $title                       Title of the field.
-     * @param array  $additionalSettingsArguments Optional. Data used to describe the setting when registered.
-     * @param array  $additionalRenderArguments   Optional. Extra arguments used when outputting the field.
+     * @param string $id                  String for use in the 'id' attribute of tags.
+     * @param string $title               Title of the field.
+     * @param array  $additionalArguments Optional. Additional arguments that are passed to `register_setting` and
+     *                                    `add_settings_field`.
      *
      * @return Field
      */
     public function password(
         string $id,
         string $title,
-        array $additionalSettingsArguments = null,
-        array $additionalRenderArguments = null
+        array $additionalArguments = null
     ): Field {
         $formControl = $this->builder->password($id)
                                      ->addClass('regular-text')
@@ -151,19 +146,18 @@ final class Builder
             $id,
             $title,
             $formControl,
-            (array) $additionalSettingsArguments,
-            (array) $additionalRenderArguments
+            (array) $additionalArguments
         );
     }
 
     /**
      * Build a select field.
      *
-     * @param string $id                          String for use in the 'id' attribute of tags.
-     * @param string $title                       Title of the field.
-     * @param array  $options                     Valid options.
-     * @param array  $additionalSettingsArguments Optional. Data used to describe the setting when registered.
-     * @param array  $additionalRenderArguments   Optional. Extra arguments used when outputting the field.
+     * @param string $id                  String for use in the 'id' attribute of tags.
+     * @param string $title               Title of the field.
+     * @param array  $options             Valid options.
+     * @param array  $additionalArguments Optional. Additional arguments that are passed to `register_setting` and
+     *                                    `add_settings_field`.
      *
      * @return Field
      */
@@ -171,15 +165,14 @@ final class Builder
         string $id,
         string $title,
         array $options,
-        array $additionalSettingsArguments = null,
-        array $additionalRenderArguments = null
+        array $additionalArguments = null
     ): Field {
         $formControl = $this->builder->select($id, $options)
                                      ->select(
                                          $this->optionStore->getString($id)
                                      );
 
-        $additionalSettingsArguments = array_merge(
+        $additionalArguments = array_merge(
             [
                 'sanitize_callback' => function ($value) use ($options): string {
                     $value = sanitize_text_field($value);
@@ -187,33 +180,31 @@ final class Builder
                     return array_key_exists($value, $options) ? $value : '';
                 },
             ],
-            (array) $additionalSettingsArguments
+            (array) $additionalArguments
         );
 
         return new Field(
             $id,
             $title,
             $formControl,
-            (array) $additionalSettingsArguments,
-            (array) $additionalRenderArguments
+            (array) $additionalArguments
         );
     }
 
     /**
      * Build a text field.
      *
-     * @param string $id                          String for use in the 'id' attribute of tags.
-     * @param string $title                       Title of the field.
-     * @param array  $additionalSettingsArguments Optional. Data used to describe the setting when registered.
-     * @param array  $additionalRenderArguments   Optional. Extra arguments used when outputting the field.
+     * @param string $id                  String for use in the 'id' attribute of tags.
+     * @param string $title               Title of the field.
+     * @param array  $additionalArguments Optional. Additional arguments that are passed to `register_setting` and
+     *                                    `add_settings_field`.
      *
      * @return Field
      */
     public function text(
         string $id,
         string $title,
-        array $additionalSettingsArguments = null,
-        array $additionalRenderArguments = null
+        array $additionalArguments = null
     ): Field {
         $formControl = $this->builder->text($id)
                                      ->addClass('regular-text')
@@ -225,26 +216,24 @@ final class Builder
             $id,
             $title,
             $formControl,
-            (array) $additionalSettingsArguments,
-            (array) $additionalRenderArguments
+            (array) $additionalArguments
         );
     }
 
     /**
      * Build a textarea field.
      *
-     * @param string $id                          String for use in the 'id' attribute of tags.
-     * @param string $title                       Title of the field.
-     * @param array  $additionalSettingsArguments Optional. Data used to describe the setting when registered.
-     * @param array  $additionalRenderArguments   Optional. Extra arguments used when outputting the field.
+     * @param string $id                  String for use in the 'id' attribute of tags.
+     * @param string $title               Title of the field.
+     * @param array  $additionalArguments Optional. Additional arguments that are passed to `register_setting` and
+     *                                    `add_settings_field`.
      *
      * @return Field
      */
     public function textarea(
         string $id,
         string $title,
-        array $additionalSettingsArguments = null,
-        array $additionalRenderArguments = null
+        array $additionalArguments = null
     ): Field {
         $formControl = $this->builder->textarea($id)
                                      ->addClass('regular-text')
@@ -252,37 +241,35 @@ final class Builder
                                          $this->optionStore->getString($id)
                                      );
 
-        $additionalSettingsArguments = array_merge(
+        $additionalArguments = array_merge(
             [
                 'sanitize_callback' => 'sanitize_textarea_field',
             ],
-            (array) $additionalSettingsArguments
+            (array) $additionalArguments
         );
 
         return new Field(
             $id,
             $title,
             $formControl,
-            (array) $additionalSettingsArguments,
-            (array) $additionalRenderArguments
+            (array) $additionalArguments
         );
     }
 
     /**
      * Build a url field.
      *
-     * @param string $id                          String for use in the 'id' attribute of tags.
-     * @param string $title                       Title of the field.
-     * @param array  $additionalSettingsArguments Optional. Data used to describe the setting when registered.
-     * @param array  $additionalRenderArguments   Optional. Extra arguments used when outputting the field.
+     * @param string $id                  String for use in the 'id' attribute of tags.
+     * @param string $title               Title of the field.
+     * @param array  $additionalArguments Optional. Additional arguments that are passed to `register_setting` and
+     *                                    `add_settings_field`.
      *
      * @return Field
      */
     public function url(
         string $id,
         string $title,
-        array $additionalSettingsArguments = null,
-        array $additionalRenderArguments = null
+        array $additionalArguments = null
     ): Field {
         $formControl = $this->builder->text($id)
                                      ->type('url')
@@ -291,37 +278,35 @@ final class Builder
                                          $this->optionStore->getString($id)
                                      );
 
-        $additionalSettingsArguments = array_merge(
+        $additionalArguments = array_merge(
             [
                 'sanitize_callback' => 'esc_url_raw',
             ],
-            (array) $additionalSettingsArguments
+            (array) $additionalArguments
         );
 
         return new Field(
             $id,
             $title,
             $formControl,
-            (array) $additionalSettingsArguments,
-            (array) $additionalRenderArguments
+            (array) $additionalArguments
         );
     }
 
     /**
      * Build a positive number field.
      *
-     * @param string $id                          String for use in the 'id' attribute of tags.
-     * @param string $title                       Title of the field.
-     * @param array  $additionalSettingsArguments Optional. Data used to describe the setting when registered.
-     * @param array  $additionalRenderArguments   Optional. Extra arguments used when outputting the field.
+     * @param string $id                  String for use in the 'id' attribute of tags.
+     * @param string $title               Title of the field.
+     * @param array  $additionalArguments Optional. Additional arguments that are passed to `register_setting` and
+     *                                    `add_settings_field`.
      *
      * @return Field
      */
     public function number(
         string $id,
         string $title,
-        array $additionalSettingsArguments = null,
-        array $additionalRenderArguments = null
+        array $additionalArguments = null
     ): Field {
         $formControl = $this->builder->text($id)
                                      ->type('number')
@@ -331,19 +316,18 @@ final class Builder
                                          $this->optionStore->getString($id)
                                      );
 
-        $additionalSettingsArguments = array_merge(
+        $additionalArguments = array_merge(
             [
                 'sanitize_callback' => 'absint',
             ],
-            (array) $additionalSettingsArguments
+            (array) $additionalArguments
         );
 
         return new Field(
             $id,
             $title,
             $formControl,
-            (array) $additionalSettingsArguments,
-            (array) $additionalRenderArguments
+            (array) $additionalArguments
         );
     }
 }

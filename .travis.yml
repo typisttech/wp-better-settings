@@ -30,7 +30,7 @@ env:
   matrix:
     - WP_VERSION=nightly
     - WP_VERSION=latest WITH_COVERAGE=true
-    - WP_VERSION=4.9.4
+    - WP_VERSION=4.9.5
 
 matrix:
   include:
@@ -43,7 +43,6 @@ matrix:
 
 before_install:
   - $WITH_COVERAGE || phpenv config-rm xdebug.ini || true
-  - mkdir -p $TMPDIR/AspectMock/wp-better-settings
 
   # Install helper scripts
   - travis_retry composer global require --prefer-dist --no-suggest typisttech/travis-nginx-wordpress

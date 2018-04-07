@@ -7,7 +7,7 @@ $kernel = \AspectMock\Kernel::getInstance();
 $kernel->init(
     [
         'debug' => true,
-        'cacheDir' => getenv('TMPDIR') . 'AspectMock/wp-better-settings',
+        'cacheDir' => codecept_root_dir('_output'),
         'includePaths' => [codecept_root_dir('src')],
         'excludePaths' => [codecept_root_dir('tests')],
     ]

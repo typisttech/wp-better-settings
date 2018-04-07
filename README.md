@@ -26,6 +26,7 @@ A simplified OOP implementation of the WP Settings API.
   - [Can two different plugins use this package at the same time?](#can-two-different-plugins-use-this-package-at-the-same-time)
   - [Do you have a demo plugin that use this package?](#do-you-have-a-demo-plugin-that-use-this-package)
   - [Do you have real life examples that use this package?](#do-you-have-real-life-examples-that-use-this-package)
+  - [It looks awesome. Where can I find some more goodies like this?](#it-looks-awesome-where-can-i-find-some-more-goodies-like-this)
 - [Support](#support)
   - [Why don't you hire me?](#why-dont-you-hire-me)
   - [Want to help in other way? Want to be a sponsor?](#want-to-help-in-other-way-want-to-be-a-sponsor)
@@ -97,6 +98,15 @@ Here you go:
  * [WP Cloudflare Guard](https://github.com/TypistTech/wp-cloudflare-guard)
 
 *Add your own plugin [here](https://github.com/TypistTech/wp-better-settings/edit/master/README.md)*
+
+### It looks awesome. Where can I find some more goodies like this?
+
+* Articles on Typist Tech's [blog](https://typist.tech)
+* [Tang Rufus' WordPress plugins](https://profiles.wordpress.org/tangrufus#content-plugins) on wp.org
+* More projects on [Typist Tech's GitHub profile](https://github.com/TypistTech)
+* Stay tuned on [Typist Tech's newsletter](https://typist.tech/go/newsletter)
+* Follow [Tang Rufus' Twitter account](https://twitter.com/TangRufus)
+* Hire [Tang Rufus](https://typist.tech/contact) to build your next awesome site
 
 ## Support
 

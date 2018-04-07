@@ -27,7 +27,6 @@ php:
 env:
   global:
     - COMPOSER_NO_INTERACTION=1
-    - TMPDIR=/tmp/
   matrix:
     - WP_VERSION=nightly
     - WP_VERSION=latest WITH_COVERAGE=true

@@ -20,6 +20,7 @@ notifications:
 
 php:
   - 7.0
+  - 7.1
   - 7.2
   - nightly
 
@@ -34,8 +35,11 @@ env:
 
 matrix:
   include:
-    - php: '7.1'
-      env: WITH_COVERAGE=true
+    - php: nightly
+      env: WP_VERSION=latest
+  exclude:
+    - php: nightly
+      env: WP_VERSION=latest WITH_COVERAGE=true
   allow_failures:
     - php: nightly
     - env: WP_VERSION=nightly

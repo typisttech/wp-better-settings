@@ -1,14 +1,26 @@
 # Change Log
 
-## [unreleased](https://github.com/TypistTech/wp-better-settings/tree/unreleased) (2017-10-27)
-[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.13.0...unreleased)
+## [0.14.0](https://github.com/TypistTech/wp-better-settings/tree/0.14.0) (2018-05-11)
+[Full Changelog](https://github.com/TypistTech/wp-better-settings/compare/0.13.0...0.14.0)
 
 **Closed issues:**
 
+- Merge `Field::$additionalRenderArguments` and `Field::$additionalSettingsArguments` [\#126](https://github.com/TypistTech/wp-better-settings/issues/126)
+- Extract `Page` into its own package [\#120](https://github.com/TypistTech/wp-better-settings/issues/120)
 - Composer: Suggest `typisttech/imposter-plugin` [\#116](https://github.com/TypistTech/wp-better-settings/issues/116)
+- Extract `View` into its own package [\#115](https://github.com/TypistTech/wp-better-settings/issues/115)
+- Extract `OptionStore` into its own package [\#114](https://github.com/TypistTech/wp-better-settings/issues/114)
 
 **Merged pull requests:**
 
+- TravisCI: Remove unused environment variable [\#133](https://github.com/TypistTech/wp-better-settings/pull/133) ([TangRufus](https://github.com/TangRufus))
+- TravisCI: Fix test matrix [\#132](https://github.com/TypistTech/wp-better-settings/pull/132) ([TangRufus](https://github.com/TangRufus))
+- Update readme [\#131](https://github.com/TypistTech/wp-better-settings/pull/131) ([TangRufus](https://github.com/TangRufus))
+- TravisCI: Fix testing config [\#130](https://github.com/TypistTech/wp-better-settings/pull/130) ([TangRufus](https://github.com/TangRufus))
+- Misc: Update readme [\#129](https://github.com/TypistTech/wp-better-settings/pull/129) ([TangRufus](https://github.com/TangRufus))
+- TravisCI: Update config for `AspectMock` [\#128](https://github.com/TypistTech/wp-better-settings/pull/128) ([TangRufus](https://github.com/TangRufus))
+- Combine `Field::$additionalRenderArguments` and `Field::$additionalSettingsArguments` [\#127](https://github.com/TypistTech/wp-better-settings/pull/127) ([TangRufus](https://github.com/TangRufus))
+- Rewrite with separation of concerns [\#123](https://github.com/TypistTech/wp-better-settings/pull/123) ([TangRufus](https://github.com/TangRufus))
 - Composer: Suggest `typisttech/imposter-plugin` & `typisttech/wp-contained-hook` [\#119](https://github.com/TypistTech/wp-better-settings/pull/119) ([TangRufus](https://github.com/TangRufus))
 - composer update [\#118](https://github.com/TypistTech/wp-better-settings/pull/118) ([TangRufus](https://github.com/TangRufus))
 - Scrutinizer: Remove `align\_assignments` [\#117](https://github.com/TypistTech/wp-better-settings/pull/117) ([TangRufus](https://github.com/TangRufus))

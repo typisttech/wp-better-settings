@@ -26,7 +26,7 @@
         "source": "https://github.com/TypistTech/wp-better-settings"
     },
     "require": {
-        "php": ">7.0",
+        "php": "^8.1",
         "bupy7/php-html-form": "^1.0",
         "typisttech/wp-kses-view": "^0.4.0",
         "typisttech/wp-option-store": "^0.1.1"
@@ -72,7 +72,10 @@
         }
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "neronmoon/scriptsdev": true
+        }
     },
     "archive": {
         "exclude": [
